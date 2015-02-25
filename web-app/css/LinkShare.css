@@ -1,0 +1,64 @@
+.leftdiv
+{
+margin-left:2%;
+}
+
+.rightdiv
+{
+margin-right:2%;
+}
+
+.mediaFace
+{
+height:100px;
+width:100px;
+}
+
+.left
+{
+float:left
+}
+
+.right
+{
+float:right
+}
+
+.clr
+{
+clear:both;
+}
+.loginform span
+{
+display:inline-block;
+width:130px;
+margin:15px;
+}
+
+.div span
+{
+display:inline-block;
+}
+.browsebar
+{
+	position: relative;
+	overflow: hidden;
+	margin-top: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	height:30px;
+	width:120px;
+}
+
+.icon
+{
+height:30px;
+width:30px;
+}
+
+.dropdown
+{
+position:relative;
+}
+
+
