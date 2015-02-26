@@ -10,38 +10,8 @@
 <head>
     <title></title>
     <meta name="layout" content="loginLayout">
-    %{--<!-- Latest compiled and minified CSS -->--}%
-    %{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">--}%
-
-    %{--<!-- Optional theme -->--}%
-    %{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">--}%
-
-    %{--<!-- Latest compiled and minified JavaScript -->--}%
-    %{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>--}%
-
-    %{--<!-- Self-created CSS -->--}%
-    %{--<link rel="stylesheet" href="${resource(dir: "css",file:"LinkShare.css" )}">--}%
-
 </head>
 <body>
-%{--<!--Navigation Bar-->--}%
-%{--<nav class="navbar navbar-default">--}%
-    %{--<div class="container-fluid">--}%
-        %{--<div class="navbar-header">--}%
-            %{--<a class="navbar-brand" href="#">Link Sharing</a>--}%
-        %{--</div>--}%
-
-        %{--<!--Search-->--}%
-        %{--<div>--}%
-            %{--<form class="navbar-form navbar-right" role="search">--}%
-                %{--<div class="form-group">--}%
-                    %{--<input type="text" class="form-control" placeholder="Search">--}%
-                %{--</div>--}%
-            %{--</form>--}%
-        %{--</div><!-- /.navbar-collapse -->--}%
-    %{--</div><!-- /.container-fluid -->--}%
-%{--</nav>--}%
-
 <div class="row">
     <div class="col-md-8">
 
@@ -51,84 +21,29 @@
                 <h1 class="panel-title">Recent shares</h1>
             </div>
             <div class="panel-body">
-                <div class="media ">
-                    <div class="media-left">
-                        <a href="#">
-                            <img class="media-object mediaFace" src="${resource(dir: "images",file:"person-icon.png")}" alt="Person">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Shivali Batra</h4>
-                        This is a sample text to be replaced by the comments
-                    </div>
-                    <button type="button" class="btn btn-default btn-sm">
-                        <span><img src="${resource(dir: "images",file:"facebook.png" )}" class="icon"/></span>
-                    </button>
-                    <button type="button" class="btn btn-default btn-sm">
-                        <span><img src="${resource(dir: "images",file: "twitter-icon.png")}" class="icon"/></span>
-                    </button>
-                    <button type="button" class="btn btn-default btn-sm">
-                        <span><img src="${resource(dir: "images",file: "icon_google_plus.png")}" class="icon" /></span>
-                    </button>
-                    <span><a href="" class="right">View post</a></span>
 
-                </div>
-                <div class="media ">
-                    <div class="media-left">
-                        <a href="#">
-                            <img class="media-object mediaFace" src="${resource(dir:"images",file: "person-icon.png")}" alt="Person">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Shivali Batra</h4>
-                        This is a sample text to be replaced by the comments
-                    </div>
+                    %{--Using template for media objects--}%
+                    <g:each in="${resources}" var="res">
+                        <g:render template="/myTemplates/RecentShare" model="[res:res]"></g:render>
+                    </g:each>
 
-                    <button type="button" class="btn btn-default btn-sm">
-                        <span><img src="${resource(dir: "images",file:"facebook.png" )}" class="icon"/></span>
-                    </button>
-                    <button type="button" class="btn btn-default btn-sm">
-                        <span><img src="${resource(dir: "images",file: "twitter-icon.png")}" class="icon"/></span>
-                    </button>
-                    <button type="button" class="btn btn-default btn-sm">
-                        <span><img src="${resource(dir: "images",file: "icon_google_plus.png")}" class="icon" /></span>
-                    </button>
-
-                    <span><a href="" class="right">View post</a></span>
-                </div>
             </div><!--panel body end -->
         </div><!--panel end-->
+
 
         <div class="panel panel-default leftdiv">
             <div class="panel-heading">
                 <h3 class="panel-title">Top Posts</h3>
             </div>
             <div class="panel-body">
-                <div class="media ">
-                    <div class="media-left">
-                        <a href="#">
-                            <img class="media-object mediaFace" src="${resource(dir: "images",file: "person-icon.png")}" alt="Person">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Shivali Batra</h4>
-                        This is a sample text to be replaced by the comments
-                    </div>
+                %{--Using template for media objects--}%
+                    <g:each in="${resources}" var="res">
+                        <g:render template="/myTemplates/RecentShare" model="[res:res]"></g:render>
+                    </g:each>
 
-                    <button type="button" class="btn btn-default btn-sm">
-                        <span><img src="${resource(dir: "images",file:"facebook.png" )}" class="icon"/></span>
-                    </button>
-                    <button type="button" class="btn btn-default btn-sm">
-                        <span><img src="${resource(dir: "images",file: "twitter-icon.png")}" class="icon"/></span>
-                    </button>
-                    <button type="button" class="btn btn-default btn-sm">
-                        <span><img src="${resource(dir: "images",file: "icon_google_plus.png")}" class="icon" /></span>
-                    </button>
-
-                    <span><a href="" class="right">View post</a></span>
-                </div>
             </div>
         </div>
+
     </div><!--col 8 end-->
     <div class="col-md-4">
         <!--LOGIN FORM-->

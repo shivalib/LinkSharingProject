@@ -3,7 +3,11 @@ package com.ig.LinkShare
 class HomeController {
 
     def index() {
-        render(view: "/user/HomePage")
+
+        List<Resource> resources=Resource.list([max:5,offset: 0,order:"desc",sort: "id"])
+
+        render(view: "/user/HomePage",model:[resources:resources])
+
     }
 
     def dashboard(String username)
@@ -12,8 +16,20 @@ class HomeController {
 
     }
 
-    def calculateRecentShare(Resource resource)
+    def createInbox()
     {
+        List<ReadingItem> readingItemList=ReadingItem.list()
+        println readingItemList
+
+//        List<Resource> resources=Resource.findAllWhere(readingItem.isRead=false)
 
     }
+
+
+//    def createTopPosts(Resource resource)
+//    {
+//        List<ReadingItem> readingItemList=ReadingItem.findAllBy()
+//
+//    }
+
 }
