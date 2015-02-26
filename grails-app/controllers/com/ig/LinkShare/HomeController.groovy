@@ -11,4 +11,9 @@ class HomeController {
         render(view: "/user/Dashboard",params:[username:username])
 
     }
+
+    def calculateRecentShare(Resource resource)
+    {
+
+    }
 }

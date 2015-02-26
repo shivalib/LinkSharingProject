@@ -9,40 +9,42 @@
 <html>
 <head>
     <title></title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <meta name="layout" content="loginLayout">
+    %{--<!-- Latest compiled and minified CSS -->--}%
+    %{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">--}%
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    %{--<!-- Optional theme -->--}%
+    %{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">--}%
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    %{--<!-- Latest compiled and minified JavaScript -->--}%
+    %{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>--}%
 
-    <!-- Self-created CSS -->
-    <link rel="stylesheet" href="${resource(dir: "css",file:"LinkShare.css" )}">
+    %{--<!-- Self-created CSS -->--}%
+    %{--<link rel="stylesheet" href="${resource(dir: "css",file:"LinkShare.css" )}">--}%
 
 </head>
 <body>
-<!--Navigation Bar-->
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Link Sharing</a>
-        </div>
+%{--<!--Navigation Bar-->--}%
+%{--<nav class="navbar navbar-default">--}%
+    %{--<div class="container-fluid">--}%
+        %{--<div class="navbar-header">--}%
+            %{--<a class="navbar-brand" href="#">Link Sharing</a>--}%
+        %{--</div>--}%
 
-        <!--Search-->
-        <div>
-            <form class="navbar-form navbar-right" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-            </form>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+        %{--<!--Search-->--}%
+        %{--<div>--}%
+            %{--<form class="navbar-form navbar-right" role="search">--}%
+                %{--<div class="form-group">--}%
+                    %{--<input type="text" class="form-control" placeholder="Search">--}%
+                %{--</div>--}%
+            %{--</form>--}%
+        %{--</div><!-- /.navbar-collapse -->--}%
+    %{--</div><!-- /.container-fluid -->--}%
+%{--</nav>--}%
 
 <div class="row">
     <div class="col-md-8">
+
         <!--Recent Shares-->
         <div class="panel panel-default leftdiv">
             <div class="panel-heading" >

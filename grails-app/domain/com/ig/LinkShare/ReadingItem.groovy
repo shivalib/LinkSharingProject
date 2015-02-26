@@ -1,10 +1,10 @@
 package com.ig.LinkShare
 
 class ReadingItem {
-    User user
+    //User user
     boolean isRead
 
-    static belongsTo = [resource:Resource]
+    static belongsTo = [resource:Resource,user:User]
 
     static constraints = {
 

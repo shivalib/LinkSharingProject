@@ -12,7 +12,7 @@ class BootStrap {
 
     def init = { servletContext ->
         createUser()
-
+        createReadingItems()
     }
 
     def destroy = {
@@ -67,8 +67,10 @@ class BootStrap {
 
     void createResources(User user,Topic topic,Integer it)
     {
+
         DocumentResource documentResource=createDocumentResource(user,topic,it)
         LinkResource linkResource=createLinkResource(user,topic,it)
+
 
     }
     //document resource
@@ -90,9 +92,32 @@ class BootStrap {
     }
 
     //mark item as read
-//    ReadingItem createReadingItems(User user,LinkResource linkResource,DocumentResource documentResource)
-//    {
-//        ReadingItem readingItem=new ReadingItem(isRead: true,user: user,linkResource: )
-//    }
+    void createReadingItems()
+    {
+        List<User> listUser=User.findAll()
+        println listUser
+        listUser.each { User user->
+            println user
+            (1..3).each{ Integer counter->
+                println user
+                ReadingItem readingItem=new ReadingItem(isRead: true)
+                def randomNum=generateRandomNumber()
+                println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+                println "Random no generated is "+randomNum
+                Resource resource=Resource.findById(randomNum)
+                println "the resource is >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+resource
+                resource.addToReadingItems(readingItem)
+                user.addToReadingItems(readingItem)
+                readingItem.save(failOnError: true)
+
+            }
+        }
+    }
+
+    def generateRandomNumber()
+    {
+        def randomNumber=Math.abs(new Random().nextInt()%100)+1
+        return randomNumber
+    }
 
 }
