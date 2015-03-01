@@ -8,7 +8,7 @@ class BootStrapService {
 
     def serviceMethod() {
     }
-
+     def topicCreationService
     //create 2 user
     void createUser() {
         (1..2).each {
@@ -16,7 +16,7 @@ class BootStrapService {
             if(user.save(failOnError: true))
             {
                 5.times {
-                    Topic topic=createTopic(user,it)
+                    Topic topic=topicCreationService.createTopic(user,it)
                 }
             }
             else
@@ -24,36 +24,6 @@ class BootStrapService {
                 user.errors.allErrors.each {println it}
             }
         }
-    }
-
-    //create 5 topic for each user
-    Topic createTopic(User user,Integer it)
-    {
-        Topic topic = new Topic(topicName: "Topic ${it}", createdBy: user)
-        if (topic.save(flush: true, failOnError: true)) {
-
-            user.addToTopics(topic)
-            Subscription subscribe=subscribeTopic(user, topic)
-
-            5.times {
-                createResources(user,topic,it)
-            }
-        } else {
-            topic.errors.allErrors.each {println it}
-        }
-        return topic
-    }
-
-    //subscribe topic
-    Subscription subscribeTopic(User user, Topic topic) {
-        Subscription subscription = new Subscription(seriousness:Seriousness.VERYSERIOUS, user: user, topic: topic)
-        if (subscription.save(flush: true, failOnError: true)) {
-            user.addToSubscriptions(subscription)
-        }
-        else {
-            subscription.errors.allErrors.each {println it}
-        }
-        return subscription
     }
 
     void createResources(User user,Topic topic,Integer it)
