@@ -19,6 +19,7 @@
         <!--Panel1-->
         <div class="panel panel-default leftdiv">
             <div class="panel-body">
+    %{--<g:each in="${currentUser}" var="usr">--}%
                 <div class="media ">
                     <div class="media-left">
                         <a href="#">
@@ -26,10 +27,27 @@
                         </a>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">Shivali Batra</h4>
-                        This is a sample text to be replaced by the data
+
+                        <h4 class="media-heading">${loginUser.firstName} ${loginUser.lastName}</h4>
+                        <div>
+                            <h5>@${loginUser.username}</h5>
+                        </div>
+                        <div>
+                            <span class="left leftdiv">Subscriptions
+                                <div>${loginUser.subscriptions.size()}</div>
+                            </span>
+                            <span class="left leftdiv">Topics
+                            <div>${loginUser.topics.size()}</div>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="left leftdiv"></span>
+                            <span class="left leftdiv"></span>
+                        </div>
+
                     </div><!--media body ends-->
                 </div><!--media ends -->
+
             </div><!-- panel body ends-->
         </div><!--panel ends-->
 
@@ -43,12 +61,32 @@
                 <div class="media ">
                     <div class="media-left">
                         <a href="#">
-                            <img class="media-object mediaFace" src="../images/person-icon.png" alt="Person">
+                            <g:img class="media-object mediaFace" dir="images" file="person-icon.png" alt="Person"></g:img>
                         </a>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading"><a href="">Grails</a></h4>
+                        <h4 class="media-heading"><a href="">topicName</a></h4>
                         This is a sample text to be replaced by the data
+
+                        <div>
+                            <span class="left">
+                                <select name="SeriousnessList">
+                                    <option name="serious">Serious</option>
+                                    <option name="verySerious">Very Serious</option>
+                                    <option name="casual">Casual</option>
+                                </select>
+
+                                <select name="TopicTypeList">
+                                    <option name="public">Public</option>
+                                    <option name="private">Private</option>
+                                </select>
+
+                                <button type="button" class="btn btn-default" title="Send invitation">
+                                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                                </button>
+                            </span>
+                        </div>
+
                     </div><!--media body ends-->
                 </div><!-- media ends-->
             </div><!-- panel body ends-->
@@ -63,10 +101,59 @@
                     <div class="media-body">
                         <h4 class="media-heading"><a href="">Grails</a></h4>
                         This is a sample text to be replaced by the data
+                        <div>
+                            <span class="right">
+                            <select name="SeriousnessList">
+                            <option name="serious">Serious</option>
+                            <option name="verySerious">Very Serious</option>
+                            <option name="casual">Casual</option>
+                            </select>
+
+                            <button type="button" class="btn btn-default" title="Send invitation">
+                            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                            </button>
+                            </span>
+                        </div>
                     </div><!--media body ends-->
                 </div><!--media ends-->
             </div><!--panel body ends-->
         </div><!--panel ends -->
+    <!--Trending topic-->
+        <div class="panel panel-default leftdiv">
+            <div class="panel-heading">
+                <h3 class="panel-title">Trending Topic (Pop up)</h3>
+            </div>
+            <div class="panel-body">
+                <div class="media ">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object mediaFace" src="${resource(dir: "images", file:"person-icon.png")}">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="#">topicname</a></h4>
+                        <div>
+                            <h5>@username</h5>
+                            <span class="right">Posts</span>
+                            <span class="right rightdiv">Subscriptions</span>
+                            <span class="left"><a href="#">Subscribe</a></span>
+                        </div>
+                        <div>
+                            <span class="right">
+                                <select name="SeriousnessList">
+                                    <option name="serious">Serious</option>
+                                    <option name="verySerious">Very Serious</option>
+                                    <option name="casual">Casual</option>
+                                </select>
+                                <button type="button" class="btn btn-default" title="Send invitation">
+                                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div><!--media body ends-->
+                </div><!--media ends -->
+            </div><!--panel body ends-->
+        </div><!-- panel ends-->
 
     <!-- Send Invitation -->
         <div class="panel panel-default leftdiv">
@@ -77,10 +164,9 @@
                 <form class=loginform>
                     <div>
                         <span>Email* : </span>
-                        <input type="text"></input>
+                        <g:textField name="email"></g:textField>
                     </div>
                     <div>
-                        <span>Topic* : </span>
                         <select name="topics">
                             <option>Topic 1
                             <option>Topic 2
@@ -91,10 +177,13 @@
                     <div class="right">
                         <input type="submit" value="Invite"/>
                         <input type="reset" value="Cancel" />
+                        <span>Topic* : </span>
                     </div>
                 </form>
             </div><!-- panel body ends -->
         </div><!--Panel ends-->
+
+
     </div><!-- col-md-4 -->
     <div class="col-md-8">
 
@@ -109,34 +198,15 @@
                 <div class="media ">
                     <div class="media-left">
                         <a href="#">
-                            <img class="media-object mediaFace" src="../images/person-icon.png" alt="Person">
+                            <img class="media-object mediaFace" src="${resource(dir: "images", file:"person-icon.png")}">
                         </a>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading"><a href="">Grails</a></h4>
+                        <h4 class="media-heading"></h4>
+                        <div>${loginUser.firstName} ${loginUser.lastName} @ ${loginUser.username}</div>
                         This is a sample text to be replaced by the data
                     </div><!--media body ends-->
 
-                    <div class="right">
-                        <a href="">Download</a>
-                        <a href="">View full site</a>
-                        <a href="">Mark as read</a>
-                        <a href="">View post</a>
-                    </div>
-                </div>
-            </div><!--panel body ends-->
-
-            <div class="panel-body">
-                <div class="media ">
-                    <div class="media-left">
-                        <a href="#">
-                            <img class="media-object mediaFace" src="../images/person-icon.png" alt="Person">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading"><a href="">Grails</a></h4>
-                        This is a sample text to be replaced by the data
-                    </div><!--media body ends-->
                     <div class="right">
                         <a href="">Download</a>
                         <a href="">View full site</a>
@@ -146,6 +216,7 @@
                 </div>
             </div><!--panel body ends-->
         </div>
+
     </div>
 </div>
 

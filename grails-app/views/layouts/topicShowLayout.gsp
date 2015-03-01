@@ -1,14 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: intelligrape
-  Date: 25/2/15
-  Time: 6:35 PM
+  Date: 1/3/15
+  Time: 4:26 PM
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title><g:layoutTitle default="Login Layout"/></title>
+    <title></title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -20,9 +20,9 @@
 
     <!-- Self-created CSS -->
     <link rel="stylesheet" href="${resource(dir: "css",file:"LinkShare.css" )}">
+    <g:layoutHead/>
 
 </head>
-<g:layoutHead/>
 <body>
 <!--Navigation Bar-->
 <nav class="navbar navbar-default">
@@ -38,14 +38,6 @@
                     <input type="text" class="form-control" placeholder="Search">
                 </div>
 
-                <button type="button" class="btn btn-default btn-md" title="Create topic">
-                    <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-                </button>
-
-                <button type="button" class="btn btn-default btn-md" title="Send invitation">
-                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                </button>
-
                 <button type="button" class="btn btn-default btn-md">
                     <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
                 </button>
@@ -59,10 +51,7 @@
                     <select name="myList" >
                         <option value="username" disabled="disabled" selected="selected">${params.username}</option>
                         <option value="action">Profile</option>
-                        <option value="action2">Users</option>
-                        <option value="action3">Topics</option>
-                        <option value="action4">Posts</option>
-                        <option value="action5">Logout</option>
+                        <option value="action2">Logout</option>
                     </select>
                 </span>
             </form>

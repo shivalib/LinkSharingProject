@@ -8,12 +8,14 @@ class Resource {
 
     static belongsTo = [topic:Topic]
 
-    static hasMany = [readingItems:ReadingItem]
+    static hasMany = [readingItems:ReadingItem,resouceRatings:Resource]
 
     static constraints = {
         description maxSize: 1024
     }
 
-    static mapping = {tablePerHierarchy(false)}
+    static mapping = {
+        tablePerHierarchy(false)
+    }
 
 }

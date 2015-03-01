@@ -19,5 +19,4 @@
         <span><img src="${resource(dir: "images",file: "icon_google_plus.png")}" class="icon" /></span>
     </button>
     <span><a href="" class="right">View post</a></span>
-
 </div>

@@ -1,35 +1,46 @@
 package com.ig.LinkShare
 
+//import spock.util.mop.Use
+
 class HomeController {
 
     def index() {
 
         List<Resource> resources=Resource.list([max:5,offset: 0,order:"desc",sort: "id"])
 
+//        if (session["username"]) {
+//            println session["username"]
+//            String currentUserName = session["username"]
+//            println currentUserName
+//            User currentUser = User.findByUsername((String)session["username"])
+//            println "aa"+currentUser.firstName
+//            render(view: "/user/Dashboard", model: [myUser: currentUser])
+//        }
+
         render(view: "/user/HomePage",model:[resources:resources])
 
     }
 
-    def dashboard(String username)
-    {
-        render(view: "/user/Dashboard",params:[username:username])
-
+    def dashboard() {
+        if(session["username"])
+        {
+            User currentUser=User.findByUsername(session["username"])
+       //     showInbox(currentUser)
+            render(view: "/user/Dashboard", model: [loginUser:currentUser])
+        }
     }
 
-    def createInbox()
-    {
-        List<ReadingItem> readingItemList=ReadingItem.list()
-        println readingItemList
-
-//        List<Resource> resources=Resource.findAllWhere(readingItem.isRead=false)
-
-    }
-
-
-//    def createTopPosts(Resource resource)
+//    def showInbox(User currentUser)
 //    {
-//        List<ReadingItem> readingItemList=ReadingItem.findAllBy()
+//        println "in showInbox"
+//        List<ReadingItem> readingItems=ReadingItem.findAll()
+////        println readingItems
 //
+//        List<ReadingItem> readingItems1=ReadingItem.findAllWhere(isRead: true)
+//        println readingItems1
+////        println "Number: " +resources
 //    }
+
+
 
 }

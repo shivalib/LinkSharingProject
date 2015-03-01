@@ -12,8 +12,8 @@ class User {
         Boolean active
 //    Long userId
 
-        static hasMany = [topics:Topic,subscriptions:Subscription,resources:Resource,readingItems:ReadingItem]
-    //,resources:Resource,readingitems:ReadingItem,resourcerating:ResourceRating]
+        static hasMany = [topics:Topic,subscriptions:Subscription,resources:Resource,readingItems:ReadingItem,resurceRatings:ResourceRating]
+
 //
 //    static mapping = {
 //        id name: 'userId',generator:'auto'
@@ -25,5 +25,14 @@ class User {
             password blank: false,nullable: false
             email email: true,blank: false,unique: true
             photo nullable: true
+
+//            password validator: {password,obj->
+//                return password==obj.password?"true":["invalid.PasswordMismatch"]
+//
+//            }
+
+
+
+
         }
 }

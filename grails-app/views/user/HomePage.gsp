@@ -9,6 +9,7 @@
 <html>
 <head>
     <title></title>
+    %{--<g:javascript library="jquery"></g:javascript>--}%
     <meta name="layout" content="loginLayout">
 </head>
 <body>
@@ -21,7 +22,6 @@
                 <h1 class="panel-title">Recent shares</h1>
             </div>
             <div class="panel-body">
-
                     %{--Using template for media objects--}%
                     <g:each in="${resources}" var="res">
                         <g:render template="/myTemplates/RecentShare" model="[res:res]"></g:render>
@@ -52,7 +52,7 @@
                 <h3 class="panel-title">Login</h3>
             </div>
             <div class="panel-body">
-                <g:form class="loginform" controller="login" action="loginHandler"  >
+                <g:form class="loginform" controller="login" action="loginHandler" method="POST" >
                     <div>
                         <span>Email/Username*</span>
                         <input type="text" name="username"/>
@@ -77,32 +77,32 @@
             <g:form class="loginform" controller="login" action="registerUser">
                 <div>
                     <span>First name*</span>
-                    <g:textField name="firstName"></g:textField>
+                    <g:textField name="firstName" placeholder="First Name"></g:textField>
                 </div>
 
                 <div>
                     <span>Last name*</span>
-                    <g:textField name="lastName"></g:textField>
+                    <g:textField name="lastName" placeholder="Last Name"></g:textField>
                 </div>
 
                 <div>
                     <span>Email*</span>
-                    <g:textField name="email"></g:textField>
+                    <g:textField name="email" placeholder="Email"></g:textField>
                 </div>
 
                 <div>
                     <span>Username*</span>
-                    <g:textField name="username"></g:textField>
+                    <g:textField name="username" placeholder="Username"></g:textField>
                 </div>
 
                 <div>
                     <span>Password*</span>
-                    <g:passwordField name="password"></g:passwordField>
+                    <g:passwordField name="password" placeholder="password"></g:passwordField>
                 </div>
 
                 <div>
                     <span>Confirm Password*</span>
-                    <g:passwordField name="cofirmPassword"></g:passwordField>
+                    <g:passwordField name="cofirmPassword" placeholder="confirmPassword"></g:passwordField>
                 </div>
 
                 <div>
@@ -113,7 +113,12 @@
                 <div>
                     <g:submitButton name="submit" value="Register"/>
                 </div>
+                <g:if test="${flash.message}">
+                    <div class="message">${flash.message}</div>
+                </g:if>
+
             </g:form>
+
 
         </div>
     </div><!--registeration form ends-->
