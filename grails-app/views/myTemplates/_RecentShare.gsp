@@ -1,8 +1,8 @@
 <div class="media ">
     <div class="media-left">
-        <a href="#">
+        <g:link  controller="user" action="UserProfile">
             <img class="media-object mediaFace" src="${resource(dir: "images",file:"person-icon.png")}" alt="Person">
-        </a>
+        </g:link>
     </div>
     <div class="media-body">
         <h4 class="media-heading">${res.createdBy.firstName}&nbsp;${res.createdBy.lastName}@${res.createdBy.username}<span class="right"><a href="${resource(dir: "user",file: "TopicShow")}">${res.topic.topicName}</a></span> </h4>
