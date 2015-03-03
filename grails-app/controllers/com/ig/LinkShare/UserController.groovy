@@ -1,5 +1,7 @@
 package com.ig.LinkShare
 
+import LinkShareEnums.UserCO
+
 class UserController {
 
     def scaffold = true
@@ -10,50 +12,26 @@ class UserController {
 
     }
 
-    def registerUser(User user)
+    def registerUser(User user,UserCO userCO)
     {
         user.active=true
         user.admin=false
 
-        println user.validate()
-        if(!user.save(failOnError: true))
-        {
-            flash.message= "Registration Failed"
-            redirect(controller:"home")
+        if(!userCO.validate()) {
+            userCO.errors.allErrors.each {
+                println "Error in saving data"
+            }
+
+            flash.message = "Registration Failed : Password Mismatch"
+            redirect(controller: "home")
         }
         else
         {
+            user.save(failOnError: true)
             flash.message="Registeration Successfull"
             redirect(controller:"home")
         }
     }
 
-//    def register={UserCommand cmd->
-//        if(cmd.hasErrors())
-//        {
-//            cmd.errors.allErrors.each {println it}
-//        }
-//        else
-//        {
-//            redirect(action: "registerUser")
-//        }
-//    }
-//    }
 
 }
-//
-//class UserCommand {
-//    String password
-//    String confirmPassword
-//
-//    static constraints
-//    {
-//        password nullable: false, blank: false
-//        confirmPassword
-//        //        validator: { val, obj ->
-////            if (!(val == obj.password)) {
-////                return "some error occur"
-////            }
-////        }
-//    }
-//}

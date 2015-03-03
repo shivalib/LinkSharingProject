@@ -10,14 +10,9 @@ class User {
         Byte photo
         Boolean admin
         Boolean active
-//    Long userId
 
         static hasMany = [topics:Topic,subscriptions:Subscription,resources:Resource,readingItems:ReadingItem,resurceRatings:ResourceRating]
 
-//
-//    static mapping = {
-//        id name: 'userId',generator:'auto'
-//    }
         static constraints = {
             firstName blank: false,nullable: false
             lastName blank: false,nullable: false
@@ -25,14 +20,6 @@ class User {
             password blank: false,nullable: false
             email email: true,blank: false,unique: true
             photo nullable: true
-
-//            password validator: {password,obj->
-//                return password==obj.password?"true":["invalid.PasswordMismatch"]
-//
-//            }
-
-
-
 
         }
 }

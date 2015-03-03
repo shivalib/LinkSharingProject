@@ -102,7 +102,7 @@
 
                 <div>
                     <span>Confirm Password*</span>
-                    <g:passwordField name="cofirmPassword" placeholder="confirmPassword"></g:passwordField>
+                    <g:passwordField name="confirmPassword" placeholder="confirmPassword"></g:passwordField>
                 </div>
 
                 <div>
