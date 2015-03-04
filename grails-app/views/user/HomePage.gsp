@@ -112,9 +112,7 @@
                 <div>
                     <g:submitButton name="submit" value="Register"/>
                 </div>
-                <g:if test="${flash.message}">
-                    <div class="message">${flash.message}</div>
-                </g:if>
+
 
             </g:form>
 

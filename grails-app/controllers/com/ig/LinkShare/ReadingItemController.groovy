@@ -8,4 +8,10 @@ class ReadingItemController {
 //    {
 //
 //    }
+
+    def createReadingItem(User user)
+    {
+
+        ReadingItem readingItem=new ReadingItem()
+    }
 }

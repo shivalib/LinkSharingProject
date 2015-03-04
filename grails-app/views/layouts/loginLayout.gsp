@@ -33,7 +33,9 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">Link Sharing</a>
                 </div>
-
+                <g:if test="${flash.message}">
+                    <div class="message">${flash.message}</div>
+                </g:if>
                 <!--Search-->
                 <div>
                     <form class="navbar-form navbar-right" role="search">
