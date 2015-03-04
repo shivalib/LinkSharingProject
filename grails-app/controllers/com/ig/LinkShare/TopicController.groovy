@@ -2,6 +2,8 @@ package com.ig.LinkShare
 
 class TopicController {
 
-    def index() {}
+    def index() {
+        render(view: "/user/TopicShow")
+    }
 
 }

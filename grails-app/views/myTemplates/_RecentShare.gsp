@@ -5,7 +5,11 @@
         </g:link>
     </div>
     <div class="media-body">
-        <h4 class="media-heading">${res.createdBy.firstName}&nbsp;${res.createdBy.lastName}@${res.createdBy.username}<span class="right"><a href="${resource(dir: "user",file: "TopicShow")}">${res.topic.topicName}</a></span> </h4>
+        <h4 class="media-heading">${res.createdBy.firstName}&nbsp;${res.createdBy.lastName}@${res.createdBy.username}
+            <span class="right">
+                <g:link controller="topic" action="index">${res.topic.topicName}</g:link>
+            </span> </h4>
+
         ${res.description}
 
     </div>
