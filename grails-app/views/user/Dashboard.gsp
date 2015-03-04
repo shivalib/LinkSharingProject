@@ -217,6 +217,10 @@
             </div><!--panel body ends-->
         </div>
 
+        <g:form controller="myMail" action="testAction">
+            <g:submitButton name="submit" value="Test Mail"/>
+        </g:form>
+
     </div>
 </div>
 

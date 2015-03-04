@@ -72,7 +72,10 @@ grails.project.dependency.resolution = {
         compile ":mail:1.0.7"
 
         //asynchronous mail
-        compile ":asynchronous-mail:1.2"
+        //compile ":asynchronous-mail:1.2"
+
+        //twitter boostrap plugin
+        compile ":twitter-bootstrap:3.3.2.1"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.6.1" // or ":hibernate:3.6.10.18"

@@ -1,7 +1,5 @@
 package com.ig.LinkShare
 
-import LinkShareCmdObjects.RegisterUserCommand
-
 class LoginController {
 
     def index() {

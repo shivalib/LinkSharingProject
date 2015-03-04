@@ -55,7 +55,8 @@
                 </button>
 
                 <img src="${resource(dir: "images",file: "person-icon.png")}" height="35px" width="35px"/>
-                <span class="dropdown">
+
+                                <span class="dropdown">
                     <select name="myList" >
                         <option value="username" disabled="disabled" selected="selected">${params.username}</option>
                         <option value="action">Profile</option>

@@ -9,7 +9,6 @@
 <html>
 <head>
     <title></title>
-    %{--<g:javascript library="jquery"></g:javascript>--}%
     <meta name="layout" content="loginLayout">
 </head>
 <body>

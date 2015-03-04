@@ -42,6 +42,8 @@
                         </div>
                     </form>
                 </div><!-- /.navbar-collapse -->
+
+
             </div><!-- /.container-fluid -->
         </nav>
 
