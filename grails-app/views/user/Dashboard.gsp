@@ -230,7 +230,7 @@
             <h3 class="panel-title">Share Link (Pop up)</h3>
         </div>
         <div class="panel-body">
-            <g:form class="loginform" method="post" controller="topic" action="createLink" >
+            <g:form class="loginform" method="post" controller="topic" action="shareLink" >
                 <div>
                     <span>Link* : </span>
                     <g:textField name="link"></g:textField>
@@ -245,10 +245,7 @@
                     <g:select name="topicList" from="${topicList}"></g:select>
 
                 </div>
-                <g:if test="${flash.message}">
-                    <div class="message">${flash.message}</div>
-                </g:if>
-                
+
                 <div class="right">
                     <input type="submit" value="Share"/>
                     <input type="reset" value="Cancel" />
@@ -263,10 +260,10 @@
             <h3 class="panel-title">Share Document (Pop up)</h3>
         </div>
         <div class="panel-body">
-            <form class="loginform">
+            <g:form class="loginform" method="post" controller="topic" action="shareDocument">
                 <div>
                     <span>Document* : </span>
-                    <g:textField name="link" placeholder="Document"></g:textField>
+                    <g:textField name="docName" placeholder="Document"></g:textField>
                     <span><input type="file" name="docFile" ></span>
                 </div>
                 <div>
@@ -276,21 +273,15 @@
                 </div>
                 <div>
                     <span>Topic* : </span>
-                    <select name="topics">
-                        <option>Topic 1
-                        <option>Topic 2
-                        <option>Topic 3
-                        <option>Topic 4
-                    </select>
+
+                    <g:select name="topicList" from="${topicList}"></g:select>
                 </div>
-
-
 
                 <div class="right">
                     <input type="submit" value="Share"/>
                     <input type="reset" value="Cancel" />
                 </div>
-            </form>
+            </g:form>
         </div><!-- panel body ends -->
     </div><!--Panel ends-->
 
@@ -310,10 +301,6 @@
                     <g:select name="topicType" from="${LinkShareEnums.Visibility}"></g:select>
 
                 </div>
-
-                <g:if test="${flash.message}">
-                    <div class="message">${flash.message}</div>
-                </g:if>
 
                 <div class="right">
                     <g:submitButton name="save" value="Save"/>
