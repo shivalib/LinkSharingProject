@@ -28,13 +28,13 @@ class UserController {
             }
 
             flash.message = "Registration Failed : Password Mismatch"
-            redirect(controller: "home")
+            redirect(controller: "home",action: "index")
         }
         else
         {
             user.save(failOnError: true)
             flash.message="Registeration Successfull"
-            redirect(controller:"home")
+            redirect(controller:"home",action: "index")
         }
     }
 

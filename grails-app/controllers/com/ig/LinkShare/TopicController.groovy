@@ -4,6 +4,8 @@ import LinkShareEnums.Visibility
 
 class TopicController {
 
+    def topicSubscriptionService
+
     def index() {
         render(view: "/user/TopicShow")
     }
@@ -17,7 +19,9 @@ class TopicController {
         Topic topic1=new Topic(topicName: params.topicName,createdBy: userID,visibility: params.topicType)
 
         if(topic1.save(failOnError: true)) {
+
             userID.addToTopics(topic1)
+            Subscription subscribe=topicSubscriptionService.subscribeTopic(userID,topic1)
 
             flash.message = "Your topic has been created !"
         }
