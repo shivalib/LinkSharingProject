@@ -303,6 +303,11 @@
                     <g:select name="topicType" from="${LinkShareEnums.Visibility}"></g:select>
 
                 </div>
+
+                <g:if test="${flash.message}">
+                    <div class="message">${flash.message}</div>
+                </g:if>
+
                 <div class="right">
                     <g:submitButton name="save" value="Save"/>
                     <g:submitButton name="cancel" value="Cancel"/>

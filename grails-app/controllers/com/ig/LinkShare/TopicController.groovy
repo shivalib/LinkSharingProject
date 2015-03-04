@@ -14,14 +14,18 @@ class TopicController {
         User userID=User.findWhere(username:  session["username"])
         println userID
 
-//        Topic topic=Topic.findWhere(createdBy: userID)
-
         Topic topic1=new Topic(topicName: params.topicName,createdBy: userID,visibility: params.topicType)
-        
 
-        topic1.save(failOnError: true)
+        if(topic1.save(failOnError: true)) {
+            userID.addToTopics(topic1)
 
-        userID.addToTopics(topic1)
+            flash.message = "Your topic has been created !"
+        }
+        else {
+            flash.message = "Sorry , topic creation failed !"
+        }
+        redirect(controller: "home",action: "dashboard")
+
     }
 
 }
