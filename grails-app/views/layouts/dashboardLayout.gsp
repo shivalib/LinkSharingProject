@@ -62,8 +62,10 @@
                         <option value="action">Profile</option>
                         <option value="action2">Users</option>
                         <option value="action3">Topics</option>
+
                         <option value="action4">Posts</option>
-                        <option value="action5">Logout</option>
+                        <g:link controller="login" action="logout">
+                        <option value="action5">Logout</option></g:link>
                     </select>
                 </span>
             </form>

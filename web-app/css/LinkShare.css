@@ -28,6 +28,7 @@ float:right
 {
 clear:both;
 }
+
 .loginform span
 {
 display:inline-block;
@@ -35,10 +36,19 @@ width:130px;
 margin:15px;
 }
 
+.document span
+{
+    display:inline-block;
+    width:130px;
+    margin:15px;
+}
+
 .div span
 {
 display:inline-block;
 }
+
+
 .browsebar
 {
 	position: relative;

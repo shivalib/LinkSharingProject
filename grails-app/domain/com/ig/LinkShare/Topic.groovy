@@ -1,7 +1,10 @@
 package com.ig.LinkShare
 
+import LinkShareEnums.Visibility
+
 class Topic {
     String topicName
+    Visibility visibility
     Date dateCreated
     Date lastUpdated
 

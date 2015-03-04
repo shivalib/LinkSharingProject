@@ -6,7 +6,7 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <title></title>
 
@@ -221,7 +221,97 @@
             <g:submitButton name="submit" value="Test Mail"/>
         </g:form>
 
-    </div>
+        <!--share Link-->
+    <div class="panel panel-default rightdiv">
+        <div class="panel-heading">
+            <h3 class="panel-title">Share Link (Pop up)</h3>
+        </div>
+        <div class="panel-body">
+            <form class=loginform>
+                <div>
+                    <span>Link* : </span>
+                    <g:textField name="link"></g:textField>
+                </div>
+                <div>
+                    <span>Description* : </span>
+                    <g:textArea name="desc" rows="5" cols="40"/>
+                </div>
+                <div>
+                    <span>Topic* : </span>
+                    <select name="topics">
+                        <option>Topic 1
+                        <option>Topic 2
+                        <option>Topic 3
+                        <option>Topic 4
+                    </select>
+                </div>
+                <div class="right">
+                    <input type="submit" value="Share"/>
+                    <input type="reset" value="Cancel" />
+                </div>
+            </form>
+        </div><!-- panel body ends -->
+    </div><!--Panel ends-->
+
+        <!-- share document-->
+    <div class="panel panel-default rightdiv">
+        <div class="panel-heading">
+            <h3 class="panel-title">Share Document (Pop up)</h3>
+        </div>
+        <div class="panel-body">
+            <form class="loginform">
+                <div>
+                    <span>Document* : </span>
+                    <g:textField name="link" placeholder="Document"></g:textField>
+                    <span><input type="file" name="docFile" ></span>
+                </div>
+                <div>
+                    <span>Description* : </span>
+                    <g:textArea name="desc" rows="5" cols="50" placeholder="Description"/>
+
+                </div>
+                <div>
+                    <span>Topic* : </span>
+                    <select name="topics">
+                        <option>Topic 1
+                        <option>Topic 2
+                        <option>Topic 3
+                        <option>Topic 4
+                    </select>
+                </div>
+                <div class="right">
+                    <input type="submit" value="Share"/>
+                    <input type="reset" value="Cancel" />
+                </div>
+            </form>
+        </div><!-- panel body ends -->
+    </div><!--Panel ends-->
+
+    <!-- create topic -->
+    <div class="panel panel-default rightdiv">
+        <div class="panel-heading">
+            <h3 class="panel-title">Create Topic (Pop up)</h3>
+        </div>
+        <div class="panel-body">
+            <g:form class="loginform" controller="topic" action="createTopic">
+                <div>
+                    <span>Name* : </span>
+                    <g:textField name="topicName"></g:textField>
+                </div>
+                <div>
+                    <span>Visibility* : </span>
+                    <g:select name="topicType" from="${LinkShareEnums.Visibility}"></g:select>
+
+                </div>
+                <div class="right">
+                    <g:submitButton name="save" value="Save"/>
+                    <g:submitButton name="cancel" value="Cancel"/>
+                </div>
+            </g:form>
+        </div><!-- panel body ends -->
+    </div><!--Panel ends-->
+
+</div>
 </div>
 
 </body>

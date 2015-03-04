@@ -12,7 +12,7 @@ class BootStrapService {
     //create 2 user
     void createUser() {
         (1..2).each {
-            User user = new User(firstName: "User ${it}", lastName: "userLast ${it}", username: "intelligrape${it}", password: "igdefault${it}", email: "shivalib${it}@intelligrape.com", photo: 0, admin: false, active: false)
+            User user = new User(firstName: "User${it}", lastName: "userLast${it}", username: "intelligrape${it}", password: "igdefault${it}", email: "shivalib_${it}@intelligrape.com", photo: 0, admin: false, active: false)
             if(user.save(failOnError: true))
             {
                 5.times {
