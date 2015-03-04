@@ -62,6 +62,18 @@ grails.project.dependency.resolution = {
         compile ':cache:1.1.8'
         compile ":asset-pipeline:1.9.9"
 
+        //console plugin
+        compile ":console:1.5.4"
+
+        //quartz plugin
+        compile ":quartz:1.0.2"
+
+        //mail plugin
+        compile ":mail:1.0.7"
+
+        //asynchronous mail
+        compile ":asynchronous-mail:1.2"
+
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.6.1" // or ":hibernate:3.6.10.18"
         runtime ":database-migration:1.4.0"
