@@ -51,7 +51,7 @@
                 <h3 class="panel-title">Login</h3>
             </div>
             <div class="panel-body">
-                <g:form class="loginform" controller="login" action="loginHandler" method="POST" >
+                <g:form class="loginform" controller="login" action="loginHandler" method="post" >
                     <div>
                         <span>Email/Username*</span>
                         <input type="text" name="username"/>
@@ -73,7 +73,7 @@
             <h3 class="panel-title">Register</h3>
         </div>
         <div class="panel-body">
-            <g:form class="loginform" controller="user" action="registerUser">
+            <g:form class="loginform" controller="user" action="registerUser" method="post">
                 <div>
                     <span>First name*</span>
                     <g:textField name="firstName" placeholder="First Name"></g:textField>

@@ -206,7 +206,7 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading"></h4>
-                        <div>${loginUser.firstName} ${loginUser.lastName} @ ${loginUser.username}</div>
+                        <div>${loginUser.fullName} @ ${loginUser.username}</div>
                         This is a sample text to be replaced by the data
                     </div><!--media body ends-->
 
@@ -230,7 +230,7 @@
             <h3 class="panel-title">Share Link (Pop up)</h3>
         </div>
         <div class="panel-body">
-            <form class=loginform>
+            <g:form class="loginform" method="post" controller="topic" action="createLink" >
                 <div>
                     <span>Link* : </span>
                     <g:textField name="link"></g:textField>
@@ -245,11 +245,15 @@
                     <g:select name="topicList" from="${topicList}"></g:select>
 
                 </div>
+                <g:if test="${flash.message}">
+                    <div class="message">${flash.message}</div>
+                </g:if>
+                
                 <div class="right">
                     <input type="submit" value="Share"/>
                     <input type="reset" value="Cancel" />
                 </div>
-            </form>
+            </g:form>
         </div><!-- panel body ends -->
     </div><!--Panel ends-->
 
@@ -279,6 +283,9 @@
                         <option>Topic 4
                     </select>
                 </div>
+
+
+
                 <div class="right">
                     <input type="submit" value="Share"/>
                     <input type="reset" value="Cancel" />
