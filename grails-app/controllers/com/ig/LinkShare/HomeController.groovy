@@ -6,6 +6,8 @@ class HomeController {
 
         List<Resource> resources=Resource.list([max:5,offset: 0,order:"desc",sort: "id"])
 
+
+
         render(view: "/user/HomePage",model:[resources:resources])
 
     }
@@ -15,7 +17,11 @@ class HomeController {
         {
             User currentUser=User.findByUsername(session["username"])
        //     showInbox(currentUser)
-            render(view: "/user/Dashboard", model: [loginUser:currentUser])
+
+            List<Topic> topics=Topic.findAllWhere(createdBy: currentUser)
+            println topics.topicName
+
+            render(view: "/user/Dashboard", model: [loginUser:currentUser,topicList:topics.topicName])
         }
     }
 

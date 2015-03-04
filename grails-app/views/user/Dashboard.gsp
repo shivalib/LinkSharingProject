@@ -23,12 +23,15 @@
                 <div class="media ">
                     <div class="media-left">
                         <a href="#">
-                            <img class="media-object mediaFace" src="../images/person-icon.png" alt="Person">
+                            <g:img class="media-object mediaFace" dir="images" file="person-icon.png" alt="Person"></g:img>
                         </a>
                     </div>
                     <div class="media-body">
 
-                        <h4 class="media-heading">${loginUser.firstName} ${loginUser.lastName}</h4>
+                        <h4 class="media-heading">
+                            ${loginUser.fullName}
+
+                        </h4>
                         <div>
                             <h5>@${loginUser.username}</h5>
                         </div>
@@ -237,13 +240,10 @@
                     <g:textArea name="desc" rows="5" cols="40"/>
                 </div>
                 <div>
+
                     <span>Topic* : </span>
-                    <select name="topics">
-                        <option>Topic 1
-                        <option>Topic 2
-                        <option>Topic 3
-                        <option>Topic 4
-                    </select>
+                    <g:select name="topicList" from="${topicList}"></g:select>
+
                 </div>
                 <div class="right">
                     <input type="submit" value="Share"/>

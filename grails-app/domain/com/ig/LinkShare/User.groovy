@@ -11,6 +11,8 @@ class User {
         Boolean admin
         Boolean active
 
+        static transients = ['fullName']
+
         static hasMany = [topics:Topic,subscriptions:Subscription,resources:Resource,readingItems:ReadingItem,resurceRatings:ResourceRating]
 
         static constraints = {
@@ -20,6 +22,11 @@ class User {
             password blank: false,nullable: false
             email email: true,blank: false,unique: true
             photo nullable: true
+            fullName bindable:true
 
         }
+
+        String getFullName(){
+        return "$firstName $lastName"
+    }
 }
