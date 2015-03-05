@@ -33,13 +33,11 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Link Sharing</a>
-        </div>
+        %{--</div>--}%
 
         %{--<div>--}%
-            %{--<g:if test="${flash.message}">--}%
-                %{--<div class="message">${flash.message}</div>--}%
-            %{--</g:if>--}%
-        %{--</div>--}%
+        </div>
+
         <g:if test="${flash.message}">
             <div class="alert alert-success">
                 <button type="button" class="close" data-dismiss="alert">×</button>

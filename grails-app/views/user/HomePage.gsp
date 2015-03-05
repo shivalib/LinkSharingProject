@@ -106,8 +106,10 @@
 
                 <div>
                     <span>Photo</span>
+
                     <input id="uploadFile" placeholder="Choose File" disabled="disabled" class="browsebar" />
                     <input type="file" name="img" class="btn-default">
+
                 </div>
                 <div>
                     <g:submitButton name="submit" value="Register"/>

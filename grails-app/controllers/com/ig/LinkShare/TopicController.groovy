@@ -43,11 +43,13 @@ class TopicController {
         println topic
 
         def topicID=topic.findWhere(topicName: params.topicList)
+        println topicID.topicName
+
         LinkResource linkResource=new LinkResource(linkUrl: params.link,description: params.desc,createdBy: userID,topic:topicID)
 
         if(linkResource.save(failOnError: true))
         {
-            topic.addToResources(linkResource)
+            topicID.addToResources(linkResource)
 
             readingItemService.markReading(userID)
 

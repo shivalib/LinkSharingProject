@@ -16,6 +16,7 @@ class TopicSubscriptionService {
         Subscription subscription = new Subscription(seriousness:Seriousness.VERYSERIOUS, user: user, topic: topic)
         if (subscription.save(flush: true, failOnError: true)) {
             user.addToSubscriptions(subscription)
+            topic.addToSubscriptions(subscription)
         }
         else {
             subscription.errors.allErrors.each {println it}

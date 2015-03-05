@@ -2,11 +2,10 @@ package com.ig.LinkShare
 
 class Resource {
     String description
-    User createdBy
     Date dateCreated
     Date lastUpdated
 
-    static belongsTo = [topic:Topic]
+    static belongsTo = [topic:Topic,createdBy:User]
 
     static hasMany = [readingItems:ReadingItem,resouceRatings:Resource]
 

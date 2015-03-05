@@ -5,11 +5,11 @@ import com.ig.LinkShare.Topic
 import com.ig.LinkShare.User
 
 class Subscription {
-    Topic topic
+
     Date dateCreated
     Seriousness seriousness
 
-    static belongsTo = [user:User]
+    static belongsTo = [user:User,topic:Topic]
 
     static constraints = {
     }}

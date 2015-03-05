@@ -17,6 +17,7 @@ class UserController {
     render(view: "UserProfile")
     }
 
+
     def registerUser(User user,UserCO userCO)
     {
         user.active=true
