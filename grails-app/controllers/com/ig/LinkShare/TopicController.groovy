@@ -76,7 +76,7 @@ class TopicController {
             topic.addToResources(documentResource)
 
             readingItemService.markReading(userID)
-            
+
             flash.message = "Your Document has been shared !"
         }
 

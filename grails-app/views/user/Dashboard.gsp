@@ -121,6 +121,7 @@
                 </div><!--media ends-->
             </div><!--panel body ends-->
         </div><!--panel ends -->
+
     <!--Trending topic-->
         <div class="panel panel-default leftdiv">
             <div class="panel-heading">

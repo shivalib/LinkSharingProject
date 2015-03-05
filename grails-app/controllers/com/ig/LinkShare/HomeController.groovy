@@ -6,8 +6,6 @@ class HomeController {
 
         List<Resource> resources=Resource.list([max:5,offset: 0,order:"desc",sort: "id"])
 
-
-
         render(view: "/user/HomePage",model:[resources:resources])
 
     }
@@ -20,6 +18,8 @@ class HomeController {
 
             List<Topic> topics=Topic.findAllWhere(createdBy: currentUser)
             println topics.topicName
+
+
 
             render(view: "/user/Dashboard", model: [loginUser:currentUser,topicList:topics.topicName])
         }

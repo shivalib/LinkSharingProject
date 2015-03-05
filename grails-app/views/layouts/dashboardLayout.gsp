@@ -15,6 +15,10 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
+
+    <!-- jquery-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
@@ -35,6 +39,9 @@
                 <div class="message">${flash.message}</div>
             </g:if>
         </div>
+
+
+
         <!--Search-->
         <div>
             <form class="navbar-form navbar-right " role="search">${params.username}
@@ -60,18 +67,26 @@
 
                 <img src="${resource(dir: "images",file: "person-icon.png")}" height="35px" width="35px"/>
 
-                                <span class="dropdown">
-                    <select name="myList" >
-                        <option value="username" disabled="disabled" selected="selected">${params.username}</option>
-                        <option value="action">Profile</option>
-                        <option value="action2">Users</option>
-                        <option value="action3">Topics</option>
-
-                        <option value="action4">Posts</option>
-                        <g:link controller="login" action="logout">
-                        <option value="action5">Logout</option></g:link>
-                    </select>
+                <span class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                        ${loginUser.fullName}
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Profile</a></li>
+                        <li class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Users</a></li>
+                        <li class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Topics</a></li>
+                        <li class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Posts</a></li>
+                        <li class="divider"></li>
+                        <li role="presentation">
+                            <g:link role="menuitem" tabindex="-1" controller="login" action="logout">Logout</g:link></li>
+                            %{--<a role="menuitem" tabindex="-1" href="#">Logout</a></li>--}%
+                    </ul>
                 </span>
+
             </form>
         </div><!-- search ends-->
     </div><!-- /.container-fluid -->

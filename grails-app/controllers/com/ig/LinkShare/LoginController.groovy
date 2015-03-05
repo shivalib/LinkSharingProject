@@ -3,7 +3,7 @@ package com.ig.LinkShare
 class LoginController {
 
     def index() {
-//        render(view: "/user/HomePage")
+        render(view: "/user/HomePage")
 
     }
 
@@ -26,6 +26,6 @@ class LoginController {
     {
         flash.message = "Goodbye ${session["username"]}"
         session["username"] = null
-        redirect(controller:"login")
+        redirect(controller:"home",action: "index")
     }
 }
