@@ -71,4 +71,8 @@ width:30px;
 position:relative;
 }
 
-
+.iconSize
+{
+    height: 10px;
+    width: 20px;
+}

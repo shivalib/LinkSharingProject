@@ -9,8 +9,8 @@ class Topic {
     Date lastUpdated
 
 
-//    static hasMany = [resources:Resource,subscriptions:Subscription]
-    static hasMany = [resources:Resource]
+    static hasMany = [resources:Resource,subscriptions:Subscription]
+//    static hasMany = [resources:Resource]
 
     static belongsTo = [createdBy:User]
 

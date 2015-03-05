@@ -83,26 +83,37 @@
                             </span>
 
                             <span class="right rightdiv">Subscriptions
-                                <div>${subscription.user.count()}</div>
+                                <div>${subscription.topic.subscriptions.size()}</div>
                             </span>
                         </div>
                         %{--<g:if test="${subscription.topic.resources.description}">--}%
                                 %{--${subscription.topic.resources.description}--}%
                             %{--</g:if>--}%
 
-                        <div>
                         <br><br><br>
+                        %{--<div>--}%
+
                             <span class="left">
 
                                 <g:select name="seriousness" from="${LinkShareEnums.Seriousness}"></g:select>
 
-                                <g:select name="topicType" from="${LinkShareEnums.Visibility}"></g:select>
-
                                 <button type="button" class="btn btn-default" title="Send invitation">
                                     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
                                 </button>
+
+                                %{--<button type="button" class="btn btn-default" aria-label="Left Align" title="trash">--}%
+                                    %{--<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>--}%
+                                %{--</button>--}%
+
+                                %{--<button type="button" class="btn btn-default" aria-label="Left Align" title="edit">--}%
+                                    %{--<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>--}%
+                                %{--</button>--}%
+
+
+                        <ls:isEditable currentUser="${loginUser}" topicCreater="${subscription.topic.createdBy}"/>
+
                             </span>
-                        </div>
+                        %{--</div>--}%
 
                     </div><!--media body ends-->
                 </div><!-- media ends-->
@@ -162,7 +173,6 @@
                     <div class="right">
                         <input type="submit" value="Invite"/>
                         <input type="reset" value="Cancel" />
-                        <span>Topic* : </span>
                     </div>
                 </form>
             </div><!-- panel body ends -->
@@ -209,6 +219,8 @@
         <g:form controller="myMail" action="testAction">
             <g:submitButton name="submit" value="Test Mail"/>
         </g:form>
+
+        %{--<ls:isEditable happy="true">hello</ls:isEditable>--}%
 
         <!--share Link-->
     <div class="panel panel-default rightdiv">
