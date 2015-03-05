@@ -10,12 +10,12 @@ import com.ig.LinkShare.Subscription
 
 class BootStrap {
 
-    def bootStrapService
-    def readingItemService
+//    def bootStrapService
+//    def readingItemService
 
     def init = { servletContext ->
-        bootStrapService.createUser()
-        readingItemService.markReadingItems()
+//        bootStrapService.createUser()
+//        readingItemService.markReadingItems()
     }
 
 
