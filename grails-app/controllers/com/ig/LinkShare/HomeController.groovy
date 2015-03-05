@@ -20,8 +20,9 @@ class HomeController {
             println topics.topicName
 
 
+            List<Subscription> subscriptionList=Subscription.findAllWhere(user: currentUser)
 
-            render(view: "/user/Dashboard", model: [loginUser:currentUser,topicList:topics.topicName])
+            render(view: "/user/Dashboard", model: [loginUser:currentUser,topicList:topics.topicName,subscriptionList:subscriptionList])
         }
     }
 

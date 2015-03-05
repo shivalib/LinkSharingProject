@@ -15,7 +15,7 @@
 
 <body>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
         <!--Panel1-->
         <div class="panel panel-default leftdiv">
             <div class="panel-body">
@@ -57,9 +57,15 @@
     <!--Subscriptions-->
         <div class="panel panel-default leftdiv">
             <div class="panel-heading">
-                <span><h3 class="panel-title " >Subscriptions</h3></span>
-                <span class="right"><a href="">View All</a></span>
+                <span><h3 class="panel-title " >Subscriptions
+                <span class="right">
+                   <g:link>View all</g:link>
+                </span>
+                </h3></span>
             </div>
+
+            <g:each in="${subscriptionList}" var="subscription">
+
             <div class="panel-body">
                 <div class="media ">
                     <div class="media-left">
@@ -68,21 +74,29 @@
                         </a>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading"><a href="">topicName</a></h4>
-                        This is a sample text to be replaced by the data
+                        <h4 class="media-heading"><a href="">${subscription.topic.topicName}</a></h4>
+                            <div>
+                                @${subscription.user.username}
+
+                            <span class="right">Posts
+                                <div>${subscription.topic.resources.size()}</div>
+                            </span>
+
+                            <span class="right rightdiv">Subscriptions
+                                <div>${subscription.user.count()}</div>
+                            </span>
+                        </div>
+                        %{--<g:if test="${subscription.topic.resources.description}">--}%
+                                %{--${subscription.topic.resources.description}--}%
+                            %{--</g:if>--}%
 
                         <div>
+                        <br><br><br>
                             <span class="left">
-                                <select name="SeriousnessList">
-                                    <option name="serious">Serious</option>
-                                    <option name="verySerious">Very Serious</option>
-                                    <option name="casual">Casual</option>
-                                </select>
 
-                                <select name="TopicTypeList">
-                                    <option name="public">Public</option>
-                                    <option name="private">Private</option>
-                                </select>
+                                <g:select name="seriousness" from="${LinkShareEnums.Seriousness}"></g:select>
+
+                                <g:select name="topicType" from="${LinkShareEnums.Visibility}"></g:select>
 
                                 <button type="button" class="btn btn-default" title="Send invitation">
                                     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
@@ -93,33 +107,7 @@
                     </div><!--media body ends-->
                 </div><!-- media ends-->
             </div><!-- panel body ends-->
-
-            <div class="panel-body">
-                <div class="media ">
-                    <div class="media-left">
-                        <a href="#">
-                            <img class="media-object mediaFace" src="../images/person-icon.png" alt="Person">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading"><a href="">Grails</a></h4>
-                        This is a sample text to be replaced by the data
-                        <div>
-                            <span class="right">
-                            <select name="SeriousnessList">
-                            <option name="serious">Serious</option>
-                            <option name="verySerious">Very Serious</option>
-                            <option name="casual">Casual</option>
-                            </select>
-
-                            <button type="button" class="btn btn-default" title="Send invitation">
-                            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                            </button>
-                            </span>
-                        </div>
-                    </div><!--media body ends-->
-                </div><!--media ends-->
-            </div><!--panel body ends-->
+            </g:each>
         </div><!--panel ends -->
 
     <!--Trending topic-->
@@ -144,11 +132,8 @@
                         </div>
                         <div>
                             <span class="right">
-                                <select name="SeriousnessList">
-                                    <option name="serious">Serious</option>
-                                    <option name="verySerious">Very Serious</option>
-                                    <option name="casual">Casual</option>
-                                </select>
+                                <g:select name="seriousness" from="${LinkShareEnums.Seriousness}"></g:select>
+
                                 <button type="button" class="btn btn-default" title="Send invitation">
                                     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
                                 </button>
@@ -171,12 +156,8 @@
                         <g:textField name="email"></g:textField>
                     </div>
                     <div>
-                        <select name="topics">
-                            <option>Topic 1
-                            <option>Topic 2
-                            <option>Topic 3
-                            <option>Topic 4
-                        </select>
+                        <g:select name="topicList" from="${topicList}"></g:select>
+
                     </div>
                     <div class="right">
                         <input type="submit" value="Invite"/>
@@ -189,13 +170,17 @@
 
 
     </div><!-- col-md-4 -->
-    <div class="col-md-8">
+    <div class="col-md-7">
 
     <!--INBOX-->
         <div class="panel panel-default rightdiv">
             <div class="panel-heading">
-                <span><h3 class="panel-title " >Inbox</h3></span>
-                <span class="right"><a href="">View All</a></span>
+                <span><h3 class="panel-title " >Inbox
+                    <span class="right">
+                        <g:link>View all</g:link>
+                    </span>
+                </h3></span>
+
             </div>
 
             <div class="panel-body">
