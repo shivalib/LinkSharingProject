@@ -5,6 +5,7 @@ import LinkShareEnums.Visibility
 class TopicController {
 
     def topicSubscriptionService
+    def readingItemService
 
     def index() {
         render(view: "/user/TopicShow")
@@ -21,6 +22,7 @@ class TopicController {
         if(topic1.save(failOnError: true)) {
 
             userID.addToTopics(topic1)
+
             Subscription subscribe=topicSubscriptionService.subscribeTopic(userID,topic1)
 
             flash.message = "Your topic has been created !"
@@ -46,6 +48,9 @@ class TopicController {
         if(linkResource.save(failOnError: true))
         {
             topic.addToResources(linkResource)
+
+            readingItemService.markReading(userID)
+
             flash.message = "Your link has been created !"
         }
         else {
@@ -69,6 +74,9 @@ class TopicController {
         if(documentResource.save(failOnError: true))
         {
             topic.addToResources(documentResource)
+
+            readingItemService.markReading(userID)
+            
             flash.message = "Your Document has been shared !"
         }
 

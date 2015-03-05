@@ -31,6 +31,7 @@ class BootStrapService {
         DocumentResource documentResource=createDocumentResource(user,topic,it)
         LinkResource linkResource=createLinkResource(user,topic,it)
     }
+
     //document resource
     DocumentResource createDocumentResource(User user,Topic topic,Integer it)
     {
@@ -49,45 +50,6 @@ class BootStrapService {
         return linkResource
     }
 
-    //mark item as read
-    void markReadingItems()
-    {
-       //mark all readingitem as false
-        List<User> listUser=User.findAll()
-        println listUser
 
-        listUser.each { User user->
-            println user
-
-//            List<Resource> resource=Resource.list()
-//            resource.each {
-//                ReadingItem readingItem=new ReadingItem(isRead: false)
-//                it.addToReadingItems(readingItem)
-//                user.addToReadingItems(readingItem)
-//
-//            }
-
-            // randomly mark 3 readingitem as true
-            (1..3).each{ Integer counter->
-                println user
-                ReadingItem readingItem=new ReadingItem(isRead: true)
-                def randomNum=generateRandomNumber()
-                println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-                println "Random no generated is "+randomNum
-                Resource resource=Resource.findById(randomNum)
-                println "the resource is >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+resource
-                resource.addToReadingItems(readingItem)
-                user.addToReadingItems(readingItem)
-                readingItem.save(failOnError: true)
-
-            }
-        }
-    }
-
-    def generateRandomNumber()
-    {
-        def randomNumber=Math.abs(new Random().nextInt()%100)+1
-        return randomNumber
-    }
 
 }

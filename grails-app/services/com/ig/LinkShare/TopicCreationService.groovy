@@ -16,16 +16,9 @@ class TopicCreationService {
     Topic createTopic(User user,Integer it)
     {
         Topic topic = new Topic(topicName: "Topic${it}", createdBy: user,visibility: Visibility.PUBLIC)
-
-
         if (topic.save(flush: true, failOnError: true)) {
 
-            ReadingItem readingItem=new ReadingItem(user: user,isRead: true)
-
-            user.addToReadingItems(readingItem)
-
             user.addToTopics(topic)
-
             Subscription subscribe=topicSubscriptionService.subscribeTopic(user,topic)
 
             5.times {

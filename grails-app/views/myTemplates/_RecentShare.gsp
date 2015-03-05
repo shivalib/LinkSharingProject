@@ -5,7 +5,7 @@
         </g:link>
     </div>
     <div class="media-body">
-        <h4 class="media-heading">${res.createdBy.firstName}&nbsp;${res.createdBy.lastName}@${res.createdBy.username}
+        <h4 class="media-heading">${res.createdBy.fullName}@${res.createdBy.username}
             <span class="right">
                 <g:link controller="topic" action="index">${res.topic.topicName}</g:link>
             </span> </h4>
