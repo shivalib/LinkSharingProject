@@ -73,7 +73,7 @@
             <h3 class="panel-title">Register</h3>
         </div>
         <div class="panel-body">
-            <g:form class="loginform" controller="user" action="registerUser" method="post">
+            <g:form class="loginform" controller="user" action="registerUser">
                 <div>
                     <span>First name*</span>
                     <g:textField name="firstName" placeholder="First Name"></g:textField>

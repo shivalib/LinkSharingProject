@@ -16,16 +16,16 @@ class ApplicationFilters {
             }
         }
 
-       notloginCheck(controllerExclude:'Login',action: 'loginHandler|registerUser'){
-          before= {
-              if (!session["username"] && !actionName.equals('loginHandler|registerUser')) {
-                  flash.message="Please login to the system"
-                  redirect(controller: 'login',action: "loginHandler")
-                    return false
-              }
-
-          }
-       }
+//       notloginCheck(controllerExclude:'Login',action: 'loginHandler|registerUser'){
+//          before= {
+//              if (!session["username"] && !actionName.equals('loginHandler|registerUser')) {
+//                  flash.message="Please login to the system"
+//                  redirect(controller: 'login',action: "loginHandler")
+//                    return false
+//              }
+//
+//          }
+//       }
 
 
         paramLogger(controller: '*',action: '*')

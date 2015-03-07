@@ -15,7 +15,7 @@ class Topic {
     static belongsTo = [createdBy:User]
 
     static constraints = {
-        topicName nullable: false,blank: false
+        topicName nullable: false,blank: false,unique: "createdBy"
     }
 
 }

@@ -155,32 +155,159 @@
             </div><!--panel body ends-->
         </div><!-- panel ends-->
 
-    <!-- Send Invitation -->
-        <div class="panel panel-default leftdiv">
-            <div class="panel-heading">
-                <h3 class="panel-title">Send invitation (Pop up)</h3>
+
+
+    <!-- Modal : SEND iNVIATION -->
+        <div class="modal fade" id="mySendInviteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="mySendInviteModelLabel">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <g:form class="loginform">
+                            <div>
+                                <span>Email* : </span>
+                                <g:textField name="email"></g:textField>
+                            </div>
+                            <div>
+                                <span>Topic* :</span>
+                                <g:select name="topicList" from="${topicList}"></g:select>
+
+                            </div>
+                            <div class="right">
+                                <g:submitButton name="invite" value="Invite"/>
+                                <g:submitButton name="reset" value="Cancel"/>
+                            </div>
+                        </g:form>
+                    </div>
+                    %{--<div class="modal-footer">--}%
+                    %{--<g:submitButton type="button" class="btn btn-primary" name="submit" >Save </g:submitButton>--}%
+                    %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
+
+                    %{--</div>--}%
+                </div>
             </div>
-            <div class="panel-body">
-                <form class=loginform>
-                    <div>
-                        <span>Email* : </span>
-                        <g:textField name="email"></g:textField>
-                    </div>
-                    <div>
-                        <g:select name="topicList" from="${topicList}"></g:select>
-
-                    </div>
-                    <div class="right">
-                        <input type="submit" value="Invite"/>
-                        <input type="reset" value="Cancel" />
-                    </div>
-                </form>
-            </div><!-- panel body ends -->
-        </div><!--Panel ends-->
-
+        </div>
 
     </div><!-- col-md-4 -->
     <div class="col-md-7">
+
+
+        <!-- Modal : Share Link -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <g:form class="loginform" method="post" controller="topic" action="shareLink" >
+                        <div>
+                            <span>Link* : </span>
+                            <g:textField name="link"></g:textField>
+                        </div>
+                        <div>
+                            <span>Description* : </span>
+                            <g:textArea name="desc" rows="5" cols="40"/>
+                        </div>
+                        <div>
+
+                            <span>Topic* : </span>
+                            <g:select name="topicList" from="${topicList}"></g:select>
+
+                        </div>
+                        <div class="right">
+                            <input type="submit" value="Share"/>
+                            <input type="reset" value="Cancel" />
+                        </div>
+                    </g:form>
+                </div>
+                %{--<div class="modal-footer">--}%
+                    %{--<g:submitButton type="button" class="btn btn-primary" name="submit" >Save </g:submitButton>--}%
+                    %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
+
+                %{--</div>--}%
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal : Share Document -->
+    <div class="modal fade" id="myDocumentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="shareDocModel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <g:form class="loginform" method="post" controller="topic" action="shareDocument">
+                        <div>
+                            <span>Document* : </span>
+                            <g:textField name="docName" placeholder="Document"></g:textField>
+                            <span><input type="file" name="docFile" ></span>
+                        </div>
+                        <div>
+                            <span>Description* : </span>
+                            <g:textArea name="desc" rows="5" cols="40" placeholder="Description"/>
+
+                        </div>
+                        <div>
+                            <span>Topic* : </span>
+
+                            <g:select name="topicList" from="${topicList}"></g:select>
+                        </div>
+
+                        <div class="right">
+                            <g:submitButton name="share" value="Share"/>
+                            <g:submitButton name="reset" value="Cancel"/>
+                        </div>
+                    </g:form>
+                </div>
+                %{--<div class="modal-footer">--}%
+                %{--<g:submitButton type="button" class="btn btn-primary" name="submit" >Save </g:submitButton>--}%
+                %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
+
+                %{--</div>--}%
+            </div>
+        </div>
+    </div>
+    <!-- Modal : Create Topic -->
+    <div class="modal fade" id="myCreateTopicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myTopicModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <g:form class="loginform" controller="topic" action="createTopic">
+                        <div>
+                            <span>Name* : </span>
+                            <g:textField name="topicName"></g:textField>
+                        </div>
+                        <div>
+                            <span>Visibility* : </span>
+                            <g:select name="topicType" from="${LinkShareEnums.Visibility}"></g:select>
+
+                        </div>
+
+                        <div class="right">
+                            <g:submitButton name="save" value="Save"/>
+                            <g:submitButton name="cancel" value="Cancel"/>
+                        </div>
+                    </g:form>
+                </div>
+                %{--<div class="modal-footer">--}%
+                %{--<g:submitButton type="button" class="btn btn-primary" name="submit" >Save </g:submitButton>--}%
+                %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
+
+                %{--</div>--}%
+            </div>
+        </div>
+    </div>
 
     <!--INBOX-->
         <div class="panel panel-default rightdiv">
@@ -222,91 +349,6 @@
 
         %{--<ls:isEditable happy="true">hello</ls:isEditable>--}%
 
-        <!--share Link-->
-    <div class="panel panel-default rightdiv">
-        <div class="panel-heading">
-            <h3 class="panel-title">Share Link (Pop up)</h3>
-        </div>
-        <div class="panel-body">
-            <g:form class="loginform" method="post" controller="topic" action="shareLink" >
-                <div>
-                    <span>Link* : </span>
-                    <g:textField name="link"></g:textField>
-                </div>
-                <div>
-                    <span>Description* : </span>
-                    <g:textArea name="desc" rows="5" cols="40"/>
-                </div>
-                <div>
-
-                    <span>Topic* : </span>
-                    <g:select name="topicList" from="${topicList}"></g:select>
-
-                </div>
-
-                <div class="right">
-                    <input type="submit" value="Share"/>
-                    <input type="reset" value="Cancel" />
-                </div>
-            </g:form>
-        </div><!-- panel body ends -->
-    </div><!--Panel ends-->
-
-        <!-- share document-->
-    <div class="panel panel-default rightdiv">
-        <div class="panel-heading">
-            <h3 class="panel-title">Share Document (Pop up)</h3>
-        </div>
-        <div class="panel-body">
-            <g:form class="loginform" method="post" controller="topic" action="shareDocument">
-                <div>
-                    <span>Document* : </span>
-                    <g:textField name="docName" placeholder="Document"></g:textField>
-                    <span><input type="file" name="docFile" ></span>
-                </div>
-                <div>
-                    <span>Description* : </span>
-                    <g:textArea name="desc" rows="5" cols="50" placeholder="Description"/>
-
-                </div>
-                <div>
-                    <span>Topic* : </span>
-
-                    <g:select name="topicList" from="${topicList}"></g:select>
-                </div>
-
-                <div class="right">
-                    <input type="submit" value="Share"/>
-                    <input type="reset" value="Cancel" />
-                </div>
-            </g:form>
-        </div><!-- panel body ends -->
-    </div><!--Panel ends-->
-
-    <!-- create topic -->
-    <div class="panel panel-default rightdiv">
-        <div class="panel-heading">
-            <h3 class="panel-title">Create Topic (Pop up)</h3>
-        </div>
-        <div class="panel-body">
-            <g:form class="loginform" controller="topic" action="createTopic">
-                <div>
-                    <span>Name* : </span>
-                    <g:textField name="topicName"></g:textField>
-                </div>
-                <div>
-                    <span>Visibility* : </span>
-                    <g:select name="topicType" from="${LinkShareEnums.Visibility}"></g:select>
-
-                </div>
-
-                <div class="right">
-                    <g:submitButton name="save" value="Save"/>
-                    <g:submitButton name="cancel" value="Cancel"/>
-                </div>
-            </g:form>
-        </div><!-- panel body ends -->
-    </div><!--Panel ends-->
 
 </div>
 </div>
