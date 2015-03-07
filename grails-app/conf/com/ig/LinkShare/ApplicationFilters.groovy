@@ -5,6 +5,7 @@ class ApplicationFilters {
     def filters = {
         all(controller:'*', action:'*') {
             before = {
+                log.info("Request parameter : $params")
 
             }
             after = { Map model ->
@@ -15,11 +16,11 @@ class ApplicationFilters {
             }
         }
 
-       notloginCheck(controllerExclude:'Login',action: 'loginHandler registerUser'){
+       notloginCheck(controllerExclude:'Login',action: 'loginHandler|registerUser'){
           before= {
-              if (!session["username"] && !actionName.equals('loginHandler registerUser')) {
+              if (!session["username"] && !actionName.equals('loginHandler|registerUser')) {
                   flash.message="Please login to the system"
-                  redirect(controller: 'login')
+                  redirect(controller: 'login',action: "loginHandler")
                     return false
               }
 

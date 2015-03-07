@@ -16,6 +16,8 @@ class BootStrap {
     def init = { servletContext ->
 //        bootStrapService.createUser()
 //        readingItemService.markReadingItems()
+
+//        User.executeUpdate("update User set admin=true where username=:username",[username:"shivali1705"])
     }
 
 

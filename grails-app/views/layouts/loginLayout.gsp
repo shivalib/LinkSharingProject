@@ -33,9 +33,20 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">Link Sharing</a>
                 </div>
+
                 <g:if test="${flash.message}">
-                    <div class="message">${flash.message}</div>
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        ${flash.message}
+                    </div>
                 </g:if>
+                <g:if test="${flash.error}">
+                    <div class="alert alert-error">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        ${flash.error}
+                    </div>
+                </g:if>
+
                 <!--Search-->
                 <div>
                     <form class="navbar-form navbar-right" role="search">

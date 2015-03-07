@@ -51,7 +51,7 @@
                 <h3 class="panel-title">Login</h3>
             </div>
             <div class="panel-body">
-                <g:form class="loginform" controller="login" action="loginHandler" method="post" >
+                <g:form class="loginform" controller="login" action="loginHandler">
                     <div>
                         <span>Email/Username*</span>
                         <input type="text" name="username"/>
