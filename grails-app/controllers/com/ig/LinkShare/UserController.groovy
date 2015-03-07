@@ -7,10 +7,34 @@ class UserController {
     def scaffold = true
 //    def index() { }
 
+
+    def beforeInterceptor=[action: this.&checkAdmin,only:['list']]
+
+
+
+    def checkAdmin(){
+
+        String currentUser=session["username"]
+        User user=User.findByUsername(currentUser)
+        if(user.admin=="true")
+        {
+            redirect(action: "list")
+        }
+        else
+        {
+            flash.message="Sorry, this is reserved for Administrative access !!!"
+        }
+    }
+
     def list()
     {
+    println "in list"
 
+    List<User> userList=User.list()
+
+        render(view: "/user/UserListing",model: [userList:userList])
     }
+
 
     def UserProfile(){
 

@@ -16,9 +16,9 @@ class ApplicationFilters {
             }
         }
 
-//       notloginCheck(controllerExclude:'Login',action: 'loginHandler|registerUser'){
+//       notloginCheck(controllerExclude:'Login',action: 'loginHandler registerUser'){
 //          before= {
-//              if (!session["username"] && !actionName.equals('loginHandler|registerUser')) {
+//              if (!session["username"] && !actionName.equals('loginHandler registerUser')) {
 //                  flash.message="Please login to the system"
 //                  redirect(controller: 'login',action: "loginHandler")
 //                    return false
@@ -28,20 +28,32 @@ class ApplicationFilters {
 //       }
 
 
+//        notLoggedInUser(controller: 'login', action: 'loginHandler' ,invert:true) {
+//
+//            before = {
+//                if (!session["username"]) {
+//                    redirect(controller: 'login', action: 'index')
+//                    flash.message = "User is not logged in"
+//                    return false
+//                }
+//            }
+//        }
+
+
         paramLogger(controller: '*',action: '*')
                 {
                     before={
                         log.debug "request params : $params"
                     }
                 }
-
-        onlyAdmin(controller: 'user',action: 'list')
-                {
-                    before={
-                        accessControl{
-                            User.findAllByAdmin(true)
-                        }
-                    }
-                }
+//
+//        onlyAdmin(controller: 'user',action: 'list')
+//                {
+//                    before={
+//                        accessControl{
+//                            User.findAllByAdmin("true")
+//                        }
+//                    }
+//                }
     }
 }

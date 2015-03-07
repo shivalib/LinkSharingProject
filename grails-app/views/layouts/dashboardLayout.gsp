@@ -75,24 +75,6 @@
                     <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
                 </button>
 
-
-
-                %{--<button type="button" class="btn btn-default btn-md" title="Create topic">--}%
-                    %{--<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>--}%
-                %{--</button>--}%
-
-                %{--<button type="button" class="btn btn-default btn-md" title="Send invitation">--}%
-                    %{--</span>--}%
-                %{--</button>--}%
-
-                %{--<button type="button" class="btn btn-default btn-md">--}%
-                    %{--<span class="glyphicon glyphicon-link" aria-hidden="true"></span>--}%
-                %{--</button>--}%
-
-                %{--<button type="button" class="btn btn-default btn-md">--}%
-                    %{--<span class="glyphicon glyphicon-file" aria-hidden="true"></span>--}%
-                %{--</button>--}%
-
                 <img src="${resource(dir: "images",file: "person-icon.png")}" height="35px" width="35px"/>
 
                 <span class="dropdown">

@@ -21,9 +21,12 @@
                 <h1 class="panel-title">Recent shares</h1>
             </div>
             <div class="panel-body">
-                    %{--Using template for media objects--}%
+
+                    %{--Using self created tag--}%
                     <g:each in="${resources}" var="res">
-                        <g:render template="/myTemplates/RecentShare" model="[res:res]"></g:render>
+
+                        <ls:showListingPages resource="${res}"/>
+
                     </g:each>
 
             </div><!--panel body end -->
@@ -67,6 +70,7 @@
                 </g:form>
             </div>
         </div><!--login form ends -->
+
 <!--REGISTERATION FORM-->
     <div class="panel panel-default rightdiv">
         <div class="panel-heading">

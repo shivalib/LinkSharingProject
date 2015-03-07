@@ -21,16 +21,13 @@ class ApplicationTagLib {
 
         if (currentUser == topicCreater) {
 
-//            out<< "<button type='button' ,class='btn btn-default', title='trash'>"
-//            out<< "<span class='glyphicon glyphicon-trash' aria-hidden='true'/>"
-//            out<< "</button>"
-//
-
-
-
             out << "<img src='${resource(dir: 'images',file: '512px-Edit_font_awesome.svg.png')}' class=iconSize/>"
             out << "<img src='${resource(dir: 'images',file: 'Gnome-edit-delete.svg.png')}'/>"
             out << g.select(name:"topicType" ,from:Visibility)
         }
+    }
+
+    def showListingPages={attr->
+        out<<g.render(template: "/myTemplates/RecentShare",model: [res:attr.resource])
     }
 }

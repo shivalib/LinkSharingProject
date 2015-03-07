@@ -95,7 +95,7 @@
 
                             <span class="left">
 
-                                <g:select name="seriousness" from="${LinkShareEnums.Seriousness}"></g:select>
+                                <g:select name="seriousness" from="${LinkShareEnums.Seriousness}"/>
 
                                 <button type="button" class="btn btn-default" title="Send invitation">
                                     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
@@ -143,7 +143,7 @@
                         </div>
                         <div>
                             <span class="right">
-                                <g:select name="seriousness" from="${LinkShareEnums.Seriousness}"></g:select>
+                                <g:select name="seriousness" from="${LinkShareEnums.Seriousness}"/>
 
                                 <button type="button" class="btn btn-default" title="Send invitation">
                                     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
@@ -154,6 +154,7 @@
                 </div><!--media ends -->
             </div><!--panel body ends-->
         </div><!-- panel ends-->
+
 
 
 
@@ -169,7 +170,7 @@
                         <g:form class="loginform">
                             <div>
                                 <span>Email* : </span>
-                                <g:textField name="email"></g:textField>
+                                <g:textField name="email"/>
                             </div>
                             <div>
                                 <span>Topic* :</span>
@@ -207,7 +208,7 @@
                     <g:form class="loginform" method="post" controller="topic" action="shareLink" >
                         <div>
                             <span>Link* : </span>
-                            <g:textField name="link"></g:textField>
+                            <g:textField name="link"/>
                         </div>
                         <div>
                             <span>Description* : </span>
@@ -216,7 +217,7 @@
                         <div>
 
                             <span>Topic* : </span>
-                            <g:select name="topicList" from="${topicList}"></g:select>
+                            <g:select name="topicList" from="${topicList}"/>
 
                         </div>
                         <div class="right">
@@ -246,7 +247,7 @@
                     <g:form class="loginform" method="post" controller="topic" action="shareDocument">
                         <div>
                             <span>Document* : </span>
-                            <g:textField name="docName" placeholder="Document"></g:textField>
+                            <g:textField name="docName" placeholder="Document"/>
                             <span><input type="file" name="docFile" ></span>
                         </div>
                         <div>
@@ -257,7 +258,7 @@
                         <div>
                             <span>Topic* : </span>
 
-                            <g:select name="topicList" from="${topicList}"></g:select>
+                            <g:select name="topicList" from="${topicList}"/>
                         </div>
 
                         <div class="right">
@@ -286,11 +287,11 @@
                     <g:form class="loginform" controller="topic" action="createTopic">
                         <div>
                             <span>Name* : </span>
-                            <g:textField name="topicName"></g:textField>
+                            <g:textField name="topicName"/>
                         </div>
                         <div>
                             <span>Visibility* : </span>
-                            <g:select name="topicType" from="${LinkShareEnums.Visibility}"></g:select>
+                            <g:select name="topicType" from="${LinkShareEnums.Visibility}"/>
 
                         </div>
 
@@ -308,6 +309,10 @@
             </div>
         </div>
     </div>
+
+    <g:form controller="user" action="list">
+    <g:actionSubmit value="submit" />
+    </g:form>
 
     <!--INBOX-->
         <div class="panel panel-default rightdiv">

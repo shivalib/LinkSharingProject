@@ -3,7 +3,6 @@ package com.ig.LinkShare
 class LoginController {
 
     def index() {
-        render(view: "/user/HomePage")
 
     }
 
@@ -17,8 +16,9 @@ class LoginController {
             redirect(controller: "home", action: "dashboard" ,params: [username:username])
         }
         else {
+            flash.message="Invalid username or password"
             //......println "Invalid user"
-            redirect(controller: "login" )
+            redirect(controller: "home",action: "index" )
         }
     }
 
@@ -26,6 +26,7 @@ class LoginController {
     {
         flash.message = "Goodbye ${session["username"]}"
         session["username"] = null
+//        session.invalidate()
         redirect(controller:"home",action: "index")
     }
 }
