@@ -205,7 +205,7 @@
                     <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                 </div>
                 <div class="modal-body">
-                    <g:form class="loginform" method="post" controller="topic" action="shareLink" >
+                    <g:form class="loginform" method="post" controller="linkResource" action="shareLink" >
                         <div>
                             <span>Link* : </span>
                             <g:textField name="link"/>
@@ -244,7 +244,7 @@
                     <h4 class="modal-title" id="shareDocModel">Modal title</h4>
                 </div>
                 <div class="modal-body">
-                    <g:form class="loginform" method="post" controller="topic" action="shareDocument">
+                    <g:form class="loginform" method="post" controller="documentResource" action="shareDocument">
                         <div>
                             <span>Document* : </span>
                             <g:textField name="docName" placeholder="Document"/>
@@ -275,6 +275,7 @@
             </div>
         </div>
     </div>
+
     <!-- Modal : Create Topic -->
     <div class="modal fade" id="myCreateTopicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">

@@ -1,14 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: intelligrape
-  Date: 25/2/15
-  Time: 6:35 PM
+  Date: 7/3/15
+  Time: 10:59 PM
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title><g:layoutTitle default="Login Layout"/></title>
+    <title></title>
+    <title><g:layoutTitle default="User Profile"/></title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -33,9 +34,9 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Link Sharing</a>
-        %{--</div>--}%
+            %{--</div>--}%
 
-        %{--<div>--}%
+            %{--<div>--}%
         </div>
 
         <g:if test="${flash.message}">
@@ -51,29 +52,13 @@
             </div>
         </g:if>
 
-        <!--Search-->
+    <!--Search-->
         <div>
             <form class="navbar-form navbar-right " role="search">${params.username}
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search">
                 </div>
 
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myCreateTopicModal">
-                    <span class="glyphicon glyphicon-comment" aria-hidden="true"/>
-                </button>
-
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#mySendInviteModal">
-                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"/>
-                </button>
-
-
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                    <span class="glyphicon glyphicon-link" aria-hidden="true"/>
-                </button>
-
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myDocumentModal">
-                    <span class="glyphicon glyphicon-file" aria-hidden="true"/>
-                </button>
 
                 <img src="${resource(dir: "images",file: "person-icon.png")}" height="35px" width="35px"/>
 
@@ -84,21 +69,12 @@
                     </button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                         <li role="presentation">
-                        <g:link role="menuitem" tabindex="-1" controller="userProfile" action="index">Profile</g:link></li>
-
-                        <li class="divider"></li>
-
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Users</a></li>
-                        <li class="divider"></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Topics</a></li>
-                        <li class="divider"></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Posts</a></li>
-
+                            <g:link role="menuitem" tabindex="-1" controller="userProfile" action="index">Profile</g:link></li>
                         <li class="divider"></li>
 
                         <li role="presentation">
                             <g:link role="menuitem" tabindex="-1" controller="login" action="logout">Logout</g:link></li>
-                            %{--<a role="menuitem" tabindex="-1" href="#">Logout</a></li>--}%
+                        %{--<a role="menuitem" tabindex="-1" href="#">Logout</a></li>--}%
                     </ul>
                 </span>
 

@@ -30,4 +30,11 @@ class ApplicationTagLib {
     def showListingPages={attr->
         out<<g.render(template: "/myTemplates/RecentShare",model: [res:attr.resource])
     }
+
+    def topicListing={attr->
+        def loginUser=attr.loginUser
+        out<<g.render(template: "/myTemplates/showTopic",model: [topics:attr.topics,loginUser:loginUser])
+    }
+
+
 }

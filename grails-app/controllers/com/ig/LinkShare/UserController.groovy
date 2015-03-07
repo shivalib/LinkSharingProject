@@ -10,8 +10,6 @@ class UserController {
 
     def beforeInterceptor=[action: this.&checkAdmin,only:['list']]
 
-
-
     def checkAdmin(){
 
         String currentUser=session["username"]
