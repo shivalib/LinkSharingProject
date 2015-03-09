@@ -25,18 +25,12 @@ class UserController {
                 flash.message = "Sorry, this is reserved for Administrative access!!!"
             }
         }
-//
-//        else{
-//            redirect(controller: 'home',action: 'index')
-//            flash.message="login to system"
-//        }
     }
 
 
     def list() {
         println "in list"
         List<User> userList = User.list()
-        println userList
         println params
 
         render(view: "/user/UserListing", model: [userList: userList])

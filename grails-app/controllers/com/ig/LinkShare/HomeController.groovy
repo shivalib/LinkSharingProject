@@ -3,6 +3,9 @@ package com.ig.LinkShare
 class HomeController {
 
 //    def top5SubscriptionService
+
+    //def trendingTopicService
+
     def index() {
 
         List<Resource> resources=Resource.list([max:5,offset: 0,order:"desc",sort: "id"])
@@ -23,9 +26,10 @@ class HomeController {
 
             List<Subscription> subscriptionList=Subscription.findAllWhere(user: currentUser)
 
-//        println top5SubscriptionService.subscriptionList
+            List<Topic> trendingTopicList=Topic.list().sort{it.resources.size()}.reverse()
+            trendingTopicList=trendingTopicList.subList(0,5)
 
-            render(view: "/user/Dashboard", model: [loginUser:currentUser,topicList:topics.topicName,subscriptionList:subscriptionList])
+            render(view: "/user/Dashboard", model: [loginUser:currentUser,trendingTopicList:trendingTopicList,topicList:topics.topicName,subscriptionList:subscriptionList])
         }
     }
 

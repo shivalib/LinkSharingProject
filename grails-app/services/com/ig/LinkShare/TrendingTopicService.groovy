@@ -9,10 +9,6 @@ class TrendingTopicService {
 
     }
 
-    def showTrendingTopic()
-    {
-//        List<Topic> maxPostList=Topic.list(max: 5,offset: 0,order: "desc",sort: "resources")
 
 
-    }
 }

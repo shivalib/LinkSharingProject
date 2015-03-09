@@ -36,5 +36,7 @@ class ApplicationTagLib {
         out<<g.render(template: "/myTemplates/showTopic",model: [topics:attr.topics,loginUser:loginUser])
     }
 
+    
+
 
 }

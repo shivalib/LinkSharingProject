@@ -126,6 +126,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Trending Topic (Pop up)</h3>
             </div>
+        <g:each in="${trendingTopicList}" var="trending">
             <div class="panel-body">
                 <div class="media ">
                     <div class="media-left">
@@ -133,13 +134,22 @@
                             <img class="media-object mediaFace" src="${resource(dir: "images", file:"person-icon.png")}">
                         </a>
                     </div>
+
+
                     <div class="media-body">
-                        <h4 class="media-heading"><a href="#">topicname</a></h4>
+                        <h4 class="media-heading"><a href="#">${trending.topicName}</a></h4>
                         <div>
-                            <h5>@username</h5>
-                            <span class="right">Posts</span>
-                            <span class="right rightdiv">Subscriptions</span>
-                            <span class="left"><a href="#">Subscribe</a></span>
+
+                            <div>
+                                @${trending.createdBy.username}
+                                <span class="right">Posts
+                                    <div>${trending.resources.size()}</div>
+                                </span>
+
+                                <span class="right rightdiv">Subscriptions
+                                    <div>${trending.subscriptions.size()}</div>
+                                </span>
+                            </div><br>
                         </div>
                         <div>
                             <span class="right">
@@ -150,9 +160,12 @@
                                 </button>
                             </span>
                         </div>
+
                     </div><!--media body ends-->
+
                 </div><!--media ends -->
             </div><!--panel body ends-->
+        </g:each>
         </div><!-- panel ends-->
 
 
@@ -347,16 +360,14 @@
                     </div>
                 </div>
             </div><!--panel body ends-->
-        </div>
+        </div><!--panel ends-->
 
         <g:form controller="myMail" action="testAction">
             <g:submitButton name="submit" value="Test Mail"/>
         </g:form>
 
         %{--<ls:isEditable happy="true">hello</ls:isEditable>--}%
-
-
-</div>
+    </div>
 </div>
 
 </body>
