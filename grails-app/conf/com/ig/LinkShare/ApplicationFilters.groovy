@@ -40,22 +40,17 @@ class ApplicationFilters {
 //            }
 //        }
 
-        notloginCheck(controller: '(login|user|home)', action: '(loginHandler|registerUser|logout|loginPage|index)', invert: true) {
+        notloginCheck(controller: '(login|user|home|assets)', action: '(loginHandler|registerUser|logout|loginPage|index)',controllerExclude:'user', invert: true) {
             before = {
                 println "loginCheck : in before"
-                println session
+                println params
                 println "**************************************************"
 
                 if (!session.username) {
-
-                    println "not session"
-
-
-                    println "----------printing flash message"
                     flash.message = "Please login to the system"
 
-                    println "----------redirecting to controller"
-                    redirect(controller: 'login', action: 'loginHandler')
+                    println "in validating session ----------redirecting to controller"
+                    redirect(controller: "home", action: "index")
                 }
 
             }

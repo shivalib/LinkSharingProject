@@ -22,7 +22,7 @@ class UserController {
 
             } else {
                 redirect(controller: 'home', action: 'index')
-                flash.message = "Sorry, this is reserved for Administrative access !!!"
+                flash.message = "Sorry, this is reserved for Administrative access!!!"
             }
         }
 //

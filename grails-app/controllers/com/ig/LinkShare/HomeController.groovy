@@ -6,7 +6,6 @@ class HomeController {
     def index() {
 
         List<Resource> resources=Resource.list([max:5,offset: 0,order:"desc",sort: "id"])
-
         println ">>>>>>>>>>>>>>>>>>>>>>>.index"
         println ">>>>>>>>>>>>>>>>>>>>>>>.Home"
 
@@ -21,8 +20,6 @@ class HomeController {
        //     showInbox(currentUser)
 
             List<Topic> topics=Topic.findAllWhere(createdBy: currentUser)
-
-
 
             List<Subscription> subscriptionList=Subscription.findAllWhere(user: currentUser)
 
