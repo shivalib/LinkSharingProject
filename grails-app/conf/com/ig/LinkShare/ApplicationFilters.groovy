@@ -3,8 +3,12 @@ package com.ig.LinkShare
 class ApplicationFilters {
 
     def filters = {
-        all(controller:'*', action:'*') {
+
+
+        all(controller: '*', action: '*') {
             before = {
+//                println "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+//                println "in before"
                 log.info("Request parameter : $params")
 
             }
@@ -16,36 +20,53 @@ class ApplicationFilters {
             }
         }
 
-//       notloginCheck(controllerExclude:'Login',action: 'loginHandler registerUser'){
-//          before= {
-//              if (!session["username"] && !actionName.equals('loginHandler registerUser')) {
+//        notloginCheck(controllerExclude: '(login|user)',action: '(loginHandler|registerUser)') {
+//            before = {
+//                println "loginCheck : in before"
+//                println session.username
+//                println "**************************************************"
+//
+//              if (!session.username) {
+//
+//                  println "not session"
+////                    println "----------printing flash message"
+//
+////                  println "----------redirecting to controller"
+//                  redirect(controller: 'login',action: 'loginHandler')
 //                  flash.message="Please login to the system"
-//                  redirect(controller: 'login',action: "loginHandler")
 //                    return false
 //              }
 //
-//          }
-//       }
-
-
-//        notLoggedInUser(controller: 'login', action: 'loginHandler' ,invert:true) {
-//
-//            before = {
-//                if (!session["username"]) {
-//                    redirect(controller: 'login', action: 'index')
-//                    flash.message = "User is not logged in"
-//                    return false
-//                }
 //            }
 //        }
 
+        notloginCheck(controller: '(login|user|home)', action: '(loginHandler|registerUser|logout|loginPage|index)', invert: true) {
+            before = {
+                println "loginCheck : in before"
+                println session
+                println "**************************************************"
 
-        paramLogger(controller: '*',action: '*')
-                {
-                    before={
-                        log.debug "request params : $params"
-                    }
+                if (!session.username) {
+
+                    println "not session"
+
+
+                    println "----------printing flash message"
+                    flash.message = "Please login to the system"
+
+                    println "----------redirecting to controller"
+                    redirect(controller: 'login', action: 'loginHandler')
                 }
+
+            }
+        }
+
+//        paramLogger(controller: '*',action: '*')
+//                {
+//                    before={
+//                        log.debug "request params : $params"
+//                    }
+//                }
 //
 //        onlyAdmin(controller: 'user',action: 'list')
 //                {

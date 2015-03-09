@@ -19,8 +19,10 @@ class BootStrap {
 
 //        User.executeUpdate("update User set admin=true where username=:username",[username:"shivali1705"])
     }
-
-
+//
+//        def  markReadingItemAsFalse(){
+//            List<User> userList=
+//        }
     def destroy = {
     }
 

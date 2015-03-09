@@ -174,7 +174,7 @@
                             </div>
                             <div>
                                 <span>Topic* :</span>
-                                <g:select name="topicList" from="${topicList}"></g:select>
+                                <g:select name="topicList" from="${topicList}" ></g:select>
 
                             </div>
                             <div class="right">

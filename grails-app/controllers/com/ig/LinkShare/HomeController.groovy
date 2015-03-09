@@ -2,11 +2,13 @@ package com.ig.LinkShare
 
 class HomeController {
 
+//    def top5SubscriptionService
     def index() {
 
         List<Resource> resources=Resource.list([max:5,offset: 0,order:"desc",sort: "id"])
 
-
+        println ">>>>>>>>>>>>>>>>>>>>>>>.index"
+        println ">>>>>>>>>>>>>>>>>>>>>>>.Home"
 
         render(view: "/user/HomePage",model:[resources:resources])
 
@@ -19,15 +21,12 @@ class HomeController {
        //     showInbox(currentUser)
 
             List<Topic> topics=Topic.findAllWhere(createdBy: currentUser)
-            println topics.topicName
+
 
 
             List<Subscription> subscriptionList=Subscription.findAllWhere(user: currentUser)
 
-            List<Subscription> subscriptionList1=Subscription.createCriteria().list {
-
-
-            }
+//        println top5SubscriptionService.subscriptionList
 
             render(view: "/user/Dashboard", model: [loginUser:currentUser,topicList:topics.topicName,subscriptionList:subscriptionList])
         }
