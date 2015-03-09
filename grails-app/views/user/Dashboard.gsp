@@ -86,35 +86,11 @@
                                 <div>${subscription.topic.subscriptions.size()}</div>
                             </span>
                         </div>
-                        %{--<g:if test="${subscription.topic.resources.description}">--}%
-                                %{--${subscription.topic.resources.description}--}%
-                            %{--</g:if>--}%
 
                         <br><br><br>
-                        %{--<div>--}%
-
-                            <span class="left">
-
-                                <g:select name="seriousness" from="${LinkShareEnums.Seriousness}"/>
-
-                                <button type="button" class="btn btn-default" title="Send invitation">
-                                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                                </button>
-
-                                %{--<button type="button" class="btn btn-default" aria-label="Left Align" title="trash">--}%
-                                    %{--<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>--}%
-                                %{--</button>--}%
-
-                                %{--<button type="button" class="btn btn-default" aria-label="Left Align" title="edit">--}%
-                                    %{--<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>--}%
-                                %{--</button>--}%
-
-
-                        %{--<ls:isEditable currentUser="${tre}" topicCreater="${}"/>--}%
-
-                            </span>
-                        %{--</div>--}%
-
+                        <div>
+                            <ls:isEditable currentUser="${loginUser.id}" topicCreater="${subscription.user.id}" isAdmin="${loginUser.admin}"/>
+                        </div>
                     </div><!--media body ends-->
                 </div><!-- media ends-->
             </div><!-- panel body ends-->
