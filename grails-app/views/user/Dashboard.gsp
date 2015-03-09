@@ -110,7 +110,7 @@
                                 %{--</button>--}%
 
 
-                        <ls:isEditable currentUser="${loginUser}" topicCreater="${subscription.topic.createdBy}"/>
+                        %{--<ls:isEditable currentUser="${tre}" topicCreater="${}"/>--}%
 
                             </span>
                         %{--</div>--}%
@@ -152,13 +152,8 @@
                             </div><br>
                         </div>
                         <div>
-                            <span class="right">
-                                <g:select name="seriousness" from="${LinkShareEnums.Seriousness}"/>
-
-                                <button type="button" class="btn btn-default" title="Send invitation">
-                                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                                </button>
-                            </span>
+                            <ls:isSubscribed userID="${trending.createdBy.id}" subscriptionList="${trending.subscriptions}"/>
+                            <ls:isNotSubscribed userID="${trending.createdBy.id}" subscriptionList="${trending.subscriptions}"/>
                         </div>
 
                     </div><!--media body ends-->

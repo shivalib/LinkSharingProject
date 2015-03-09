@@ -36,7 +36,32 @@ class ApplicationTagLib {
         out<<g.render(template: "/myTemplates/showTopic",model: [topics:attr.topics,loginUser:loginUser])
     }
 
-    
+    def isSubscribed={attr->
+        def userID=attr.userID
+        def subscriptionList=attr.subscriptionList
+
+        subscriptionList.each
+                {
+                    if(userID==it.user.id)
+                    {
+                        out<<g.render(template: '/myTemplates/isSubscribed')
+                    }
+                }
+    }
+
+
+    def isNotSubscribed={attr->
+        def userID=attr.userID
+        def subscriptionList=attr.subscriptionList
+
+        subscriptionList.each
+                {
+                    if(userID!=it.user.id)
+                    {
+                        out<<g.render(template: '/myTemplates/isNotSubscribed')
+                    }
+                }
+    }
 
 
 }
