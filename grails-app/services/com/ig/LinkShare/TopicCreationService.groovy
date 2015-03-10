@@ -12,6 +12,8 @@ class TopicCreationService {
 
     def topicSubscriptionService
     def bootStrapService
+   // def readingItemService
+
     //create 5 topic for each user
     Topic createTopic(User user,Integer it)
     {

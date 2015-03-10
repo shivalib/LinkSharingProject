@@ -10,10 +10,7 @@ class LinkResourceController {
         User userID=User.findWhere(username:  session["username"])
         println userID
 
-        Topic topic=Topic.findWhere(createdBy: userID)
-        println topic
-
-        def topicID=topic.findWhere(topicName: params.topicList)
+        def topicID=Topic.findWhere(createdBy: userID, topicName: params.topicList)
         println topicID.topicName
 
         LinkResource linkResource=new LinkResource(linkUrl: params.link,description: params.desc,createdBy: userID,topic:topicID)
@@ -21,8 +18,8 @@ class LinkResourceController {
         if(linkResource.save(failOnError: true))
         {
             topicID.addToResources(linkResource)
-
-            readingItemService.markReading(userID)
+            userID.addToResources(linkResource)
+            readingItemService.markReading(userID,linkResource)
 
             flash.message = "Your link has been created !"
         }

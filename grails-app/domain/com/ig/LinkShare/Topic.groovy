@@ -5,9 +5,6 @@ import LinkShareEnums.Visibility
 class Topic {
     String topicName
     Visibility visibility
-    Date dateCreated
-    Date lastUpdated
-
 
     static hasMany = [resources:Resource,subscriptions:Subscription]
 //    static hasMany = [resources:Resource]

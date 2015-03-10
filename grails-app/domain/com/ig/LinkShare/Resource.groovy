@@ -2,8 +2,7 @@ package com.ig.LinkShare
 
 class Resource {
     String description
-    Date dateCreated
-    Date lastUpdated
+
 
     static belongsTo = [topic:Topic,createdBy:User]
 

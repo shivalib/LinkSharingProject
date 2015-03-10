@@ -12,18 +12,17 @@ class DocumentResourceController {
         User userID=User.findWhere(username:  session["username"])
         println userID
 
-        Topic topic=Topic.findWhere(createdBy: userID)
-        println topic
-
-        def topicID=topic.findWhere(topicName: params.topicList)
+        def topicID=Topic.findWhere(createdBy: userID, topicName: params.topicList)
+        println topicID.topicName
 
         DocumentResource documentResource=new DocumentResource(fileName: params.docName,filePath: params.docFile,description: params.desc, createdBy: userID,topic: topicID)
 
         if(documentResource.save(failOnError: true))
         {
-            topic.addToResources(documentResource)
+            topicID.addToResources(documentResource)
+            userID.addToResources(documentResource)
 
-            readingItemService.markReading(userID)
+            readingItemService.markReading(userID,documentResource)
 
             flash.message = "Your Document has been shared !"
         }

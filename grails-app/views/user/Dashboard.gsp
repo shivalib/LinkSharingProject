@@ -148,7 +148,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="mySendInviteModelLabel">Modal title</h4>
+                        <h4 class="modal-title" id="mySendInviteModelLabel">Send Invitation</h4>
                     </div>
                     <div class="modal-body">
                         <g:form class="loginform">
@@ -186,7 +186,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    <h4 class="modal-title" id="myModalLabel">Share Link</h4>
                 </div>
                 <div class="modal-body">
                     <g:form class="loginform" method="post" controller="linkResource" action="shareLink" >
@@ -225,7 +225,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="shareDocModel">Modal title</h4>
+                    <h4 class="modal-title" id="shareDocModel">share Document</h4>
                 </div>
                 <div class="modal-body">
                     <g:form class="loginform" method="post" controller="documentResource" action="shareDocument">
@@ -266,7 +266,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myTopicModalLabel">Modal title</h4>
+                    <h4 class="modal-title" id="myTopicModalLabel">Create Topic</h4>
                 </div>
                 <div class="modal-body">
                     <g:form class="loginform" controller="topic" action="createTopic">

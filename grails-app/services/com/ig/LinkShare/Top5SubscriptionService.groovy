@@ -11,17 +11,5 @@ class Top5SubscriptionService {
 
 
 
-    List<Subscription> subscriptionList=Subscription.createCriteria().list (max:5){
-        'user'{
-//            eq('username','session["username"]')
-            eq('username','shivali1705')
-        }
-//        'topic'
-//              {
-//                  order('lastUpdated')
-//              }
-    //order('dateCreated')
-    }
-
 
 }

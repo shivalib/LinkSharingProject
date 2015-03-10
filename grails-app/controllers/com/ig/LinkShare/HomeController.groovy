@@ -27,36 +27,10 @@ class HomeController {
             List<Subscription> subscriptionList=Subscription.findAllWhere(user: currentUser)
 
             List<Topic> trendingTopicList=Topic.list().sort{it.resources.size()}.reverse()
-            trendingTopicList=trendingTopicList.subList(0,5)
+//            trendingTopicList=trendingTopicList.subList(0,5)
 
             render(view: "/user/Dashboard", model: [loginUser:currentUser,trendingTopicList:trendingTopicList,topicList:topics.topicName,subscriptionList:subscriptionList])
         }
     }
-
-    def demo() {
-
-        List resourceSize=[]
-        List<User> userList = User.list()
-        userList.each { User user1 ->
-            println user1
-            List<Topic> listTopic = Topic.findAllWhere(createdBy: user1)
-            listTopic.each { Topic topic ->
-                println topic
-                List<Resource> resourceList = Resource.findAllWhere(topic: topic)
-                println resourceList.size()
-                resourceSize.add(resourceList.size())
-
-            }
-        }
-
-        println "List of resource size : "+resourceSize
-
-        resourceSize.sort().each {println it}
-
-
-//        redirect(controller: "home", action: "dashboard",params: [resourceSize:resourceSize])
-    }
-//    }
-
 
 }

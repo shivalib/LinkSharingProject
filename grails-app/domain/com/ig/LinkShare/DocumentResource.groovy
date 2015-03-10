@@ -7,7 +7,7 @@ class DocumentResource extends Resource {
 
 
     static constraints = {
-        fileName nullable: false,blank: false
+        fileName nullable: false,blank: false,unique: "topic"
         filePath nullable: false,blank: false
     }
 }
