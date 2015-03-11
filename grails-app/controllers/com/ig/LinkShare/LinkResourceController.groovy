@@ -28,6 +28,8 @@ class LinkResourceController {
         else {
             flash.message = "Sorry , link creating failed !"
         }
+
+        //todo: replace this redirect - render using ajax
         redirect(controller: "home",action: "dashboard")
     }
 

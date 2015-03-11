@@ -5,33 +5,40 @@ class HomeController {
 //    def top5SubscriptionService
 
     //def trendingTopicService
+    def showInboxService
 
     def index() {
 
-        List<Resource> resources=Resource.list([max:5,offset: 0,order:"desc",sort: "id"])
+        List<Resource> resources = Resource.list([max: 5, offset: 0, order: "desc", sort: "id"])
         println ">>>>>>>>>>>>>>>>>>>>>>>.index"
         println ">>>>>>>>>>>>>>>>>>>>>>>.Home"
 
-        render(view: "/user/HomePage",model:[resources:resources])
+        render(view: "/user/HomePage", model: [resources: resources])
 
     }
 //
     def dashboard() {
-        if(session["username"])
-        {
-            User currentUser=User.findByUsername(session["username"])
-       //     showInbox(currentUser)
+        if (session["username"]) {
 
-            List<Topic> topics=Topic.findAllWhere(createdBy: currentUser)
+//         todo   Replace this with service
+            User currentUser = User.findByUsername(session["username"])
 
-            List<Subscription> subscriptionList=Subscription.findAllByUser(currentUser)
+            List<Topic> topics = Topic.findAllWhere(createdBy: currentUser)
+
+            List<Subscription> subscriptionList = Subscription.findAllByUser(currentUser)
 //            subscriptionList=subscriptionList.subList(0,5)
-            println(subscriptionList)
 
-            List<Topic> trendingTopicList=Topic.list().sort{it.resources.size()}.reverse()
+            List<Topic> trendingTopicList = Topic.list().sort { it.resources.size() }.reverse()
 //            trendingTopicList=trendingTopicList.subList(0,5)
 
-            render(view: "/user/Dashboard", model: [loginUser:currentUser,trendingTopicList:trendingTopicList,topicList:topics.topicName,subscriptionList:subscriptionList])
+            //show Inbox
+            List<Resource> resourceListWithReadingItemFalse=showInboxService.showInbox(session["username"])
+            resourceListWithReadingItemFalse.each{
+                println "........criteria...."
+                println it
+            }
+
+            render(view: "/user/Dashboard", model: [resourceListWithReadingItemFalse:resourceListWithReadingItemFalse,loginUser: currentUser, trendingTopicList: trendingTopicList, topicList: topics.topicName, subscriptionList: subscriptionList])
         }
     }
 

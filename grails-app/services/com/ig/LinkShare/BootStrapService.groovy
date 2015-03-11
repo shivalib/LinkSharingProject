@@ -6,6 +6,7 @@ import grails.transaction.Transactional
 @Transactional
 class BootStrapService {
 
+    //todo remove all the unnecessary code, commented code.
     def serviceMethod() {
     }
 

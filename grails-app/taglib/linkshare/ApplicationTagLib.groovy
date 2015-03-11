@@ -1,5 +1,6 @@
 package linkshare
 
+import com.ig.LinkShare.LinkResource
 import com.ig.LinkShare.Subscription
 import com.ig.LinkShare.User
 
@@ -8,7 +9,7 @@ class ApplicationTagLib {
 
     static namespace = "ls"
 
-    static defaultEncodeAs=[taglib : 'raw']
+    static defaultEncodeAs = [taglib: 'raw']
 //    static defaultEncodeAs = [taglib: 'html']
     //static encodeAsForTags = [tagName: [taglib:'html'], otherTagName: [taglib:'none']]
 
@@ -18,48 +19,57 @@ class ApplicationTagLib {
         def currentUser = attr.currentUser
         def topicCreater = attr.topicCreater
 
-        if(currentUser.admin | currentUser==topicCreater){
-            out<<g.render(template: "/myTemplates/isAdmin")
+        if (currentUser.admin | currentUser == topicCreater) {
+            out << g.render(template: "/myTemplates/isAdmin")
+        } else {
+            out << g.render(template: "/myTemplates/isNotAdmin")
+        }
+    }
+
+    def showListingPages = { attr ->
+        out << g.render(template: "/myTemplates/RecentShare", model: [res: attr.resource])
+    }
+
+    def topicListing = { attr ->
+        def loginUser = attr.loginUser
+        out << g.render(template: "/myTemplates/showTopic", model: [topics: attr.topics, loginUser: loginUser])
+    }
+
+    def checkResourceType={attr->
+
+        def resource=attr.resource
+        if(resource.class==LinkResource)
+        {
+            out<<g.render(template: "/myTemplates/isLinkResource")
         }
         else
         {
-            out<<g.render(template: "/myTemplates/isNotAdmin")
+            out<<g.render(template: "/myTemplates/isDocumentResource")
         }
     }
 
-    def showListingPages={attr->
-        out<<g.render(template: "/myTemplates/RecentShare",model: [res:attr.resource])
-    }
+    def isSubscribed = { attr ->
+        def user = attr.currentUser
 
-    def topicListing={attr->
-        def loginUser=attr.loginUser
-        out<<g.render(template: "/myTemplates/showTopic",model: [topics:attr.topics,loginUser:loginUser])
-    }
+        User user1 = User.findByUsername(user.username)
+        def topic = attr.topicID
 
-    def isSubscribed={attr->
-        def user=attr.currentUser
+        Subscription subscription = Subscription.findByUserAndTopic(user1, topic)
 
-        User user1=User.findByUsername(user.username)
-        def topic=attr.topicID
-
-        Subscription subscription=Subscription.findByUserAndTopic(user1,topic)
-
-        if(subscription)
-        {
-            out<<g.render(template: '/myTemplates/isSubscribed')
+        if (subscription) {
+            out << g.render(template: '/myTemplates/isSubscribed')
         }
-   }
+    }
 
-    def isNotSubscribed={attr->
-        def user=attr.currentUser
-        User user1=User.findByUsername(user.username)
-        def topic=attr.topicID
+    def isNotSubscribed = { attr ->
+        def user = attr.currentUser
+        User user1 = User.findByUsername(user.username)
+        def topic = attr.topicID
 
-        Subscription subscription=Subscription.findByUserAndTopic(user1,topic)
+        Subscription subscription = Subscription.findByUserAndTopic(user1, topic)
 
-        if(!subscription)
-        {
-            out<<g.render(template: '/myTemplates/isNotSubscribed',model: [topicName:attr.topicName])
+        if (!subscription) {
+            out << g.render(template: '/myTemplates/isNotSubscribed', model: [topicName: attr.topicName])
         }
     }
 }

@@ -2,6 +2,8 @@ package com.ig.LinkShare
 
 import LinkShareEnums.UserCO
 
+
+//todo optimise the redirects
 class UserProfileController {
 
     def index() {
@@ -20,6 +22,7 @@ class UserProfileController {
         if(!userCO.validate()) {
             userCO.errors.allErrors.each {
                 println "Error in saving data"
+                // todo this is futile code
             }
 
             flash.message = "Updation Failed : Password Mismatch"

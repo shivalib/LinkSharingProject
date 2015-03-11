@@ -6,5 +6,4 @@ class DashboardController {
         //render(view: "/user/Dashboard")
     }
 
-
-}
+    }

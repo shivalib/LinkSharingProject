@@ -1,5 +1,7 @@
 package com.ig.LinkShare
 
+
+//todo remove the unnecessary files
 class ReadingItemController {
 
     def index() {}

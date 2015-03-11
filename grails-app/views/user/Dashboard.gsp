@@ -5,8 +5,11 @@
   Time: 9:58 AM
 --%>
 
+%{--todo remove the created by statements--}%
+%{--todo rename the file properly--}%
+%{--todo move this file to its respective folder--}%
 
-</html><%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <title></title>
@@ -262,6 +265,7 @@
         <g:form controller="user" action="list">
             <g:actionSubmit value="submit" />
         </g:form>
+
         <!--INBOX-->
         <div class="panel panel-default rightdiv">
             <div class="panel-heading">
@@ -271,6 +275,7 @@
                     </span>
                 </h3></span>
             </div>
+    <g:each in="${resourceListWithReadingItemFalse}" var="unreadResource">
             <div class="panel-body">
                 <div class="media ">
                     <div class="media-left">
@@ -280,17 +285,21 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading"></h4>
-                        <div>${loginUser.fullName} @ ${loginUser.username}</div>
-                        This is a sample text to be replaced by the data
+                        <div>${unreadResource.createdBy.fullName}</div>
+                                ${unreadResource.description}
                     </div><!--media body ends-->
-                    <div class="right">
-                        <a href="">Download</a>
-                        <a href="">View full site</a>
-                        <a href="">Mark as read</a>
-                        <a href="">View post</a>
-                    </div>
+
+                    <ls:checkResourceType resource="${unreadResource}"/>
+
+                    %{--<div class="right">--}%
+                        %{--<a href="">Download</a>--}%
+                        %{--<a href="">View full site</a>--}%
+                        %{--<a href="">Mark as read</a>--}%
+                        %{--<a href="">View post</a>--}%
+                    %{--</div>--}%
                 </div>
             </div><!--panel body ends-->
+    </g:each>
         </div><!--panel ends-->
     <g:form controller="myMail" action="testAction">
         <g:submitButton name="submit" value="Test Mail"/>

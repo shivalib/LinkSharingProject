@@ -5,6 +5,7 @@ import grails.transaction.Transactional
 @Transactional
 class ReadingItemService {
 
+    //todo try not using def in service.
     def serviceMethod() {
 
     }

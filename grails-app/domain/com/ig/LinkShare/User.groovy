@@ -2,6 +2,7 @@ package com.ig.LinkShare
 
 class User {
 
+    //todo keep ur code formatted
         String firstName
         String lastName
         String username

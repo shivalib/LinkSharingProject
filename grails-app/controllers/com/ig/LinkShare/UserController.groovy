@@ -8,7 +8,7 @@ class UserController {
 //    def index() { }
 
 
-    def beforeInterceptor=[action: this.&checkAdmin,only:'list' ]
+    def beforeInterceptor = [action: this.&checkAdmin, only: 'list']
 
     private checkAdmin() {
         if (session["username"]) {
@@ -21,7 +21,9 @@ class UserController {
                 println user.admin
 
             } else {
+                //todo mind the sequence of redirect and flash.message
                 redirect(controller: 'home', action: 'index')
+                //todo redirect context wise shud belong to an action
                 flash.message = "Sorry, this is reserved for Administrative access!!!"
             }
         }
@@ -59,6 +61,7 @@ class UserController {
             flash.message = "Registeration Successfull"
 //            redirect(controller: "home", action: "index")
         }
+        //todo found no forward, redirect, render
     }
 
 

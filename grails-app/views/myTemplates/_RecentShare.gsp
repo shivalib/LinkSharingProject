@@ -1,3 +1,6 @@
+%{--todo move this template to its respective folder--}%
+
+
 <div class="media ">
     <div class="media-left">
         <g:link  controller="user" action="UserProfile">

@@ -1,3 +1,4 @@
+%{--todo move this template to its respective folder--}%
 
 <div class="right">
 <g:select name="seriousness" from="${LinkShareEnums.Seriousness}"/>

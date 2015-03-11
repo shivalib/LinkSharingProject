@@ -31,6 +31,7 @@ class DocumentResourceController {
             flash.message = "Sorry , link sharing failed !"
         }
 
+        //todo: replace this redirect - render using ajax
         redirect(controller: "home",action: "dashboard")
 
     }

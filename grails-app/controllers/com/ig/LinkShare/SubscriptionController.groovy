@@ -2,6 +2,9 @@ package com.ig.LinkShare
 
 class SubscriptionController {
 
+
+    //todo move the all the possible code to a service and optimize your redirects
+
     def scaffold = Subscription
    // def index() {}
     def readingItemService
@@ -27,7 +30,7 @@ class SubscriptionController {
             resourceListOfCurrentUser.each {Resource resource->
             readingItemService.markReading(currentUser,resource,false)
             }
-            
+
             currentUser.addToSubscriptions(subscription)
             topic.addToSubscriptions(subscription)
 

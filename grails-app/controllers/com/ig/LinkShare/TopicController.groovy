@@ -11,26 +11,25 @@ class TopicController {
         render(view: "/user/TopicShow")
     }
 
-    def createTopic(User user)
-    {
+    //todo remove the objects which are never used and optimise redirects
+    def createTopic(User user) {
 
-        User userID=User.findWhere(username:  session["username"])
+        User userID = User.findWhere(username: session["username"])
         println userID
 
-        Topic topic1=new Topic(topicName: params.topicName,createdBy: userID,visibility: params.topicType)
+        Topic topic1 = new Topic(topicName: params.topicName, createdBy: userID, visibility: params.topicType)
 
-        if(topic1.save(failOnError: true)) {
+        if (topic1.save(failOnError: true)) {
 
             userID.addToTopics(topic1)
 
-            Subscription subscribe=topicSubscriptionService.subscribeTopic(userID,topic1)
+            Subscription subscribe = topicSubscriptionService.subscribeTopic(userID, topic1)
 
-            flash.message = "Your topic has been created !"
+            flash.message = "Your topic has been created!"
+        } else {
+            flash.message = "Sorry, topic creation failed!"
         }
-        else {
-            flash.message = "Sorry , topic creation failed !"
-        }
-        redirect(controller: "home",action: "dashboard")
+        redirect(controller: "home", action: "dashboard")
 
     }
 }
