@@ -1,6 +1,5 @@
 package linkshare
 
-import LinkShareEnums.Visibility
 import com.ig.LinkShare.Subscription
 import com.ig.LinkShare.User
 
@@ -13,17 +12,18 @@ class ApplicationTagLib {
 //    static defaultEncodeAs = [taglib: 'html']
     //static encodeAsForTags = [tagName: [taglib:'html'], otherTagName: [taglib:'none']]
 
-//    def isEditable={attr,body->
-//        out<<body()<<(attr.happy=="true"?"happy" :"sad")
-//    }
 
     def isEditable = { attr, body ->
 
         def currentUser = attr.currentUser
         def topicCreater = attr.topicCreater
 
-        if(currentUser.admin){
-            out<<g.render(template: "/myTemplates/isEditable")
+        if(currentUser.admin | currentUser==topicCreater){
+            out<<g.render(template: "/myTemplates/isAdmin")
+        }
+        else
+        {
+            out<<g.render(template: "/myTemplates/isNotAdmin")
         }
     }
 
