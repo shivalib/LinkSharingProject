@@ -79,7 +79,7 @@
                             </div>
                             <br><br><br>
                             <div>
-                                <ls:isEditable currentUser="${loginUser.id}" topicCreater="${subscription.user.id}" isAdmin="${loginUser.admin}"/>
+                                <ls:isEditable currentUser="${loginUser}" topicCreater="${subscription.topic.createdBy}"/>
                             </div>
                         </div><!--media body ends-->
                     </div><!-- media ends-->
@@ -90,7 +90,7 @@
     <!--Trending topic-->
         <div class="panel panel-default leftdiv">
             <div class="panel-heading">
-                <h3 class="panel-title">Trending Topic (Pop up)</h3>
+                <h3 class="panel-title">Trending Topic</h3>
             </div>
             <g:each in="${trendingTopicList}" var="trending">
                 <div class="panel-body">
@@ -114,8 +114,8 @@
                                 </div><br>
                             </div>
                             <div>
-                                <ls:isSubscribed userID="${loginUser}" topicID="${trending}" />
-                                <ls:isNotSubscribed userID="${loginUser}" topicID="${trending}" topicName="${trending.topicName}"/>
+                                <ls:isSubscribed currentUser="${loginUser}" topicID="${trending}" />
+                                <ls:isNotSubscribed currentUser="${loginUser}" topicID="${trending}" topicName="${trending.topicName}"/>
                             </div>
                         </div><!--media body ends-->
                     </div><!--media ends -->

@@ -4,6 +4,7 @@ import LinkShareEnums.Visibility
 import com.ig.LinkShare.Subscription
 import com.ig.LinkShare.User
 
+
 class ApplicationTagLib {
 
     static namespace = "ls"
@@ -20,9 +21,8 @@ class ApplicationTagLib {
 
         def currentUser = attr.currentUser
         def topicCreater = attr.topicCreater
-        def isAdmin=attr.isAdmin
 
-        if (currentUser==topicCreater | isAdmin==true ) {
+        if(currentUser.admin){
             out<<g.render(template: "/myTemplates/isEditable")
         }
     }
@@ -37,8 +37,9 @@ class ApplicationTagLib {
     }
 
     def isSubscribed={attr->
-        def user=attr.userID
-        User user1=User.findByUsername(user)
+        def user=attr.currentUser
+
+        User user1=User.findByUsername(user.username)
         def topic=attr.topicID
 
         Subscription subscription=Subscription.findByUserAndTopic(user1,topic)
@@ -50,13 +51,15 @@ class ApplicationTagLib {
    }
 
     def isNotSubscribed={attr->
-        def user=attr.userID
-        User user1=User.findByUsername(user)
+        def user=attr.currentUser
+        User user1=User.findByUsername(user.username)
         def topic=attr.topicID
+
         Subscription subscription=Subscription.findByUserAndTopic(user1,topic)
+
         if(!subscription)
         {
-            out<<g.render(template: '/myTemplates/isSubscribed')
+            out<<g.render(template: '/myTemplates/isNotSubscribed')
         }
     }
 }
