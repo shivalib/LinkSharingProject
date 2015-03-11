@@ -1,6 +1,8 @@
 package linkshare
 
 import LinkShareEnums.Visibility
+import com.ig.LinkShare.Subscription
+import com.ig.LinkShare.User
 
 class ApplicationTagLib {
 
@@ -35,31 +37,26 @@ class ApplicationTagLib {
     }
 
     def isSubscribed={attr->
-        def userID=attr.userID
-        def subscriptionList=attr.subscriptionList
+        def user=attr.userID
+        User user1=User.findByUsername(user)
+        def topic=attr.topicID
 
-        subscriptionList.each
-                {
-                    if(userID==it.user.id)
-                    {
-                        out<<g.render(template: '/myTemplates/isSubscribed')
-                    }
-                }
-    }
+        Subscription subscription=Subscription.findByUserAndTopic(user1,topic)
 
+        if(subscription)
+        {
+            out<<g.render(template: '/myTemplates/isSubscribed')
+        }
+   }
 
     def isNotSubscribed={attr->
-        def userID=attr.userID
-        def subscriptionList=attr.subscriptionList
-
-        subscriptionList.each
-                {
-                    if(userID!=it.user.id)
-                    {
-                        out<<g.render(template: '/myTemplates/isNotSubscribed')
-                    }
-                }
+        def user=attr.userID
+        User user1=User.findByUsername(user)
+        def topic=attr.topicID
+        Subscription subscription=Subscription.findByUserAndTopic(user1,topic)
+        if(!subscription)
+        {
+            out<<g.render(template: '/myTemplates/isSubscribed')
+        }
     }
-
-
 }

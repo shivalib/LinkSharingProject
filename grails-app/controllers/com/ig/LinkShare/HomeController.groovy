@@ -15,7 +15,7 @@ class HomeController {
         render(view: "/user/HomePage",model:[resources:resources])
 
     }
-
+//
     def dashboard() {
         if(session["username"])
         {
@@ -24,7 +24,9 @@ class HomeController {
 
             List<Topic> topics=Topic.findAllWhere(createdBy: currentUser)
 
-            List<Subscription> subscriptionList=Subscription.findAllWhere(user: currentUser)
+            List<Subscription> subscriptionList=Subscription.findAllByUser(currentUser)
+//            subscriptionList=subscriptionList.subList(0,5)
+            println(subscriptionList)
 
             List<Topic> trendingTopicList=Topic.list().sort{it.resources.size()}.reverse()
 //            trendingTopicList=trendingTopicList.subList(0,5)
