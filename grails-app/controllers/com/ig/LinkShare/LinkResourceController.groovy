@@ -19,7 +19,9 @@ class LinkResourceController {
         {
             topicID.addToResources(linkResource)
             userID.addToResources(linkResource)
-            readingItemService.markReading(userID,linkResource)
+
+            readingItemService.markReading(userID,linkResource,true)
+
 
             flash.message = "Your link has been created !"
         }

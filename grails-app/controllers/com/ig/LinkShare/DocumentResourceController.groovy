@@ -22,7 +22,7 @@ class DocumentResourceController {
             topicID.addToResources(documentResource)
             userID.addToResources(documentResource)
 
-            readingItemService.markReading(userID,documentResource)
+            readingItemService.markReading(userID,documentResource,true)
 
             flash.message = "Your Document has been shared !"
         }

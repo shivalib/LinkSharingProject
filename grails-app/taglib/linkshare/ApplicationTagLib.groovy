@@ -59,7 +59,7 @@ class ApplicationTagLib {
 
         if(!subscription)
         {
-            out<<g.render(template: '/myTemplates/isNotSubscribed')
+            out<<g.render(template: '/myTemplates/isNotSubscribed',model: [topicName:attr.topicName])
         }
     }
 }

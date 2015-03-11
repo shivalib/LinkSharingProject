@@ -4,6 +4,7 @@ class SubscriptionController {
 
     def scaffold = Subscription
    // def index() {}
+    def readingItemService
 
     def subscribeUser() {
         println "in subscribe user               ${params}"
@@ -21,8 +22,16 @@ class SubscriptionController {
         Subscription subscription=new Subscription(seriousness: params.seriousness,user: currentUser,topic: topic)
         if(subscription.save(failOnError: true))
         {
+            List<Resource> resourceListOfCurrentUser=Resource.findAllWhere(topic: topic)
+
+            resourceListOfCurrentUser.each {Resource resource->
+            readingItemService.markReading(currentUser,resource,false)
+            }
+            
             currentUser.addToSubscriptions(subscription)
             topic.addToSubscriptions(subscription)
+
+
             flash.message="You have been successfully subscribed to ${topicName} !"
             redirect(controller: "home",action: "dashboard")
         }

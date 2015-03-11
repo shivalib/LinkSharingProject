@@ -9,9 +9,9 @@ class ReadingItemService {
 
     }
 
-    void markReading(User user,Resource resource)
+    void markReading(User user,Resource resource,Boolean isRead)
     {
-        ReadingItem readingItem=new ReadingItem(isRead: true)
+        ReadingItem readingItem=new ReadingItem(isRead: isRead)
 
         //Resource resource=Resource.findWhere(createdBy: user)
 
