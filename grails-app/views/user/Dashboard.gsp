@@ -288,16 +288,13 @@
                         <div>${unreadResource.createdBy.fullName}@ ${unreadResource.createdBy.username}</div>
                                 ${unreadResource.description}
                     </div><!--media body ends-->
-                    %{--................isread :${unreadResource}--}%
+
+                <div class="right leftdiv">
+                    <g:link>View Post</g:link>
+                </div>
                     <ls:checkResourceType resource="${unreadResource}"/>
                     <ls:markResource resource="${unreadResource}" currentUser="${loginUser}"/>
 
-                    %{--<div class="right">--}%
-                        %{--<a href="">Download</a>--}%
-                        %{--<a href="">View full site</a>--}%
-                        %{--<a href="">Mark as read</a>--}%
-                        %{--<a href="">View post</a>--}%
-                    %{--</div>--}%
                 </div>
             </div><!--panel body ends-->
     </g:each>

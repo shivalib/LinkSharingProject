@@ -72,11 +72,11 @@ class ApplicationTagLib {
 
             if(readingItem.isRead==true)
             {
-                out<<g.render(template:'/myTemplates/isResourceRead')
+                out<<g.render(template:'/myTemplates/markAsUnread')
             }
             else
             {
-                out<<g.render(template:'/myTemplates/isResourceUnread')
+                out<<g.render(template:'/myTemplates/markAsRead',model: [currentUser:currentUser.id,currentResource:attr.resource.id])
             }
         }
     }
