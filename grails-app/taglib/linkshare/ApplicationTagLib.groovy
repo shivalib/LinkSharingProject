@@ -1,6 +1,7 @@
 package linkshare
 
 import com.ig.LinkShare.LinkResource
+import com.ig.LinkShare.ReadingItem
 import com.ig.LinkShare.Subscription
 import com.ig.LinkShare.User
 
@@ -58,6 +59,25 @@ class ApplicationTagLib {
 
         if (subscription) {
             out << g.render(template: '/myTemplates/isSubscribed')
+        }
+    }
+
+    def markResource={attr->
+        def resource=attr.resource
+        def currentUser=attr.currentUser
+
+        List<ReadingItem> readingItemList=ReadingItem.findAllWhere(user: currentUser,resource: resource)
+
+        readingItemList.each{ReadingItem readingItem->
+
+            if(readingItem.isRead==true)
+            {
+                out<<g.render(template:'/myTemplates/isResourceRead')
+            }
+            else
+            {
+                out<<g.render(template:'/myTemplates/isResourceUnread')
+            }
         }
     }
 

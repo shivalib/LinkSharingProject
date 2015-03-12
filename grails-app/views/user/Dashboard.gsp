@@ -285,11 +285,12 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading"></h4>
-                        <div>${unreadResource.createdBy.fullName}</div>
+                        <div>${unreadResource.createdBy.fullName}@ ${unreadResource.createdBy.username}</div>
                                 ${unreadResource.description}
                     </div><!--media body ends-->
-
+                    %{--................isread :${unreadResource}--}%
                     <ls:checkResourceType resource="${unreadResource}"/>
+                    <ls:markResource resource="${unreadResource}" currentUser="${loginUser}"/>
 
                     %{--<div class="right">--}%
                         %{--<a href="">Download</a>--}%
