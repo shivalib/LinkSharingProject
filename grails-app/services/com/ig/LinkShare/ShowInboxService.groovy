@@ -8,16 +8,19 @@ class ShowInboxService {
     def userService
 
 
-    List<Resource> showInbox(String currentUser) {
+    List<ReadingItem> showInbox(String currentUser){
 
-        List<Resource> resourceList = Resource.createCriteria().list(offset: 0, max: 5) {
-            println "------------in showInBox--------------"
-            'readingItems' {
-                println "in reading"
-                eq('isRead', false)
-            }
+        User user=User.findByUsername(currentUser)
+
+        List<ReadingItem> readingItems=ReadingItem.createCriteria().list {
+            println "------------in readingItems-----------"
+//            projections{
+//                property("resource")
+//            }
+            eq('isRead',false)
+            eq('user',user)
 
         }
-        return resourceList
     }
+
 }

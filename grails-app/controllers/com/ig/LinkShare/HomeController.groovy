@@ -32,13 +32,14 @@ class HomeController {
 //            trendingTopicList=trendingTopicList.subList(0,5)
 
             //show Inbox
-            List<Resource> resourceListWithReadingItemFalse=showInboxService.showInbox(session["username"])
-            resourceListWithReadingItemFalse.each{
-                println "........criteria...."
+            List<ReadingItem> readingItemListWithIsReadFalse=showInboxService.showInbox(session["username"])
+            readingItemListWithIsReadFalse.each {
+                println "-----------new criteria----------"
                 println it
             }
 
-            render(view: "/user/Dashboard", model: [resourceListWithReadingItemFalse:resourceListWithReadingItemFalse,loginUser: currentUser, trendingTopicList: trendingTopicList, topicList: topics.topicName, subscriptionList: subscriptionList])
+
+            render(view: "/user/Dashboard", model: [readingItemListWithIsReadFalse:readingItemListWithIsReadFalse,loginUser: currentUser, trendingTopicList: trendingTopicList, topicList: topics.topicName, subscriptionList: subscriptionList])
         }
     }
 
