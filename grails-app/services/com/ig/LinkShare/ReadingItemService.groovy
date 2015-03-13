@@ -10,21 +10,22 @@ class ReadingItemService {
 
     }
 
-    void markReading(User user,Resource resource,Boolean isRead)
-    {
-        ReadingItem readingItem=new ReadingItem(isRead: isRead)
+    void markReading(User user, Resource resource, Boolean isRead) {
+        println "===========user :" + user
+        println "*********resource : " + resource
+        ReadingItem readingItem = new ReadingItem(isRead: isRead)
 
         //Resource resource=Resource.findWhere(createdBy: user)
 
         user.addToReadingItems(readingItem)
         resource.addToReadingItems(readingItem)
-
+        println readingItem.errors
+        readingItem.validate()
         readingItem.save(failOnError: true)
     }
 
-    def generateRandomNumber()
-    {
-        def randomNumber=Math.abs(new Random().nextInt()%100)+1
+    def generateRandomNumber() {
+        def randomNumber = Math.abs(new Random().nextInt() % 100) + 1
         return randomNumber
     }
 }

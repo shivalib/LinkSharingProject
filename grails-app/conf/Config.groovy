@@ -131,3 +131,10 @@ grails {
                  "mail.smtp.socketFactory.fallback": "false"]
     }
 }
+
+upload(){
+    uploadFolder="${userHome}/LinkSharing_Data"
+    uploadDocument=uploadFolder+"/Document/"
+    uploadImages=uploadFolder+"/userImages/"
+
+}

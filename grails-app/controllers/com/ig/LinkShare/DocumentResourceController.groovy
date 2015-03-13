@@ -4,25 +4,26 @@ class DocumentResourceController {
 
     def scaffold = true
     //def index() {}
-
+    def uploadService
     def readingItemService
 
-    def shareDocument()
-    {
-        User userID=User.findWhere(username:  session["username"])
-        println userID
+    def shareDocument() {
+        User createdBy = User.findWhere(username: session["username"])
+//        println "username : " +createdBy.username
 
-        def topicID=Topic.findWhere(createdBy: userID, topicName: params.topicList)
-        println topicID.topicName
+        Topic topic = Topic.findWhere(topicName: params.topic)
+//        println "topic name : "+topic.topicName
 
-        DocumentResource documentResource=new DocumentResource(fileName: params.docName,filePath: params.docFile,description: params.desc, createdBy: userID,topic: topicID)
+        DocumentResource documentResource = new DocumentResource(description: params.description)
+        topic.addToResources(documentResource)
+        createdBy.addToResources(documentResource)
+
+        documentResource=uploadService.uploadDocument(documentResource,params.docFile,grailsApplication.config.upload.uploadDocument)
 
         if(documentResource.save(failOnError: true))
         {
-            topicID.addToResources(documentResource)
-            userID.addToResources(documentResource)
 
-            readingItemService.markReading(userID,documentResource,true)
+            readingItemService.markReading(createdBy,documentResource,true)
 
             flash.message = "Your Document has been shared !"
         }

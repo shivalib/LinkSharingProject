@@ -6,8 +6,8 @@ class User {
     String lastName
     String username
     String password
+    String photoPath
     String email
-    Byte photo
     Boolean admin
     Boolean active
 
@@ -21,8 +21,8 @@ class User {
         username blank: false, nullable: false, unique: true
         password blank: false, nullable: false
         email email: true, blank: false, unique: true
-        photo nullable: true
         fullName bindable: true
+        photoPath nullable: true,blank: true
 
     }
 

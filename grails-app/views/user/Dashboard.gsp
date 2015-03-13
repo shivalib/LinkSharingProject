@@ -19,8 +19,9 @@
                 <div class="media ">
                     <div class="media-left">
                         <a href="#">
-                            <g:img class="media-object mediaFace" dir="images" file="person-icon.png"
-                                   alt="Person"></g:img>
+                            %{--<g:img class="media-object mediaFace" dir="images" file="person-icon.png"--}%
+                                   %{--alt="Person"></g:img>--}%
+                            <img src="${createLink(controller: "image" ,action: "renderImage",params: [path:loginUser.photoPath])}" class="media-object mediaFace">
                         </a>
                     </div>
 
@@ -232,26 +233,26 @@
                     </div>
 
                     <div class="modal-body">
-                        <g:form class="loginform" method="post" controller="documentResource" action="shareDocument">
+                        <g:form class="loginform" method="post" controller="documentResource" action="shareDocument" enctype="multipart/form-data">
                             <div>
                                 <span>Document* :</span>
-                                <g:textField name="docName" placeholder="Document"/>
+                                %{--<g:textField name="docName" placeholder="Document"/>--}%
                                 <span><input type="file" name="docFile"></span>
                             </div>
 
                             <div>
                                 <span>Description* :</span>
-                                <g:textArea name="desc" rows="5" cols="40" placeholder="Description"/>
+                                <g:textArea name="description" rows="5" cols="40" placeholder="Description"/>
                             </div>
 
                             <div>
                                 <span>Topic* :</span>
-                                <g:select name="topicList" from="${topicList}"/>
+                                <g:select name="topic" from="${topicList}"/>
                             </div>
 
                             <div class="right">
-                                <g:submitButton name="share" value="Share"/>
-                                <g:submitButton name="reset" value="Cancel"/>
+                                <g:submitButton name="share" value="Share"  class="btn btn-default"/>
+                                <g:submitButton name="reset" value="Cancel" class="btn btn-default" data-dismiss="modal"/>
                             </div>
                         </g:form>
                     </div>

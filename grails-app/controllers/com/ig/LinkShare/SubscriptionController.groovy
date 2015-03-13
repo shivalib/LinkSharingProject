@@ -31,7 +31,6 @@ class SubscriptionController {
             currentUser.addToSubscriptions(subscription)
             topic.addToSubscriptions(subscription)
 
-
             flash.message = "You have been successfully subscribed to ${topicName} !"
             redirect(controller: "home", action: "dashboard")
         } else {
@@ -39,6 +38,21 @@ class SubscriptionController {
             subscription.errors.allErrors.each { println it }
             redirect(controller: "home", action: "dashboard")
         }
+    }
+
+    def unsubsribeUser(){
+
+        String loginUser = session["username"]
+        User currentUser = User.findByUsername(loginUser)
+        println "-------------User Name : " + currentUser
+
+        def topicName = params.topicName
+        println "-------------Topic Name : " + topicName
+
+        Topic topic = Topic.findByTopicName(topicName)
+
+        Subscription subscription=Subscription.findByUserAndTopic(currentUser,topic)
+        println subscription.user
     }
 
 }

@@ -59,7 +59,7 @@ class ApplicationTagLib {
         Subscription subscription = Subscription.findByUserAndTopic(user1, topic)
 
         if (subscription) {
-            out << g.render(template: '/myTemplates/isSubscribed')
+            out << g.render(template: '/myTemplates/isSubscribed',model: [topicName: attr.topicName])
         }
     }
 

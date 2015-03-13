@@ -77,7 +77,7 @@
             </div>
 
             <div class="panel-body">
-                <g:form class="loginform" controller="user" action="registerUser">
+                <g:form class="loginform" controller="user" action="registerUser" enctype="multipart/form-data">
                     <div>
                         <span>First name*</span>
                         <g:textField name="firstName" placeholder="First Name"></g:textField>
