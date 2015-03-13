@@ -2,6 +2,7 @@ package linkshare
 
 import com.ig.LinkShare.LinkResource
 import com.ig.LinkShare.ReadingItem
+import com.ig.LinkShare.Resource
 import com.ig.LinkShare.Subscription
 import com.ig.LinkShare.User
 
@@ -63,16 +64,16 @@ class ApplicationTagLib {
     }
 
     def markResource={attr->
+
         def resource=attr.resource
         def currentUser=attr.currentUser
 
-        List<ReadingItem> readingItemList=ReadingItem.findAllWhere(user: currentUser,resource: resource)
+        List<ReadingItem> readingItemList=ReadingItem.findAllByUserAndResource(currentUser,resource)
 
         readingItemList.each{ReadingItem readingItem->
-
             if(readingItem.isRead==true)
             {
-                out<<g.render(template:'/myTemplates/markAsUnread')
+                out<<g.render(template:'/myTemplates/markAsUnread',model: [currentUser:currentUser.id,currentResource:attr.resource.id])
             }
             else
             {

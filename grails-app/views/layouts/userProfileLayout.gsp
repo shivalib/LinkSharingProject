@@ -24,7 +24,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
     <!-- Self-created CSS -->
-    <link rel="stylesheet" href="${resource(dir: "css",file:"LinkShare.css" )}">
+    <link rel="stylesheet" href="${resource(dir: "css", file: "LinkShare.css")}">
 
 </head>
 <g:layoutHead/>
@@ -33,10 +33,7 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Link Sharing</a>
-            %{--</div>--}%
-
-            %{--<div>--}%
+            <g:link class="navbar-brand" controller="home" action="dashboard">Link Sharing</g:link>
         </div>
 
         <g:if test="${flash.message}">
@@ -59,22 +56,23 @@
                     <input type="text" class="form-control" placeholder="Search">
                 </div>
 
-
-                <img src="${resource(dir: "images",file: "person-icon.png")}" height="35px" width="35px"/>
+                <img src="${resource(dir: "images", file: "person-icon.png")}" height="35px" width="35px"/>
 
                 <span class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                            data-toggle="dropdown" aria-expanded="true">
                         ${loginUser.fullName}
                         <span class="caret"/>
                     </button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                         <li role="presentation">
-                            <g:link role="menuitem" tabindex="-1" controller="userProfile" action="index">Profile</g:link></li>
+                            <g:link role="menuitem" tabindex="-1" controller="userProfile"
+                                    action="index">Profile</g:link></li>
                         <li class="divider"></li>
 
                         <li role="presentation">
-                            <g:link role="menuitem" tabindex="-1" controller="login" action="logout">Logout</g:link></li>
-                        %{--<a role="menuitem" tabindex="-1" href="#">Logout</a></li>--}%
+                            <g:link role="menuitem" tabindex="-1" controller="login"
+                                    action="logout">Logout</g:link></li>
                     </ul>
                 </span>
 

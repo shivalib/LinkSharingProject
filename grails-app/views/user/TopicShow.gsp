@@ -1,79 +1,98 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: intelligrape
-  Date: 1/3/15
-  Time: 4:24 PM
---%>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
+<head>
+    <title></title>
+    <meta name="layout" content="topicShowLayout">
+</head>
+
 <body>
 <div class="row">
     <div class="col-md-4">
-
+        <!--topic details-->
         <div class="panel panel-default leftdiv">
             <div class="panel-heading">
-                <h3 class="panel-title">Topic : topicname</h3>
+                <h3 class="panel-title">Topic : ${topic.topicName}</h3>
             </div>
+
             <div class="panel-body">
                 <div class="media ">
                     <div class="media-left">
                         <a href="#">
-                            <img class="media-object mediaFace" src="${resource(dir: "images", file:"person-icon.png")}">
+                            <img class="media-object mediaFace"
+                                 src="${resource(dir: "images", file: "person-icon.png")}">
                         </a>
                     </div>
+
                     <div class="media-body">
-                        <h4 class="media-heading"><a href="#">topicname</a>Private/Public</h4>
+                        <h4 class="media-heading">
+                            <g:link>${topic.topicName}</g:link>(${topic.visibility})
+                        </h4>
+
                         <div>
-                            <h5>@username</h5>
-                            <span class="right">Posts</span>
-                            <span class="right rightdiv">Subscriptions</span>
-                            <span class="left"><a href="#">Subscribe</a></span>
+                            <h5>@${topic.createdBy.username}</h5>
                         </div>
                         <div>
-                            <span class="right">
-                                <select name="SeriousnessList">
-                                    <option name="serious">Serious</option>
-                                    <option name="verySerious">Very Serious</option>
-                                    <option name="casual">Casual</option>
-                                </select>
-                                <button type="button" class="btn btn-default" title="Send invitation">
-                                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                                </button>
+                            <span class="left leftdiv">Subscriptions
+                                <div>${topic.subscriptions.size()}</div>
+                            </span>
+                            <span class="left leftdiv">Posts
+                                <div>${topic.resources.size()}</div>
                             </span>
                         </div>
-                    </div><!--media body ends-->
-                </div><!--media ends -->
-            </div><!--panel body ends-->
-        </div><!-- panel ends-->
 
-        <div class="panel panel-default leftdiv">
-            <div class="panel-heading">
-                <h3 class="panel-title">Users : topicname</h3>
-            </div>
-            <div class="panel-body">
-                <div class="media ">
-                    <div class="media-left">
-                        <a href="#">
-                            <img class="media-object mediaFace" src="${resource(dir: "images", file:"person-icon.png")}">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Complete Name</h4>
                         <div>
-                            <h5>@username</h5>
-                                <span class="leftdiv">Topics</span>
-                                <span class="leftdiv">Subscriptions</span>
+                            <ls:isSubscribed currentUser="${loginUser}" topicID="${topic}"/>
+                            <ls:isNotSubscribed currentUser="${loginUser}" topicID="${topic}" topicName="${topic.topicName}"/>
+
                         </div>
                     </div><!--media body ends-->
                 </div><!--media ends -->
             </div><!--panel body ends-->
         </div><!-- panel ends-->
+
+        <!--users-->
+        <div class="panel panel-default leftdiv">
+            <div class="panel-heading">
+                <h3 class="panel-title">Users : ${topic.topicName}</h3>
+            </div>
+        <g:each in="${subscribers}" var="subscriberList">
+            <div class="panel-body">
+                <div class="media ">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object mediaFace"
+                                 src="${resource(dir: "images", file: "person-icon.png")}">
+                        </a>
+                    </div>
+
+                        <div class="media-body">
+                            <h4 class="media-heading">${subscriberList.user.fullName}</h4>
+
+                            <div>
+                                <h5>@${subscriberList.user.username}</h5>
+                            </div>
+
+                            <div>
+                                <span class="left leftdiv">Subscriptions
+                                    <div>${subscriberList.user.subscriptions.size()}</div>
+                                </span>
+                                <span class="left leftdiv">Topics
+                                    <div>${subscriberList.user.topics.size()}</div>
+                                </span>
+                            </div>
+                        </div><!--media body ends-->
+                </div><!--media ends -->
+            </div><!--panel body ends-->
+                    </g:each>
+        </div><!-- panel ends-->
     </div><!--col md-4 ends-->
+
+    <!--posts-->
     <div class="col-md-8">
         <div class="panel panel-default rightdiv">
             <div class="panel-heading">
-                <span><h3 class="panel-title " >Posts : topicName</h3></span>
+                <span><h3 class="panel-title ">Posts : ${topic.topicName}</h3></span>
                 <span>
                     <form class="navbar-form navbar-right" role="search">
                         <div class="form-group">
@@ -82,55 +101,32 @@
                     </form>
                 </span>
             </div>
+            <g:each in="${resources}" var="resourceList">
+                <div class="panel-body">
+                    <div class="media ">
+                        <div class="media-left">
+                            <a href="#">
+                                <g:img class="media-object mediaFace" dir="images" file="person-icon.png"
+                                       alt="Person"></g:img>
+                            </a>
+                        </div>
 
-        <div class="panel-body">
-            <div class="media ">
-                <div class="media-left">
-                    <a href="#">
-                        <g:img class="media-object mediaFace" dir="images" file="person-icon.png" alt="Person"></g:img>
-                    </a>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading"><a href="">Grails</a></h4>
-                    This is a sample text to be replaced by the data
-                </div><!--media body ends-->
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href=""></a></h4>
+                            ${resourceList.description}
+                        </div><!--media body ends-->
+                    </div><!--media ends-->
+                    <div class="right leftdiv">
+                        <g:link>View Post</g:link>
+                    </div>
+                    <ls:checkResourceType resource="${resourceList}"/>
+                    <ls:markResource resource="${resourceList}" currentUser="${loginUser}"/>
+                </div><!--panel body ends-->
+            </g:each>
+        </div>
 
-                <div class="right">
-                    <a href="">Download</a>
-                    <a href="">View full site</a>
-                    <a href="">Mark as read</a>
-                    <a href="">View post</a>
-                </div>
-            </div>
-        </div><!--panel body ends-->
-
-        <div class="panel-body">
-            <div class="media ">
-                <div class="media-left">
-                    <a href="#">
-                        <g:img class="media-object mediaFace" dir="images" file="person-icon.png" alt="Person"></g:img>
-                    </a>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading"><a href="">Grails</a></h4>
-                    This is a sample text to be replaced by the data
-                </div><!--media body ends-->
-                <div class="right">
-                    <a href="">Download</a>
-                    <a href="">View full site</a>
-                    <a href="">Mark as read</a>
-                    <a href="">View post</a>
-                </div>
-            </div>
-        </div><!--panel body ends-->
     </div>
-
-</div>
 </div>
 </body>
-<head>
-    <title></title>
-    <meta name="layout" content="topicShowLayout">
-</head>
 
 </html>

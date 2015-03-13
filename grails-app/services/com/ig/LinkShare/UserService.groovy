@@ -12,6 +12,12 @@ class UserService {
     static transactional = false
     static scope = "singleton"
 
+    User showCurrentUserObject(String loginUser)
+    {
+        User currentUser=User.findByUsername(loginUser)
+        return currentUser
+    }
+
     String getLoggedInUserEmail() {
         return session["userEmail"].toString()
     }

@@ -13,10 +13,6 @@ class ShowInboxService {
         User user=User.findByUsername(currentUser)
 
         List<ReadingItem> readingItems=ReadingItem.createCriteria().list {
-            println "------------in readingItems-----------"
-//            projections{
-//                property("resource")
-//            }
             eq('isRead',false)
             eq('user',user)
 

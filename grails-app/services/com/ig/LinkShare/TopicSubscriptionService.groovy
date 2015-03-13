@@ -8,10 +8,7 @@ class TopicSubscriptionService {
 
     ReadingItemService readingItemService
 
-    def serviceMethod() {
-    }
-
-    //subscribe topic
+        //user get automatically subscribe to topic
     Subscription subscribeTopic(User user, Topic topic) {
         Subscription subscription = new Subscription(seriousness:Seriousness.VERYSERIOUS, user: user, topic: topic)
         if (subscription.save(flush: true, failOnError: true)) {
@@ -24,4 +21,13 @@ class TopicSubscriptionService {
         }
         return subscription
     }
+
+    List<Subscription> subscriptionList(Topic topic){
+
+        List<Subscription> subscriptions=Subscription.findAllByTopic(topic)
+
+        return subscriptions
+    }
+
+
 }

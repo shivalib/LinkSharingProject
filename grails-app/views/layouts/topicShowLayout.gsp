@@ -15,6 +15,9 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
+    <!-- jquery-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
@@ -28,12 +31,12 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Link Sharing</a>
+           <g:link class="navbar-brand" controller="home" action="dashboard">Link Sharing</g:link>
         </div>
 
         <!--Search-->
         <div>
-            <form class="navbar-form navbar-right " role="search">${params.username}
+            <form class="navbar-form navbar-right " role="search">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search">
                 </div>
@@ -49,7 +52,7 @@
                 <img src="${resource(dir: "images",file: "person-icon.png")}" height="35px" width="35px"/>
                 <span class="dropdown">
                     <select name="myList" >
-                        <option value="username" disabled="disabled" selected="selected">${params.username}</option>
+                        <option value="username" disabled="disabled" selected="selected"></option>
                         <option value="action">Profile</option>
                         <option value="action2">Logout</option>
                     </select>

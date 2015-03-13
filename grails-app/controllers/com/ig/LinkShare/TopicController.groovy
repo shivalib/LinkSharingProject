@@ -1,15 +1,26 @@
 package com.ig.LinkShare
 
-import LinkShareEnums.Visibility
-
 class TopicController {
 
     def topicSubscriptionService
-    def readingItemService
+    def showResourceService
 
-    def index() {
-        render(view: "/user/TopicShow")
+    def index(Long id) {
+
+        println(params.loginUser)
+
+        println "--------index : topic"
+
+        Topic topic=Topic.findById(id)
+
+        User loginUser=User.get(params.loginUser)
+
+        List<Subscription> subscriptionList=topicSubscriptionService.subscriptionList(topic)
+        List<Resource> resourceList=showResourceService.showresourcesByTopic(topic)
+
+        render(view: "/user/TopicShow",model: [topic: topic,loginUser:loginUser,subscribers:subscriptionList,resources:resourceList])
     }
+
 
     //todo remove the objects which are never used and optimise redirects
     def createTopic(User user) {
@@ -30,6 +41,5 @@ class TopicController {
             flash.message = "Sorry, topic creation failed!"
         }
         redirect(controller: "home", action: "dashboard")
-
     }
 }

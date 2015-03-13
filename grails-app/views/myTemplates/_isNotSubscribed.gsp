@@ -1,6 +1,7 @@
 %{--todo move this template to its respective folder--}%
 
 <g:link controller="subscription" id="Link-${topicName}" action="subscribeUser" data-toggle="modal" data-target="#myModal-${topicName}">Subscribe</g:link>
+
 <!-- Modal -->
 <div class="modal fade" id="myModal-${topicName}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
