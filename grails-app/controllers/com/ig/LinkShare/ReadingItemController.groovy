@@ -6,7 +6,7 @@ class ReadingItemController {
 
     def index() {}
 
-    def markAsRead()
+    def markAsReadOrUnread()
     {
         println "************in mark as read***************"
         println "------------ $params"
@@ -19,13 +19,15 @@ class ReadingItemController {
 
         ReadingItem readingItem=ReadingItem.findByUserAndResource(currentUser,resource)
         println readingItem.isRead
+
         readingItem.isRead=!readingItem.isRead
+
         println readingItem.isRead
         println readingItem.id
 
         if(readingItem.save(failOnError: true,flush: true))
         {
-            flash.message="Resource is read now"
+//            flash.message="Resource is read now"
             forward(controller: "home",action: "dashboard")
         }
 

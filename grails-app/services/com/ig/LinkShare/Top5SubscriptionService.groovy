@@ -11,16 +11,16 @@ class Top5SubscriptionService {
         User user=User.findByUsername(currentUser)
 
         List<Topic> topics=Topic.createCriteria().list {
-          projections {
-              count("subscriptions")
-          }
+//          projections {
+//              count("subscriptions")
+//          }
             'subscriptions'{
               eq('user',user)
           }
 
         }
-
-
         return  topics
     }
+
+
 }

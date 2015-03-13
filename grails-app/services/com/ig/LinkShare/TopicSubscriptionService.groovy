@@ -22,12 +22,16 @@ class TopicSubscriptionService {
         return subscription
     }
 
+
+
     List<Subscription> subscriptionList(Topic topic){
 
         List<Subscription> subscriptions=Subscription.findAllByTopic(topic)
 
         return subscriptions
     }
+
+
 
 
 }

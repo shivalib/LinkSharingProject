@@ -51,7 +51,7 @@
                 </button>
 
                 <img src="${resource(dir: "images", file: "person-icon.png")}" height="35px" width="35px"/>
-                
+
                 <span class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
                             data-toggle="dropdown" aria-expanded="true">

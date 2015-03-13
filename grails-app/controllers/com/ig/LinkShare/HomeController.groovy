@@ -28,7 +28,6 @@ class HomeController {
 
             List<Topic> topics =showTopicService.findTopicsOfCurrentUser(session["username"])
 
-
             List<Subscription> subscriptionList = Subscription.findAllByUser(currentUser)
 //            subscriptionList=subscriptionList.subList(0,5)
 
@@ -37,12 +36,16 @@ class HomeController {
 
             //show Inbox
             List<ReadingItem> readingItemListWithIsReadFalse=showInboxService.showInbox(session["username"])
-//
-//            List<Topic> topics1=top5SubscriptionService.showTop5Subscription(session["username"])
-//
-//            topics1.each {
-//                println it.topicName
-//            }
+
+
+            List<Topic> topics1=top5SubscriptionService.showTop5Subscription(session["username"])
+            topics1.each {
+                println "in criteria"
+                println "Topic name : " + it.topicName
+                println "Post count : " +it.resources.size()
+                println "Subscriptions : " +it.subscriptions.size()
+            }
+            
             render(view: "/user/Dashboard", model: [readingItemListWithIsReadFalse:readingItemListWithIsReadFalse,loginUser: currentUser, trendingTopicList: trendingTopicList, topicList: topics.topicName, subscriptionList: subscriptionList])
         }
     }

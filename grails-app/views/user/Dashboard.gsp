@@ -16,7 +16,6 @@
         <!--Panel1-->
         <div class="panel panel-default leftdiv">
             <div class="panel-body">
-                %{--<g:each in="${currentUser}" var="usr">--}%
                 <div class="media ">
                     <div class="media-left">
                         <a href="#">
