@@ -12,7 +12,7 @@ class ShowInboxService {
 
         User user=User.findByUsername(currentUser)
 
-        List<ReadingItem> readingItems=ReadingItem.createCriteria().list {
+        List<ReadingItem> readingItems=ReadingItem.createCriteria().list(offset:0,max:5) {
             eq('isRead',false)
             eq('user',user)
 

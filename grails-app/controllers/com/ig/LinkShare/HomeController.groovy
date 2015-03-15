@@ -4,7 +4,7 @@ class HomeController {
 
     def top5SubscriptionService
 
-    //def trendingTopicService
+    def trendingTopicService
     def showInboxService
     def showTopicService
     def userService
@@ -31,8 +31,11 @@ class HomeController {
             List<Subscription> subscriptionList = Subscription.findAllByUser(currentUser)
 //            subscriptionList=subscriptionList.subList(0,5)
 
-            List<Topic> trendingTopicList = Topic.list().sort { it.resources.size() }.reverse()
-//            trendingTopicList=trendingTopicList.subList(0,5)
+            List<Topic> trendingTopics=trendingTopicService.showTrendingTopics()
+            trendingTopics.each{
+                println it.topicName
+
+            }
 
             //show Inbox
             List<ReadingItem> readingItemListWithIsReadFalse=showInboxService.showInbox(session["username"])
@@ -46,7 +49,7 @@ class HomeController {
                 println "Subscriptions : " +it.subscriptions.size()
             }
             
-            render(view: "/user/Dashboard", model: [readingItemListWithIsReadFalse:readingItemListWithIsReadFalse,loginUser: currentUser, trendingTopicList: trendingTopicList, topicList: topics.topicName, subscriptionList: subscriptionList])
+            render(view: "/user/Dashboard", model: [readingItemListWithIsReadFalse:readingItemListWithIsReadFalse,loginUser: currentUser, trendingTopicList: trendingTopics, topicList: topics.topicName, subscriptionList: subscriptionList])
         }
     }
 
