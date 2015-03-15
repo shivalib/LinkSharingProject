@@ -61,7 +61,7 @@
                     </span>
                 </h3></span>
             </div>
-            <g:each in="${subscriptionList}" var="subscription">
+            <g:each in="${top5SubscribedTopics}" var="subscribedTopics">
                 <div class="panel-body">
                     <div class="media ">
                         <div class="media-left">
@@ -73,23 +73,23 @@
 
                         <div class="media-body">
                             <h4 class="media-heading">
-                                <g:link controller="topic" action="index" id="${subscription.topic.id}" params="[loginUser:loginUser.id]">${subscription.topic.topicName}</g:link>
+                                <g:link controller="topic" action="index" id="${subscribedTopics.id}" params="[loginUser:loginUser.id]">${subscribedTopics.topicName}</g:link>
                             </h4>
 
                             <div>
-                                @${subscription.user.username}
+                                @${subscribedTopics.createdBy.username}
                                 <span class="right">Posts
-                                    <div>${subscription.topic.resources.size()}</div>
+                                    <div>${subscribedTopics.resources.size()}</div>
                                 </span>
                                 <span class="right rightdiv">Subscriptions
-                                    <div>${subscription.topic.subscriptions.size()}</div>
+                                    <div>${subscribedTopics.subscriptions.size()}</div>
                                 </span>
                             </div>
                             <br><br><br>
 
                             <div>
                                 <ls:isEditable currentUser="${loginUser}"
-                                               topicCreater="${subscription.topic.createdBy}"/>
+                                               topicCreater="${subscribedTopics.createdBy}"/>
                             </div>
                         </div><!--media body ends-->
                     </div><!-- media ends-->
