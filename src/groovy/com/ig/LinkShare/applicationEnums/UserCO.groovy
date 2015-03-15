@@ -1,4 +1,4 @@
-package LinkShareEnums
+package com.ig.LinkShare.applicationEnums
 
 import grails.validation.Validateable
 

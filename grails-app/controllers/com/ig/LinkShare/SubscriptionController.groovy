@@ -55,4 +55,10 @@ class SubscriptionController {
         println subscription.user
     }
 
+    def changeVisibility(){
+        Topic topic=Topic.get(params.long('topicID'))
+        topic.visibility=params.visibility
+        topic.save(failOnError: true,flush: true)
+    }
+
 }

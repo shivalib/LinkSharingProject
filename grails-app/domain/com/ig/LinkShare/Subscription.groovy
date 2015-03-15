@@ -1,8 +1,6 @@
 package com.ig.LinkShare
 
-import LinkShareEnums.Seriousness
-import com.ig.LinkShare.Topic
-import com.ig.LinkShare.User
+import com.ig.LinkShare.applicationEnums.Seriousness
 
 class Subscription {
 

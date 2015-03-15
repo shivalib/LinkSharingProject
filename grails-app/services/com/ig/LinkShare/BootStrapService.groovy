@@ -1,6 +1,5 @@
 package com.ig.LinkShare
 
-import LinkShareEnums.Seriousness
 import grails.transaction.Transactional
 
 @Transactional

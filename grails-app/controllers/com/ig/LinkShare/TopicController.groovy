@@ -18,7 +18,7 @@ class TopicController {
         List<Subscription> subscriptionList = topicSubscriptionService.subscriptionList(topic)
         List<Resource> resourceList = showResourceService.showresourcesByTopic(topic)
 
-        render(view: "/user/TopicShow", model: [topic: topic, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
+        render(view: "/topic/topicShow", model: [topic: topic, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
     }
 
     //todo remove the objects which are never used and optimise redirects

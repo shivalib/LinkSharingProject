@@ -15,7 +15,7 @@ class HomeController {
         println ">>>>>>>>>>>>>>>>>>>>>>>.index"
         println ">>>>>>>>>>>>>>>>>>>>>>>.Home"
 
-        render(view: "/user/HomePage", model: [resources: resources])
+        render(view: "/login/homePage", model: [resources: resources])
 
     }
 
@@ -35,7 +35,7 @@ class HomeController {
             //show top5Subscriptions
             List<Topic> top5SubscribedTopics = top5SubscriptionService.showTop5Subscription(session["username"])
 
-            render(view: "/user/Dashboard", model: [readingItemListWithIsReadFalse: readingItemListWithIsReadFalse, loginUser: currentUser, trendingTopicList: trendingTopics, topicList: topics.topicName, top5SubscribedTopics: top5SubscribedTopics])
+            render(view: "/home/dashboard", model: [readingItemListWithIsReadFalse: readingItemListWithIsReadFalse, loginUser: currentUser, trendingTopicList: trendingTopics, topicList: topics.topicName, top5SubscribedTopics: top5SubscribedTopics])
         }
     }
 

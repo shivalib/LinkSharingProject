@@ -3,7 +3,7 @@
 %{--todo rename the file properly--}%
 %{--todo move this file to its respective folder--}%
 
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="com.ig.LinkShare.applicationEnums.Visibility" contentType="text/html;charset=UTF-8" %>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <title></title>
@@ -89,7 +89,7 @@
 
                             <div>
                                 <ls:isEditable currentUser="${loginUser}"
-                                               topicCreater="${subscribedTopics.createdBy}"/>
+                                               topicCreater="${subscribedTopics.createdBy}" topicID="${subscribedTopics.id}"/>
                             </div>
                         </div><!--media body ends-->
                     </div><!-- media ends-->
@@ -283,7 +283,7 @@
 
                             <div>
                                 <span>Visibility* :</span>
-                                <g:select name="topicType" from="${LinkShareEnums.Visibility}"/>
+                                <g:select name="topicType" from="${com.ig.LinkShare.applicationEnums.Visibility}"/>
                             </div>
 
                             <div class="right">
@@ -349,8 +349,22 @@
     <g:form controller="myMail" action="sendInvite">
         <g:submitButton name="submit" value="Test Mail"/>
     </g:form>
-    %{--<ls:isEditable happy="true">hello</ls:isEditable>--}%
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $(".visibility").change(function(){
+            var url="${createLink(controller: "subscription" ,action: "changeVisibility")}"
+            var topicID=$(this).data('topic-id')
+            var seriousness=$(this).val()
+            $.post(url,{topicID:topicID,seriousness:seriousness},function(data){
+                        console.log('data',data)
+                    }
+
+            )
+        })
+
+    })
+</script>
 </body>
 </html>

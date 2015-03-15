@@ -1,6 +1,6 @@
 package com.ig.LinkShare
 
-import LinkShareEnums.UserCO
+import com.ig.LinkShare.applicationEnums.UserCO
 
 class UserController {
     UploadService uploadService
@@ -35,7 +35,7 @@ class UserController {
         List<User> userList = User.list()
         println params
 
-        render(view: "/user/UserListing", model: [userList: userList])
+        render(view: "/userListing/userListing", model: [userList: userList])
     }
 
 

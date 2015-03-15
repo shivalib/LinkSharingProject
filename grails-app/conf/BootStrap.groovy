@@ -1,4 +1,4 @@
-import LinkShareEnums.Seriousness
+import com.ig.LinkShare.applicationEnums.Seriousness
 import com.ig.LinkShare.DocumentResource
 import com.ig.LinkShare.LinkResource
 import com.ig.LinkShare.ReadingItem

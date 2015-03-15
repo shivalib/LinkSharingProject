@@ -4,7 +4,9 @@ import com.ig.LinkShare.LinkResource
 import com.ig.LinkShare.ReadingItem
 import com.ig.LinkShare.Resource
 import com.ig.LinkShare.Subscription
+import com.ig.LinkShare.Topic
 import com.ig.LinkShare.User
+
 
 
 class ApplicationTagLib {
@@ -20,9 +22,12 @@ class ApplicationTagLib {
 
         def currentUser = attr.currentUser
         def topicCreater = attr.topicCreater
+        def topicID=attr.topicID
+
+        Topic topic=Topic.findById(attr.topicID)
 
         if (currentUser.admin | currentUser == topicCreater) {
-            out << g.render(template: "/myTemplates/isAdmin")
+            out << g.render(template: "/myTemplates/isAdmin",model: [topicID:topic])
         } else {
             out << g.render(template: "/myTemplates/isNotAdmin")
         }

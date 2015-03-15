@@ -1,6 +1,5 @@
 package com.ig.LinkShare
 
-import LinkShareEnums.Visibility
 import grails.transaction.Transactional
 
 @Transactional

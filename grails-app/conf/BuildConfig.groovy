@@ -71,6 +71,9 @@ grails.project.dependency.resolution = {
         //mail plugin
         compile ":mail:1.0.7"
 
+        //jquery UI plugin
+        compile ":jquery-ui:1.10.4"
+
         //asynchronous mail
         //compile ":asynchronous-mail:1.2"
 

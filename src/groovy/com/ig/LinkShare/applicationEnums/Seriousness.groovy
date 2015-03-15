@@ -1,4 +1,4 @@
-package LinkShareEnums
+package com.ig.LinkShare.applicationEnums
 /**
  * Created by intelligrape on 24/2/15.
  */

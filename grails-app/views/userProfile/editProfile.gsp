@@ -1,9 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: intelligrape
-  Date: 7/3/15
-  Time: 10:48 PM
---%>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
@@ -14,6 +8,7 @@
 <body>
 <div class="row">
     <div class="col-md-5">
+
         <!--Panel1-->
         <div class="panel panel-default leftdiv">
             <div class="panel-body">
@@ -74,7 +69,7 @@
             <h3 class="panel-title">Profile</h3>
         </div>
         <div class="panel-body">
-            <g:form class="loginform" controller="userProfile" action="updateData">
+            <g:form class="loginform" controller="userProfile" action="updateData" enctype="multipart/form-data">
                 <div>
                     <span>FirstName* :</span>
                     <g:textField name="firstName" value="${loginUser.firstName}"/>
@@ -89,7 +84,7 @@
                 </div>
                 <div>
                     <span>Photo :
-                    <input type="file">
+                    <input type="file" name="img">
                     </span>
                 </div>
                 <div class="right">

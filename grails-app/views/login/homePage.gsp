@@ -110,22 +110,21 @@
 
                     <div>
                         <span>Photo</span>
-
-                        <input id="uploadFile" placeholder="Choose File" disabled="disabled" class="browsebar"/>
                         <input type="file" name="img" class="btn-default">
-
                     </div>
 
                     <div>
                         <g:submitButton name="submit" value="Register"/>
                     </div>
-
                 </g:form>
-
             </div>
         </div><!--registeration form ends-->
     </div><!-- col 4 end-->
 </div><!--Ending div -->
-
+%{--<script>--}%
+    %{--$(document).ready(function(){--}%
+        %{--alert("hellooooooo")--}%
+    %{--})--}%
+%{--</script>--}%
 </body>
 </html>

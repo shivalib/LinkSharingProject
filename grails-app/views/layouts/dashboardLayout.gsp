@@ -1,24 +1,25 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: intelligrape
-  Date: 25/2/15
-  Time: 6:35 PM
---%>
-
-%{--todo remove this created by statements--}%
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title><g:layoutTitle default="Login Layout"/></title>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    %{--<asset:stylesheet src="bootstrap.min.css"/>--}%
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
     <!-- jquery-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    %{--<asset:javascript src="jquery-2.1.3.js"/>--}%
+    <asset:javascript src="jquery-ui.js"/>
+
+    <asset:stylesheet src="jquery-ui.css"/>
+
+    <asset:stylesheet src="jquery-ui.theme.css"/>
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -60,10 +61,14 @@
                     <span class="glyphicon glyphicon-comment" aria-hidden="true"/>
                 </button>
 
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#mySendInviteModal">
+                %{--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#mySendInviteModal">--}%
+                    %{--<span class="glyphicon glyphicon-envelope" aria-hidden="true"/>--}%
+                %{--</button>--}%
+
+
+                <button type="button" class="btn btn-primary btn-lg" id="emailButton">
                     <span class="glyphicon glyphicon-envelope" aria-hidden="true"/>
                 </button>
-
 
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                     <span class="glyphicon glyphicon-link" aria-hidden="true"/>

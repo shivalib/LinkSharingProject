@@ -1,6 +1,6 @@
 package com.ig.LinkShare
 
-import LinkShareEnums.Visibility
+import com.ig.LinkShare.applicationEnums.Visibility
 
 class Topic {
     String topicName

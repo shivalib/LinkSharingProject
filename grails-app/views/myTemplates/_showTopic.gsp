@@ -1,3 +1,4 @@
+<%@ page import="com.ig.LinkShare.applicationEnums.Visibility; com.ig.LinkShare.applicationEnums.Seriousness" %>
 %{--todo move this template to its respective folder--}%
 
 
@@ -25,8 +26,8 @@
         %{--<div>--}%
         <br><br>
         <span>
-            <g:select name="seriousness" from="${LinkShareEnums.Seriousness}"/>
-            <g:select name="visibility" from="${LinkShareEnums.Visibility}"/>
+            <g:select name="seriousness" from="${com.ig.LinkShare.applicationEnums.Seriousness}"/>
+            <g:select name="visibility" from="${com.ig.LinkShare.applicationEnums.Visibility}"/>
 
             <button type="button" class="btn btn-default" title="Send invitation">
                 <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>

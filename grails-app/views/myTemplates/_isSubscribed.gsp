@@ -1,3 +1,4 @@
+<%@ page import="com.ig.LinkShare.applicationEnums.Seriousness" %>
 %{--todo move this template to its respective folder--}%
 
 <div>
@@ -6,7 +7,7 @@
     </span>
     <span class="right">
 
-        <g:select name="seriousness" from="${LinkShareEnums.Seriousness}"/>
+        <g:select name="seriousness" from="${com.ig.LinkShare.applicationEnums.Seriousness}"/>
 
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#mySendInviteModal">
             <span class="glyphicon glyphicon-envelope" aria-hidden="true"/>
@@ -31,7 +32,7 @@
                     </div>
                     <div>
                         <span>Seriousness* :</span>
-                        <g:select name="seriousness" from="${LinkShareEnums.Seriousness}"/>
+                        <g:select name="seriousness" from="${Seriousness}"/>
                     </div>
                     <div>
                         <g:submitButton name="Save" class="btn btn-default" value="Save"/>
