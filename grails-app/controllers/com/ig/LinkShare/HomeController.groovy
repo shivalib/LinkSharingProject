@@ -18,35 +18,24 @@ class HomeController {
         render(view: "/user/HomePage", model: [resources: resources])
 
     }
-//
+
     def dashboard() {
         if (session["username"]) {
 
-//         todo   Replace this with service
-
             User currentUser = userService.showCurrentUserObject(session["username"])
 
-            List<Topic> topics =showTopicService.findTopicsOfCurrentUser(session["username"])
-
-            List<Subscription> subscriptionList = Subscription.findAllByUser(currentUser)
-//            subscriptionList=subscriptionList.subList(0,5)
+            List<Topic> topics = showTopicService.findTopicsOfCurrentUser(session["username"])
 
             //show trending topics
-            List<Topic> trendingTopics=trendingTopicService.showTrendingTopics()
+            List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
 
             //show Inbox
-            List<ReadingItem> readingItemListWithIsReadFalse=showInboxService.showInbox(session["username"])
+            List<ReadingItem> readingItemListWithIsReadFalse = showInboxService.showInbox(session["username"])
 
+            //show top5Subscriptions
+            List<Topic> top5SubscribedTopics = top5SubscriptionService.showTop5Subscription(session["username"])
 
-            List<Topic> top5SubscribedTopics=top5SubscriptionService.showTop5Subscription(session["username"])
-            top5SubscribedTopics.each {
-                println "-----------------in criteria :"
-                println "Topic name : " + it.topicName
-                println "Post count : " +it.resources.size()
-                println "Subscriptions : " +it.subscriptions.size()
-            }
-            
-            render(view: "/user/Dashboard", model: [readingItemListWithIsReadFalse:readingItemListWithIsReadFalse,loginUser: currentUser, trendingTopicList: trendingTopics, topicList: topics.topicName, top5SubscribedTopics: top5SubscribedTopics])
+            render(view: "/user/Dashboard", model: [readingItemListWithIsReadFalse: readingItemListWithIsReadFalse, loginUser: currentUser, trendingTopicList: trendingTopics, topicList: topics.topicName, top5SubscribedTopics: top5SubscribedTopics])
         }
     }
 

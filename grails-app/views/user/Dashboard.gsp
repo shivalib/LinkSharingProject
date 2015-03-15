@@ -153,10 +153,10 @@
                     </div>
 
                     <div class="modal-body">
-                        <g:form class="loginform">
+                        <g:form class="loginform" controller="myMail" action="sendInvite">
                             <div>
                                 <span>Email* :</span>
-                                <g:textField name="email"/>
+                                <g:textField name="emailID"/>
                             </div>
 
                             <div>
@@ -346,7 +346,7 @@
                 </div><!--panel body ends-->
             </g:each>
         </div><!--panel ends-->
-    <g:form controller="myMail" action="testAction">
+    <g:form controller="myMail" action="sendInvite">
         <g:submitButton name="submit" value="Test Mail"/>
     </g:form>
     %{--<ls:isEditable happy="true">hello</ls:isEditable>--}%

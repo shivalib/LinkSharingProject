@@ -5,15 +5,15 @@ class MyMailController {
 
     def index() {}
 
-    def testAction() {
+    def sendInvite() {
         println "all is fine here"
         println "in sendMail"
 
         sendMail {
 //            async true
-            to "batra.shivali@gmail.com"
-            subject "test"
-            body 'abc'
+            to "${params.emailID}"
+            subject "Invite : Subscription"
+            body "${params.topicList}"
         }
 
         render("Sent!")

@@ -37,16 +37,13 @@ class ApplicationTagLib {
         out << g.render(template: "/myTemplates/showTopic", model: [topics: attr.topics, loginUser: loginUser])
     }
 
-    def checkResourceType={attr->
+    def checkResourceType = { attr ->
 
-        def resource=attr.resource
-        if(resource.class==LinkResource)
-        {
-            out<<g.render(template: "/myTemplates/isLinkResource")
-        }
-        else
-        {
-            out<<g.render(template: "/myTemplates/isDocumentResource")
+        def resource = attr.resource
+        if (resource.class == LinkResource) {
+            out << g.render(template: "/myTemplates/isLinkResource")
+        } else {
+            out << g.render(template: "/myTemplates/isDocumentResource")
         }
     }
 
@@ -59,25 +56,22 @@ class ApplicationTagLib {
         Subscription subscription = Subscription.findByUserAndTopic(user1, topic)
 
         if (subscription) {
-            out << g.render(template: '/myTemplates/isSubscribed',model: [topicName: attr.topicName])
+            out << g.render(template: '/myTemplates/isSubscribed', model: [topicName: attr.topicName])
         }
     }
 
-    def markResource={attr->
+    def markResource = { attr ->
 
-        def resource=attr.resource
-        def currentUser=attr.currentUser
+        def resource = attr.resource
+        def currentUser = attr.currentUser
 
-        List<ReadingItem> readingItemList=ReadingItem.findAllByUserAndResource(currentUser,resource)
+        List<ReadingItem> readingItemList = ReadingItem.findAllByUserAndResource(currentUser, resource)
 
-        readingItemList.each{ReadingItem readingItem->
-            if(readingItem.isRead==true)
-            {
-                out<<g.render(template:'/myTemplates/markAsUnread',model: [currentUser:currentUser.id,currentResource:attr.resource.id])
-            }
-            else
-            {
-                out<<g.render(template:'/myTemplates/markAsRead',model: [currentUser:currentUser.id,currentResource:attr.resource.id])
+        readingItemList.each { ReadingItem readingItem ->
+            if (readingItem.isRead == true) {
+                out << g.render(template: '/myTemplates/markAsUnread', model: [currentUser: currentUser.id, currentResource: attr.resource.id])
+            } else {
+                out << g.render(template: '/myTemplates/markAsRead', model: [currentUser: currentUser.id, currentResource: attr.resource.id])
             }
         }
     }

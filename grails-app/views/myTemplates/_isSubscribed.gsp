@@ -5,7 +5,9 @@
         <g:link controller="subscription" id="Link--${topicName}" action="subscribeUser" data-toggle="modal" data-target="#myModal--${topicName}">Unsubscribe</g:link>
     </span>
     <span class="right">
+
         <g:select name="seriousness" from="${LinkShareEnums.Seriousness}"/>
+
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#mySendInviteModal">
             <span class="glyphicon glyphicon-envelope" aria-hidden="true"/>
         </button>
