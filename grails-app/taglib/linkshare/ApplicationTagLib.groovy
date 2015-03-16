@@ -73,7 +73,7 @@ class ApplicationTagLib {
         List<ReadingItem> readingItemList = ReadingItem.findAllByUserAndResource(currentUser, resource)
 
         readingItemList.each { ReadingItem readingItem ->
-            if (readingItem.isRead == true) {
+            if (readingItem.isRead) {
                 out << g.render(template: '/myTemplates/markAsUnread', model: [currentUser: currentUser.id, currentResource: attr.resource.id])
             } else {
                 out << g.render(template: '/myTemplates/markAsRead', model: [currentUser: currentUser.id, currentResource: attr.resource.id])

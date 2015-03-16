@@ -8,6 +8,11 @@ class SubscriptionController {
     // def index() {}
     def readingItemService
 
+    def showAllSubscriptions(){
+        render(view: "topicSubscription")
+    }
+
+
     def subscribeUser() {
 
         String loginUser = session["username"]

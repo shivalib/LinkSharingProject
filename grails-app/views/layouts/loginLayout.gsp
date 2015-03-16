@@ -19,7 +19,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-    !-- jquery-->
+    <!-- jquery-->
     <script src="${resource(dir: "js",file: "jquery.min.js")}"></script>
 
     <!-- Self-created CSS -->

@@ -1,8 +1,3 @@
-
-
-%{--todo rename the file properly--}%
-%{--todo move this file to its respective folder--}%
-
 <%@ page import="com.ig.LinkShare.applicationEnums.Visibility" contentType="text/html;charset=UTF-8" %>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
@@ -19,9 +14,12 @@
                 <div class="media ">
                     <div class="media-left">
                         <a href="#">
-                            %{--<g:img class="media-object mediaFace" dir="images" file="person-icon.png"--}%
-                                   %{--alt="Person"></g:img>--}%
-                            <img src="${createLink(controller: "image" ,action: "renderImage",params: [path:loginUser.photoPath])}" class="media-object mediaFace">
+                            <g:img class="media-object mediaFace" dir="images" file="person-icon.png"
+                                   alt="Person"></g:img>
+
+                            %{--todo : file needed--}%
+                            %{--<img src="${createLink(controller: "image", action: "renderImage", params: [path: loginUser.photoPath])}"--}%
+                            %{--class="media-object mediaFace">--}%
                         </a>
                     </div>
 
@@ -57,7 +55,7 @@
             <div class="panel-heading">
                 <span><h3 class="panel-title ">Subscriptions
                     <span class="right">
-                        <g:link>View all</g:link>
+                        <g:link controller="subscription" action="showAllSubscriptions">View all</g:link>
                     </span>
                 </h3></span>
             </div>
@@ -73,7 +71,8 @@
 
                         <div class="media-body">
                             <h4 class="media-heading">
-                                <g:link controller="topic" action="index" id="${subscribedTopics.id}" params="[loginUser:loginUser.id]">${subscribedTopics.topicName}</g:link>
+                                <g:link controller="topic" action="index" id="${subscribedTopics.id}"
+                                        params="[loginUser: loginUser.id]">${subscribedTopics.topicName}</g:link>
                             </h4>
 
                             <div>
@@ -89,7 +88,8 @@
 
                             <div>
                                 <ls:isEditable currentUser="${loginUser}"
-                                               topicCreater="${subscribedTopics.createdBy}" topicID="${subscribedTopics.id}"/>
+                                               topicCreater="${subscribedTopics.createdBy}"
+                                               topicID="${subscribedTopics.id}"/>
                             </div>
                         </div><!--media body ends-->
                     </div><!-- media ends-->
@@ -114,7 +114,8 @@
 
                         <div class="media-body">
                             <h4 class="media-heading">
-                                <g:link controller="topic" action="index" id="${trending.id}" params="[loginUser:loginUser.id]">${trending.topicName}</g:link>
+                                <g:link controller="topic" action="index" id="${trending.id}"
+                                        params="[loginUser: loginUser.id]">${trending.topicName}</g:link>
                             </h4>
 
                             <div>
@@ -233,7 +234,8 @@
                     </div>
 
                     <div class="modal-body">
-                        <g:form class="loginform" method="post" controller="documentResource" action="shareDocument" enctype="multipart/form-data">
+                        <g:form class="loginform" method="post" controller="documentResource" action="shareDocument"
+                                enctype="multipart/form-data">
                             <div>
                                 <span>Document* :</span>
                                 %{--<g:textField name="docName" placeholder="Document"/>--}%
@@ -251,8 +253,9 @@
                             </div>
 
                             <div class="right">
-                                <g:submitButton name="share" value="Share"  class="btn btn-default"/>
-                                <g:submitButton name="reset" value="Cancel" class="btn btn-default" data-dismiss="modal"/>
+                                <g:submitButton name="share" value="Share" class="btn btn-default"/>
+                                <g:submitButton name="reset" value="Cancel" class="btn btn-default"
+                                                data-dismiss="modal"/>
                             </div>
                         </g:form>
                     </div>
@@ -316,33 +319,34 @@
             </div>
             <g:each in="${readingItemListWithIsReadFalse}" var="unreadItem">
                 <div class="panel-body">
-                    <div class="media ">
-                        <div class="media-left">
-                            <a href="#">
-                                <img class="media-object mediaFace"
-                                     src="${resource(dir: "images", file: "person-icon.png")}">
-                            </a>
-                        </div>
+                    <g:render template="/myTemplates/inboxPanelBody" model="[unreadItem:unreadItem]"/>
+                    %{--<div class="media ">--}%
+                        %{--<div class="media-left">--}%
+                            %{--<a href="#">--}%
+                                %{--<img class="media-object mediaFace"--}%
+                                     %{--src="${resource(dir: "images", file: "person-icon.png")}">--}%
+                            %{--</a>--}%
+                        %{--</div>--}%
 
-                        <div class="media-body">
-                            <h4 class="media-heading"></h4>
+                        %{--<div class="media-body">--}%
+                            %{--<h4 class="media-heading"></h4>--}%
 
-                            <div>
-                                ${unreadItem.resource.topic.createdBy.fullName}@ ${unreadItem.resource.topic.createdBy.username}
-                            </div>
+                            %{--<div>--}%
+                                %{--${unreadItem.resource.topic.createdBy.fullName}@ ${unreadItem.resource.topic.createdBy.username}--}%
+                            %{--</div>--}%
 
-                            <div>
-                                ${unreadItem.resource.description}
-                            </div>
-                        </div><!--media body ends-->
+                            %{--<div>--}%
+                                %{--${unreadItem.resource.description}--}%
+                            %{--</div>--}%
+                        %{--</div><!--media body ends-->--}%
 
-                        <div class="right leftdiv">
-                            <g:link>View Post</g:link>
-                        </div>
-                        <ls:checkResourceType resource="${unreadItem.resource}"/>
-                        <ls:markResource resource="${unreadItem.resource}" currentUser="${loginUser}"/>
+                        %{--<div class="right leftdiv">--}%
+                            %{--<g:link>View Post</g:link>--}%
+                        %{--</div>--}%
+                        %{--<ls:checkResourceType resource="${unreadItem.resource}"/>--}%
+                        %{--<ls:markResource resource="${unreadItem.resource}" currentUser="${loginUser}"/>--}%
 
-                    </div>
+                    %{--</div>--}%
                 </div><!--panel body ends-->
             </g:each>
         </div><!--panel ends-->
@@ -352,19 +356,66 @@
     </div>
 </div>
 <script>
-    $(document).ready(function(){
-        $(".visibility").change(function(){
-            var url="${createLink(controller: "subscription" ,action: "changeVisibility")}"
-            var topicID=$(this).data('topic-id')
-            var seriousness=$(this).val()
-            $.post(url,{topicID:topicID,seriousness:seriousness},function(data){
-                        console.log('data',data)
-                    }
+    %{--$(document).ready(function(){--}%
+    %{--$(".visibility").change(function(){--}%
+    %{--var url="${createLink(controller: "subscription" ,action: "changeVisibility")}"--}%
+    %{--var topicID=$(this).data('topic-id')--}%
+    %{--var seriousness=$(this).val()--}%
+    %{--$.post(url,{topicID:topicID,seriousness:seriousness},function(data){--}%
+    %{--console.log('data',data)--}%
+    %{--}--}%
 
-            )
-        })
+    %{--)--}%
+    %{--})--}%
 
-    })
+    %{--})--}%
+
+
+    $('.markReadOrUnread').on('click', function () {
+        console.log("******** mark as read*********");
+
+
+        //_markAsRead->ajax->controller
+        var currentUser = $(this).attr('data-currentUser'),
+                currentResource = $(this).attr('data-currentResource'), currentPanelBody = $(this).closest('.panel-body');
+
+        console.log(currentResource, currentUser);
+
+        $.ajax({
+            url: '${createLink(controller: "readingItem",action: "markAsReadOrUnread")}',
+
+            data: {
+                currentUser: currentUser,
+                currentResource: currentResource
+            },
+            success: function (data) {
+                console.log(data)
+                currentPanelBody.html(data)
+            },
+            error: function (request, status, error) {
+                console.log("We are in error section ");
+                console.log("request :" + request);
+                console.log("status : " + status);
+                console.log("error :" + error);
+            }
+        });
+
+        %{--$.ajax({--}%
+        %{--url: '${createLink(controller: 'readingItem',action: 'demo')}',--}%
+        %{--success: function (data) {--}%
+        %{--console.log("Data :" + data)--}%
+        %{--},--}%
+        %{--error: function (request, status, error) {--}%
+        %{--console.log("We are in error section ");--}%
+        %{--console.log("request :" + request);--}%
+        %{--console.log("status : " + status);--}%
+        %{--console.log("error :" + error);--}%
+        %{--}--}%
+        %{--});--}%
+
+    });
+
+
 </script>
 </body>
 </html>

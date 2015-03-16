@@ -61,14 +61,14 @@
                     <span class="glyphicon glyphicon-comment" aria-hidden="true"/>
                 </button>
 
-                %{--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#mySendInviteModal">--}%
-                    %{--<span class="glyphicon glyphicon-envelope" aria-hidden="true"/>--}%
-                %{--</button>--}%
-
-
-                <button type="button" class="btn btn-primary btn-lg" id="emailButton">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#mySendInviteModal">
                     <span class="glyphicon glyphicon-envelope" aria-hidden="true"/>
                 </button>
+
+
+                %{--<button type="button" class="btn btn-primary btn-lg" id="emailButton">--}%
+                    %{--<span class="glyphicon glyphicon-envelope" aria-hidden="true"/>--}%
+                %{--</button>--}%
 
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                     <span class="glyphicon glyphicon-link" aria-hidden="true"/>
