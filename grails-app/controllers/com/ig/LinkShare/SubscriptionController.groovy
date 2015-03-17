@@ -1,7 +1,7 @@
 package com.ig.LinkShare
 
 class SubscriptionController {
-
+    def userService
     //todo move the all the possible code to a service and optimize your redirects
 
     def scaffold = Subscription
@@ -9,7 +9,11 @@ class SubscriptionController {
     def readingItemService
 
     def showAllSubscriptions(){
-        render(view: "topicSubscription")
+        User currentUser = userService.showCurrentUserObject(session["username"])
+
+
+
+        render(view: "topicSubscription",model:[loginUser:currentUser])
     }
 
 

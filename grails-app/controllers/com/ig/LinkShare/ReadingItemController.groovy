@@ -1,5 +1,7 @@
 package com.ig.LinkShare
 
+import grails.converters.JSON
+
 class ReadingItemController {
 
     def markAsReadOrUnread() {
@@ -22,16 +24,17 @@ class ReadingItemController {
 
         println readingItem.isRead
 
+        def appResult
         if (readingItem.save(failOnError: true, flush: true)) {
-            flash.message = "Resource is read now"
-            render(template: "/myTemplates/inboxPanelBody",model:['unreadItem':readingItem,loginUser:currentUser] )
-            //render(template: "/myTemplates/markAsRead", model: [currentUser: params.currentUser, currentResource: params.currentResource])
-        } else {
-            flash.message = "Resource is still unread"
-//            render(template: "/myTemplates/markAsUnread", model: [currentUser: params.currentUser, currentResource: params.currentResource])
 
+            appResult=[result: true]
+//            render(template: "/myTemplates/inboxPanelBody",model:['unreadItem':readingItem,loginUser:currentUser] )
+        } else {
+
+            appResult=[result: false]
         }
-//        forward(controller: "home",action: "dashboard")
+
+        render appResult as JSON
     }
 
     def demo() {

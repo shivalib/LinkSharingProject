@@ -1,9 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: intelligrape
-  Date: 1/3/15
-  Time: 4:26 PM
---%>
+
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
