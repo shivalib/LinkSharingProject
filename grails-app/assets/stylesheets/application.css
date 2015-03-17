@@ -10,4 +10,7 @@
 *= require main
 *= require mobile
 *= require_self
+*=require bootstrap.min.css
+*=require LinkShare.css
+*=require bootstrap-theme.min.css
 */

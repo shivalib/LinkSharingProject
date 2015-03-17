@@ -4,20 +4,11 @@
 <html>
 <head>
     <title></title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-    <!-- jquery-->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-    <!-- Self-created CSS -->
-    <link rel="stylesheet" href="${resource(dir: "css", file: "LinkShare.css")}">
+    <asset:stylesheet src="bootstrap.min.css"/>
+    <asset:stylesheet src="bootstrap-theme.min.css"/>
+    <asset:stylesheet src="LinkShare.css"/>
+    <asset:javascript src="jquery.min.js"/>
+    <asset:javascript src="bootstrap.min.js"/>
     <g:layoutHead/>
 
 </head>

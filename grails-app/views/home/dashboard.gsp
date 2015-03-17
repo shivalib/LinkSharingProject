@@ -64,8 +64,10 @@
                     <div class="media ">
                         <div class="media-left">
                             <a href="#">
-                                <g:img class="media-object mediaFace" dir="images" file="person-icon.png"
-                                       alt="Person"></g:img>
+                                <img src="${createLink(controller: "image", action: "renderImage", params: [path: subscribedTopics.createdBy.photoPath])}"
+                                     class="media-object mediaFace">
+                                %{--<g:img class="media-object mediaFace" dir="images" file="person-icon.png"--}%
+                                       %{--alt="Person"></g:img>--}%
                             </a>
                         </div>
 
@@ -107,8 +109,8 @@
                     <div class="media ">
                         <div class="media-left">
                             <a href="#">
-                                <img class="media-object mediaFace"
-                                     src="${resource(dir: "images", file: "person-icon.png")}">
+                                <img src="${createLink(controller: "image", action: "renderImage", params: [path: trending.createdBy.photoPath])}"
+                                     class="media-object mediaFace">
                             </a>
                         </div>
 

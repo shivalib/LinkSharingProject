@@ -9,6 +9,9 @@
 //= require_tree .
 //= require_self
 //=require jquery-2.1.3.js
+//=require bootstrap.min.js
+//=require jquery.min.js
+//=require jquery-2.1.3.js
 
 if (typeof jQuery !== 'undefined') {
 	(function($) {
@@ -20,27 +23,3 @@ if (typeof jQuery !== 'undefined') {
 	})(jQuery);
 }
 
-$(document).ready(function() {
-
-    $("#dialogPlaceholder").dialog({
-        autoOpen: false,
-        height: 200,
-        width: 350,
-        modal: true,
-        title: 'modal window',
-        close: function(){
-            $("#dialogPlaceholder").html('');
-        }
-    });
-
-    $("#trigger_btn").bind("click", function() {
-        $.ajax({
-            url:'/JqueryModalController/getContentForDialog',
-            success: function(data){
-                $("#dialogPlaceholder").html(data);
-                $("#dialogPlaceholder").dialog("open");
-            }
-        });
-    });
-
-});

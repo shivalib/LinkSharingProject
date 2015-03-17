@@ -4,15 +4,12 @@
 <head>
     <title><g:layoutTitle default="Login Layout"/></title>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    %{--<asset:stylesheet src="bootstrap.min.css"/>--}%
+    <asset:stylesheet src="bootstrap.min.css"/>
+    <asset:stylesheet src="bootstrap-theme.min.css"/>
+    <asset:stylesheet src="LinkShare.css"/>
+    <asset:javascript src="jquery.min.js"/>
+    <asset:javascript src="bootstrap.min.js"/>
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-    <!-- jquery-->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
     %{--<asset:javascript src="jquery-2.1.3.js"/>--}%
     <asset:javascript src="jquery-ui.js"/>
@@ -22,10 +19,7 @@
     <asset:stylesheet src="jquery-ui.theme.css"/>
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-    <!-- Self-created CSS -->
-    <link rel="stylesheet" href="${resource(dir: "css",file:"LinkShare.css" )}">
+    %{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>--}%
 
 </head>
 <g:layoutHead/>

@@ -1,8 +1,8 @@
 <div class="media ">
     <div class="media-left">
         <a href="#">
-            <img class="media-object mediaFace"
-                 src="${resource(dir: "images", file: "person-icon.png")}">
+            <img src="${createLink(controller: "image", action: "renderImage", params: [path: unreadItem.resource.topic.createdBy.photoPath])}"
+                 class="media-object mediaFace">
         </a>
     </div>
 
