@@ -59,20 +59,22 @@ class ApplicationTagLib {
         def topic = attr.topicID
 
         Subscription subscription = Subscription.findByUserAndTopic(user1, topic)
-
         if (subscription) {
 //            out << g.render(template: "/myTemplates/isNotAdmin")
             out << g.render(template: '/home/isSubscribed' )
+
         }
 
-        if(subscription.topic.createdBy!=user1){
 
-            out<<g.render(template: "/subscription/unsubscribe",model: [topicName: attr.topicName])
-        }
-
+//        if(subscription.user!=user1)
+//        {
+//            out<<g.render(template: "/subscription/unsubscribe")
+//        }
         if (user1.admin | user1 == topic.createdBy) {
             out << g.render(template: "/home/isAdmin",model: [topicID:topic])
         }
+
+
 
 
     }

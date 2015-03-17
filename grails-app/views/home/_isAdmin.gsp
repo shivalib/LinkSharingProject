@@ -5,7 +5,7 @@
     %{--${topicID.topicName}--}%
     <g:select name="visbility" class="visibility" from="${com.ig.LinkShare.applicationEnums.Visibility}" data-topic-id="${topicID.id}"/>
 
-    <button type="button" class="btn btn-default" id="${topicID.id}" data-toggle="modal" data-target="#myEditModal-${topicID.topicName}">
+    <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#myEditModal-${topicID.topicName}">
         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
     </button>
 
@@ -25,7 +25,7 @@
                 <h4 class="modal-title" id="myModalLabel">Edit Topic</h4>
             </div>
             <div class="modal-body">
-                <g:form>
+                <g:form controller="topic" action="updateTopic" id="${topicID.id}">
                     <div>
                         <span>Topic*</span>
                         <g:textField name="topicName" value="${topicID.topicName}"/>

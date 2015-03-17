@@ -40,4 +40,22 @@ class TopicController {
         }
         redirect(controller: "home", action: "dashboard")
     }
+
+    def updateTopic(Long id){
+        println ".........................in update topic"
+        println "------ ${params}"
+        println id
+
+        Topic topic=Topic.load(id)
+        topic.topicName=params.topicName
+
+        if(topic.save(failOnError: true,flush: true))
+        {
+            flash.message="Topic have been successfully renamed to ${topic.topicName}!"
+        }
+        else {
+            flash.message="Topic renaming failed!"
+        }
+        forward(controller: "home",action: "dashboard")
+    }
 }
