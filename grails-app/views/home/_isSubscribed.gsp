@@ -2,9 +2,7 @@
 %{--todo move this template to its respective folder--}%
 
 <div>
-    <span class="left">
-        <g:link controller="subscription" id="Link--${topicName}" action="subscribeUser" data-toggle="modal" data-target="#myModal--${topicName}">Unsubscribe</g:link>
-    </span>
+
     <span class="right">
 
         <g:select name="seriousness" from="${com.ig.LinkShare.applicationEnums.Seriousness}"/>

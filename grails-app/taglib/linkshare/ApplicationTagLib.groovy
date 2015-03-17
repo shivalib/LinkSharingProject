@@ -62,8 +62,12 @@ class ApplicationTagLib {
 
         if (subscription) {
 //            out << g.render(template: "/myTemplates/isNotAdmin")
+            out << g.render(template: '/home/isSubscribed' )
+        }
 
-            out << g.render(template: '/home/isSubscribed', model: [topicName: attr.topicName])
+        if(subscription.topic.createdBy!=user1){
+
+            out<<g.render(template: "/subscription/unsubscribe",model: [topicName: attr.topicName])
         }
 
         if (user1.admin | user1 == topic.createdBy) {

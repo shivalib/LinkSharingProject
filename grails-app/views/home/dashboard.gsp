@@ -214,8 +214,9 @@
                             </div>
 
                             <div class="right">
-                                <input type="submit" value="Share"/>
-                                <input type="reset" value="Cancel"/>
+                                <g:submitButton name="submit" class="btn btn-default" value="Share"/>
+                                <g:submitButton name="cancel" class="btn btn-default" data-dismiss="modal" value="Cancel"/>
+
                             </div>
                         </g:form>
                     </div>
@@ -368,7 +369,7 @@
 
                 if(data.result)
                     currentPanelBody.empty()
-                
+
             },
             error: function (request, status, error) {
                 console.log("We are in error section ");
@@ -379,10 +380,6 @@
         });
     });
 
-    $('.editButton').on('click', function () {
-        alert("heyyyyyyyyyyyyyyyyyyyy")
-
-    })
 
 
 </script>
