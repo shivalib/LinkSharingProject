@@ -15,11 +15,11 @@
                     <div class="media-left">
                         <a href="#">
                             %{--<g:img class="media-object mediaFace" dir="images" file="person-icon.png"--}%
-                                   %{--alt="Person"></g:img>--}%
+                            %{--alt="Person"></g:img>--}%
 
                             %{--todo : file needed--}%
                             <img src="${createLink(controller: "image", action: "renderImage", params: [path: loginUser.photoPath])}"
-                            class="media-object mediaFace">
+                                 class="media-object mediaFace">
                         </a>
                     </div>
 
@@ -55,48 +55,15 @@
             <div class="panel-heading">
                 <span><h3 class="panel-title ">Subscriptions
                     <span class="right">
-                        <g:link controller="subscription" action="showAllSubscriptions" params="[allSubscriptions:loginUser.subscriptions]">View all</g:link>
+                        <g:link controller="subscription" action="showAllSubscriptions"
+                                params="[allSubscriptions: loginUser.subscriptions]">View all</g:link>
                     </span>
                 </h3></span>
             </div>
-            <g:each in="${top5SubscribedTopics}" var="subscribedTopics">
-                <div class="panel-body">
-                    <div class="media ">
-                        <div class="media-left">
-                            <a href="#">
-                                <img src="${createLink(controller: "image", action: "renderImage", params: [path: subscribedTopics.createdBy.photoPath])}"
-                                     class="media-object mediaFace">
-                                %{--<g:img class="media-object mediaFace" dir="images" file="person-icon.png"--}%
-                                       %{--alt="Person"></g:img>--}%
-                            </a>
-                        </div>
-
-                        <div class="media-body">
-                            <h4 class="media-heading">
-                                <g:link controller="topic" action="index" id="${subscribedTopics.id}"
-                                        params="[loginUser: loginUser.id]">${subscribedTopics.topicName}</g:link>
-                            </h4>
-
-                            <div>
-                                @${subscribedTopics.createdBy.username}
-                                <span class="right">Posts
-                                    <div>${subscribedTopics.resources.size()}</div>
-                                </span>
-                                <span class="right rightdiv">Subscriptions
-                                    <div>${subscribedTopics.subscriptions.size()}</div>
-                                </span>
-                            </div>
-                            <br><br><br>
-
-                            <div>
-                                <ls:isEditable currentUser="${loginUser}"
-                                               topicCreater="${subscribedTopics.createdBy}"
-                                               topicID="${subscribedTopics.id}"/>
-                            </div>
-                        </div><!--media body ends-->
-                    </div><!-- media ends-->
-                </div><!-- panel body ends-->
-            </g:each>
+        <div id="updateRecentShare">
+            <g:render template="remotePaginate"/>
+        </div>
+            %{--<g:render template="remotePaginate"/>--}%
         </div><!--panel ends -->
 
     <!--Trending topic-->
@@ -136,8 +103,8 @@
                                 <ls:isSubscribed currentUser="${loginUser}" topicID="${trending}"/>
 
                                 %{--<ls:isEditable currentUser="${loginUser}"--}%
-                                               %{--topicCreater="${trending.createdBy}"--}%
-                                               %{--topicID="${trending.id}"/>--}%
+                                %{--topicCreater="${trending.createdBy}"--}%
+                                %{--topicID="${trending.id}"/>--}%
 
                                 <ls:isNotSubscribed currentUser="${loginUser}" topicID="${trending}"
                                                     topicName="${trending.topicName}"/>
@@ -217,7 +184,8 @@
 
                             <div class="right">
                                 <g:submitButton name="submit" class="btn btn-default" value="Share"/>
-                                <g:submitButton name="cancel" class="btn btn-default" data-dismiss="modal" value="Cancel"/>
+                                <g:submitButton name="cancel" class="btn btn-default" data-dismiss="modal"
+                                                value="Cancel"/>
 
                             </div>
                         </g:form>
@@ -369,7 +337,7 @@
             success: function (data) {
                 console.log(data)
 
-                if(data.result)
+                if (data.result)
                     currentPanelBody.empty()
 
             },

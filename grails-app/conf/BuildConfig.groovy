@@ -74,6 +74,12 @@ grails.project.dependency.resolution = {
         //jquery UI plugin
         compile ":jquery-ui:1.10.4"
 
+        //remote pagination
+        compile ":remote-pagination:0.4.8"
+
+        //jquery ui validation
+//        compile ":jquery-validation-ui:1.4.9"
+
         //asynchronous mail
         //compile ":asynchronous-mail:1.2"
 

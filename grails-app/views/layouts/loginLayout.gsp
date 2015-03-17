@@ -8,9 +8,11 @@
     <asset:stylesheet src="bootstrap.min.css"/>
     <asset:stylesheet src="bootstrap-theme.min.css"/>
     <asset:stylesheet src="LinkShare.css"/>
+    %{--<asset:javascript src="jquery.min.js"/>--}%
+    <asset:javascript src="jquery-2.1.3.js"/>
     <asset:javascript src="bootstrap.min.js"/>
-    <asset:javascript src="jquery.min.js"/>
-
+    <asset:javascript src="jquery.validate.min(1).js"/>
+    %{--<asset:javascript src="homePage.js"/>--}%
     <g:layoutHead/>
 </head>
 

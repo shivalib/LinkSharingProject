@@ -14,10 +14,12 @@ class LoginController {
 
             //todo :replace it with render
             redirect(controller: "home", action: "dashboard", params: [username: username])
-        } else {
+        }
+        else {
             println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>. invalidating the login requested by the user "
-            flash.message = "Invalid username or password"
-            //todo :replace it with render
+//            flash.message = "Invalid username or password"
+
+//            render(view: "/home/index")
             redirect(controller: "home", action: "index")
         }
     }

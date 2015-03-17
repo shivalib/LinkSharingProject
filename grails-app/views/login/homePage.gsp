@@ -3,6 +3,7 @@
 <head>
     <title></title>
     <meta name="layout" content="loginLayout">
+
 </head>
 
 <body>
@@ -44,6 +45,7 @@
 
     </div><!--col 8 end-->
     <div class="col-md-4">
+
         <!--LOGIN FORM-->
         <div class="panel panel-default rightdiv">
             <div class="panel-heading">
@@ -51,7 +53,7 @@
             </div>
 
             <div class="panel-body">
-                <g:form class="loginform" controller="login" action="loginHandler">
+                <g:form class="loginform" id="myform" controller="login" action="loginHandler">
                     <div>
                         <span>Email/Username*</span>
                         <input type="text" name="username"/>
@@ -64,7 +66,7 @@
 
                     <div>
                         <a href="" class=left>Forgot Password</a>
-                        <input type="submit" value="Login" class="right"/>
+                        <g:submitButton name="submit" class="right" value="Submit"/>
                     </div>
                 </g:form>
             </div>
@@ -77,7 +79,7 @@
             </div>
 
             <div class="panel-body">
-                <g:form class="loginform" controller="user" action="registerUser" enctype="multipart/form-data">
+                <g:form class="loginform" id="registerForm" controller="user" action="registerUser" enctype="multipart/form-data">
                     <div>
                         <span>First name*</span>
                         <g:textField name="firstName" placeholder="First Name"></g:textField>
@@ -121,10 +123,18 @@
         </div><!--registeration form ends-->
     </div><!-- col 4 end-->
 </div><!--Ending div -->
-%{--<script>--}%
-    %{--$(document).ready(function(){--}%
-        %{--alert("hellooooooo")--}%
-    %{--})--}%
-%{--</script>--}%
+<script>
+        $('#myform').validate({
+            rules:{
+                username:{
+                    required:true
+                },
+                password:{
+                    required:true
+                }
+            }
+        });
+
+</script>
 </body>
 </html>

@@ -29,5 +29,4 @@
     </button>
 
     <span><g:link class="right">View post</g:link></span>
-
 </div>

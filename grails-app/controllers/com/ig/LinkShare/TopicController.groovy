@@ -58,4 +58,12 @@ class TopicController {
         }
         forward(controller: "home",action: "dashboard")
     }
+
+    def deleteTopic(Long id){
+        println "-------------${params}"
+        Topic topic=Topic.load(id)
+        topic.delete(flush: true)
+
+        forward(controller: "home",action: "dashboard")
+    }
 }

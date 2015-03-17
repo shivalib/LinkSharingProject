@@ -12,6 +12,8 @@
 //=require bootstrap.min.js
 //=require jquery.min.js
 //=require jquery-2.1.3.js
+//=require jquery.validate.min.js
+//=require homePage.js
 
 if (typeof jQuery !== 'undefined') {
 	(function($) {
