@@ -14,12 +14,12 @@
                 <div class="media ">
                     <div class="media-left">
                         <a href="#">
-                            <g:img class="media-object mediaFace" dir="images" file="person-icon.png"
-                                   alt="Person"></g:img>
+                            %{--<g:img class="media-object mediaFace" dir="images" file="person-icon.png"--}%
+                                   %{--alt="Person"></g:img>--}%
 
                             %{--todo : file needed--}%
-                            %{--<img src="${createLink(controller: "image", action: "renderImage", params: [path: loginUser.photoPath])}"--}%
-                            %{--class="media-object mediaFace">--}%
+                            <img src="${createLink(controller: "image", action: "renderImage", params: [path: loginUser.photoPath])}"
+                            class="media-object mediaFace">
                         </a>
                     </div>
 

@@ -4,6 +4,7 @@ import com.ig.LinkShare.applicationEnums.UserCO
 
 
 class UserProfileController {
+    def uploadService
 
     def index() {
         if (session["username"]) {
@@ -33,8 +34,21 @@ class UserProfileController {
 
     def updateData() {
         User currentUser = User.findByUsername(session["username"])
-        User.executeUpdate("update User set firstName=:firstName,lastName=:lastName,username=:username where id=:id", [firstName: params.firstName, lastName: params.lastName, username: params.username, id: currentUser.id])
-        flash.message = "Your data has been updated successfully !!"
+        currentUser.firstName=params.firstName
+        currentUser.lastName=params.lastName
+        currentUser.username=params.username
+
+        currentUser.photoPath=uploadService.uploadImage(currentUser,params.img,grailsApplication.config.upload.uploadImages.toString())
+           if(currentUser.save(failOnError: true,flush: true))
+           {
+               flash.message = "Your data has been updated successfully!!"
+           }
+        else
+           {
+               flash.message = "Data updation failed!!"
+           }
+//        User.executeUpdate("update User set firstName=:firstName,lastName=:lastName,username=:username where id=:id", [firstName: params.firstName, lastName: params.lastName, username: params.username, id: currentUser.id])
+
         redirect(controller: "userProfile", action: "index")
     }
 
