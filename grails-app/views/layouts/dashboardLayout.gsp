@@ -79,7 +79,7 @@
                         ${loginUser.fullName}
                         <span class="caret"/>
                     </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <ul class="dropdown-menu mydropdown" role="menu" aria-labelledby="dropdownMenu1">
                         <li role="presentation">
                         <g:link role="menuitem" tabindex="-1" controller="userProfile" action="index">Profile</g:link></li>
 

@@ -53,7 +53,7 @@
             </div>
 
             <div class="panel-body">
-                <g:form class="loginform" id="myform" controller="login" action="loginHandler">
+                <g:form class="loginform" name="login" controller="login" action="loginHandler">
                     <div>
                         <span>Email/Username*</span>
                         <input type="text" name="username"/>
@@ -79,7 +79,7 @@
             </div>
 
             <div class="panel-body">
-                <g:form class="loginform" id="registerForm" controller="user" action="registerUser" enctype="multipart/form-data">
+                <g:form class="loginform " name="registerForm" controller="user" action="registerUser" enctype="multipart/form-data">
                     <div>
                         <span>First name*</span>
                         <g:textField name="firstName" placeholder="First Name"></g:textField>

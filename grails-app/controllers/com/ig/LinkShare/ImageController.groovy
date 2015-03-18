@@ -11,7 +11,7 @@ class ImageController {
             File file=new File(imagePath)
             response.contentLength=file.bytes.length
             response.outputStream<<file.bytes
-            response.outputStream.flush()
+//            response.outputStream.flush()
         }
 
     }

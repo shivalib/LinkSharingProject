@@ -15,13 +15,7 @@ class LoginController {
             //todo :replace it with render
             redirect(controller: "home", action: "dashboard", params: [username: username])
         }
-        else {
-            println ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>. invalidating the login requested by the user "
-//            flash.message = "Invalid username or password"
-
-//            render(view: "/home/index")
-            redirect(controller: "home", action: "index")
-        }
+//        render(view: "/home/dashboard",model: [username: username])
     }
 
     def logout() {

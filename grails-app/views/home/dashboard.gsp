@@ -63,7 +63,6 @@
         <div id="updateRecentShare">
             <g:render template="remotePaginate"/>
         </div>
-            %{--<g:render template="remotePaginate"/>--}%
         </div><!--panel ends -->
 
     <!--Trending topic-->
