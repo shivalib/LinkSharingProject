@@ -56,19 +56,19 @@
             <div class="panel-body">
                 <g:form class="loginform" name="login" controller="login" action="loginHandler">
                     <div>
-                        <span>Email/Username*</span>
-                        <input type="text" name="username"/>
+                        <span>Email*</span>
+                        <g:textField name="email" id="emailID"/>
                     </div>
 
                     <div>
                         <span>Password*</span>
-                        <input type="password" name="password"/>
+                        <g:passwordField name="password"/>
                     </div>
 
                     <div>
                         <g:link controller="login" action="forgotPassword" class="left">Forgot Password</g:link>
                         %{--<a href="" class=left>Forgot Password</a>--}%
-                        <g:submitButton name="submit" class="right" value="Submit"/>
+                        <g:submitButton name="submit" id="submitLogin" class="right" value="Submit" data-emailValidate="${createLink(controller: "login",action: "validateEmail")}" />
                     </div>
                 </g:form>
             </div>

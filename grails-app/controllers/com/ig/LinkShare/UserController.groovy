@@ -70,18 +70,5 @@ class UserController {
 //        params.emailID
         render(view: "/login/resetPassword")
     }
-//        User currentUser=User.findByEmail(params.emailID)
-//        if (!userCO.validate()) {
-//            userCO.errors.allErrors.each {
-//                println it
-//            }
-//
-//            flash.message = "Updation Failed : Password Mismatch"
-//        } else {
-//            currentUser.password=params.password
-//            currentUser.save(failOnError: true,flush: true)
-//            flash.message = "Your password has been updated successfully !!"
-//        }
-//
-//    }
+
 }

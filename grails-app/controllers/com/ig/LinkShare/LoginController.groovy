@@ -8,18 +8,18 @@ class LoginController {
 
     }
 
-    def loginHandler(String username, String password) {
+    def loginHandler(String email, String password) {
         println "************************* login handler "
-        if (User.findByUsernameAndPassword(username, password)) {
-            session["username"] = "${params.username}"
+        if (User.findByEmailAndPassword(email, password)) {
+
+            User user = User.findWhere(email: email)
+            session["username"] = user.username
             println session["username"]
 //            render( view: "/home/dashboard",model: [username: username])
-            redirect(controller: "home",action: "dashboard",params: [username:username])
-        }
-        else
-        {
-            flash.message="Invalid username or password!"
-            redirect(controller: "home",action: "index")
+            redirect(controller: "home", action: "dashboard", params: [username: session["username"]])
+        } else {
+            flash.message = "Invalid username or password!"
+            redirect(controller: "home", action: "index")
         }
 //        render(view: "/home/dashboard",model: [username: username])
     }
@@ -37,9 +37,19 @@ class LoginController {
         render(view: "forgotPassword")
     }
 
-    def resetPassword(UserCO userCO){
-        println "in reset password!!!!!!!"
-//        User currentUser=
+    Boolean validateEmail() {
+        println "##### in validate email ####"
+
+        List<User> userList = User.createCriteria().list {
+            projections {
+                property("email")
+            }
+        }
+
+        if(userList.contains(params.email))
+            render true
+        else
+            render false
     }
 
 

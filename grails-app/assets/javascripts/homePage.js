@@ -3,15 +3,32 @@ $(document).ready(function () {
 
     $('#login').validate({
         rules:{
-            username:{
-                required:true
+            email:{
+                required:true,
+                email:true,
+
+                remote: {
+                    url: $('#submitLogin').attr('data-emailValidate'),
+                    type: 'post',
+                    data: {
+                        email: function () {
+                            return $('#emailID').val()
+                        }
+                    }
+                }
+
             },
             password:{
                 required:true
             }
+
         },
         messages:{
-            username:"Username cannot be empty",
+            email:{
+                required:"Email cannot be empty",
+                email:"Enter a valid email id",
+                remote:"Email Id not found"
+            },
             password:"Password cannot be empty"
         }
 

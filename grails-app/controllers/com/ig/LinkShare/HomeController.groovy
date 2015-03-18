@@ -27,7 +27,7 @@ class HomeController {
         println ">>>>>>>>>>>>>>>>>>>>>>>.index"
         println ">>>>>>>>>>>>>>>>>>>>>>>.Home"
 
-        resources.each {println it}
+//        resources.each {println it}
 
         render(view: "/login/homePage", model: [resources: resources,resourceCount:resources.count])
     }

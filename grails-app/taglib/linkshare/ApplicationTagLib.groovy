@@ -27,7 +27,7 @@ class ApplicationTagLib {
 
         if (currentUser.admin | currentUser == topicCreater) {
             out << g.render(template: "/home/isAdmin",model: [topicID:topic])
-            out << g.render(template: "/myTemplates/isNotAdmin")
+            out << g.render(template: "/myTemplates/isNotAdmin",model: [topicID:topic])
         } else {
             out << g.render(template: "/myTemplates/isNotAdmin")
         }

@@ -10,7 +10,16 @@
     <div class="col-md-5">
         <div class="panel panel-default leftdiv">
             <div class="panel-heading">
-                <h3 class="panel-title">Topic</h3>
+                <span><h3 class="panel-title">Topic
+                    <span class="input-group right" id="searchTextBox">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </span>
+
+                </h3></span>
+
             </div>
 
             <div id="subDiv">
