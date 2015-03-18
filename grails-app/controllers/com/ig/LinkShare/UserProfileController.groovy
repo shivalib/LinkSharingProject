@@ -16,7 +16,7 @@ class UserProfileController {
     }
 
     def changePassword(User user, UserCO userCO) {
-        def currentUser = session["username"]
+        User currentUser = User.findByUsername(session["username"])
 
         if (!userCO.validate()) {
             userCO.errors.allErrors.each {
@@ -25,7 +25,8 @@ class UserProfileController {
 
             flash.message = "Updation Failed : Password Mismatch"
         } else {
-            User.executeUpdate("update User set password=:password where username=:username", [password: params.password, username: currentUser])
+            currentUser.password=params.password
+            currentUser.save(failOnError: true,flush: true)
             flash.message = "Your password has been updated successfully !!"
         }
 
