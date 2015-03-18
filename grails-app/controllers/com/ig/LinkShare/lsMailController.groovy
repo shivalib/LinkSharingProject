@@ -1,7 +1,7 @@
 package com.ig.LinkShare
 //import grails.plugin.mail.*
 
-class MyMailController {
+class lsMailController {
 
     def index() {}
 

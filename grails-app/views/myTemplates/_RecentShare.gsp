@@ -16,6 +16,7 @@
         ${res.description}
 
     </div>
+
     <button type="button" class="btn btn-default btn-sm">
         <span><img src="${resource(dir: "images",file:"facebook.png" )}" class="icon"/></span>
     </button>
