@@ -104,11 +104,11 @@
             <g:form class="loginform" controller="userProfile" action="changePassword">
                 <div>
                     <span>Password* :</span>
-                    <g:textField name="password"/>
+                    <g:passwordField name="password"/>
                 </div>
                 <div>
                     <span>Confirm Password* :</span>
-                    <g:textField name="confirmPassword"/>
+                    <g:passwordField name="confirmPassword"/>
                 </div>
                 <div class="right">
                     <g:submitButton name="update" value="Update"/>

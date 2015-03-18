@@ -35,12 +35,13 @@
             </div>
 
             <div class="panel-body">
+                %{--${resources.}--}%
                 %{--Using template for media objects--}%
-                <g:each in="${resources}" var="res">
-                    <g:render template="/myTemplates/RecentShare" model="[res: res]"></g:render>
-                </g:each>
 
+                %{--<g:each in="${resources}" var="res">--}%
+                %{--</g:each>--}%
             </div>
+0
         </div>
 
     </div><!--col 8 end-->
@@ -65,7 +66,8 @@
                     </div>
 
                     <div>
-                        <a href="" class=left>Forgot Password</a>
+                        <g:link controller="login" action="forgotPassword" class="left">Forgot Password</g:link>
+                        %{--<a href="" class=left>Forgot Password</a>--}%
                         <g:submitButton name="submit" class="right" value="Submit"/>
                     </div>
                 </g:form>

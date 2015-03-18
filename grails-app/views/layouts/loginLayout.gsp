@@ -22,7 +22,8 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Link Sharing</a>
+            <g:link class="navbar-brand" controller="home" action="index">Link Sharing</g:link>
+            %{--<a class="navbar-brand" href="#">Link Sharing</a>--}%
         </div>
 
         <g:if test="${flash.message}">

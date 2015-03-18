@@ -1,5 +1,7 @@
 package com.ig.LinkShare
 
+import com.ig.LinkShare.applicationEnums.UserCO
+
 class LoginController {
 
     def index() {
@@ -11,9 +13,13 @@ class LoginController {
         if (User.findByUsernameAndPassword(username, password)) {
             session["username"] = "${params.username}"
             println session["username"]
-
-            //todo :replace it with render
-            redirect(controller: "home", action: "dashboard", params: [username: username])
+//            render( view: "/home/dashboard",model: [username: username])
+            redirect(controller: "home",action: "dashboard",params: [username:username])
+        }
+        else
+        {
+            flash.message="Invalid username or password!"
+            redirect(controller: "home",action: "index")
         }
 //        render(view: "/home/dashboard",model: [username: username])
     }
@@ -24,6 +30,16 @@ class LoginController {
 //        session.invalidate()
         //replace this with render
         redirect(controller: "home", action: "index")
+    }
+
+    def forgotPassword() {
+        println "--------in forgot password----------"
+        render(view: "forgotPassword")
+    }
+
+    def resetPassword(UserCO userCO){
+        println "in reset password!!!!!!!"
+//        User currentUser=
     }
 
 

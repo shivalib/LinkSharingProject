@@ -8,22 +8,44 @@ class SubscriptionController {
     // def index() {}
     def readingItemService
 
-    def showAllSubscriptions(){
+    def showAllSubscriptions() {
         User currentUser = userService.showCurrentUserObject(session["username"])
 
+        int offset = params.offset ? params.int('offset') : 0
+        int max = params.max ? params.int('max') : 2
 
+        List<Subscription> subscriptions = Subscription.createCriteria().list(max: max, offset: offset) {
 
-        render(view: "topicSubscription",model:[loginUser:currentUser])
+            eq('user', currentUser)
+        }
+        int total = subscriptions.totalCount
+
+        render(view: "topicSubscription", model: [loginUser: currentUser, subscriptions: subscriptions, max: max, offset: offset, subscriptionCount: total])
     }
 
+    def paginate() {
+        User currentUser = userService.showCurrentUserObject(session["username"])
+
+        int offset = params.offset ? params.int('offset') : 0
+        int max = params.max ? params.int('max') : 2
+
+        List<Subscription> subscriptions = Subscription.createCriteria().list([max: max, offset: offset]) {
+
+            eq('user', currentUser)
+
+        }
+
+        render(view: "_allSubscription", model: [loginUser: currentUser, subscriptions: subscriptions, subscriptionCount: subscriptions.totalCount, max: max, offset: offset])
+    }
 
     def subscribeUser() {
 
         String loginUser = session["username"]
+
         User currentUser = User.findByUsername(loginUser)
-        println "-------------User Name : " + currentUser
+
         def topicName = params.topicName
-        println "-------------Topic Name : " + topicName
+
         Topic topic = Topic.findByTopicName(topicName)
 
         def seriousness = params.seriousness
@@ -49,7 +71,7 @@ class SubscriptionController {
         }
     }
 
-    def unsubsribeUser(){
+    def unsubscribeUser() {
 
         String loginUser = session["username"]
         User currentUser = User.findByUsername(loginUser)
@@ -60,14 +82,14 @@ class SubscriptionController {
 
         Topic topic = Topic.findByTopicName(topicName)
 
-        Subscription subscription=Subscription.findByUserAndTopic(currentUser,topic)
+        Subscription subscription = Subscription.findByUserAndTopic(currentUser, topic)
         println subscription.user
     }
 
-    def changeVisibility(){
-        Topic topic=Topic.get(params.long('topicID'))
-        topic.visibility=params.visibility
-        topic.save(failOnError: true,flush: true)
+    def changeVisibility() {
+        Topic topic = Topic.get(params.long('topicID'))
+        topic.visibility = params.visibility
+        topic.save(failOnError: true, flush: true)
     }
 
 }

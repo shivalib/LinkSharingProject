@@ -1,5 +1,7 @@
 package com.ig.LinkShare
 
+import com.ig.LinkShare.applicationEnums.Visibility
+
 class HomeController {
 
     def top5SubscriptionService
@@ -11,12 +13,23 @@ class HomeController {
 
     def index() {
 
-        List<Resource> resources = Resource.list([max: 5, offset: 0, order: "desc", sort: "id"])
+        params.max = params.max ?: 5
+        params.offset = params.offset ?: 0
+        params.sort = params.sort ?: 'id'
+        params.order = params.order ?: 'desc'
+
+        List<Resource> resources = Resource.createCriteria().list(params) {
+            'topic'{
+                eq('visibility',Visibility.PUBLIC)
+            }
+        }
+
         println ">>>>>>>>>>>>>>>>>>>>>>>.index"
         println ">>>>>>>>>>>>>>>>>>>>>>>.Home"
 
-        render(view: "/login/homePage", model: [resources: resources])
+        resources.each {println it}
 
+        render(view: "/login/homePage", model: [resources: resources,resourceCount:resources.count])
     }
 
     def dashboard() {

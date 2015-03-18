@@ -126,7 +126,7 @@
                     </div>
 
                     <div class="modal-body">
-                        <g:form class="loginform" controller="myMail" action="sendInvite">
+                        <g:form class="loginform" controller="lsMail" action="sendInvite">
                             <div>
                                 <span>Email* :</span>
                                 <g:textField name="emailID"/>
