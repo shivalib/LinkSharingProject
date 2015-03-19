@@ -1,6 +1,7 @@
 package com.ig.LinkShare
 
 import com.ig.LinkShare.applicationEnums.Seriousness
+import com.ig.LinkShare.applicationEnums.Visibility
 import grails.transaction.Transactional
 
 @Transactional
@@ -24,11 +25,19 @@ class TopicSubscriptionService {
 
 
 
-    List<Subscription> subscriptionList(Topic topic){
+    List<Subscription> subscriptionList(User user){
 
-        List<Subscription> subscriptions=Subscription.findAllByTopic(topic)
-
-        return subscriptions
+//        List<Subscription> subscriptions=Subscription.findAllByTopic(topic)
+//
+//        return subscriptions
+//
+        List<Subscription> subscriptions=Subscription.createCriteria().list {
+            eq('user',user)
+            'topic'{
+                eq('visibility',Visibility.PUBLIC)
+            }
+        }
+        return  subscriptions
     }
 
 

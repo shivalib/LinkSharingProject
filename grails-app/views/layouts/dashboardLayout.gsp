@@ -7,16 +7,16 @@
     <asset:stylesheet src="bootstrap.min.css"/>
     <asset:stylesheet src="bootstrap-theme.min.css"/>
     <asset:stylesheet src="LinkShare.css"/>
-    <asset:javascript src="jquery.min.js"/>
+    %{--<asset:javascript src="jquery.min.js"/>--}%
+    <asset:javascript src="jquery-2.1.3.js"/>
     <asset:javascript src="bootstrap.min.js"/>
+    %{--<asset:javascript src="dashboard.js"/>--}%
 
+    %{--<asset:javascript src="jquery-ui.js"/>--}%
 
-    %{--<asset:javascript src="jquery-2.1.3.js"/>--}%
-    <asset:javascript src="jquery-ui.js"/>
+    %{--<asset:stylesheet src="jquery-ui.css"/>--}%
 
-    <asset:stylesheet src="jquery-ui.css"/>
-
-    <asset:stylesheet src="jquery-ui.theme.css"/>
+    %{--<asset:stylesheet src="jquery-ui.theme.css"/>--}%
 
     <!-- Latest compiled and minified JavaScript -->
     %{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>--}%

@@ -300,20 +300,6 @@
     </div>
 </div>
 <script>
-    %{--$(document).ready(function(){--}%
-    %{--$(".visibility").change(function(){--}%
-    %{--var url="${createLink(controller: "subscription" ,action: "changeVisibility")}"--}%
-    %{--var topicID=$(this).data('topic-id')--}%
-    %{--var seriousness=$(this).val()--}%
-    %{--$.post(url,{topicID:topicID,seriousness:seriousness},function(data){--}%
-    %{--console.log('data',data)--}%
-    %{--}--}%
-
-    %{--)--}%
-    %{--})--}%
-
-    %{--})--}%
-
 
     $('.markReadOrUnread').on('click', function () {
         console.log("******** mark as read*********");

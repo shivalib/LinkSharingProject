@@ -5,8 +5,6 @@
                 <a href="#">
                     <img src="${createLink(controller: "image", action: "renderImage", params: [path: subscriptionList.topic.createdBy.photoPath])}"
                          class="media-object mediaFace">
-                    %{--<g:img class="media-object mediaFace" dir="images" file="person-icon.png"--}%
-                    %{--alt="Person"></g:img>--}%
                 </a>
             </div>
 

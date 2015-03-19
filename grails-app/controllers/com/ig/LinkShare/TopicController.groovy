@@ -15,13 +15,15 @@ class TopicController {
 
         User loginUser = User.get(params.loginUser)
 
-        List<Subscription> subscriptionList = topicSubscriptionService.subscriptionList(topic)
+        List<Subscription> subscriptionList = topicSubscriptionService.subscriptionList(loginUser)
+        subscriptionList.each {println "public  : " +it}
+
+
         List<Resource> resourceList = showResourceService.showresourcesByTopic(topic)
 
         render(view: "/topic/topicShow", model: [topic: topic, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
     }
 
-    //todo remove the objects which are never used and optimise redirects
     def createTopic(User user) {
 
         User userID = User.findWhere(username: session["username"])

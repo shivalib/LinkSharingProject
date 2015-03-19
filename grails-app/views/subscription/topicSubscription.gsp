@@ -3,6 +3,7 @@
 <head>
     <title></title>
     <meta name="layout" content="topicShowLayout"/>
+    <asset:javascript src="subscription.js"/>
 </head>
 
 <body>
@@ -11,22 +12,21 @@
         <div class="panel panel-default leftdiv">
             <div class="panel-heading">
                 <span><h3 class="panel-title">Topic
-                    <span class="input-group right" id="searchTextBox">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
-                        </span>
-                    </span>
 
+                    <span class="input-group right" id="searchTextBox">
+                        <input type="text" id="searchText"
+                               data-target-action='${createLink(controller: "search", action: 'searchTopic')}'
+                               class="form-control"
+                               placeholder="Search for..."
+                        onkeyup="searchTopicUsingAjax('${createLink(controller: 'search',action: 'searchTopic')}')">
+                    </span>
                 </h3></span>
 
             </div>
 
-            <div id="subDiv">
-
+            <div id="updateSearchResult">
                 <g:render template="allSubscription"
                           model="[max: max, offset: offset, subscriptions: subscriptions, loginUser: loginUser, subscriptionCount: subscriptionCount]"/>
-
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@
             </div>
 
             <div class="panel-body">
-                Panel content
+
             </div>
         </div>
     </div>

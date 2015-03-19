@@ -1,24 +1,27 @@
 package com.ig.LinkShare
 
+import com.ig.LinkShare.applicationEnums.Visibility
+
 class SubscriptionController {
     def userService
-    //todo move the all the possible code to a service and optimize your redirects
+//    todo move the all the possible code to a service and optimize your redirects
 
     def scaffold = Subscription
-    // def index() {}
     def readingItemService
+    def searchService
 
     def showAllSubscriptions() {
+
         User currentUser = userService.showCurrentUserObject(session["username"])
 
         int offset = params.offset ? params.int('offset') : 0
-        int max = params.max ? params.int('max') : 2
+        int max = params.max ? params.int('max') : 5
 
-        List<Subscription> subscriptions = Subscription.createCriteria().list(max: max, offset: offset) {
 
-            eq('user', currentUser)
-        }
+        List<Subscription> subscriptions=searchService.userSubscriptions(currentUser,max,offset)
         int total = subscriptions.totalCount
+
+        println currentUser.firstName
 
         render(view: "topicSubscription", model: [loginUser: currentUser, subscriptions: subscriptions, max: max, offset: offset, subscriptionCount: total])
     }

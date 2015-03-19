@@ -1,5 +1,6 @@
 package com.ig.LinkShare
 
+import com.ig.LinkShare.applicationEnums.Visibility
 import grails.transaction.Transactional
 
 @Transactional
@@ -17,6 +18,7 @@ class Top5SubscriptionService {
             'subscriptions'{
               eq('user',user)
           }
+            eq('visibility',Visibility.PUBLIC)
 
         }
         return  topics
