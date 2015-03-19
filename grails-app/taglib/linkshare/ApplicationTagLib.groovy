@@ -7,27 +7,34 @@ import com.ig.LinkShare.Topic
 import com.ig.LinkShare.User
 
 
-
 class ApplicationTagLib {
 
     static namespace = "ls"
 
     static defaultEncodeAs = [taglib: 'raw']
-//    static defaultEncodeAs = [taglib: 'html']
-    //static encodeAsForTags = [tagName: [taglib:'html'], otherTagName: [taglib:'none']]
 
+    def showHeader={attr->
+        def loginUser=attr.currentUser
+        if(loginUser.admin){
+            out<<g.render(template: "/dashboard/headerForAdmin")
+        }
+        else
+        {
+            out<<g.render(template: "/dashboard/headerForUser")
+        }
+    }
 
     def isEditable = { attr, body ->
 
         def currentUser = attr.currentUser
         def topicCreater = attr.topicCreater
-        def topicID=attr.topicID
+        def topicID = attr.topicID
 
-        Topic topic=Topic.findById(attr.topicID)
+        Topic topic = Topic.findById(attr.topicID)
 
         if (currentUser.admin | currentUser == topicCreater) {
-            out << g.render(template: "/home/isAdmin",model: [topicID:topic])
-            out << g.render(template: "/myTemplates/isNotAdmin",model: [topicID:topic])
+            out << g.render(template: "/home/isAdmin", model: [topicID: topic])
+            out << g.render(template: "/myTemplates/isNotAdmin", model: [topicID: topic])
         } else {
             out << g.render(template: "/myTemplates/isNotAdmin")
         }
@@ -60,23 +67,12 @@ class ApplicationTagLib {
 
         Subscription subscription = Subscription.findByUserAndTopic(user1, topic)
         if (subscription) {
-//            out << g.render(template: "/myTemplates/isNotAdmin")
-            out << g.render(template: '/home/isSubscribed' )
+            out << g.render(template: '/home/isSubscribed')
 
         }
-
-
-//        if(subscription.user!=user1)
-//        {
-//            out<<g.render(template: "/subscription/unsubscribe")
-//        }
         if (user1.admin | user1 == topic.createdBy) {
-            out << g.render(template: "/home/isAdmin",model: [topicID:topic])
+            out << g.render(template: "/home/isAdmin", model: [topicID: topic])
         }
-
-
-
-
     }
 
     def markResource = { attr ->

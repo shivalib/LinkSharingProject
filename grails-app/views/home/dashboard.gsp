@@ -60,9 +60,10 @@
                     </span>
                 </h3></span>
             </div>
-        <div id="updateRecentShare">
-            <g:render template="remotePaginate"/>
-        </div>
+
+            <div id="updateRecentShare">
+                <g:render template="remotePaginate"/>
+            </div>
         </div><!--panel ends -->
 
     <!--Trending topic-->

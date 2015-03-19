@@ -2,7 +2,8 @@
 <html>
 <head>
     <title></title>
-    <meta name="layout" content="topicShowLayout"/>
+    <meta name="layout" content="dashboardLayout">
+
     <asset:javascript src="subscription.js"/>
 </head>
 

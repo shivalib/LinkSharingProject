@@ -3,7 +3,7 @@
 <html>
 <head>
   <title></title>
-    <meta name="layout" content="userProfileLayout">
+    <meta name="layout" content="dashboardLayout">
 </head>
 <body>
 <div class="row">

@@ -3,7 +3,8 @@
 <html>
 <head>
     <title>Topic Search</title>
-    <meta name="layout" content="topicShowLayout">
+    <meta name="layout" content="dashboardLayout">
+
 
 </head>
 
