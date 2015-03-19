@@ -3,19 +3,17 @@ package com.ig.LinkShare
 import com.ig.LinkShare.applicationEnums.UserCO
 
 class LoginController {
-
     def index() {
+
 
     }
 
     def loginHandler(String email, String password) {
-        println "************************* login handler "
         if (User.findByEmailAndPassword(email, password)) {
 
             User user = User.findWhere(email: email)
             session["username"] = user.username
             println session["username"]
-//            render( view: "/home/dashboard",model: [username: username])
             redirect(controller: "home", action: "dashboard", params: [username: session["username"]])
         } else {
             flash.message = "Invalid username or password!"
@@ -46,7 +44,7 @@ class LoginController {
             }
         }
 
-        if(userList.contains(params.email))
+        if (userList.contains(params.email))
             render true
         else
             render false

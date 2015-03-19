@@ -10,7 +10,6 @@
 
 <body>
 
-%{--.................tadaaaaaaaaaan !!!!!!!!!!!!!!--}%
 <div class="row">
     <div class="col-md-5">
         <g:render template="trendingTopic" model="[trendingTopicList:trendingTopicList]"/>

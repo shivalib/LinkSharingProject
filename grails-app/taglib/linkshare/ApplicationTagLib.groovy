@@ -13,14 +13,14 @@ class ApplicationTagLib {
 
     static defaultEncodeAs = [taglib: 'raw']
 
-    def showHeader={attr->
-        def loginUser=attr.currentUser
-        if(loginUser.admin){
-            out<<g.render(template: "/dashboard/headerForAdmin")
-        }
-        else
-        {
-            out<<g.render(template: "/dashboard/headerForUser")
+    def showHeader = { attr ->
+        def loginUser = attr.currentUser
+        if (loginUser) {
+            if (loginUser.admin) {
+                out << g.render(template: "/dashboard/headerForAdmin")
+            } else {
+                out << g.render(template: "/dashboard/headerForUser")
+            }
         }
     }
 
@@ -101,5 +101,16 @@ class ApplicationTagLib {
         if (!subscription) {
             out << g.render(template: '/myTemplates/isNotSubscribed', model: [topicName: attr.topicName])
         }
+    }
+
+    def checkUser={
+
+//        if(session["username"]){
+//            g.render("need to be replaced by trending topic")
+//        }
+//        else
+//        {
+         out<<   g.render(template: '/home/notLogin')
+//        }
     }
 }

@@ -65,7 +65,7 @@ class TopicController {
         println "-------------${params}"
         Topic topic=Topic.load(id)
         topic.delete(flush: true)
-
+r
         forward(controller: "home",action: "dashboard")
     }
 }

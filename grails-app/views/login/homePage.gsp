@@ -17,12 +17,10 @@
             </div>
 
             <div class="panel-body">
-
                 %{--Using self created tag--}%
+
                 <g:each in="${resources}" var="res">
-
                     <ls:showListingPages resource="${res}"/>
-
                 </g:each>
 
             </div><!--panel body end -->
@@ -41,7 +39,7 @@
                 %{--<g:each in="${resources}" var="res">--}%
                 %{--</g:each>--}%
             </div>
-0
+            0
         </div>
 
     </div><!--col 8 end-->
@@ -68,7 +66,8 @@
                     <div>
                         <g:link controller="login" action="forgotPassword" class="left">Forgot Password</g:link>
                         %{--<a href="" class=left>Forgot Password</a>--}%
-                        <g:submitButton name="submit" id="submitLogin" class="right" value="Submit" data-emailValidate="${createLink(controller: "login",action: "validateEmail")}" />
+                        <g:submitButton name="submit" id="submitLogin" class="right" value="Submit"
+                                        data-emailValidate="${createLink(controller: "login", action: "validateEmail")}"/>
                     </div>
                 </g:form>
             </div>
@@ -81,7 +80,8 @@
             </div>
 
             <div class="panel-body">
-                <g:form class="loginform " name="registerForm" controller="user" action="registerUser" enctype="multipart/form-data">
+                <g:form class="loginform " name="registerForm" controller="user" action="registerUser"
+                        enctype="multipart/form-data">
                     <div>
                         <span>First name*</span>
                         <g:textField name="firstName" placeholder="First Name"></g:textField>
@@ -126,16 +126,16 @@
     </div><!-- col 4 end-->
 </div><!--Ending div -->
 <script>
-        $('#myform').validate({
-            rules:{
-                username:{
-                    required:true
-                },
-                password:{
-                    required:true
-                }
+    $('#myform').validate({
+        rules: {
+            username: {
+                required: true
+            },
+            password: {
+                required: true
             }
-        });
+        }
+    });
 
 </script>
 </body>

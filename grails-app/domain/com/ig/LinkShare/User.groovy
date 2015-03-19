@@ -10,8 +10,8 @@ class User {
     String email
     Boolean admin
     Boolean active
-//    Date dateCreated
-//    Date lastUpdated
+    Date dateCreated
+    Date lastUpdated
 
     static transients = ['fullName']
 

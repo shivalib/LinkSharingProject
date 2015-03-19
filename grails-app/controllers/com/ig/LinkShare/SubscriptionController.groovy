@@ -18,7 +18,7 @@ class SubscriptionController {
         int max = params.max ? params.int('max') : 5
 
 
-        List<Subscription> subscriptions=searchService.userSubscriptions(currentUser,max,offset)
+        List<Subscription> subscriptions = searchService.userSubscriptions(currentUser, max, offset)
         int total = subscriptions.totalCount
 
         println currentUser.firstName
@@ -66,12 +66,12 @@ class SubscriptionController {
             topic.addToSubscriptions(subscription)
 
             flash.message = "You have been successfully subscribed to ${topicName} !"
-            redirect(controller: "home", action: "dashboard")
         } else {
             flash.message = "Sorry, subscription failed !"
             subscription.errors.allErrors.each { println it }
-            redirect(controller: "home", action: "dashboard")
         }
+        redirect(controller: "home", action: "dashboard")
+
     }
 
     def unsubscribeUser() {

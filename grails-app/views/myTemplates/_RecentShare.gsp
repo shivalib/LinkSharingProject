@@ -17,17 +17,6 @@
 
     </div>
 
-    <button type="button" class="btn btn-default btn-sm">
-        <span><img src="${resource(dir: "images",file:"facebook.png" )}" class="icon"/></span>
-    </button>
-
-    <button type="button" class="btn btn-default btn-sm">
-        <span><img src="${resource(dir: "images",file: "twitter-icon.png")}" class="icon"/></span>
-    </button>
-
-    <button type="button" class="btn btn-default btn-sm">
-        <span><img src="${resource(dir: "images",file: "icon_google_plus.png")}" class="icon" /></span>
-    </button>
-
-    <span><g:link class="right">View post</g:link></span>
+    <g:render template="/myTemplates/socialIcons"/>
+    <span><g:link class="right" controller="showPost" action="index" id="${res.topic.id}">View post</g:link></span>
 </div>
