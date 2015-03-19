@@ -1,10 +1,7 @@
-/**
- * Created by intelligrape on 19/3/15.
- */
+
 
 function searchTopicUsingAjax(searchUrl){
     var searchTextBox=$('#searchText').val()
-    console.log(searchTextBox)
     $.ajax({
         url:searchUrl,
         data:{
@@ -13,13 +10,6 @@ function searchTopicUsingAjax(searchUrl){
         success: function (data) {
             console.log(data)
             $('#updateSearchResult').html(data)
-            //if(!data.result) {
-            //    $('#updateSearchResult').empty()
-            //}
-            //else
-            //{
-            //    $('#updateSearchResult').html('tadaaaaaaaaaaaaaaaaaaan')
-            //}
         },
         error: function (request, status, error) {
             console.log("We are in error section ");
@@ -29,3 +19,40 @@ function searchTopicUsingAjax(searchUrl){
         }
     })
 }
+
+
+$(document).ready(function () {
+    $('.topicLink').on('click', function () {
+        console.log('heya i m clicked')
+        console.log($(this).attr('data-ajax-searchPost'))
+        var ajaxId=$(this).attr('ajax-id')
+        console.log(ajaxId)
+
+        $.ajax({
+            url:$(this).attr('data-ajax-searchPost'),
+            data:{
+                topicID:ajaxId
+            },
+            success: function (data) {
+                console.log(data)
+                $('#updatePost').html(data)
+            },
+            error: function (request, status, error) {
+                console.log("We are in error section ");
+                console.log("request :" + request);
+                console.log("status : " + status);
+                console.log("error :" + error);
+            }
+
+        })
+    })
+})
+
+
+//$('#topicLink').on('click', function () {
+//    console.log('heya i m clicked')
+//})
+
+//function displayPostOfSelectedTopic(){
+//
+//}

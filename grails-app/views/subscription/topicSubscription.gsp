@@ -18,7 +18,7 @@
                                data-target-action='${createLink(controller: "search", action: 'searchTopic')}'
                                class="form-control"
                                placeholder="Search for..."
-                        onkeyup="searchTopicUsingAjax('${createLink(controller: 'search',action: 'searchTopic')}')">
+                               onkeyup="searchTopicUsingAjax('${createLink(controller: 'search',action: 'searchTopic')}')">
                     </span>
                 </h3></span>
 
@@ -38,7 +38,9 @@
             </div>
 
             <div class="panel-body">
-
+                <div id="updatePost">
+                    %{--<g:render template="/search/postOnTopicName" model="[]"--}%
+                </div>
             </div>
         </div>
     </div>

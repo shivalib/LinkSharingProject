@@ -6,6 +6,7 @@ class SearchController {
     def trendingTopicService
     def searchService
     def userService
+    def showResourceService
 
     def index() {
         User loginUser = User.findByUsername(session["username"])
@@ -16,8 +17,6 @@ class SearchController {
     }
 
     def searchTopic() {
-        println "-----------------------in search topic : "
-
 
         User currentUser = userService.showCurrentUserObject(session["username"])
 
@@ -33,8 +32,24 @@ class SearchController {
         }
 
         render(template:"/subscription/allSubscription", model: [loginUser: currentUser, subscriptions: subscriptions1, max: max, offset: offset, subscriptionCount: total])
+    }
 
+    def searchPost(){
+        User currentUser = userService.showCurrentUserObject(session["username"])
+        println "........... in search post .........."
+        println "id :" + params.topicID
 
+        Topic topic=Topic.findById(params.topicID)
+        println topic.topicName
+
+//        println topic.topicName
+        List<Resource> resourceList=showResourceService.showresourcesByTopic(topic)
+        resourceList.each {
+            println "in searchPost : " +it.topic.topicName
+            println "desc : " +it.description
+        }
+
+        render(template: 'postOnTopicName',model:[resourceList:resourceList,loginUser: currentUser] )
     }
 
 

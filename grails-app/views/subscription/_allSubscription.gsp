@@ -10,8 +10,10 @@
 
             <div class="media-body">
                 <h4 class="media-heading">
-                    <g:link controller="topic" action="index" id="${subscriptionList.id}"
-                            params="[loginUser: loginUser.id]">${subscriptionList.topic.topicName}</g:link>
+
+                    <a href="javascript:void(0)" class="topicLink" ajax-id="${subscriptionList.topic.id}" data-ajax-searchPost='${createLink(controller: 'search',action: 'searchPost')}'>${subscriptionList.topic.topicName}</a>
+                    %{--<g:link controller="topic" action="index" id="${subscriptionList.id}"--}%
+                            %{--params="[loginUser: loginUser.id]">${subscriptionList.topic.topicName}</g:link>--}%
                 </h4>
 
                 <div>
@@ -35,4 +37,5 @@
 
     </div>
 </g:each>
-<util:remotePaginate controller="subscription" action="paginate" total="${subscriptionCount}" max="${max}" offset="${offset}" update="subDiv"/>
+<util:remotePaginate controller="subscription" action="paginate" total="${subscriptionCount}" max="${max}"
+                     offset="${offset}" update="subDiv"/>
