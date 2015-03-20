@@ -1,3 +1,5 @@
+
+
 <%@ page import="com.ig.LinkShare.applicationEnums.Seriousness" %>
 %{--todo move this template to its respective folder--}%
 
@@ -5,16 +7,17 @@
 
     <span class="right">
 
-        <g:select name="seriousness" from="${com.ig.LinkShare.applicationEnums.Seriousness}"/>
+        <g:select name="seriousness" from="${com.ig.LinkShare.applicationEnums.Seriousness}" value="${subscription.seriousness}" />
 
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#mySendInviteModal">
             <span class="glyphicon glyphicon-envelope" aria-hidden="true"/>
         </button>
+
     </span>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal--${topicName}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal--${topic.topicName}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -26,7 +29,7 @@
                 <g:form class="loginform" name="loginForm" controller="subscription" action="subscribeUser">
                     <div>
                         <span>Topic :</span>
-                        <g:textField name="topicName" value="${topicName}" />
+                        <g:textField name="topicName" value="${topic.topicName}" />
                     </div>
                     <div>
                         <span>Seriousness* :</span>

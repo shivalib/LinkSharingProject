@@ -5,7 +5,7 @@ import grails.transaction.Transactional
 
 @Transactional
 class Top5SubscriptionService {
-    //todo try not using def in service.
+
 
     List<Topic> showTop5Subscription(String currentUser){
 

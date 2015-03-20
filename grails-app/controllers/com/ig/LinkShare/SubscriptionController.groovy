@@ -9,10 +9,14 @@ class SubscriptionController {
     def scaffold = Subscription
     def readingItemService
     def searchService
+    def showTopicService
+
+
 
     def showAllSubscriptions() {
 
         User currentUser = userService.showCurrentUserObject(session["username"])
+        List<Topic> topics = showTopicService.findTopicsOfCurrentUser(session["username"])
 
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5
@@ -21,9 +25,7 @@ class SubscriptionController {
         List<Subscription> subscriptions = searchService.userSubscriptions(currentUser, max, offset)
         int total = subscriptions.totalCount
 
-        println currentUser.firstName
-
-        render(view: "topicSubscription", model: [loginUser: currentUser, subscriptions: subscriptions, max: max, offset: offset, subscriptionCount: total])
+        render(view: "topicSubscription", model: [loginUser: currentUser, subscriptions: subscriptions,topicList:topics.topicName, max: max, offset: offset, subscriptionCount: total])
     }
 
     def paginate() {

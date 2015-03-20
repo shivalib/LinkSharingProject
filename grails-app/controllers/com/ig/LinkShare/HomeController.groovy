@@ -10,6 +10,8 @@ class HomeController {
     def showInboxService
     def showTopicService
     def userService
+    def showResourceService
+    def dateDifferenceService
 
     def index() {
 
@@ -18,18 +20,18 @@ class HomeController {
         params.sort = params.sort ?: 'id'
         params.order = params.order ?: 'desc'
 
-        List<Resource> resources = Resource.createCriteria().list(params) {
-            'topic'{
-                eq('visibility',Visibility.PUBLIC)
-            }
-        }
 
+
+
+        List<Resource> resources=showResourceService.calculateResourceList()
         println ">>>>>>>>>>>>>>>>>>>>>>>.index"
         println ">>>>>>>>>>>>>>>>>>>>>>>.Home"
 
-//        resources.each {println it}
+        resources.each {
+            dateDifferenceService.calculateDifferenceBetweenDate(it)
+        }
 
-        render(view: "/login/homePage", model: [resources: resources,resourceCount:resources.count])
+        render(view: "/login/homePage", model: [resources: resources, resourceCount: resources.count])
     }
 
     def dashboard() {
@@ -52,11 +54,11 @@ class HomeController {
         }
     }
 
-    def showRecentShare(){
+    def showRecentShare() {
         //show top5Subscriptions
         List<Topic> top5SubscribedTopics = top5SubscriptionService.showTop5Subscription(session["username"])
 
-        render(template: "/home/remotePaginate",model: [top5SubscribedTopics: top5SubscribedTopics])
+        render(template: "/home/remotePaginate", model: [top5SubscribedTopics: top5SubscribedTopics])
     }
 
 }

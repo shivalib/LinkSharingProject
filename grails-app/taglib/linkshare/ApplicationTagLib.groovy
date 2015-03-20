@@ -28,15 +28,18 @@ class ApplicationTagLib {
 
         def currentUser = attr.currentUser
         def topicCreater = attr.topicCreater
-        def topicID = attr.topicID
 
-        Topic topic = Topic.findById(attr.topicID)
+        User user = User.get(currentUser.id)
+
+        Topic topic = Topic.get(attr.topicID)
+
+        Subscription subscription = Subscription.findWhere(topic: topic, user: user)
 
         if (currentUser.admin | currentUser == topicCreater) {
-            out << g.render(template: "/home/isAdmin", model: [topicID: topic])
-            out << g.render(template: "/myTemplates/isNotAdmin", model: [topicID: topic])
+            out << g.render(template: "/home/isAdmin", model: [topic: topic, loginUser: attr.currentUser])
+            out << g.render(template: "/myTemplates/isNotAdmin", model: [topic: topic, loginUser: attr.currentUser, subscription: subscription.seriousness])
         } else {
-            out << g.render(template: "/myTemplates/isNotAdmin")
+            out << g.render(template: "/myTemplates/isNotAdmin", model: [topic: topic, loginUser: attr.currentUser, subscription: subscription.seriousness])
         }
     }
 
@@ -60,18 +63,35 @@ class ApplicationTagLib {
     }
 
     def isSubscribed = { attr ->
-        def user = attr.currentUser
+        User user = attr.currentUser
 
+        Topic topic = attr.topicID
+
+        println "--------- currentUser : "+user.username
+        println "--------- topic :"+topic.topicName
+
+        Subscription subscription=Subscription.findWhere(user: user,topic: topic)
+
+        if (subscription) {
+
+            out << g.render(template: '/home/isSubscribed',model: [topic: topic,subscription: subscription])
+
+        }
+        if (user.admin || user == topic.createdBy) {
+            out << g.render(template: "/home/isAdmin", model: [topic: topic])
+        }
+    }
+
+
+    def isNotSubscribed = { attr ->
+        def user = attr.currentUser
         User user1 = User.findByUsername(user.username)
         def topic = attr.topicID
 
         Subscription subscription = Subscription.findByUserAndTopic(user1, topic)
-        if (subscription) {
-            out << g.render(template: '/home/isSubscribed')
 
-        }
-        if (user1.admin | user1 == topic.createdBy) {
-            out << g.render(template: "/home/isAdmin", model: [topicID: topic])
+        if (!subscription) {
+            out << g.render(template: '/myTemplates/isNotSubscribed', model: [topic: topic])
         }
     }
 
@@ -91,26 +111,15 @@ class ApplicationTagLib {
         }
     }
 
-    def isNotSubscribed = { attr ->
-        def user = attr.currentUser
-        User user1 = User.findByUsername(user.username)
-        def topic = attr.topicID
 
-        Subscription subscription = Subscription.findByUserAndTopic(user1, topic)
-
-        if (!subscription) {
-            out << g.render(template: '/myTemplates/isNotSubscribed', model: [topicName: attr.topicName])
-        }
-    }
-
-    def checkUser={
+    def checkUser = {
 
 //        if(session["username"]){
 //            g.render("need to be replaced by trending topic")
 //        }
 //        else
 //        {
-         out<<   g.render(template: '/home/notLogin')
+        out << g.render(template: '/home/notLogin')
 //        }
     }
 }

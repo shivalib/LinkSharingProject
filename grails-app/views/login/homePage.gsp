@@ -33,11 +33,7 @@
             </div>
 
             <div class="panel-body">
-                %{--${resources.}--}%
-                %{--Using template for media objects--}%
 
-                %{--<g:each in="${resources}" var="res">--}%
-                %{--</g:each>--}%
             </div>
             0
         </div>
