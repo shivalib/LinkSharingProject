@@ -57,7 +57,9 @@
                     <span class="glyphicon glyphicon-file" aria-hidden="true"/>
                 </button>
 
-                <img src="${resource(dir: "images",file: "person-icon.png")}" height="35px" width="35px"/>
+                <g:link controller="userProfile" action="showUserPublicProfile">
+                <img src="${resource(dir: "images",file: "person-icon.png")}" title="User Profile" height="35px" width="35px"/>
+                </g:link>
 
                 <ls:showHeader currentUser="${loginUser}"/>
 

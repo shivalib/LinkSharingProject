@@ -12,6 +12,7 @@ class ShowResourceService {
         return resourceList
     }
 
+
     List<Resource> calculateResourceList(){
         List<Resource> resources = Resource.createCriteria().list(max:5,offset:0,sort:'id',order:'desc') {
             'topic' {

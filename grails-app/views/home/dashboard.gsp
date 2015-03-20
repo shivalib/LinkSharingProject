@@ -102,10 +102,6 @@
                             <div>
                                 <ls:isSubscribed currentUser="${loginUser}" topicID="${trending}"/>
 
-                                %{--<ls:isEditable currentUser="${loginUser}"--}%
-                                %{--topicCreater="${trending.createdBy}"--}%
-                                %{--topicID="${trending.id}"/>--}%
-
                                 <ls:isNotSubscribed currentUser="${loginUser}" topicID="${trending}"
                                                     topicName="${trending.topicName}"/>
                             </div>

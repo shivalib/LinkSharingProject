@@ -1,7 +1,5 @@
 package com.ig.LinkShare
 
-import com.ig.LinkShare.applicationEnums.Visibility
-
 class SubscriptionController {
     def userService
 //    todo move the all the possible code to a service and optimize your redirects
@@ -16,7 +14,7 @@ class SubscriptionController {
     def showAllSubscriptions() {
 
         User currentUser = userService.showCurrentUserObject(session["username"])
-        List<Topic> topics = showTopicService.findTopicsOfCurrentUser(session["username"])
+        List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(session["username"])
 
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5

@@ -1,7 +1,5 @@
 package com.ig.LinkShare
 
-import com.ig.LinkShare.applicationEnums.Visibility
-
 class HomeController {
 
     def top5SubscriptionService
@@ -39,7 +37,7 @@ class HomeController {
 
             User currentUser = userService.showCurrentUserObject(session["username"])
 
-            List<Topic> topics = showTopicService.findTopicsOfCurrentUser(session["username"])
+            List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(session["username"])
 
             //show trending topics
             List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()

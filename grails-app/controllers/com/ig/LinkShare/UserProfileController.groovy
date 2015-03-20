@@ -5,6 +5,9 @@ import com.ig.LinkShare.applicationEnums.UserCO
 
 class UserProfileController {
     def uploadService
+    def userService
+    def showTopicService
+    def showResourceService
 
     def index() {
         if (session["username"]) {
@@ -33,6 +36,20 @@ class UserProfileController {
         redirect(controller: "userProfile", action: "index")
     }
 
+    def showUserPublicProfile(){
+        User currentUser = userService.showCurrentUserObject(session["username"])
+        List<Topic> topics = showTopicService.findTopicsCreatedByCurrentUser(session["username"])
+        List<Resource> resourcesOfTopic=[]
+        topics.each {
+            resourcesOfTopic+=showResourceService.showresourcesByTopic(it)
+        }
+        resourcesOfTopic.each {
+            println it
+        }
+        render(view: "/user/userProfile",model: [loginUser: currentUser,topicList:topics,resourcesOfTopic:resourcesOfTopic])
+
+    }
+
     def updateData() {
         User currentUser = User.findByUsername(session["username"])
         currentUser.firstName=params.firstName
@@ -53,5 +70,8 @@ class UserProfileController {
         redirect(controller: "userProfile", action: "index")
     }
 
+    def paginatePosts(){
+
+    }
 
 }

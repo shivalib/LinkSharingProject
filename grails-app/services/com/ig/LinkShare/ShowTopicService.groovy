@@ -5,7 +5,7 @@ import grails.transaction.Transactional
 @Transactional
 class ShowTopicService {
 
-    List<Topic> findTopicsOfCurrentUser(String loginUser) {
+    List<Topic> findTopicsSubscribedByCurrentUser(String loginUser) {
 
         User currentUser = User.findByUsername(loginUser)
 
@@ -17,4 +17,16 @@ class ShowTopicService {
         }
         return topicList
     }
+
+    List<Topic> findTopicsCreatedByCurrentUser(String loginUser) {
+
+        User currentUser = User.findByUsername(loginUser)
+
+        List<Topic> topicList = Topic.createCriteria().list {
+            eq('createdBy',currentUser)
+        }
+        return topicList
+    }
+
+
 }
