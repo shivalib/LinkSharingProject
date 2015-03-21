@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<table class="table table-bordered">
+<table class="table table-bordered table-responsive">
     <tr>
         <td colspan="7">
             Users

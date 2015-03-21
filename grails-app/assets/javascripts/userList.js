@@ -15,9 +15,12 @@
 $(document).ready(function () {
     $('#selectType').on('change', function () {
         var selectVal=$('#selectType').val()
-        //console.log($('#selectType').val())
+        console.log(selectVal)
+
+        var url=$(this).attr('data-changeUser')
+        console.log(url)
         $.ajax({
-            url:$(this).attr('data-changeUser'),
+            url:url,
             data:{
               selectVal:selectVal
             },
@@ -29,11 +32,8 @@ $(document).ready(function () {
     });
 
     $('.manage').on('click', function () {
-        //alert("i m clicked")
         var url=$(this).attr('data-manageAction')
         var userID=$(this).attr('ajax-id')
-        //alert(userID)
-        //alert(url)
         $.ajax({
             url:url,
             data:{
@@ -51,9 +51,7 @@ $(document).ready(function () {
 });
 
 function searchUserUsingAjax(searchUserUrl){
-    //console.log(searchUserUrl)
     var searchUserText=$('#searchUser').val()
-    //console.log(searchUserText)
     $.ajax({
         url:searchUserUrl,
         data:{
