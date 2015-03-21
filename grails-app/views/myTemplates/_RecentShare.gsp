@@ -4,17 +4,19 @@
 <div class="media ">
     <div class="media-left">
         <g:link  controller="userProfile" action="showUserPublicProfile">
-            <img class="media-object mediaFace" src="${resource(dir: "images",file:"person-icon.png")}" alt="Person">
+            <img class="media-object mediaFace " src="${resource(dir: "images",file:"person-icon.png")}" alt="Person">
         </g:link>
     </div>
     <div class="media-body">
         <h4 class="media-heading">${res.createdBy.fullName}@${res.createdBy.username}
+        %{--<span class="right">--}%
+            %{----}%
+        %{--</span>--}%
             <span class="right">
+            <ls:timeDiffInDetail oldDate="${res.dateCreated}"/>
                 <g:link controller="topic" action="index">${res.topic.topicName}</g:link>
             </span> </h4>
-
         ${res.description}
-
     </div>
 
     <g:render template="/myTemplates/socialIcons"/>

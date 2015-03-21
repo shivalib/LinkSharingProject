@@ -17,7 +17,7 @@ class LoginController {
             redirect(controller: "home", action: "dashboard", params: [username: session["username"]])
         } else {
             flash.message = "Invalid username or password!"
-            redirect(controller: "home", action: "index")
+//            redirect(controller: "home", action: "index")
         }
 //        render(view: "/home/dashboard",model: [username: username])
     }

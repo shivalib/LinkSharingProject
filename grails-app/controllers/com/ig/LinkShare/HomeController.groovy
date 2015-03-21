@@ -18,16 +18,9 @@ class HomeController {
         params.sort = params.sort ?: 'id'
         params.order = params.order ?: 'desc'
 
-
-
-
-        List<Resource> resources=showResourceService.calculateResourceList()
+        List<Resource> resources = showResourceService.calculateResourceList()
         println ">>>>>>>>>>>>>>>>>>>>>>>.index"
         println ">>>>>>>>>>>>>>>>>>>>>>>.Home"
-
-        resources.each {
-            dateDifferenceService.calculateDifferenceBetweenDate(it)
-        }
 
         render(view: "/login/homePage", model: [resources: resources, resourceCount: resources.count])
     }

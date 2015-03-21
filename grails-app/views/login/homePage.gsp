@@ -2,8 +2,9 @@
 <html>
 <head>
     <title></title>
-    <meta name="layout" content="loginLayout">
-
+    <meta name="layout" content="dashboardLayout">
+    <asset:javascript src="jquery.validate.min(1).js"/>
+    <asset:javascript src="homePage.js"/>
 </head>
 
 <body>
@@ -18,8 +19,8 @@
 
             <div class="panel-body">
                 %{--Using self created tag--}%
-
                 <g:each in="${resources}" var="res">
+
                     <ls:showListingPages resource="${res}"/>
                 </g:each>
 
@@ -31,11 +32,12 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Top Posts</h3>
             </div>
-
             <div class="panel-body">
-
+                <g:each in="${resources}" var="res">
+                    <ls:showListingPages resource="${res}"/>
+                </g:each>
             </div>
-            0
+
         </div>
 
     </div><!--col 8 end-->

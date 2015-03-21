@@ -1,11 +1,11 @@
 package linkshare
 
+import com.ig.LinkShare.DateDifferenceService
 import com.ig.LinkShare.LinkResource
 import com.ig.LinkShare.ReadingItem
 import com.ig.LinkShare.Subscription
 import com.ig.LinkShare.Topic
 import com.ig.LinkShare.User
-
 
 class ApplicationTagLib {
 
@@ -45,7 +45,7 @@ class ApplicationTagLib {
     }
 
     def showListingPages = { attr ->
-        out << g.render(template: "/myTemplates/RecentShare", model: [res: attr.resource])
+        out << g.render(template: "/myTemplates/RecentShare", model: [res: attr.resource,diffList:attr.diffList])
     }
 
     def topicListing = { attr ->
@@ -61,6 +61,19 @@ class ApplicationTagLib {
         } else {
             out << g.render(template: "/myTemplates/isDocumentResource")
         }
+    }
+
+    def timeDiffInDetail = {attrs ->
+        Map diff=DateDifferenceService.getDifferenceInDates(attrs.oldDate,attrs.newDate ?: new Date())
+        String result =  diff.years ? diff.years + " yrs " : ""
+        result += diff.weeks ? diff.weeks + " weeks " : ""
+        result += diff.days ? diff.days + " days " : ""
+        result += diff.hours ? diff.hours + " hrs " : ""
+        result += diff.minutes ? diff.minutes + " mins ago" : ""
+        if (result)
+            out << result
+        else
+            out << " 0 minutes ago"
     }
 
     def isSubscribed = { attr ->
