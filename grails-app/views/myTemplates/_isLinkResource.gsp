@@ -1,4 +1,4 @@
 
 <div class="right">
-    <g:link>View full site</g:link>
+    <g:link  target="_blank">View full site</g:link>
 </div>

@@ -22,8 +22,8 @@
                     var url = "${createLink(controller: "showPost",action: "rateResource")}"
                     console.log(url)
 
-                    var stars = $(this).find("input[name='score']").val();
-                    console.log(stars)
+//                    var stars = $(this).find("input[name='score']").val();
+//                    console.log("Stars : "+stars)
 
                     var id = $(this).attr('data-resourceID')
                     console.log("Rescource id : " + id)
@@ -92,14 +92,15 @@
                             <div>
                                 ${resource.description}
                             </div>
+                            <div id="ratyDiv" data-resourceID="${resource.id}" >
+
+                            </div>
                             <ls:checkResourceType resource="${resource}"/>
                             %{--<ls:isAdminOrCreatorOfResource currentUser="${loginUser}" resource="${resource}"/>--}%
                             <g:if test="${loginUser}">
                                 <ls:isAdminOrCreatorOfResource currentUser="${loginUser}" resource="${resource}"/>
                             </g:if>
-                            <g:else>
 
-                            </g:else>
                         </div><!--media body ends-->
                     </div><!--media ends -->
                 </div><!--panel body ends-->
