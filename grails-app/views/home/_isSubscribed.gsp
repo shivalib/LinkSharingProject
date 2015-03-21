@@ -9,7 +9,7 @@
 
         <g:select name="seriousness" from="${com.ig.LinkShare.applicationEnums.Seriousness}" value="${subscription.seriousness}" />
 
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#mySendInviteModal">
+        <button type="button" class="btn btn-default btn-md" data-toggle="modal" data-target="#mySendInviteModal">
             <span class="glyphicon glyphicon-envelope" aria-hidden="true"/>
         </button>
 

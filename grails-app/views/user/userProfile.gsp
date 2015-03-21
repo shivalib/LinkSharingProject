@@ -110,8 +110,9 @@
 
                         </div><!--media body ends-->
                         <br/><br/>
+
                         <div>
-                        <g:render template="/myTemplates/socialIcons"/>
+                            <g:render template="/myTemplates/socialIcons"/>
                         </div>
 
                         <div class="right leftdiv">
@@ -127,7 +128,7 @@
         </div><!-- panel ends-->
 
     </div><!--col-md-7 ends-->
-    </div>
+</div>
 
 </body>
 </html>

@@ -14,5 +14,7 @@ class showPostController {
         render(view: "/user/viewPost",model: [topic:topic,trendingTopicList: trendingTopics])
     }
 
-
+    def rateResource(){
+        println "............... in resource rate : "
+    }
 }

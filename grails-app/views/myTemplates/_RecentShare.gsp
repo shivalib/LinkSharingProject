@@ -3,7 +3,7 @@
 
 <div class="media ">
     <div class="media-left">
-        <g:link  controller="user" action="UserProfile">
+        <g:link  controller="userProfile" action="showUserPublicProfile">
             <img class="media-object mediaFace" src="${resource(dir: "images",file:"person-icon.png")}" alt="Person">
         </g:link>
     </div>
