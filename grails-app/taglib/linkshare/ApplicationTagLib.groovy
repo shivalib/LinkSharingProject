@@ -24,6 +24,7 @@ class ApplicationTagLib {
         }
     }
 
+
     def isEditable = { attr, body ->
 
         def currentUser = attr.currentUser
@@ -67,14 +68,14 @@ class ApplicationTagLib {
 
         Topic topic = attr.topicID
 
-        println "--------- currentUser : "+user.username
-        println "--------- topic :"+topic.topicName
+        println "--------- currentUser : " + user.username
+        println "--------- topic :" + topic.topicName
 
-        Subscription subscription=Subscription.findWhere(user: user,topic: topic)
+        Subscription subscription = Subscription.findWhere(user: user, topic: topic)
 
         if (subscription) {
 
-            out << g.render(template: '/home/isSubscribed',model: [topic: topic,subscription: subscription])
+            out << g.render(template: '/home/isSubscribed', model: [topic: topic, subscription: subscription])
 
         }
         if (user.admin || user == topic.createdBy) {
@@ -110,7 +111,26 @@ class ApplicationTagLib {
             }
         }
     }
+//
+    def isAdminOrCreatorOfResource = { attr ->
+        def currentUser = attr.currentUser
+        def resource = attr.resource
 
+        if (currentUser.admin | resource.createdBy == currentUser) {
+            out << g.render(template: "/showPost/isAdminOrCreator", model: [resource: resource])
+        }
+    }
+
+    def activateOrDeactivate={attr->
+//        out<<attr.checkUser
+        User user=User.get(attr.checkUser)
+        if(user.active){
+            out<<g.render(template: "/showPost/isActive",model: [user:user])
+        }
+        else {
+            out<<g.render(template: "/showPost/isDeactive",model: [user:user])
+        }
+    }
 
     def checkUser = {
 

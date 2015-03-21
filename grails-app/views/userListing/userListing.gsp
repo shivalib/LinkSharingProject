@@ -1,22 +1,34 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: intelligrape
-  Date: 7/3/15
-  Time: 8:53 PM
---%>
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title></title>
+    <meta name="layout" content="dashboardLayout"/>
+    <asset:javascript src="userList.js"/>
+
 </head>
 
 <body>
-<h4>User Listing</h4>
+<table class="table table-bordered">
+    <tr>
+        <td colspan="7">
+            Users
+            <div class="right">
 
-    <g:each in="${userList}" var="usr">
-    <p> ${usr.firstName}</p>
+                <input type="text" id="searchUser"
+                       placeholder="Search"
+                       onkeyup="searchUserUsingAjax('${createLink(controller: "search",action: "searchUser")}')"/>
 
-    </g:each>
+                <g:select name="userType" id="selectType"
+                          data-changeUser="${createLink(controller: "user", action: "changeUserList")}"
+                          from="['Active', 'Inactive', 'All Users']" value="All Users"/>
+
+            </div>
+
+        </td>
+    </tr>
+</table>
+<div class="updateUsers">
+    <g:render template="/userListing/userEntry" model="[userList: userList]"/>
+</div>
 </body>
 </html>

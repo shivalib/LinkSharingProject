@@ -34,6 +34,19 @@ class SearchController {
         render(template:"/subscription/allSubscription", model: [loginUser: currentUser, subscriptions: subscriptions1, max: max, offset: offset, subscriptionCount: total])
     }
 
+    def searchUser(){
+
+        println "...user : ...........${params.searchUserValue}"
+
+        List<User> userList1=User.list()
+        List<User> userList=userList1.findAll{
+//            println it.firstName
+            it.firstName=~params.searchUserValue + "*"
+        }
+
+        render(template: "/userListing/userEntry",model: [userList:userList])
+    }
+
     def searchPost(){
         User currentUser = userService.showCurrentUserObject(session["username"])
         println "........... in search post .........."
@@ -43,7 +56,7 @@ class SearchController {
         println topic.topicName
 
 //        println topic.topicName
-        List<Resource> resourceList=showResourceService.showresourcesByTopic(topic)
+        List<Resource> resourceList=showResourceService.showResourcesByTopic(topic)
         resourceList.each {
             println "in searchPost : " +it.topic.topicName
             println "desc : " +it.description

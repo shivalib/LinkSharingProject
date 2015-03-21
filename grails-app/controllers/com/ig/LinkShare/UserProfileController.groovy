@@ -41,7 +41,7 @@ class UserProfileController {
         List<Topic> topics = showTopicService.findTopicsCreatedByCurrentUser(session["username"])
         List<Resource> resourcesOfTopic=[]
         topics.each {
-            resourcesOfTopic+=showResourceService.showresourcesByTopic(it)
+            resourcesOfTopic+=showResourceService.showResourcesByTopic(it)
         }
         resourcesOfTopic.each {
             println it

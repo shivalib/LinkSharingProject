@@ -1,4 +1,3 @@
-%{--<%@ page import="com.ig.LinkShare.applicationEnums.Seriousness" %>--}%
 %{--todo move this template to its respective folder--}%
 
 <g:link controller="subscription" id="Link-${topic.topicName}" action="subscribeUser" data-toggle="modal"
@@ -19,7 +18,7 @@
                 <g:form class="loginform" name="loginForm" controller="subscription" action="subscribeUser">
                     <div>
                         <span>Topic :</span>
-                        <g:textField name="topicName" value="${topicName}"/>
+                        <g:textField name="topicName" value="${topic.topicName}"/>
                     </div>
 
                     <div>

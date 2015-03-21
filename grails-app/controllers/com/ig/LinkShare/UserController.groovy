@@ -6,7 +6,8 @@ class UserController {
     UploadService uploadService
     def scaffold = true
 //    def index() { }
-
+    UserService userService
+    ShowTopicService showTopicService
 
     def beforeInterceptor = [action: this.&checkAdmin, only: 'list']
 
@@ -33,7 +34,28 @@ class UserController {
         List<User> userList = User.list()
         println params
 
-        render(view: "/userListing/userListing", model: [userList: userList])
+        User currentUser = userService.showCurrentUserObject(session["username"])
+
+        List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(session["username"])
+
+        render(view: "/userListing/userListing", model: [userList: userList, loginUser: currentUser, topicList: topics.topicName])
+    }
+
+    def changeUserList(){
+        println "in change list"
+        println "--------> ${params.selectVal}"
+        render "tadaaaaaaaaaaaan!"
+
+    }
+
+
+    def deactivateUser(){
+        println "in deactivate user :"
+        User user=User.get(params.userID)
+        user.active=!user.active
+        user.save(failOnError: true,flush: true)
+
+        g.render(template: "/showPost/tagManage",model: [user:user])
     }
 
 
@@ -47,7 +69,7 @@ class UserController {
         user.active = true
         user.admin = false
 
-        user.photoPath=uploadService.uploadImage(user,params.img,grailsApplication.config.upload.uploadImages.toString())
+        user.photoPath = uploadService.uploadImage(user, params.img, grailsApplication.config.upload.uploadImages.toString())
 
         if (!userCO.validate()) {
             userCO.errors.allErrors.each {
@@ -59,13 +81,12 @@ class UserController {
         } else {
             user.save(failOnError: true)
             flash.message = "Registeration Successfull"
-//            redirect(controller: "home", action: "index")
         }
         redirect(controller: "home", action: "index")
 
     }
 
-    def resetPassword(){
+    def resetPassword() {
         println "in resetpassword........."
         println "${params}"
 //        params.emailID

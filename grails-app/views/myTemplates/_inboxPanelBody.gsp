@@ -19,7 +19,8 @@
     </div><!--media body ends-->
 
     <div class="right leftdiv">
-        <g:link>View Post</g:link>
+        %{--<g:link >View Post</g:link>--}%
+        <g:link class="right" controller="showPost" action="index" id="${unreadItem.resource.topic.id}">View post</g:link>
     </div>
     <ls:checkResourceType resource="${unreadItem.resource}"/>
     <ls:markResource resource="${unreadItem.resource}" currentUser="${loginUser}"/>

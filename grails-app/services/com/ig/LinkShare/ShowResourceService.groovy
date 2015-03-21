@@ -6,7 +6,7 @@ import grails.transaction.Transactional
 @Transactional
 class ShowResourceService {
 
-    List<Resource> showresourcesByTopic(Topic topic) {
+    List<Resource> showResourcesByTopic(Topic topic) {
 
         List<Resource> resourceList = Resource.findAllByTopic(topic)
         return resourceList

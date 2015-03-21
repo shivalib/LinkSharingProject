@@ -16,7 +16,6 @@
 
                     <span class="input-group right" id="searchTextBox">
                         <input type="text" id="searchText"
-                               data-target-action='${createLink(controller: "search", action: 'searchTopic')}'
                                class="form-control"
                                placeholder="Search for..."
                                onkeyup="searchTopicUsingAjax('${createLink(controller: 'search',action: 'searchTopic')}')">
