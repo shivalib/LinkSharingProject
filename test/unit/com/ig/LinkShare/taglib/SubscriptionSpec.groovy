@@ -1,4 +1,4 @@
-package linkshare
+package com.ig.LinkShare.taglib
 
 import com.ig.LinkShare.Subscription
 import grails.test.mixin.TestFor

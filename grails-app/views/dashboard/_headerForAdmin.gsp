@@ -16,9 +16,15 @@
 
         </li>
         <li class="divider"></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Topics</a></li>
+        <li role="presentation">
+            <g:link role="menuitem" tabindex="-1" controller="subscription"
+                    action="showAllSubscriptions">Topics</g:link>
+        </li>
         <li class="divider"></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Posts</a></li>
+
+        <li role="presentation">
+            <g:link role="menuitem" tabindex="-1" controller="showPost" action="index">Posts</g:link>
+        </li>
 
         <li class="divider"></li>
 

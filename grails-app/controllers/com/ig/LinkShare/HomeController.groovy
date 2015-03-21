@@ -49,7 +49,7 @@ class HomeController {
         //show top5Subscriptions
         List<Topic> top5SubscribedTopics = top5SubscriptionService.showTop5Subscription(session["username"])
 
-        render(template: "/home/remotePaginate", model: [top5SubscribedTopics: top5SubscribedTopics])
+        render(template: "/home/subscriptionOfCurrentUser", model: [top5SubscribedTopics: top5SubscribedTopics])
     }
 
 }

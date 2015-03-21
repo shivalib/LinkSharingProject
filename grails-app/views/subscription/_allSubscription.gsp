@@ -2,7 +2,8 @@
     <div class="panel-body">
         <div class="media ">
             <div class="media-left">
-                <a href="#">
+                %{--<a href="#">--}%
+                <a href="${createLink(controller: "userProfile",action: "showUserPublicProfile")}">
                     <img src="${createLink(controller: "image", action: "renderImage", params: [path: subscriptionList.topic.createdBy.photoPath])}"
                          class="media-object mediaFace">
                 </a>

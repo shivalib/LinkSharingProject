@@ -1,4 +1,4 @@
-package linkshare
+package com.ig.LinkShare.taglib
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification

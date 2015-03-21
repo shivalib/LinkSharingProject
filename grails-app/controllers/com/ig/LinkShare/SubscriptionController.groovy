@@ -90,9 +90,16 @@ class SubscriptionController {
     }
 
     def changeVisibility() {
-        Topic topic = Topic.get(params.long('topicID'))
-        topic.visibility = params.visibility
-        topic.save(failOnError: true, flush: true)
+        println "---ready to change visibility!!!!!!!!!!!!!!!!"
+
+        Topic topic=Topic.get(params.topicID)
+        println topic.topicName
+        println params.visibility
+        topic.visibility=params.visibility
+        topic.save(failOnError: true,flush: true)
+        render "tadaaaaaaaaaan !"
+//        topic.visibility = params.visibility
+//        topic.save(failOnError: true, flush: true)
     }
 
 }

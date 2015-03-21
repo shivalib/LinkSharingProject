@@ -59,10 +59,10 @@ class UserController {
     }
 
 
-    def UserProfile() {
-
-        render(view: "UserProfile")
-    }
+//    def UserProfile() {
+//
+//        render(view: "userProfile")
+//    }
 
 
     def registerUser(User user, UserCO userCO) {

@@ -3,6 +3,7 @@
 <head>
     <title></title>
     <meta name="layout" content="dashboardLayout">
+    <asset:javascript src="dashboard.js"/>
 </head>
 
 <body>
@@ -13,11 +14,7 @@
             <div class="panel-body">
                 <div class="media ">
                     <div class="media-left">
-                        <a href="#">
-                            %{--<g:img class="media-object mediaFace" dir="images" file="person-icon.png"--}%
-                            %{--alt="Person"></g:img>--}%
-
-                            %{--todo : file needed--}%
+                        <a href="${createLink(controller: "userProfile",action: "showUserPublicProfile")}">
                             <img src="${createLink(controller: "image", action: "renderImage", params: [path: loginUser.photoPath])}"
                                  class="media-object mediaFace">
                         </a>
@@ -61,8 +58,8 @@
                 </h3></span>
             </div>
 
-            <div id="updateRecentShare">
-                <g:render template="remotePaginate"/>
+            <div id="updateSubscriptions">
+                <g:render template="subscriptionOfCurrentUser"/>
             </div>
         </div><!--panel ends -->
 
