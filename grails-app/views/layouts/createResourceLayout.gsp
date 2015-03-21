@@ -19,7 +19,7 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <g:link class="navbar-brand" controller="home" action="dashboard">Link Sharing</g:link>
+            <g:link class="navbar-brand" controller="home" action="index">Link Sharing</g:link>
         </div>
 
         <g:if test="${flash.message}">
@@ -42,6 +42,7 @@
                     <input type="text" class="form-control" placeholder="Search">
                 </div>
 
+                <g:if test="${loginUser}">
                 <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
                     <span class="glyphicon glyphicon-link" aria-hidden="true"/>
                 </button>
@@ -56,6 +57,7 @@
                 </g:link>
 
                 <ls:showHeader currentUser="${loginUser}"/>
+                    </g:if>
 
             </form>
         </div><!-- search ends-->
@@ -89,7 +91,7 @@
 
                     <div>
                         <span>Topic* :</span>
-                        <g:select name="topicList" from="${resource.}"/>
+                        %{--<g:select name="topicList" from="${resource.}"/>--}%
                     </div>
 
                     <div class="right">

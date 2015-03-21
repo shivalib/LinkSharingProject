@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -34,35 +33,40 @@
             </div>
         </g:if>
 
-        <!--Search-->
+    <!--Search-->
         <div>
             <form class="navbar-form navbar-right " role="search">${params.username}
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search">
                 </div>
 
-                <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myCreateTopicModal">
-                    <span class="glyphicon glyphicon-comment" aria-hidden="true"/>
-                </button>
+                <g:if test="${loginUser}">
+                    <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
+                            data-target="#myCreateTopicModal">
+                        <span class="glyphicon glyphicon-comment" aria-hidden="true"/>
+                    </button>
 
-                <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#mySendInviteModal">
-                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"/>
-                </button>
+                    <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
+                            data-target="#mySendInviteModal">
+                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"/>
+                    </button>
 
-                <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
-                    <span class="glyphicon glyphicon-link" aria-hidden="true"/>
-                </button>
+                    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
+                        <span class="glyphicon glyphicon-link" aria-hidden="true"/>
+                    </button>
 
-                <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myDocumentModal">
-                    <span class="glyphicon glyphicon-file" aria-hidden="true"/>
-                </button>
+                    <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
+                            data-target="#myDocumentModal">
+                        <span class="glyphicon glyphicon-file" aria-hidden="true"/>
+                    </button>
 
-                <g:link controller="userProfile" action="showUserPublicProfile">
-                <img src="${resource(dir: "images",file: "person-icon.png")}" title="User Profile" height="35px" width="35px"/>
-                </g:link>
+                    <g:link controller="userProfile" action="showUserPublicProfile">
+                        <img src="${resource(dir: "images", file: "person-icon.png")}" title="User Profile"
+                             height="35px" width="35px"/>
+                    </g:link>
 
-                <ls:showHeader currentUser="${loginUser}"/>
-
+                    <ls:showHeader currentUser="${loginUser}"/>
+                </g:if>
             </form>
         </div><!-- search ends-->
     </div><!-- /.container-fluid -->

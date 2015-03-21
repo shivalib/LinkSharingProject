@@ -131,15 +131,4 @@ class ApplicationTagLib {
             out<<g.render(template: "/showPost/isDeactive",model: [user:user])
         }
     }
-
-    def checkUser = {
-
-//        if(session["username"]){
-//            g.render("need to be replaced by trending topic")
-//        }
-//        else
-//        {
-        out << g.render(template: '/home/notLogin')
-//        }
-    }
 }

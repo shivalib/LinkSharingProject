@@ -13,7 +13,7 @@ class TopicController {
 
         Topic topic = Topic.findById(id)
 
-        User loginUser = User.get(params.loginUser)
+
 
         List<Subscription> subscriptionList = topicSubscriptionService.subscriptionList(loginUser)
         subscriptionList.each { println "public  : " + it }
@@ -21,7 +21,16 @@ class TopicController {
 
         List<Resource> resourceList = showResourceService.showResourcesByTopic(topic)
 
-        render(view: "/topic/topicShow", model: [topic: topic, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
+        if(session["username"])
+        {
+            User loginUser = User.get(params.loginUser)
+            render(view: "/topic/topicShow", model: [topic: topic, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
+        }
+        else
+        {
+            render(view: "/topic/topicShow", model: [topic: topic,subscribers: subscriptionList, resources: resourceList])
+        }
+
     }
 
     def createTopic(User user) {

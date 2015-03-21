@@ -8,6 +8,6 @@ class DateDifferController {
 
         User currentUser=userService.showCurrentUserObject(session["username"])
 
-        dateDifferenceService.calculateDifferenceBetweenDate(currentUser)
+//        dateDifferenceService.calculateDifferenceBetweenDate(currentUser)
     }
 }
