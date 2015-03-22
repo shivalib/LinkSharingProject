@@ -121,11 +121,10 @@
                     </span>
                 </h3></span>
             </div>
-            <g:each in="${readingItemListWithIsReadFalse}" var="unreadItem">
-                <div class="panel-body" id="inboxPanel">
-                    <g:render template="/myTemplates/inboxPanelBody" model="[unreadItem: unreadItem]"/>
-                </div><!--panel body ends-->
-            </g:each>
+
+            <div id="unreadDiv">
+                <g:render template="/dashboard/iterateInbox" model="[readingItemListWithIsReadFalse:readingItemListWithIsReadFalse]"/>
+            </div>
         </div><!--panel ends-->
     </div>
 </div>

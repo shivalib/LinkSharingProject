@@ -7,6 +7,7 @@ class SearchController {
     def searchService
     def userService
     def showResourceService
+    def showInboxService
 
     def index() {
         User loginUser = User.findByUsername(session["username"])
@@ -72,7 +73,13 @@ class SearchController {
             it.resource.description=~params.searchInbox
         }
 
-        render "tadaaaaaaaaaaaaaan!"
+        //show Inbox
+        List<ReadingItem> readingItemListWithIsReadFalse = showInboxService.showInbox(session["username"])
+
+//        <g:render template="/dashboard/iterateInbox" model="[readingItemListWithIsReadFalse:readingItemListWithIsReadFalse]"/>
+
+        render(template: "/dashboard/iterateInbox",model: [readingItemListWithIsReadFalse:readingItems1])
+//           render "tadaaaaaaaaaaaaaan!"
     }
 
 

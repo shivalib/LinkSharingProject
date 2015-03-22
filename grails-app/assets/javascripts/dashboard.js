@@ -43,8 +43,8 @@ function searchInboxUsingAjax(searchUrl){
             searchInbox:searchInb
         },
         success: function (data) {
-            console.log(data),
-                $('#inboxPanel').html(data)
+            console.log(data)
+                $('#unreadDiv').html(data)
         }
 
     })
