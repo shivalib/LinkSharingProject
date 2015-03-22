@@ -15,11 +15,3 @@ $(document).ready(function () {
     });
 });
 
-//path:'/assets/images/star_on',
-//size:24,
-//scoreName:'star',
-//click: function (score,evt) {
-//
-//}
-
-//})

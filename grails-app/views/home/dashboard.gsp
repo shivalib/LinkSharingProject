@@ -14,7 +14,7 @@
             <div class="panel-body">
                 <div class="media ">
                     <div class="media-left">
-                        <a href="${createLink(controller: "userProfile",action: "showUserPublicProfile")}">
+                        <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile")}">
                             <img src="${createLink(controller: "image", action: "renderImage", params: [path: loginUser.photoPath])}"
                                  class="media-object mediaFace">
                         </a>
@@ -114,8 +114,10 @@
         <div class="panel panel-default rightdiv">
             <div class="panel-heading">
                 <span><h3 class="panel-title ">Inbox
-                    <span class="right">
-                        <g:link>View all</g:link>
+                    <span class="input-group right" id="searchTextBox">
+                        <input type="text" id="searchInbox"
+                               placeholder="Search for..."
+                               onkeyup="searchInboxUsingAjax('${createLink(controller: "search", action: "searchInbox")}')"/>
                     </span>
                 </h3></span>
             </div>

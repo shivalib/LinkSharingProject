@@ -17,13 +17,26 @@ $(document).ready(function () {
             },
             success: function (data) {
                 console.log(data)
-
             }
         })
     });
 
-    //alert("hello")
-    //var abc=$('#visibility').val()
-    //alert(abc)
-
 })
+
+function searchInboxUsingAjax(searchUrl){
+    console.log(searchUrl)
+    var searchInb=$('#searchInbox').val()
+    console.log(searchInb)
+    $.ajax({
+        url:searchUrl,
+        data:{
+            searchInbox:searchInb
+        },
+        success: function (data) {
+            console.log(data),
+                $('#inboxPanel').html(data)
+        }
+
+    })
+
+}

@@ -55,7 +55,6 @@ class SearchController {
         Topic topic=Topic.findById(params.topicID)
         println topic.topicName
 
-//        println topic.topicName
         List<Resource> resourceList=showResourceService.showResourcesByTopic(topic)
         resourceList.each {
             println "in searchPost : " +it.topic.topicName
@@ -63,6 +62,17 @@ class SearchController {
         }
 
         render(template: 'postOnTopicName',model:[resourceList:resourceList,loginUser: currentUser] )
+    }
+
+    def searchInbox(){
+        println "------------ in search inbox -----------"
+        println "^^^^^^^^^ ${params.searchInbox}"
+        List<ReadingItem> readingItems=ReadingItem.findAllWhere(isRead: false)
+        List<ReadingItem> readingItems1=readingItems.findAll{
+            it.resource.description=~params.searchInbox
+        }
+
+        render "tadaaaaaaaaaaaaaan!"
     }
 
 

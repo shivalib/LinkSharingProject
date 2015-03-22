@@ -9,7 +9,7 @@
         <meta name="layout" content="loginLayout">
     </g:else>
 
-    <!-- raty : rating -->
+<!-- raty : rating -->
     <asset:javascript src="jquery.raty.js"/>
     <asset:stylesheet src="jquery.raty.css"/>
     <asset:javascript src="postRating.js"/>
@@ -97,11 +97,15 @@
                             <div>
                                 ${resource.description}
                             </div>
-                            <div id="ratyDiv" data-resourceID="${resource.id}" >
+                            <g:if test="${loginUser}">
 
-                            </div>
+                                <div id="ratyDiv" data-resourceID="${resource.id}">
+
+                                </div>
+                            </g:if>
+                            %{--${resource}--}%
                             <ls:checkResourceType resource="${resource}"/>
-                            %{--<ls:isAdminOrCreatorOfResource currentUser="${loginUser}" resource="${resource}"/>--}%
+                        %{--<ls:isAdminOrCreatorOfResource currentUser="${loginUser}" resource="${resource}"/>--}%
                             <g:if test="${loginUser}">
                                 <ls:isAdminOrCreatorOfResource currentUser="${loginUser}" resource="${resource}"/>
                             </g:if>

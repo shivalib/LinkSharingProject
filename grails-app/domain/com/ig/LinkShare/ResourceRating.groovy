@@ -1,7 +1,7 @@
 package com.ig.LinkShare
 
 class ResourceRating {
-    Integer score
+    float score
 
     static belongsTo = [user:User,resource:Resource]
     static constraints = {

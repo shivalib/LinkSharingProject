@@ -23,17 +23,29 @@ class showPostController {
     def rateResource() {
         println "............... in resource rate : "
 
-//        int score = params.int(params.rating)
+
         def score = params.rating
         println "<<<<< resource id :" + params.resourceID
         println "<<<<< score : " + score
 
-//        if (score > 0.5 | score > 1.5 | score > 2.5 | score > 3.5 | score > 4.5) {
-//            score = Math.round(score)
-//        }
-//        println "rounded off : " + Math.ceil(score)
+        User currentUser=userService.showCurrentUserObject(session["username"])
+        ResourceRating resourceRating=new ResourceRating(user:currentUser,resource: params.resourceID,score: score)
 
-        render "in rating"
+        List<ResourceRating> resourceRatingList=ResourceRating.createCriteria().list {
+            projections{
+                avg('score')
+            }
+        }
+         println "average : " +resourceRatingList
+
+       if(resourceRating.save(failOnError: true,flush: true)){
+
+           render true
+       }
+        else
+       {
+           render false
+       }
 
     }
 }

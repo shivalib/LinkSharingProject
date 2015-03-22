@@ -57,7 +57,8 @@ class ApplicationTagLib {
 
         def resource = attr.resource
         if (resource.class == LinkResource) {
-            out << g.render(template: "/myTemplates/isLinkResource")
+            LinkResource linkResource=LinkResource.findWhere(id: resource.id)
+            out << g.render(template: "/myTemplates/isLinkResource",model: [linkResource:linkResource])
         } else {
             out << g.render(template: "/myTemplates/isDocumentResource")
         }
