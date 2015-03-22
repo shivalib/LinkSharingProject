@@ -1,5 +1,7 @@
 package com.ig.LinkShare
 
+import com.ig.LinkShare.applicationEnums.Visibility
+
 class SubscriptionController {
     def userService
 //    todo move the all the possible code to a service and optimize your redirects
@@ -8,7 +10,6 @@ class SubscriptionController {
     def readingItemService
     def searchService
     def showTopicService
-
 
 
     def showAllSubscriptions() {
@@ -23,7 +24,7 @@ class SubscriptionController {
         List<Subscription> subscriptions = searchService.userSubscriptions(currentUser, max, offset)
         int total = subscriptions.totalCount
 
-        render(view: "topicSubscription", model: [loginUser: currentUser, subscriptions: subscriptions,topicList:topics.topicName, max: max, offset: offset, subscriptionCount: total])
+        render(view: "topicSubscription", model: [loginUser: currentUser, subscriptions: subscriptions, topicList: topics.topicName, max: max, offset: offset, subscriptionCount: total])
     }
 
     def paginate() {
@@ -92,14 +93,17 @@ class SubscriptionController {
     def changeVisibility() {
         println "---ready to change visibility!!!!!!!!!!!!!!!!"
 
-        Topic topic=Topic.get(params.topicID)
-        println topic.topicName
-        println params.visibility
-        topic.visibility=params.visibility
-        topic.save(failOnError: true,flush: true)
-        render "tadaaaaaaaaaan !"
-//        topic.visibility = params.visibility
-//        topic.save(failOnError: true, flush: true)
+        Topic topic = Topic.get(params.topicID)
+        topic.visibility = params.visibility
+        topic.save(failOnError: true, flush: true)
+
+
+        if (topic.visibility == Visibility.PUBLIC) {
+            render(template: "/home/adminOptions", model: [topic: topic])
+        } else {
+            render true
+        }
+
     }
 
 }

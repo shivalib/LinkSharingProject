@@ -1,13 +1,10 @@
 <g:each in="${top5SubscribedTopics}" var="subscribedTopics">
-    <div class="panel-body">
+    <div class="panel-body" id="startDiv">
         <div class="media ">
             <div class="media-left">
                 <a href="#">
-                    %{--<a href="${createLink(controller: "userProfile",action: "showUserPublicProfile")}">--}%
                     <img src="${createLink(controller: "image", action: "renderImage", params: [path: subscribedTopics.createdBy.photoPath])}"
                          class="media-object mediaFace">
-                    %{--<g:img class="media-object mediaFace" dir="images" file="person-icon.png"--}%
-                    %{--alt="Person"></g:img>--}%
                 </a>
             </div>
 

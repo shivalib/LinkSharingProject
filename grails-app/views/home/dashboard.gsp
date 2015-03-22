@@ -133,12 +133,9 @@
 
     $('.markReadOrUnread').on('click', function () {
         console.log("******** mark as read*********");
-
-
         //_markAsRead->ajax->controller
         var currentUser = $(this).attr('data-currentUser'),
                 currentResource = $(this).attr('data-currentResource'), currentPanelBody = $(this).closest('#inboxPanel');
-
 
         console.log(currentResource, currentUser);
 

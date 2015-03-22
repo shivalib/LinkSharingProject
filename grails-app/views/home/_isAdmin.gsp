@@ -1,18 +1,7 @@
 <%@ page import="com.ig.LinkShare.applicationEnums.Visibility; com.ig.LinkShare.applicationEnums.Seriousness" %>
-%{--todo move this template to its respective folder--}%
-<span class="left">
-    <g:select name="visibility" from="${com.ig.LinkShare.applicationEnums.Visibility}" value="${topic.visibility}"
-              data-changeVisibility="${createLink(controller: "subscription", action: "changeVisibility")}"
-              data-topic-id="${topic.id}"/>
 
-    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myEditModal-${topic.topicName}">
-        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-    </button>
-
-
-    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myEditModal-${topic.id}">
-        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-    </button>
+<span class="left" id="visibilitySpan">
+   <g:render template="adminOptions" model="[topic:topic]"/>
 
 </span>
 
@@ -78,10 +67,10 @@
                 </g:form>
             </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+            %{--<div class="modal-footer">--}%
+                %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
+                %{--<button type="button" class="btn btn-primary">Save changes</button>--}%
+            %{--</div>--}%
         </div>
     </div>
 </div>

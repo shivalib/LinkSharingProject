@@ -17,6 +17,16 @@ $(document).ready(function () {
             },
             success: function (data) {
                 console.log(data)
+                if(!data==true){
+                    console.log('i m public')
+                    $('#visibilitySpan').html(data)
+                }
+                else
+                {
+                    console.log('i m private')
+                    $('#startDiv').empty()
+                }
+
             }
         })
     });
