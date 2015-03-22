@@ -2,8 +2,13 @@
 <html>
 <head>
     <title></title>
-    %{--<meta name="layout" content="createResourceLayout">--}%
-    <meta name="layout" content="dashboardLayout">
+    <g:if test="${loginUser}">
+        <meta name="layout" content="dashboardLayout">
+    </g:if>
+    <g:else>
+        <meta name="layout" content="loginLayout">
+    </g:else>
+
     <!-- raty : rating -->
     <asset:javascript src="jquery.raty.js"/>
     <asset:stylesheet src="jquery.raty.css"/>

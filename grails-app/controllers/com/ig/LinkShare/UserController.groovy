@@ -59,12 +59,6 @@ class UserController {
     }
 
 
-//    def UserProfile() {
-//
-//        render(view: "userProfile")
-//    }
-
-
     def registerUser(User user, UserCO userCO) {
         user.active = true
         user.admin = false

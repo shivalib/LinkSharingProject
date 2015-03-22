@@ -4,8 +4,6 @@ import com.ig.LinkShare.applicationEnums.UserCO
 
 class LoginController {
     def index() {
-
-
     }
 
     def loginHandler(String email, String password) {
@@ -17,7 +15,7 @@ class LoginController {
             redirect(controller: "home", action: "dashboard", params: [username: session["username"]])
         } else {
             flash.message = "Invalid username or password!"
-//            redirect(controller: "home", action: "index")
+            redirect(controller: "home", action: "index")
         }
 //        render(view: "/home/dashboard",model: [username: username])
     }
@@ -48,6 +46,21 @@ class LoginController {
             render true
         else
             render false
+    }
+
+    Boolean validateUsername() {
+        println "##### in validate username ####"
+
+        List<User> userList = User.createCriteria().list {
+            projections {
+                property("username")
+            }
+        }
+            println params.username
+        if (userList.contains(params.username))
+            render false
+        else
+            render true
     }
 
 

@@ -12,11 +12,12 @@ $(document).ready(function () {
         $.ajax({
             url: url,
             data: {
-                topicID:topicID,
-                visibility:changedVal
+                topicID: topicID,
+                visibility: changedVal
             },
             success: function (data) {
                 console.log(data)
+
             }
         })
     });

@@ -47,7 +47,16 @@ $(document).ready(function () {
                 email:true
             },
             username:{
-                required:true
+                required:true,
+                remote: {
+                    url: $('#checkUsername').attr('data-checkUsername'),
+                    type: 'post',
+                    data: {
+                        username: function () {
+                            return $('#checkUsername').val()
+                        }
+                    }
+                }
             },
             password:{
                 required:true
@@ -63,7 +72,10 @@ $(document).ready(function () {
                 required:"Email is required",
                 email:"Enter a valid Email ID"
             },
-            username:"Username cannot be empty",
+            username:{
+                required:"Username cannot be empty",
+                remote:"Username already exists, try something different!"
+            },
             password:"Password cannot be empty",
             confirmPassword:"Enter password again to confirm it"
         }

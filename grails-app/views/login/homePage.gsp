@@ -32,6 +32,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Top Posts</h3>
             </div>
+
             <div class="panel-body">
                 <g:each in="${resources}" var="res">
                     <ls:showListingPages resource="${res}"/>
@@ -97,7 +98,9 @@
 
                     <div>
                         <span>Username*</span>
-                        <g:textField name="username" placeholder="Username"></g:textField>
+                        <g:textField name="username" id="checkUsername"
+                                     data-checkUsername="${createLink(controller: "login", action: "validateUsername")}"
+                                     placeholder="Username"></g:textField>
                     </div>
 
                     <div>
@@ -120,21 +123,8 @@
                     </div>
                 </g:form>
             </div>
-        </div><!--registeration form ends-->
+        </div><!--registration form ends-->
     </div><!-- col 4 end-->
 </div><!--Ending div -->
-<script>
-    $('#myform').validate({
-        rules: {
-            username: {
-                required: true
-            },
-            password: {
-                required: true
-            }
-        }
-    });
-
-</script>
 </body>
 </html>

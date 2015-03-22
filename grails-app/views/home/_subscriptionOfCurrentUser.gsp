@@ -28,7 +28,7 @@
                 </div>
                 <br><br><br>
 
-                <div>
+                <div class="updateTags">
                     <ls:isEditable currentUser="${loginUser}"
                                    topicCreater="${subscribedTopics.createdBy}"
                                    topicID="${subscribedTopics.id}"/>
