@@ -9,7 +9,7 @@
     %{--<asset:javascript src="jquery.min.js"/>--}%
     <asset:javascript src="jquery-2.1.3.js"/>
     <asset:javascript src="bootstrap.min.js"/>
-
+    <asset:javascript src="dashboard.js"/>
 </head>
 <g:layoutHead/>
 <body>
@@ -36,8 +36,13 @@
     <!--Search-->
         <div>
             <form class="navbar-form navbar-right " role="search">${params.username}
+
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" id="searchGlobal"
+                           class="form-control"
+                           onkeyup="searchAllPagesUsingAjax('${createLink(controller: "search",action: "searchAll")}')"
+                           placeholder="Search"/>
+
                 </div>
 
                 <g:if test="${loginUser}">

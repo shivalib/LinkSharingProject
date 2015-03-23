@@ -123,10 +123,22 @@
             </div>
 
             <div id="unreadDiv">
-                <g:render template="/dashboard/iterateInbox" model="[readingItemListWithIsReadFalse:readingItemListWithIsReadFalse]"/>
+                <g:render template="/dashboard/iterateInbox"
+                          model="[readingItemListWithIsReadFalse: readingItemListWithIsReadFalse]"/>
             </div>
         </div><!--panel ends-->
-    </div>
+        <div class="panel panel-default rightdiv">
+            <div class="panel-heading">
+                <h3 class="panel-title">Search for :</h3>
+            </div>
+            <div class="panel-body">
+                <div class="addSearchData">
+
+                </div>
+                %{--<g:render template="/search/searchResult"/>--}%
+            </div>
+        </div>
+    </div><!--col-md-7-->
 </div>
 <script>
 

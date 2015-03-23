@@ -19,8 +19,8 @@ class HomeController {
         params.order = params.order ?: 'desc'
 
         List<Resource> resources = showResourceService.calculateResourceList()
-        println ">>>>>>>>>>>>>>>>>>>>>>>.index"
-        println ">>>>>>>>>>>>>>>>>>>>>>>.Home"
+//        println ">>>>>>>>>>>>>>>>>>>>>>>.index"
+//        println ">>>>>>>>>>>>>>>>>>>>>>>.Home"
 
         render(view: "/login/homePage", model: [resources: resources, resourceCount: resources.count])
     }

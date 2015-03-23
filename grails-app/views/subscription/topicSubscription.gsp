@@ -32,7 +32,7 @@
     </div>
 
     <div class="col-md-7">
-        <div class="panel panel-default leftdiv">
+        <div class="panel panel-default rightdiv">
             <div class="panel-heading">
                 <h3 class="panel-title">Posts</h3>
             </div>
@@ -41,6 +41,17 @@
                 <div id="updatePost">
                     %{--<g:render template="/search/postOnTopicName" model="[]"--}%
                 </div>
+            </div>
+        </div>
+        <div class="panel panel-default rightdiv">
+            <div class="panel-heading">
+                <h3 class="panel-title">Search for :</h3>
+            </div>
+            <div class="panel-body">
+                <div class="addSearchData">
+
+                </div>
+                %{--<g:render template="/search/searchResult"/>--}%
             </div>
         </div>
     </div>

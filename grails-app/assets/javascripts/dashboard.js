@@ -48,5 +48,23 @@ function searchInboxUsingAjax(searchUrl){
         }
 
     })
+}
+
+function searchAllPagesUsingAjax(searchAllUrl,searchPageUrl){
+    console.log(searchAllUrl)
+    var textToSearch=$('#searchGlobal').val()
+    console.log(textToSearch)
+
+    $.ajax({
+        url:searchAllUrl,
+        data:{
+            textToSearch:textToSearch
+        },
+        success: function (data) {
+            console.log(data)
+            $('.addSearchData').html(data)
+        }
+
+    })
 
 }

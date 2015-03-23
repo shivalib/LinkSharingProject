@@ -14,7 +14,7 @@ class ShowResourceService {
 
 
     List<Resource> calculateResourceList(){
-        List<Resource> resources = Resource.createCriteria().list(max:5,offset:0,sort:'id',order:'desc') {
+        List<Resource> resources = Resource.createCriteria().list() {
             'topic' {
                 eq('visibility', Visibility.PUBLIC)
             }
