@@ -48,6 +48,7 @@ $(document).ready(function () {
             },
             username:{
                 required:true,
+
                 remote: {
                     url: $('#checkUsername').attr('data-checkUsername'),
                     type: 'post',

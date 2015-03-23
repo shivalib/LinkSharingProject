@@ -4,7 +4,8 @@
 <div class="media ">
     <div class="media-left">
         <g:link  controller="userProfile" action="showUserPublicProfile">
-            <img class="media-object mediaFace " src="${resource(dir: "images",file:"person-icon.png")}" alt="Person">
+            <img src="${createLink(controller: "image", action: "renderImage", params: [path: res.topic.createdBy.photoPath])}"
+                 class="media-object mediaFace">
         </g:link>
     </div>
     <div class="media-body">

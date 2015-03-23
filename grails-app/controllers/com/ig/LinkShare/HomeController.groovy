@@ -20,7 +20,6 @@ class HomeController {
         List<Resource> resources = showResourceService.calculateResourceList()
 
         List<Resource> resources1=showResourceService.showTopPost()
-        resources1.each {println it}
 
 //        if(session["username"])
 //        {
