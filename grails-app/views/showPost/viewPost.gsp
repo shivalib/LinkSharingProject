@@ -119,6 +119,18 @@
             </div><!--panel body ends-->
         </g:if>
         </div><!--panel ends-->
+        <div class="panel panel-default leftdiv">
+            <div class="panel-heading">
+                <h3 class="panel-title">Search for :</h3>
+            </div>
+
+            <div class="panel-body">
+                <div class="addSearchData">
+
+                </div>
+                %{--<g:render template="/search/searchResult"/>--}%
+            </div>
+        </div>
     </div><!--col-md-7 ends-->
 
     <div class="col-md-5">
@@ -168,18 +180,7 @@
                 </g:each>
             </div><!-- panel ends-->
         %{--<ls:checkUser/>--}%
-            <div class="panel panel-default rightdiv">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Search for :</h3>
-                </div>
 
-                <div class="panel-body">
-                    <div class="addSearchData">
-
-                    </div>
-                    %{--<g:render template="/search/searchResult"/>--}%
-                </div>
-            </div>
 
         </g:if>
         <g:else>

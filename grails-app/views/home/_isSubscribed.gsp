@@ -7,7 +7,11 @@
 
     <span class="right">
 
-        <g:select name="seriousness" from="${com.ig.LinkShare.applicationEnums.Seriousness}" value="${subscription.seriousness}" />
+        %{--<g:select name="seriousness" from="${com.ig.LinkShare.applicationEnums.Seriousness}" value="${subscription.seriousness}" />--}%
+
+        <g:select name="seriousness" class="subscribeSeriousness" from="${com.ig.LinkShare.applicationEnums.Seriousness}"
+                  value="${subscription.seriousness}" id="${subscription.id}"
+                  data-changeSerious="${createLink(controller: "subscription",action: "changeSeriousness")}" />
 
         <button type="button" class="btn btn-default btn-md" data-toggle="modal" data-target="#mySendInviteModal">
             <span class="glyphicon glyphicon-envelope" aria-hidden="true"/>

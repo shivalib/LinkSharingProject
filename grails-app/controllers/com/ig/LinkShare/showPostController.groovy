@@ -1,5 +1,7 @@
 package com.ig.LinkShare
 
+
+
 class showPostController {
     def userService
     def trendingTopicService
@@ -8,13 +10,16 @@ class showPostController {
     def index(Long id) {
 
         Resource resource= Resource.get(id)
-        println "resource id : " + id
+
+//        Topic topic=Topic.findWhere(resources: resource)
 
         List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
 
         User currentUser = userService.showCurrentUserObject(session["username"])
 
-        render(view: "/showPost/viewPost", model: [loginUser: currentUser,trendingTopicList: trendingTopics,resource:resource])
+        Subscription subscription = Subscription.findWhere(user: currentUser)
+
+        render(view: "/showPost/viewPost", model: [loginUser: currentUser,subscription:subscription,trendingTopicList: trendingTopics,resource:resource])
     }
 
     def postsForAdmin(){
