@@ -10,9 +10,6 @@ class showPostController {
         Resource resource= Resource.get(id)
         println "resource id : " + id
 
-//        List<Resource> resourceList = showResourceService.showResourcesByTopic(topic)
-//        resourceList.each { println "----------" + it }
-
         List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
 
         User currentUser = userService.showCurrentUserObject(session["username"])

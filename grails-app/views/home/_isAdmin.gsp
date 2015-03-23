@@ -1,15 +1,28 @@
 <%@ page import="com.ig.LinkShare.applicationEnums.Visibility; com.ig.LinkShare.applicationEnums.Seriousness" %>
 
-<span class="left" id="visibilitySpan">
-   <g:render template="/home/adminOptions" model="[topic:topic]"/>
+<span class="left optionSpan">
 
+    <g:select name="visibility" class="topicVisibility" from="${com.ig.LinkShare.applicationEnums.Visibility}"
+              value="${topic.visibility}"
+              data-changeVisibility="${createLink(controller: "subscription", action: "changeVisibility")}"
+              data-topic-id="${topic.id}"/>
+
+
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myEditModal-${topic.topicName}">
+        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+    </button>
+
+
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myEditModal-${topic.id}">
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+    </button>
 </span>
 
 <!-- Modal:edit -->
 <div class="modal fade" id="myEditModal-${topic.topicName}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content">topicName
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
@@ -68,8 +81,8 @@
             </div>
 
             %{--<div class="modal-footer">--}%
-                %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
-                %{--<button type="button" class="btn btn-primary">Save changes</button>--}%
+            %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
+            %{--<button type="button" class="btn btn-primary">Save changes</button>--}%
             %{--</div>--}%
         </div>
     </div>

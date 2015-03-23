@@ -57,13 +57,7 @@ class UserController {
         user.save(failOnError: true,flush: true)
 
         render(template: "/userListing/isActiveOrDeactive",model: [user:user])
-//        def actionResult
-//        if (user.save(failOnError: true, flush: true)) {
-//
-//        }
-//        else {
-//
-//        }
+
     }
 
 
@@ -89,9 +83,6 @@ class UserController {
     }
 
     def resetPassword() {
-        println "in resetpassword........."
-        println "${params}"
-//        params.emailID
         render(view: "/login/resetPassword")
     }
 

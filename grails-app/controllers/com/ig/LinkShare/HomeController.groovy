@@ -9,7 +9,6 @@ class HomeController {
     def showTopicService
     def userService
     def showResourceService
-    def dateDifferenceService
 
     def index() {
 
@@ -19,10 +18,19 @@ class HomeController {
         params.order = params.order ?: 'desc'
 
         List<Resource> resources = showResourceService.calculateResourceList()
-//        println ">>>>>>>>>>>>>>>>>>>>>>>.index"
-//        println ">>>>>>>>>>>>>>>>>>>>>>>.Home"
 
-        render(view: "/login/homePage", model: [resources: resources, resourceCount: resources.count])
+        List<Resource> resources1=showResourceService.showTopPost()
+        resources1.each {println it}
+
+//        if(session["username"])
+//        {
+            render(view: "/login/homePage", model: [resources: resources, resourceCount: resources.count])
+//        }
+//        else
+//        {
+//            redirect(action: "dashboard")
+//        }
+
     }
 
     def dashboard() {

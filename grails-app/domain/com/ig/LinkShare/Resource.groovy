@@ -1,6 +1,5 @@
 package com.ig.LinkShare
 
-//todo note the difference between a plain class and abstract class - for domains
 class Resource {
     String description
     Date dateCreated
@@ -8,7 +7,7 @@ class Resource {
 
     static belongsTo = [topic:Topic,createdBy:User]
 
-    static hasMany = [readingItems:ReadingItem,resouceRatings:Resource]
+    static hasMany = [readingItems:ReadingItem,resouceRatings:ResourceRating]
 
     static constraints = {
         description maxSize: 1024

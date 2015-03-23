@@ -5,32 +5,25 @@ class LinkResourceController {
     //def index() {}
     def readingItemService
 
-    def shareLink(User user)
-    {
-        User userID=User.findWhere(username:  session["username"])
-        println userID
+    def shareLink(User user) {
+        User userID = User.findWhere(username: session["username"])
 
-        def topicID=Topic.findWhere(createdBy: userID, topicName: params.topicList)
-        println topicID.topicName
+        def topicID = Topic.findWhere(createdBy: userID, topicName: params.topicList)
 
-        LinkResource linkResource=new LinkResource(linkUrl: params.link,description: params.desc,createdBy: userID,topic:topicID)
+        LinkResource linkResource = new LinkResource(linkUrl: params.link, description: params.desc, createdBy: userID, topic: topicID)
 
-        if(linkResource.save(failOnError: true))
-        {
+        if (linkResource.save(failOnError: true)) {
             topicID.addToResources(linkResource)
             userID.addToResources(linkResource)
 
-            readingItemService.markReading(userID,linkResource,true)
+            readingItemService.markReading(userID, linkResource, true)
 
 
             flash.message = "Your link has been created !"
-        }
-        else {
+        } else {
             flash.message = "Sorry , link creating failed !"
         }
-
-        //todo: replace this redirect - render using ajax
-        redirect(controller: "home",action: "dashboard")
+        redirect(controller: "home", action: "dashboard")
     }
 
 }

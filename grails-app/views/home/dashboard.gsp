@@ -3,7 +3,7 @@
 <head>
     <title></title>
     <meta name="layout" content="dashboardLayout">
-    <asset:javascript src="dashboard.js"/>
+    %{--<asset:javascript src="dashboard.js"/>--}%
 </head>
 
 <body>

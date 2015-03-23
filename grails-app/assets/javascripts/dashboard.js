@@ -1,14 +1,9 @@
 $(document).ready(function () {
 
-    $('#visibility').on('change', function () {
-        console.log('hey i m changed!!!!!!!!!!!')
+    $('.topicVisibility').on('change', function () {
         var changedVal = $(this).val()
-        console.log('changed val : ' + changedVal)
         var url = $(this).attr('data-changeVisibility')
-        console.log("url :" + url)
         var topicID = $(this).attr('data-topic-id')
-        console.log('topic Id : ' + topicID)
-
         $.ajax({
             url: url,
             data: {
@@ -17,13 +12,10 @@ $(document).ready(function () {
             },
             success: function (data) {
                 console.log(data)
-                if(!data==true){
-                    console.log('i m public')
+                if (!data) {
                     $('#visibilitySpan').html(data)
                 }
-                else
-                {
-                    console.log('i m private')
+                else {
                     $('#startDiv').empty()
                 }
 
@@ -31,34 +23,53 @@ $(document).ready(function () {
         })
     });
 
+    $('.subscribeSeriousness').on('change', function () {
+
+        var changedVal = $(this).val()
+        var url = $(this).attr('data-changeSerious')
+        var subscribeID = $(this).attr('id')
+
+        $.ajax({
+            url: url,
+            data: {
+                subscribeID: subscribeID,
+                seriousness: changedVal
+            },
+            success: function (data) {
+
+                console.log(data)
+            }
+        })
+    });
+
 })
 
-function searchInboxUsingAjax(searchUrl){
+function searchInboxUsingAjax(searchUrl) {
     console.log(searchUrl)
-    var searchInb=$('#searchInbox').val()
+    var searchInb = $('#searchInbox').val()
     console.log(searchInb)
     $.ajax({
-        url:searchUrl,
-        data:{
-            searchInbox:searchInb
+        url: searchUrl,
+        data: {
+            searchInbox: searchInb
         },
         success: function (data) {
             console.log(data)
-                $('#unreadDiv').html(data)
+            $('#unreadDiv').html(data)
         }
 
     })
 }
 
-function searchAllPagesUsingAjax(searchAllUrl,searchPageUrl){
+function searchAllPagesUsingAjax(searchAllUrl, searchPageUrl) {
     console.log(searchAllUrl)
-    var textToSearch=$('#searchGlobal').val()
+    var textToSearch = $('#searchGlobal').val()
     console.log(textToSearch)
 
     $.ajax({
-        url:searchAllUrl,
-        data:{
-            textToSearch:textToSearch
+        url: searchAllUrl,
+        data: {
+            textToSearch: textToSearch
         },
         success: function (data) {
             console.log(data)

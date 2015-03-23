@@ -79,15 +79,13 @@ class SubscriptionController {
 
         String loginUser = session["username"]
         User currentUser = User.findByUsername(loginUser)
-        println "-------------User Name : " + currentUser
 
         def topicName = params.topicName
-        println "-------------Topic Name : " + topicName
 
         Topic topic = Topic.findByTopicName(topicName)
 
         Subscription subscription = Subscription.findByUserAndTopic(currentUser, topic)
-        println subscription.user
+
     }
 
     def changeVisibility() {
@@ -99,11 +97,19 @@ class SubscriptionController {
 
 
         if (topic.visibility == Visibility.PUBLIC) {
-            render(template: "/home/adminOptions", model: [topic: topic])
+            render false
         } else {
             render true
         }
-
     }
+
+    def changeSeriousness(){
+        Subscription subscription=Subscription.get(params.subscribeID)
+        subscription.seriousness=params.seriousness
+        subscription.save(failOnError: true,flush: true)
+        render true
+    }
+
+
 
 }

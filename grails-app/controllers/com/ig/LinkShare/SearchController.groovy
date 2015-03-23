@@ -45,17 +45,11 @@ class SearchController {
 
     def searchPost() {
         User currentUser = userService.showCurrentUserObject(session["username"])
-        println "........... in search post .........."
-        println "id :" + params.topicID
 
         Topic topic = Topic.findById(params.topicID)
         println topic.topicName
 
         List<Resource> resourceList = showResourceService.showResourcesByTopic(topic)
-        resourceList.each {
-            println "in searchPost : " + it.topic.topicName
-            println "desc : " + it.description
-        }
 
         render(template: 'postOnTopicName', model: [resourceList: resourceList, loginUser: currentUser])
     }

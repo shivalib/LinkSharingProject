@@ -5,7 +5,5 @@ import grails.transaction.Transactional
 @Transactional
 class ShowPostService {
 
-    def serviceMethod() {
 
-    }
 }

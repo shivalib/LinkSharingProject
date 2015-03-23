@@ -33,12 +33,10 @@ class LoginController {
     }
 
     def forgotPassword() {
-        println "--------in forgot password----------"
         render(view: "forgotPassword")
     }
 
     Boolean validateEmail() {
-        println "##### in validate email ####"
 
         List<User> userList = User.createCriteria().list {
             projections {
@@ -53,14 +51,12 @@ class LoginController {
     }
 
     Boolean validateUsername() {
-        println "##### in validate username ####"
 
         List<User> userList = User.createCriteria().list {
             projections {
                 property("username")
             }
         }
-        println params.username
         if (userList.contains(params.username))
             render false
         else

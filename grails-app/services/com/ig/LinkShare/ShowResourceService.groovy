@@ -22,4 +22,12 @@ class ShowResourceService {
         return resources
     }
 
+    List<Resource> showTopPost(){
+        List<Resource> resourceList=Resource.list().sort{
+            it.resouceRatings
+        }.reverse()
+
+    }
+
+
 }

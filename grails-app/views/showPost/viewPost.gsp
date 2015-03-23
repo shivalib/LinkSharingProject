@@ -68,111 +68,56 @@
 <div class="row">
     <div class="col-md-7">
         <div class="panel panel-default leftdiv">
-            <g:if test="${loginUser}">
-                <g:each in="${resourceList}" var="resource">
-                    <div class="panel-body">
-                        <div class="media ">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img src="${createLink(controller: "image", action: "renderImage", params: [path: resource.createdBy.photoPath])}"
-                                         class="media-object mediaFace">
-                                </a>
+        <g:if test="${resource}">
+            <div class="panel-body">
+                <div class="media ">
+                    <div class="media-left">
+                        <a href="#">
+                            <img src="${createLink(controller: "image", action: "renderImage", params: [path: resource.createdBy.photoPath])}"
+                                 class="media-object mediaFace">
+                        </a>
+                    </div>
+
+                    <div class="media-body">
+                        <h4 class="media-heading right">
+                            <g:if test="${loginUser}">
+                                <g:link controller="topic" action="index" id="${resource.topic.id}"
+                                        params="[loginUser: loginUser.id]">${resource.topic.topicName}</g:link>
+                            </g:if>
+                            <g:else>
+                                <g:link controller="topic" action="index" id="${resource.topic.id}"
+                                        params="[loginUser: resource.createdBy.id]">${resource.topic.topicName}</g:link>
+                            </g:else>
+                        </h4>
+
+                        <div>
+                            <div>
+                                <h4>${resource.createdBy.fullName}</h4>
                             </div>
 
-                            <div class="media-body">
-                                <h4 class="media-heading right">
-                                    <g:if test="${loginUser}">
-                                        <g:link controller="topic" action="index" id="${resource.topic.id}"
-                                                params="[loginUser: loginUser.id]">${resource.topic.topicName}</g:link>
-                                    </g:if>
-                                    <g:else>
-                                        <g:link controller="topic" action="index" id="${resource.topic.id}"
-                                                params="[loginUser: resource.createdBy.id]">${resource.topic.topicName}</g:link>
-                                    </g:else>
-                                </h4>
-
-                                <div>
-                                    <div>
-                                        <h4>${resource.createdBy.fullName}</h4>
-                                    </div>
-
-                                    <div>
-                                        @${resource.createdBy.username}
-                                    </div><br>
-                                </div>
-
-                                <div>
-                                    ${resource.description}
-                                </div>
-                                %{--<g:if test="${loginUser.}">--}%
-
-                                    <div id="ratyDiv" data-resourceID="${resource.id}">
-
-                                    </div>
-                                %{--</g:if>--}%
-
-                                <ls:checkResourceType resource="${resource}"/>
-                                <g:if test="${loginUser}">
-                                    <ls:isAdminOrCreatorOfResource currentUser="${loginUser}" resource="${resource}"/>
-                                </g:if>
-
-                            </div><!--media body ends-->
-                        </div><!--media ends -->
-                    </div><!--panel body ends-->
-
-                </g:each>
-            </g:if>
-            <g:else>
-                <div class="panel-body">
-                    <div class="media ">
-                        <div class="media-left">
-                            <a href="#">
-                                <img src="${createLink(controller: "image", action: "renderImage", params: [path: resource.createdBy.photoPath])}"
-                                     class="media-object mediaFace">
-                            </a>
+                            <div>
+                                @${resource.createdBy.username}
+                            </div><br>
                         </div>
 
-                        <div class="media-body">
-                            <h4 class="media-heading right">
-                                <g:if test="${loginUser}">
-                                    <g:link controller="topic" action="index" id="${resource.topic.id}"
-                                            params="[loginUser: loginUser.id]">${resource.topic.topicName}</g:link>
-                                </g:if>
-                                <g:else>
-                                    <g:link controller="topic" action="index" id="${resource.topic.id}"
-                                            params="[loginUser: resource.createdBy.id]">${resource.topic.topicName}</g:link>
-                                </g:else>
-                            </h4>
+                        <div>
+                            ${resource.description}
+                        </div>
+                        <g:if test="${loginUser}">
 
-                            <div>
-                                <div>
-                                    <h4>${resource.createdBy.fullName}</h4>
-                                </div>
+                        <div id="ratyDiv" data-resourceID="${resource.id}">
 
-                                <div>
-                                    @${resource.createdBy.username}
-                                </div><br>
-                            </div>
+                        </div>
+                        </g:if>
 
-                            <div>
-                                ${resource.description}
-                            </div>
-                            <g:if test="${loginUser}">
-
-                                <div id="ratyDiv" data-resourceID="${resource.id}">
-
-                                </div>
-                            </g:if>
-
-                            <ls:checkResourceType resource="${resource}"/>
-                            <g:if test="${loginUser}">
-                                <ls:isAdminOrCreatorOfResource currentUser="${loginUser}" resource="${resource}"/>
-                            </g:if>
-
-                        </div><!--media body ends-->
-                    </div><!--media ends -->
-                </div><!--panel body ends-->
-            </g:else>
+                        <ls:checkResourceType resource="${resource}"/>
+                        <g:if test="${loginUser}">
+                            <ls:isAdminOrCreatorOfResource currentUser="${loginUser}" resource="${resource}"/>
+                        </g:if>
+                    </div><!--media body ends-->
+                </div><!--media ends -->
+            </div><!--panel body ends-->
+        </g:if>
         </div><!--panel ends-->
     </div><!--col-md-7 ends-->
 
@@ -222,11 +167,12 @@
                     </div><!--panel body ends-->
                 </g:each>
             </div><!-- panel ends-->
-            %{--<ls:checkUser/>--}%
+        %{--<ls:checkUser/>--}%
             <div class="panel panel-default rightdiv">
                 <div class="panel-heading">
                     <h3 class="panel-title">Search for :</h3>
                 </div>
+
                 <div class="panel-body">
                     <div class="addSearchData">
 
