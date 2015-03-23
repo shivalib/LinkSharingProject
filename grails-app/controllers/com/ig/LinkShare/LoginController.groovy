@@ -15,7 +15,6 @@ class LoginController {
             } else {
 
                 session["username"] = user.username
-                println session["username"]
             }
             redirect(controller: "home", action: "dashboard", params: [username: session["username"]])
         } else {

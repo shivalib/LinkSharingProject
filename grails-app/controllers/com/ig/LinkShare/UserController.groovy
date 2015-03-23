@@ -1,6 +1,7 @@
 package com.ig.LinkShare
 
 import com.ig.LinkShare.applicationEnums.UserCO
+import grails.converters.JSON
 
 class UserController {
     UploadService uploadService
@@ -41,7 +42,7 @@ class UserController {
         render(view: "/userListing/userListing", model: [userList: userList, loginUser: currentUser, topicList: topics.topicName])
     }
 
-    def changeUserList(){
+    def changeUserList() {
         println "in change list"
         println "--------> ${params.selectVal}"
         render "tadaaaaaaaaaaaan!"
@@ -49,17 +50,20 @@ class UserController {
     }
 
 
-    def deactivateUser(){
+    def activateOrDeactivateUser() {
         println "------------------in deactivate user :"
-        User user=User.get(params.userID)
-        user.active=!user.active
+        User user = User.get(params.userID)
+        user.active = !user.active
         user.save(failOnError: true,flush: true)
 
-        List<User> allUsers=User.findAll()
-
-        g.render(template: "/userListing/userEntry",model: [userList:allUsers])
-
-//        g.render(template: "/showPost/tagManage",model: [user:allUsers])
+        render(template: "/userListing/isActiveOrDeactive",model: [user:user])
+//        def actionResult
+//        if (user.save(failOnError: true, flush: true)) {
+//
+//        }
+//        else {
+//
+//        }
     }
 
 

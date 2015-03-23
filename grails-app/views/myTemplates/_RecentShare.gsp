@@ -20,5 +20,5 @@
     </div>
 
     <g:render template="/myTemplates/socialIcons"/>
-    <span><g:link class="right" controller="showPost" action="index" id="${res.topic.id}">View post</g:link></span>
+    <span><g:link class="right" controller="showPost" action="index" id="${res.id}">View post</g:link></span>
 </div>

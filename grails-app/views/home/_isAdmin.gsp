@@ -1,7 +1,7 @@
 <%@ page import="com.ig.LinkShare.applicationEnums.Visibility; com.ig.LinkShare.applicationEnums.Seriousness" %>
 
 <span class="left" id="visibilitySpan">
-   <g:render template="adminOptions" model="[topic:topic]"/>
+   <g:render template="/home/adminOptions" model="[topic:topic]"/>
 
 </span>
 

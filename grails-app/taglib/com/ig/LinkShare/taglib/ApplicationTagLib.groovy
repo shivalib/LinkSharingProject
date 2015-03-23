@@ -45,7 +45,7 @@ class ApplicationTagLib {
     }
 
     def showListingPages = { attr ->
-        out << g.render(template: "/myTemplates/RecentShare", model: [res: attr.resource,diffList:attr.diffList])
+        out << g.render(template: "/myTemplates/RecentShare", model: [res: attr.resource, diffList: attr.diffList])
     }
 
     def topicListing = { attr ->
@@ -57,16 +57,16 @@ class ApplicationTagLib {
 
         def resource = attr.resource
         if (resource.class == LinkResource) {
-            LinkResource linkResource=LinkResource.findWhere(id: resource.id)
-            out << g.render(template: "/myTemplates/isLinkResource",model: [linkResource:linkResource])
+            LinkResource linkResource = LinkResource.findWhere(id: resource.id)
+            out << g.render(template: "/myTemplates/isLinkResource", model: [linkResource: linkResource])
         } else {
             out << g.render(template: "/myTemplates/isDocumentResource")
         }
     }
 
-    def timeDiffInDetail = {attrs ->
-        Map diff=DateDifferenceService.getDifferenceInDates(attrs.oldDate,attrs.newDate ?: new Date())
-        String result =  diff.years ? diff.years + " yrs " : ""
+    def timeDiffInDetail = { attrs ->
+        Map diff = DateDifferenceService.getDifferenceInDates(attrs.oldDate, attrs.newDate ?: new Date())
+        String result = diff.years ? diff.years + " yrs " : ""
         result += diff.weeks ? diff.weeks + " weeks " : ""
         result += diff.days ? diff.days + " days " : ""
         result += diff.hours ? diff.hours + " hrs " : ""
@@ -125,7 +125,7 @@ class ApplicationTagLib {
             }
         }
     }
-//
+
     def isAdminOrCreatorOfResource = { attr ->
         def currentUser = attr.currentUser
         def resource = attr.resource
@@ -135,14 +135,5 @@ class ApplicationTagLib {
         }
     }
 
-    def activateOrDeactivate={attr->
-//        out<<attr.checkUser
-        User user=User.get(attr.checkUser)
-        if(user.active){
-            out<<g.render(template: "/showPost/isActive",model: [user:user])
-        }
-        else {
-            out<<g.render(template: "/showPost/isDeactive",model: [user:user])
-        }
-    }
+
 }

@@ -68,7 +68,61 @@
 <div class="row">
     <div class="col-md-7">
         <div class="panel panel-default leftdiv">
-            <g:each in="${resourceList}" var="resource">
+            <g:if test="${loginUser}">
+                <g:each in="${resourceList}" var="resource">
+                    <div class="panel-body">
+                        <div class="media ">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img src="${createLink(controller: "image", action: "renderImage", params: [path: resource.createdBy.photoPath])}"
+                                         class="media-object mediaFace">
+                                </a>
+                            </div>
+
+                            <div class="media-body">
+                                <h4 class="media-heading right">
+                                    <g:if test="${loginUser}">
+                                        <g:link controller="topic" action="index" id="${resource.topic.id}"
+                                                params="[loginUser: loginUser.id]">${resource.topic.topicName}</g:link>
+                                    </g:if>
+                                    <g:else>
+                                        <g:link controller="topic" action="index" id="${resource.topic.id}"
+                                                params="[loginUser: resource.createdBy.id]">${resource.topic.topicName}</g:link>
+                                    </g:else>
+                                </h4>
+
+                                <div>
+                                    <div>
+                                        <h4>${resource.createdBy.fullName}</h4>
+                                    </div>
+
+                                    <div>
+                                        @${resource.createdBy.username}
+                                    </div><br>
+                                </div>
+
+                                <div>
+                                    ${resource.description}
+                                </div>
+                                %{--<g:if test="${loginUser.}">--}%
+
+                                    <div id="ratyDiv" data-resourceID="${resource.id}">
+
+                                    </div>
+                                %{--</g:if>--}%
+
+                                <ls:checkResourceType resource="${resource}"/>
+                                <g:if test="${loginUser}">
+                                    <ls:isAdminOrCreatorOfResource currentUser="${loginUser}" resource="${resource}"/>
+                                </g:if>
+
+                            </div><!--media body ends-->
+                        </div><!--media ends -->
+                    </div><!--panel body ends-->
+
+                </g:each>
+            </g:if>
+            <g:else>
                 <div class="panel-body">
                     <div class="media ">
                         <div class="media-left">
@@ -80,8 +134,14 @@
 
                         <div class="media-body">
                             <h4 class="media-heading right">
-                                %{--<g:link controller="topic" action="index" id="${resource.topic.id}"--}%
-                                %{--params="[loginUser: loginUser.id]">${resource.topic.topicName}</g:link>--}%
+                                <g:if test="${loginUser}">
+                                    <g:link controller="topic" action="index" id="${resource.topic.id}"
+                                            params="[loginUser: loginUser.id]">${resource.topic.topicName}</g:link>
+                                </g:if>
+                                <g:else>
+                                    <g:link controller="topic" action="index" id="${resource.topic.id}"
+                                            params="[loginUser: resource.createdBy.id]">${resource.topic.topicName}</g:link>
+                                </g:else>
                             </h4>
 
                             <div>
@@ -103,9 +163,8 @@
 
                                 </div>
                             </g:if>
-                            %{--${resource}--}%
+
                             <ls:checkResourceType resource="${resource}"/>
-                        %{--<ls:isAdminOrCreatorOfResource currentUser="${loginUser}" resource="${resource}"/>--}%
                             <g:if test="${loginUser}">
                                 <ls:isAdminOrCreatorOfResource currentUser="${loginUser}" resource="${resource}"/>
                             </g:if>
@@ -113,8 +172,7 @@
                         </div><!--media body ends-->
                     </div><!--media ends -->
                 </div><!--panel body ends-->
-            </g:each>
-
+            </g:else>
         </div><!--panel ends-->
     </div><!--col-md-7 ends-->
 
@@ -164,8 +222,8 @@
                     </div><!--panel body ends-->
                 </g:each>
             </div><!-- panel ends-->
+            %{--<ls:checkUser/>--}%
 
-        %{--<ls:checkUser/>--}%
         </g:if>
         <g:else>
             <g:render template="/home/notLogin"/>

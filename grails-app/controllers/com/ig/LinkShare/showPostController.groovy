@@ -7,17 +7,27 @@ class showPostController {
 
     def index(Long id) {
 
-        Topic topic = Topic.get(id)
+        Resource resource= Resource.get(id)
         println "resource id : " + id
 
-        List<Resource> resourceList = showResourceService.showResourcesByTopic(topic)
-        resourceList.each { println "----------" + it }
+//        List<Resource> resourceList = showResourceService.showResourcesByTopic(topic)
+//        resourceList.each { println "----------" + it }
 
         List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
 
         User currentUser = userService.showCurrentUserObject(session["username"])
 
-        render(view: "/showPost/viewPost", model: [loginUser: currentUser, topic: topic, trendingTopicList: trendingTopics, resourceList: resourceList])
+        render(view: "/showPost/viewPost", model: [loginUser: currentUser,trendingTopicList: trendingTopics,resource:resource])
+    }
+
+    def postsForAdmin(){
+        List<Resource> resourceList=showResourceService.calculateResourceList()
+
+        User currentUser = userService.showCurrentUserObject(session["username"])
+
+        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
+
+        render(view: "/showPost/viewPost", model: [loginUser: currentUser,trendingTopicList: trendingTopics, resourceList: resourceList])
     }
 
     def rateResource() {

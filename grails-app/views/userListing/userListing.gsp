@@ -16,7 +16,7 @@
 
                 <input type="text" id="searchUser"
                        placeholder="Search"
-                       onkeyup="searchUserUsingAjax('${createLink(controller: "search",action: "searchUser")}')"/>
+                       onkeyup="searchUserUsingAjax('${createLink(controller: "search", action: "searchUser")}')"/>
 
                 <g:select name="userType" id="selectType"
                           data-changeUser="${createLink(controller: "user", action: "changeUserList")}"
@@ -26,10 +26,22 @@
 
         </td>
     </tr>
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Active</th>
+        <th>Manage</th>
+    </tr>
+
+    <g:render template="/userListing/userEntry" model="[userList: userList]"/>
+
 </table>
 
-<div id="updateUsers">
-    <g:render template="/userListing/userEntry" model="[userList: userList]"/>
-</div>
+%{--<div id="updateUsers">--}%
+%{----}%
+%{--</div>--}%
 </body>
 </html>
