@@ -50,12 +50,16 @@ class UserController {
 
 
     def deactivateUser(){
-        println "in deactivate user :"
+        println "------------------in deactivate user :"
         User user=User.get(params.userID)
         user.active=!user.active
         user.save(failOnError: true,flush: true)
 
-        g.render(template: "/showPost/tagManage",model: [user:user])
+        List<User> allUsers=User.findAll()
+
+        g.render(template: "/userListing/userEntry",model: [userList:allUsers])
+
+//        g.render(template: "/showPost/tagManage",model: [user:allUsers])
     }
 
 

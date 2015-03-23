@@ -1,17 +1,4 @@
 
-//$("#selectType").on('change', function () {
-//    //console.log('hello')
-//    //alert('abc');
-//    $.ajax({
-//        url:$(this).attr('data-changeUser'),
-//        success: function (data) {
-//            console.log(data),
-//            console.log(url)
-//        }
-//    })
-//});
-//
-
 $(document).ready(function () {
     $('#selectType').on('change', function () {
         var selectVal=$('#selectType').val()
@@ -40,10 +27,11 @@ $(document).ready(function () {
                 userID:userID
             },
             success: function (data) {
-                alert('user deactivation : '+data)
+                console.log('user deactivation : '+data)
+                    //$('#updateUsers').html(data)
             },
             failure: function (data) {
-                alert('user deactivation : '+data)
+                console.log('user deactivation : '+data)
             }
 
         })

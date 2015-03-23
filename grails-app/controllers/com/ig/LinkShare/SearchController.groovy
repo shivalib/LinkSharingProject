@@ -41,8 +41,7 @@ class SearchController {
 
         List<User> userList1=User.list()
         List<User> userList=userList1.findAll{
-//            println it.firstName
-            it.firstName=~params.searchUserValue + "*"
+            (it.firstName=~params.searchUserValue + "*") || (it.lastName=~params.searchUserValue + "*") || (it.username=~params.searchUserValue + "*")
         }
 
         render(template: "/userListing/userEntry",model: [userList:userList])
@@ -68,18 +67,14 @@ class SearchController {
     def searchInbox(){
         println "------------ in search inbox -----------"
         println "^^^^^^^^^ ${params.searchInbox}"
-        List<ReadingItem> readingItems=ReadingItem.findAllWhere(isRead: false)
-        List<ReadingItem> readingItems1=readingItems.findAll{
-            it.resource.description=~params.searchInbox
-        }
 
-        //show Inbox
         List<ReadingItem> readingItemListWithIsReadFalse = showInboxService.showInbox(session["username"])
 
-//        <g:render template="/dashboard/iterateInbox" model="[readingItemListWithIsReadFalse:readingItemListWithIsReadFalse]"/>
+        List<ReadingItem> readingItems1=readingItemListWithIsReadFalse.findAll{
+            (it.resource.description=~params.searchInbox) || (it.resource.topic.createdBy.fullName=~params.searchInbox)
+        }
 
         render(template: "/dashboard/iterateInbox",model: [readingItemListWithIsReadFalse:readingItems1])
-//           render "tadaaaaaaaaaaaaaan!"
     }
 
 

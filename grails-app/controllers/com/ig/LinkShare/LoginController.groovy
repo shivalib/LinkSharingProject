@@ -7,11 +7,16 @@ class LoginController {
     }
 
     def loginHandler(String email, String password) {
-        if (User.findByEmailAndPassword(email, password)) {
 
+        if (User.findByEmailAndPassword(email, password)) {
             User user = User.findWhere(email: email)
-            session["username"] = user.username
-            println session["username"]
+            if (user.active == false) {
+                flash.message = "Sorry,You have been deactivated by Admin!"
+            } else {
+
+                session["username"] = user.username
+                println session["username"]
+            }
             redirect(controller: "home", action: "dashboard", params: [username: session["username"]])
         } else {
             flash.message = "Invalid username or password!"
@@ -56,7 +61,7 @@ class LoginController {
                 property("username")
             }
         }
-            println params.username
+        println params.username
         if (userList.contains(params.username))
             render false
         else

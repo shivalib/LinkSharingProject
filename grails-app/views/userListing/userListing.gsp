@@ -27,7 +27,8 @@
         </td>
     </tr>
 </table>
-<div class="updateUsers">
+
+<div id="updateUsers">
     <g:render template="/userListing/userEntry" model="[userList: userList]"/>
 </div>
 </body>
