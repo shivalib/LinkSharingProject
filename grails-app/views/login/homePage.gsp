@@ -64,7 +64,6 @@
 
                     <div>
                         <g:link controller="login" action="forgotPassword" class="left">Forgot Password</g:link>
-                        %{--<a href="" class=left>Forgot Password</a>--}%
                         <g:submitButton name="submit" id="submitLogin" class="right" value="Submit"
                                         data-emailValidate="${createLink(controller: "login", action: "validateEmail")}"/>
                     </div>

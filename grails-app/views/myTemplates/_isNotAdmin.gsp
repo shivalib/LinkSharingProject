@@ -7,7 +7,7 @@
               value="${subscription.seriousness}" id="${subscription.id}"
               data-changeSerious="${createLink(controller: "subscription",action: "changeSeriousness")}" />
 
-    <button type="button" class="btn btn-default" title="Send invitation" data-toggle="modal"
+    <button type="button" class="btn btn-default" title="Send invitaion" data-toggle="modal"
             data-target="#mySendInviteModal">
         <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
     </button>
