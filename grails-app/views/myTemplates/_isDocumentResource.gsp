@@ -1,4 +1,4 @@
 
 <div class="right">
-    <g:link>Download</g:link>
+    <g:link controller="documentResource" action="downloadResource" params="[resource:resource.id]">Download</g:link>
 </div>

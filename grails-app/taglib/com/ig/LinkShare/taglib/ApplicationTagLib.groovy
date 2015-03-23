@@ -60,7 +60,8 @@ class ApplicationTagLib {
             LinkResource linkResource = LinkResource.findWhere(id: resource.id)
             out << g.render(template: "/myTemplates/isLinkResource", model: [linkResource: linkResource])
         } else {
-            out << g.render(template: "/myTemplates/isDocumentResource")
+
+            out << g.render(template: "/myTemplates/isDocumentResource",model: [resource: resource])
         }
     }
 

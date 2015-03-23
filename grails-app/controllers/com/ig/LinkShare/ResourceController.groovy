@@ -5,4 +5,5 @@ class ResourceController {
 
     def scaffold = true
     //def index() {}
+
 }
