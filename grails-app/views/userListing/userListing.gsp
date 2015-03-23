@@ -35,13 +35,9 @@
         <th>Active</th>
         <th>Manage</th>
     </tr>
-
+    <tbody class="updateUsers">
     <g:render template="/userListing/userEntry" model="[userList: userList]"/>
-
+    </tbody>
 </table>
-
-%{--<div id="updateUsers">--}%
-%{----}%
-%{--</div>--}%
 </body>
 </html>
