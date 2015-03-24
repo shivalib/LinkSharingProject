@@ -22,6 +22,13 @@ class ShowResourceService {
         return resources
     }
 
+    List<Resource> calculateResourceListForAdmin(){
+        List<Resource> resources = Resource.createCriteria().list() {
+
+        }
+        return resources
+    }
+
     List<Resource> showTopPost(){
         List<Resource> resourceList=Resource.list().sort{
             it.resouceRatings

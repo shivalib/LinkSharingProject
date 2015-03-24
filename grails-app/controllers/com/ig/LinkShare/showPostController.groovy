@@ -23,7 +23,7 @@ class showPostController {
     }
 
     def postsForAdmin(){
-        List<Resource> resourceList=showResourceService.calculateResourceList()
+        List<Resource> resourceList=showResourceService.calculateResourceListForAdmin()
 
         User currentUser = userService.showCurrentUserObject(session["username"])
 

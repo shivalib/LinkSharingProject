@@ -16,7 +16,7 @@
 
     <script>
         $(document).ready(function () {
-            $('#ratyDiv').raty({
+            $('.ratyDiv').raty({
                 /*score: function () {
                  $(this).data('avg')
                  },*/
@@ -26,9 +26,6 @@
 
                     var url = "${createLink(controller: "showPost",action: "rateResource")}"
                     console.log(url)
-
-//                    var stars = $(this).find("input[name='score']").val();
-//                    console.log("Stars : "+stars)
 
                     var id = $(this).attr('data-resourceID')
                     console.log("Rescource id : " + id)
@@ -67,70 +64,24 @@
 <body>
 <div class="row">
     <div class="col-md-7">
-        <div class="panel panel-default leftdiv">
-        <g:if test="${resource}">
-            <div class="panel-body">
-                <div class="media ">
-                    <div class="media-left">
-                        <a href="#">
-                            <img src="${createLink(controller: "image", action: "renderImage", params: [path: resource.createdBy.photoPath])}"
-                                 class="media-object mediaFace">
-                        </a>
-                    </div>
-
-                    <div class="media-body">
-                        <h4 class="media-heading right">
-                            <g:if test="${loginUser}">
-                                <g:link controller="topic" action="index" id="${resource.topic.id}"
-                                        params="[loginUser: loginUser.id]">${resource.topic.topicName}</g:link>
-                            </g:if>
-                            <g:else>
-                                <g:link controller="topic" action="index" id="${resource.topic.id}"
-                                        params="[loginUser: resource.createdBy.id]">${resource.topic.topicName}</g:link>
-                            </g:else>
-                        </h4>
-
-                        <div>
-                            <div>
-                                <h4>${resource.createdBy.fullName}</h4>
-                            </div>
-
-                            <div>
-                                @${resource.createdBy.username}
-                            </div><br>
-                        </div>
-
-                        <div>
-                            ${resource.description}
-                        </div>
-                        <g:if test="${loginUser}">
-
-                        <div id="ratyDiv" data-resourceID="${resource.id}">
-
-                        </div>
-                        </g:if>
-
-                        <ls:checkResourceType resource="${resource}"/>
-                        <g:if test="${loginUser}">
-                            <ls:isAdminOrCreatorOfResource currentUser="${loginUser}" resource="${resource}"/>
-                        </g:if>
-                    </div><!--media body ends-->
-                </div><!--media ends -->
-            </div><!--panel body ends-->
+        <g:if test="${loginUser}">
+            <ls:checkUserForPost currentUser="${loginUser}"/>
         </g:if>
-        </div><!--panel ends-->
-        <div class="panel panel-default leftdiv">
-            <div class="panel-heading">
-                <h3 class="panel-title">Search for :</h3>
-            </div>
+        <g:else>
+            <g:render template="postForNonRegisteredUser"/>
+        </g:else>
+        %{--<div class="panel panel-default leftdiv">--}%
+        %{--<div class="panel-heading">--}%
+        %{--<h3 class="panel-title">Search for :</h3>--}%
+        %{--</div>--}%
 
-            <div class="panel-body">
-                <div class="addSearchData">
+        %{--<div class="panel-body">--}%
+        %{--<div class="addSearchData">--}%
 
-                </div>
-                %{--<g:render template="/search/searchResult"/>--}%
-            </div>
-        </div>
+        %{--</div>--}%
+        %{--<g:render template="/search/searchResult"/>--}%
+        %{--</div>--}%
+        %{--</div>--}%
     </div><!--col-md-7 ends-->
 
     <div class="col-md-5">
@@ -180,7 +131,6 @@
                 </g:each>
             </div><!-- panel ends-->
         %{--<ls:checkUser/>--}%
-
 
         </g:if>
         <g:else>
