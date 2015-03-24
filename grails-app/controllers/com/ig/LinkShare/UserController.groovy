@@ -19,7 +19,7 @@ class UserController {
             User user = User.findByUsername(currentUser)
 
             if (user.admin) {
-                println "in interceptor"
+//                println "in interceptor"
                 println user.admin
 
             } else {
@@ -31,9 +31,8 @@ class UserController {
 
 
     def list() {
-        println "in list"
+
         List<User> userList = User.list()
-        println params
 
         User currentUser = userService.showCurrentUserObject(session["username"])
 
@@ -42,21 +41,12 @@ class UserController {
         render(view: "/userListing/userListing", model: [userList: userList, loginUser: currentUser, topicList: topics.topicName])
     }
 
-    def changeUserList() {
-        println "in change list"
-        println "--------> ${params.selectVal}"
-        render "tadaaaaaaaaaaaan!"
-
-    }
-
-
     def activateOrDeactivateUser() {
-        println "------------------in deactivate user :"
         User user = User.get(params.userID)
         user.active = !user.active
-        user.save(failOnError: true,flush: true)
+        user.save(failOnError: true, flush: true)
 
-        render(template: "/userListing/isActiveOrDeactive",model: [user:user])
+        render(template: "/userListing/isActiveOrDeactive", model: [user: user])
 
     }
 
@@ -69,7 +59,7 @@ class UserController {
 
         if (!userCO.validate()) {
             userCO.errors.allErrors.each {
-                println "Error in saving data"
+                println it
             }
 
             flash.message = "Registration Failed : Password Mismatch"

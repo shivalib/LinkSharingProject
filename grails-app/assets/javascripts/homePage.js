@@ -37,10 +37,12 @@ $(document).ready(function () {
     $('#registerForm').validate({
         rules:{
             firstName:{
-                required:true
+                required:true,
+                minlength:3
             },
             lastName:{
-                required:true
+                required:true,
+                minlength:3
             },
             email:{
                 required:true,
@@ -57,27 +59,40 @@ $(document).ready(function () {
                             return $('#checkUsername').val()
                         }
                     }
-                }
+                },
+                minlength:5
             },
             password:{
-                required:true
+                required:true,
+                minlength:5
             },
             confirmPassword:{
                 required:true
             }
         },
         messages:{
-            firstName:"First Name cannot be empty",
-            lastName:"Last Name cannot be empty",
+            firstName:{
+                required:"First Name cannot be empty",
+                minlength:"Too short! Min length :3"
+            },
+            lastName:{
+                required:"Last Name cannot be empty",
+                minlength:"Too short! Min length :5"
+            },
             email:{
                 required:"Email is required",
                 email:"Enter a valid Email ID"
             },
             username:{
                 required:"Username cannot be empty",
+                minlength:"Too short! Min length :5",
                 remote:"Username already exists, try something different!"
+
             },
-            password:"Password cannot be empty",
+            password:{
+                required:"Password cannot be empty",
+                minlength:"Too short! Min length :5"
+            },
             confirmPassword:"Enter password again to confirm it"
         }
     })
