@@ -101,7 +101,7 @@
                 </span>
             </div>
             <g:each in="${resources}" var="resourceList">
-                <div class="panel-body">
+                <div class="panel-body updateReading">
                     <div class="media ">
                         <div class="media-left">
                             <a href="#">

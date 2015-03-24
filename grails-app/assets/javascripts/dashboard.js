@@ -23,6 +23,39 @@ $(document).ready(function () {
         })
     });
 
+    $('.markReadOrUnread').on('click', function () {;
+        //_markAsRead->ajax->controller
+        var currentUser = $(this).attr('data-currentUser'),
+            currentResource = $(this).attr('data-currentResource'), currentPanelBody = $(this).closest('.updateReading'),url=$(this).attr('data_readLink')
+
+        console.log(currentResource, currentUser);
+
+        $.ajax({
+            url: url,
+
+            data: {
+                currentUser: currentUser,
+                currentResource: currentResource
+            },
+            success: function (data) {
+                console.log(data)
+
+                if (data.result && data.isRead)
+                    currentPanelBody.empty()
+                else if(data.result && !data.isRead)
+                    $('#markReadID').html('Mark as Read')
+
+            },
+            error: function (request, status, error) {
+                console.log("We are in error section ");
+                console.log("request :" + request);
+                console.log("status : " + status);
+                console.log("error :" + error);
+            }
+        });
+    });
+
+
     $('.subscribeSeriousness').on('change', function () {
 
         var changedVal = $(this).val()

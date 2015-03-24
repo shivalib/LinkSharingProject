@@ -17,11 +17,11 @@ class ReadingItemController {
         def appResult
         if (readingItem.save(failOnError: true, flush: true)) {
 
-            appResult = [result: true]
+            appResult = [result: true,isRead:readingItem.isRead]
 //            render(template: "/myTemplates/inboxPanelBody",model:['unreadItem':readingItem,loginUser:currentUser] )
         } else {
 
-            appResult = [result: false]
+            appResult = [result: false,isRead:readingItem.isRead]
         }
 
         render appResult as JSON

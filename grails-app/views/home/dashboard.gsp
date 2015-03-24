@@ -122,10 +122,10 @@
                 </h3></span>
             </div>
 
-            <div id="unreadDiv">
+            %{--<div >--}%
                 <g:render template="/dashboard/iterateInbox"
                           model="[readingItemListWithIsReadFalse: readingItemListWithIsReadFalse]"/>
-            </div>
+            %{--</div>--}%
         </div><!--panel ends-->
         <div class="panel panel-default rightdiv">
             <div class="panel-heading">
@@ -140,41 +140,5 @@
         </div>
     </div><!--col-md-7-->
 </div>
-<script>
-
-    $('.markReadOrUnread').on('click', function () {
-        console.log("******** mark as read*********");
-        //_markAsRead->ajax->controller
-        var currentUser = $(this).attr('data-currentUser'),
-                currentResource = $(this).attr('data-currentResource'), currentPanelBody = $(this).closest('#inboxPanel');
-
-        console.log(currentResource, currentUser);
-
-        $.ajax({
-            url: '${createLink(controller: "readingItem",action: "markAsReadOrUnread")}',
-
-            data: {
-                currentUser: currentUser,
-                currentResource: currentResource
-            },
-            success: function (data) {
-                console.log(data)
-
-                if (data.result)
-                    currentPanelBody.empty()
-
-            },
-            error: function (request, status, error) {
-                console.log("We are in error section ");
-                console.log("request :" + request);
-                console.log("status : " + status);
-                console.log("error :" + error);
-            }
-        });
-    });
-
-
-
-</script>
 </body>
 </html>
