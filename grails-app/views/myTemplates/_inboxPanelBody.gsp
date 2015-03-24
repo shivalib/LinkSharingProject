@@ -1,9 +1,10 @@
 <div class="media ">
     <div class="media-left">
-        <a href="#">
+        <a href="${createLink(controller: "userProfile",action: "showUserPublicProfile",params: [id:unreadItem.resource.topic.createdBy.id])}">
             <img src="${createLink(controller: "image", action: "renderImage", params: [path: unreadItem.resource.topic.createdBy.photoPath])}"
                  class="media-object mediaFace">
         </a>
+
     </div>
 
     <div class="media-body">

@@ -2,8 +2,8 @@
     <div class="panel-body">
         <div class="media ">
             <div class="media-left">
-                <a href="#">
-                    <img src="${createLink(controller: "image", action: "renderImage", params: [path: trending.createdBy.photoPath])}"
+                <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile", params: [id:trending.createdBy.id])}"  >
+                    <img src="${createLink(controller: "image", action: "renderImage",params: [path: trending.createdBy.photoPath])}"
                          class="media-object mediaFace">
                 </a>
             </div>

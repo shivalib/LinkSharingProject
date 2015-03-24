@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -14,11 +13,11 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Topic : ${topic.topicName}</h3>
             </div>
-
+                %{--................ ${topic.createdBy.id}--}%
             <div class="panel-body">
                 <div class="media ">
                     <div class="media-left">
-                        <a href="#">
+                        <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile",params: [id:topic.createdBy.id])}">
                             <img src="${createLink(controller: "image", action: "renderImage", params: [path: topic.createdBy.photoPath])}"
                                  class="media-object mediaFace">
                         </a>
@@ -32,38 +31,40 @@
                         <div>
                             <h5>@${topic.createdBy.username}
 
-                            <span class="right">Posts
-                                <div>${topic.resources.size()}</div>
-                            </span>
-                            <span class="right rightdiv">Subscriptions
-                                <div>${topic.subscriptions.size()}</div>
-                            </span>
+                                <span class="right">Posts
+                                    <div>${topic.resources.size()}</div>
+                                </span>
+                                <span class="right rightdiv">Subscriptions
+                                    <div>${topic.subscriptions.size()}</div>
+                                </span>
                             </h5>
                         </div>
                         <br>
+
                         <div>
                             <ls:isSubscribed currentUser="${loginUser}" topicID="${topic}"/>
-                            <ls:isNotSubscribed currentUser="${loginUser}" topicID="${topic}" topicName="${topic.topicName}"/>
+                            <ls:isNotSubscribed currentUser="${loginUser}" topicID="${topic}"
+                                                topicName="${topic.topicName}"/>
                         </div>
                     </div><!--media body ends-->
                 </div><!--media ends -->
             </div><!--panel body ends-->
         </div><!-- panel ends-->
 
-        <!--users-->
+    <!--users-->
         <div class="panel panel-default leftdiv">
             <div class="panel-heading">
                 <h3 class="panel-title">Users : ${topic.topicName}</h3>
             </div>
-        <g:each in="${subscribers}" var="subscriberList">
-            <div class="panel-body">
-                <div class="media ">
-                    <div class="media-left">
-                        <a href="#">
-                            <img src="${createLink(controller: "image", action: "renderImage", params: [path: subscriberList.user.photoPath])}"
-                                 class="media-object mediaFace">
-                        </a>
-                    </div>
+            <g:each in="${subscribers}" var="subscriberList">
+                <div class="panel-body">
+                    <div class="media ">
+                        <div class="media-left">
+                            <a href="#">
+                                <img src="${createLink(controller: "image", action: "renderImage", params: [path: subscriberList.user.photoPath])}"
+                                     class="media-object mediaFace">
+                            </a>
+                        </div>
 
                         <div class="media-body">
                             <h4 class="media-heading">${subscriberList.user.fullName}</h4>
@@ -81,13 +82,13 @@
                                 </span>
                             </div>
                         </div><!--media body ends-->
-                </div><!--media ends -->
-            </div><!--panel body ends-->
-                    </g:each>
+                    </div><!--media ends -->
+                </div><!--panel body ends-->
+            </g:each>
         </div><!-- panel ends-->
     </div><!--col md-5 ends-->
 
-    <!--posts-->
+<!--posts-->
     <div class="col-md-7">
         <div class="panel panel-default rightdiv">
             <div class="panel-heading">

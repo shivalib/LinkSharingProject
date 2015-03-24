@@ -70,9 +70,24 @@ class SearchController {
         User currentUser=userService.showCurrentUserObject(session["username"])
         List<Resource> resourceList=showResourceService.calculateResourceList()
 
-        List<Resource> resources=resourceList.findAll{
-            (it.topic.topicName=~params.textToSearch + "*") || (it.description=~params.textToSearch + "*")
+//        List<Resource> resources=resourceList.findAll{
+//            (it.topic.topicName=~params.textToSearch + "*") || (it.description=~params.textToSearch + "*")
+//        }
+        List<Resource> resources=Resource.createCriteria().list {
+
+                ilike('description',params.textToSearch+'%')
+
         }
+        List topic=Topic.createCriteria().list(){
+            ilike('topicName',params.textToSearch+'%')
+        }
+
+        List newList=[]
+        topic.each {
+            newList+=it.resources
+        }
+
+        resources+=newList
 
         render(template: "searchResult",model: [resourceList: resources,loginUser: currentUser] )
 

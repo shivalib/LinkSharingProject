@@ -15,10 +15,11 @@
                 %{--<g:each in="${currentUser}" var="usr">--}%
                 <div class="media ">
                     <div class="media-left">
-                        <a href="#">
+                        <a href="${createLink(controller: "userProfile",action: "showUserPublicProfile",params: [id:loginUser.id])}">
                             <img src="${createLink(controller: "image", action: "renderImage", params: [path: loginUser.photoPath])}"
                                  class="media-object mediaFace">
                         </a>
+
                     </div>
                     <div class="media-body">
 

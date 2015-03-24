@@ -1,11 +1,8 @@
 <%@ page import="com.ig.LinkShare.applicationEnums.Visibility; com.ig.LinkShare.applicationEnums.Seriousness" %>
-%{--todo move this template to its respective folder--}%
-
-
 <div class="media ">
     <div class="media-left">
-        <a href="#">
-            <img src="${createLink(controller: "image", action: "renderImage", params: [path: loginUser.photoPath])}"
+        <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile", params: [id: topics.createdBy.id])}">
+            <img src="${createLink(controller: "image", action: "renderImage", params: [path: topics.createdBy.photoPath])}"
                  class="media-object mediaFace">
         </a>
     </div>
@@ -42,7 +39,8 @@
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
             </button>
 
-            <button type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal" data-target="#myEditModal-${topics.topicName}">
+            <button type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal"
+                    data-target="#myEditModal-${topics.topicName}">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
             </button>
 

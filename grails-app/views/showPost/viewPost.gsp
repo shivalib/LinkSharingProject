@@ -13,52 +13,6 @@
     <asset:javascript src="jquery.raty.js"/>
     <asset:stylesheet src="jquery.raty.css"/>
     <asset:javascript src="postRating.js"/>
-
-%{--<script>--}%
-%{--$(document).ready(function () {--}%
-%{--$('.ratyDiv').raty({--}%
-%{--/*score: function () {--}%
-%{--$(this).data('avg')--}%
-%{--},*/--}%
-%{--score: 0,--}%
-%{--click: function (score) {--}%
-%{--console.log(score)--}%
-
-%{--var url = "${createLink(controller: "showPost",action: "rateResource")}"--}%
-%{--console.log(url)--}%
-
-%{--var id = $(this).attr('data-resourceID')--}%
-%{--console.log("Rescource id : " + id)--}%
-
-%{--$.ajax({--}%
-%{--url: url,--}%
-%{--data: {--}%
-%{--resourceID: id,--}%
-%{--rating: score--}%
-%{--},--}%
-%{--success: function (data) {--}%
-%{--console.log(data)--}%
-%{--},--}%
-%{--error: function (request, status, error) {--}%
-%{--console.log("We are in error section ");--}%
-%{--console.log("request :" + request);--}%
-%{--console.log("status : " + status);--}%
-%{--console.log("error :" + error);--}%
-%{--}--}%
-
-%{--});--}%
-%{--},--}%
-%{--half: true,--}%
-%{--showHalf: true,--}%
-%{--showCancel: true,--}%
-%{--starHalf: "${resource(dir: "images", file: "star_half.png")}",--}%
-%{--starOff: "${resource(dir: "images", file: "star_off.png")}",--}%
-%{--starOn: "${resource(dir: "images", file: "star_on.png")}",--}%
-%{--noRatedMsg: "Not rated yet !!"--}%
-
-%{--});--}%
-%{--});--}%
-%{--</script>--}%
 </head>
 
 <body>
@@ -82,7 +36,6 @@
         <g:else>
             <g:render template="postForNonRegisteredUser"/>
         </g:else>
-        %{--<asset:image src="star_half.png"/>--}%
 
     </div><!--col-md-7 ends-->
 
@@ -97,7 +50,7 @@
                     <div class="panel-body">
                         <div class="media ">
                             <div class="media-left">
-                                <a href="#">
+                                <a href="${createLink(controller: "userProfile",action: "showUserPublicProfile",params: [id:trending.createdBy.id])}">
                                     <img src="${createLink(controller: "image", action: "renderImage", params: [path: trending.createdBy.photoPath])}"
                                          class="media-object mediaFace">
                                 </a>

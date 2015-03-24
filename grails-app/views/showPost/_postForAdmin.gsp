@@ -3,6 +3,14 @@
     <g:each in="${resourceList}" var="resource">
         <div class="panel-body">
             <div class="media ">
+
+                <div class="media-left">
+                    <a href="${createLink(controller: "userProfile",action: "showUserPublicProfile",params: [id:resource.createdBy.id])}">
+                        <img src="${createLink(controller: "image", action: "renderImage", params: [path: resource.createdBy.photoPath])}"
+                             class="media-object mediaFace">
+                    </a>
+                </div>
+
                 <div class="media-body">
                     <h4 class="media-heading right">
                         <g:link controller="topic" action="index" id="${resource.topic.id}"
@@ -38,12 +46,7 @@
 
                 </div><!--media body ends-->
 
-                <div class="media-left">
-                    <a href="#">
-                        <img src="${createLink(controller: "image", action: "renderImage", params: [path: resource.createdBy.photoPath])}"
-                             class="media-object mediaFace">
-                    </a>
-                </div>
+
             </div><!--media ends -->
 
         </div><!--panel body ends-->

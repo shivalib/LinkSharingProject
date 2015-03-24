@@ -37,8 +37,8 @@ class UserProfileController {
     }
 
     def showUserPublicProfile(){
-        User currentUser = userService.showCurrentUserObject(session["username"])
-
+        User currentUser = User.findById(params.id)
+        println "-------- currentUser : "+currentUser.username
         List<Topic> topics = showTopicService.findTopicsCreatedByCurrentUser(session["username"])
 
         List<Resource> resourcesOfTopic=[]
