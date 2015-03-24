@@ -82,7 +82,7 @@
         <g:else>
             <g:render template="postForNonRegisteredUser"/>
         </g:else>
-        %{--<asset:image src="star_half.png"/>--}%
+        <asset:image src="star_half.png"/>
 
     </div><!--col-md-7 ends-->
 
