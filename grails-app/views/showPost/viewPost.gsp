@@ -14,51 +14,51 @@
     <asset:stylesheet src="jquery.raty.css"/>
     <asset:javascript src="postRating.js"/>
 
-    <script>
-        $(document).ready(function () {
-            $('.ratyDiv').raty({
-                /*score: function () {
-                 $(this).data('avg')
-                 },*/
-                score: 0,
-                click: function (score) {
-                    console.log(score)
+%{--<script>--}%
+%{--$(document).ready(function () {--}%
+%{--$('.ratyDiv').raty({--}%
+%{--/*score: function () {--}%
+%{--$(this).data('avg')--}%
+%{--},*/--}%
+%{--score: 0,--}%
+%{--click: function (score) {--}%
+%{--console.log(score)--}%
 
-                    var url = "${createLink(controller: "showPost",action: "rateResource")}"
-                    console.log(url)
+%{--var url = "${createLink(controller: "showPost",action: "rateResource")}"--}%
+%{--console.log(url)--}%
 
-                    var id = $(this).attr('data-resourceID')
-                    console.log("Rescource id : " + id)
+%{--var id = $(this).attr('data-resourceID')--}%
+%{--console.log("Rescource id : " + id)--}%
 
-                    $.ajax({
-                        url: url,
-                        data: {
-                            resourceID: id,
-                            rating: score
-                        },
-                        success: function (data) {
-                            console.log(data)
-                        },
-                        error: function (request, status, error) {
-                            console.log("We are in error section ");
-                            console.log("request :" + request);
-                            console.log("status : " + status);
-                            console.log("error :" + error);
-                        }
+%{--$.ajax({--}%
+%{--url: url,--}%
+%{--data: {--}%
+%{--resourceID: id,--}%
+%{--rating: score--}%
+%{--},--}%
+%{--success: function (data) {--}%
+%{--console.log(data)--}%
+%{--},--}%
+%{--error: function (request, status, error) {--}%
+%{--console.log("We are in error section ");--}%
+%{--console.log("request :" + request);--}%
+%{--console.log("status : " + status);--}%
+%{--console.log("error :" + error);--}%
+%{--}--}%
 
-                    });
-                },
-                half: true,
-                showHalf: true,
-                showCancel: true,
-                starHalf: "${resource(dir: "images", file: "star_half.png")}",
-                starOff: "${resource(dir: "images", file: "star_off.png")}",
-                starOn: "${resource(dir: "images", file: "star_on.png")}",
-                noRatedMsg: "Not rated yet !!"
+%{--});--}%
+%{--},--}%
+%{--half: true,--}%
+%{--showHalf: true,--}%
+%{--showCancel: true,--}%
+%{--starHalf: "${resource(dir: "images", file: "star_half.png")}",--}%
+%{--starOff: "${resource(dir: "images", file: "star_off.png")}",--}%
+%{--starOn: "${resource(dir: "images", file: "star_on.png")}",--}%
+%{--noRatedMsg: "Not rated yet !!"--}%
 
-            });
-        });
-    </script>
+%{--});--}%
+%{--});--}%
+%{--</script>--}%
 </head>
 
 <body>
@@ -66,22 +66,24 @@
     <div class="col-md-7">
         <g:if test="${loginUser}">
             <ls:checkUserForPost currentUser="${loginUser}"/>
+            <div class="panel panel-default leftdiv">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Search for :</h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="addSearchData">
+
+                    </div>
+                    <g:render template="/search/searchResult"/>
+                </div>
+            </div>
         </g:if>
         <g:else>
             <g:render template="postForNonRegisteredUser"/>
         </g:else>
-        %{--<div class="panel panel-default leftdiv">--}%
-        %{--<div class="panel-heading">--}%
-        %{--<h3 class="panel-title">Search for :</h3>--}%
-        %{--</div>--}%
+        %{--<asset:image src="star_half.png"/>--}%
 
-        %{--<div class="panel-body">--}%
-        %{--<div class="addSearchData">--}%
-
-        %{--</div>--}%
-        %{--<g:render template="/search/searchResult"/>--}%
-        %{--</div>--}%
-        %{--</div>--}%
     </div><!--col-md-7 ends-->
 
     <div class="col-md-5">

@@ -35,7 +35,6 @@
                 </div>
             </div><!--media body ends-->
         </div><!-- media ends-->
-
     </div>
 </g:each>
 <util:remotePaginate controller="subscription" action="paginate" total="${subscriptionCount}" max="${max}"

@@ -7,7 +7,7 @@ import grails.transaction.Transactional
 class TrendingTopicService {
 
     List<Topic> showTrendingTopics() {
-        List<Topic> trendingTopics=Topic.list(offset: 0,max: 5).sort{
+        List<Topic> trendingTopics=Topic.list(max:5,offset: 0).sort{
 
             it.resources.size()
         }.reverse()

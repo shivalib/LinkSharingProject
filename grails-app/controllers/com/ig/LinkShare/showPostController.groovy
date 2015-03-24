@@ -1,15 +1,17 @@
 package com.ig.LinkShare
 
+import grails.converters.JSON
 
 
 class showPostController {
     def userService
     def trendingTopicService
     def showResourceService
+    def resourceRatingService
 
     def index(Long id) {
 
-        Resource resource= Resource.get(id)
+        Resource resource = Resource.get(id)
 
 //        Topic topic=Topic.findWhere(resources: resource)
 
@@ -18,46 +20,41 @@ class showPostController {
         User currentUser = userService.showCurrentUserObject(session["username"])
 
         Subscription subscription = Subscription.findWhere(user: currentUser)
+        println("........"+resource)
+         float averageRating=resourceRatingService.findAverageRating(resource)
+//        println averageRating
 
-        render(view: "/showPost/viewPost", model: [loginUser: currentUser,subscription:subscription,trendingTopicList: trendingTopics,resource:resource])
+        render(view: "/showPost/viewPost", model: [averageRating:averageRating,loginUser: currentUser, subscription: subscription, trendingTopicList: trendingTopics, resource: resource])
     }
 
-    def postsForAdmin(){
-        List<Resource> resourceList=showResourceService.calculateResourceListForAdmin()
+    def postsForAdmin() {
+        List<Resource> resourceList = showResourceService.calculateResourceListForAdmin()
 
         User currentUser = userService.showCurrentUserObject(session["username"])
 
         List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
 
-        render(view: "/showPost/viewPost", model: [loginUser: currentUser,trendingTopicList: trendingTopics, resourceList: resourceList])
+//        def averageRating=resourceRatingService.findAverageRating()
+
+        render(view: "/showPost/viewPost", model: [loginUser: currentUser, trendingTopicList: trendingTopics, resourceList: resourceList])
     }
 
     def rateResource() {
         println "............... in resource rate : "
+        String scr = params.rating
+        Float score=scr.toDouble()
+        User currentUser = userService.showCurrentUserObject(session["username"])
 
+        ResourceRating resourceRating1 = ResourceRating.findByUser(currentUser)
 
-        def score = params.rating
-        println "<<<<< resource id :" + params.resourceID
-        println "<<<<< score : " + score
-
-        User currentUser=userService.showCurrentUserObject(session["username"])
-        ResourceRating resourceRating=new ResourceRating(user:currentUser,resource: params.resourceID,score: score)
-
-        List<ResourceRating> resourceRatingList=ResourceRating.createCriteria().list {
-            projections{
-                avg('score')
-            }
+        if (resourceRating1) {
+            resourceRating1.score = score
+            resourceRating1.save(failOnError: true,flush: true)
+        } else {
+            ResourceRating resourceRating = new ResourceRating(user: currentUser, resource: params.resourceID, score: score)
+            resourceRating.save(failOnError: true, flush: true)
         }
-         println "average : " +resourceRatingList
 
-       if(resourceRating.save(failOnError: true,flush: true)){
-
-           render true
-       }
-        else
-       {
-           render false
-       }
-
+     render true
     }
 }

@@ -69,7 +69,6 @@ $(document).ready(function () {
                 seriousness: changedVal
             },
             success: function (data) {
-
                 console.log(data)
             }
         })

@@ -1,17 +1,38 @@
-/**
- * Created by intelligrape on 20/3/15.
- */
-
 $(document).ready(function () {
-    $('#ratyDiv').raty({
-        score: function () {
-            $(this).data('avg')
+    var avgRate=$('.ratyDiv').attr('data-avg')
+
+    $('.ratyDiv').raty({
+        //score: function () {
+        //    $(this).data('avg')
+        //},
+
+        score: avgRate,
+        click: function (score) {
+            var url = $(this).attr('data-rateLink')
+            var id = $(this).attr('data-resourceID')
+            $.ajax({
+                url: url,
+                data: {
+                    resourceID: id,
+                    rating: score
+                },
+                success: function (data) {
+                    console.log(data)
+                },
+                error: function (request, status, error) {
+                    console.log("We are in error section ");
+                    console.log("request :" + request);
+                    console.log("status : " + status);
+                    console.log("error :" + error);
+                }
+
+            });
         },
         half: true,
         showHalf: true,
-        starHalf: $(this).attr('data-starHalf'),
-        starOn: $(this).attr(' data-starOn'),
-        starOff: $(this).attr(' data-starOff')
+        starHalf: '/LinkShare/assets/star_half.png',
+        starOn: '/LinkShare/assets/star_on.png',
+        starOff: '/LinkShare/assets/star_off.png'
     });
 });
 

@@ -23,10 +23,13 @@
                         ${resource.description}
                     </div>
 
-                    <div class="ratyDiv" data-resourceID="${resource.id}">
+                    <div class="ratyDiv" data-resourceID="${resource.id}"
+                         data-rateLink="${createLink(controller: "showPost", action: "rateResource")}" data-ratingScore="${averageRating}">
 
                     </div>
+
                     <br/>
+
                     <div>
                         <g:render template="/myTemplates/socialIcons"/>
                         <ls:checkResourceType resource="${resource}"/>
