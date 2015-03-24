@@ -55,11 +55,17 @@ class SearchController {
     }
 
     def searchInbox() {
+         User user=userService.showCurrentUserObject(session["username"])
 
-        List<ReadingItem> readingItemListWithIsReadFalse = showInboxService.showInbox(session["username"])
-
-        List<ReadingItem> readingItems1 = readingItemListWithIsReadFalse.findAll {
-            (it.resource.description =~ params.searchInbox + "*") || (it.resource.topic.createdBy.fullName =~ params.searchInbox + "*")
+        List<ReadingItem> readingItems1=ReadingItem.createCriteria().list() {
+            and{
+                eq('isRead',false)
+                eq('user',user)
+                'resource'
+                        {
+                            ilike('description',params.searchInbox+'%')
+                        }
+            }
         }
 
         render(template: "/dashboard/iterateInbox", model: [readingItemListWithIsReadFalse: readingItems1])
@@ -67,29 +73,24 @@ class SearchController {
 
     def searchAll() {
 
-        User currentUser=userService.showCurrentUserObject(session["username"])
-        List<Resource> resourceList=showResourceService.calculateResourceList()
+        User currentUser = userService.showCurrentUserObject(session["username"])
+        List<Resource> resourceList = showResourceService.calculateResourceList()
 
-//        List<Resource> resources=resourceList.findAll{
-//            (it.topic.topicName=~params.textToSearch + "*") || (it.description=~params.textToSearch + "*")
-//        }
-        List<Resource> resources=Resource.createCriteria().list {
+        List<Resource> resources = Resource.createCriteria().list {
 
-                ilike('description',params.textToSearch+'%')
+            ilike('description', params.textToSearch + '%')
 
         }
-        List topic=Topic.createCriteria().list(){
-            ilike('topicName',params.textToSearch+'%')
+        List topic = Topic.createCriteria().list() {
+            ilike('topicName', params.textToSearch + '%')
         }
-
-        List newList=[]
+        List newList = []
         topic.each {
-            newList+=it.resources
+            newList += it.resources
         }
+        resources += newList
 
-        resources+=newList
-
-        render(template: "searchResult",model: [resourceList: resources,loginUser: currentUser] )
+        render(template: "searchResult", model: [resourceList: resources, loginUser: currentUser])
 
     }
 

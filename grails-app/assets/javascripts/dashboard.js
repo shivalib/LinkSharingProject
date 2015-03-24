@@ -87,7 +87,7 @@ function searchInboxUsingAjax(searchUrl) {
         },
         success: function (data) {
             console.log(data)
-            $('#unreadDiv').html(data)
+            $('#inboxDiv').html(data)
         }
 
     })
