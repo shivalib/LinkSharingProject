@@ -30,9 +30,9 @@ $(document).ready(function () {
         },
         half: true,
         showHalf: true,
-        starHalf: '/LinkShare/assets/star_half.png',
-        starOn: '/LinkShare/assets/star_on.png',
-        starOff: '/LinkShare/assets/star_off.png'
+        starHalf: '/assets/star_half.png',
+        starOn: '/assets/star_on.png',
+        starOff: '/assets/star_off.png'
     });
 });
 
