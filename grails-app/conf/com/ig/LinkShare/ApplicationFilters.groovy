@@ -4,6 +4,15 @@ class ApplicationFilters {
 
     def filters = {
 
+        loginCheck(controller: 'home|user|image', actionExclude: 'index|registerUser|showRecentShare|renderImage', action: '*') {
+            before = {
+                if (!session.username) {
+                    println "-- in filter --"
+                    flash.message = "Login to the system!"
+                    redirect(controller: "home", action: "index")
+                }
+            }
+        }
 
         all(controller: '*', action: '*') {
             before = {
@@ -17,32 +26,6 @@ class ApplicationFilters {
 
             }
         }
-
-//        notloginCheck(controller: '(login|user|home|assets|lsMail)', action: '(loginHandler|registerUser|logout|resetPassword|forgotPassword|loginPage|index|resetPasswordLink)',controllerExclude:'user', invert: true) {
-//            before = {
-//                println "loginCheck : in before"
-//                println params
-//                println "**************************************************"
-//
-//                if (!session.username) {
-//                    flash.message = "Please login to the system"
-//
-//                    println "in validating session ----------redirecting to controller"
-//                    redirect(controller: "home", action: "index")
-//                }
-//
-//            }
-//        }
-
-//        notLoginCheck(controller: '*',action: '*',controllerExclude:'login | user'){
-//            before={
-//                if(!session.username){
-//                    println "-- in filter --"
-//                    flash.message="Login to the system!"
-////                    redirect(controller: "home",action: "index")
-//                }
-//            }
-//        }
 
 
     }
