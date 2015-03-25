@@ -38,16 +38,14 @@ class UserProfileController {
 
     def showUserPublicProfile(){
         User currentUser = User.findById(params.id)
-        println "-------- currentUser : "+currentUser.username
+
         List<Topic> topics = showTopicService.findTopicsCreatedByCurrentUser(session["username"])
 
         List<Resource> resourcesOfTopic=[]
         topics.each {
             resourcesOfTopic+=showResourceService.showResourcesByTopic(it)
         }
-        resourcesOfTopic.each {
-            println it
-        }
+
         render(view: "/user/userProfile",model: [loginUser: currentUser,topicList:topics,resourcesOfTopic:resourcesOfTopic])
 
     }
@@ -67,7 +65,6 @@ class UserProfileController {
            {
                flash.message = "Data updation failed!!"
            }
-//        User.executeUpdate("update User set firstName=:firstName,lastName=:lastName,username=:username where id=:id", [firstName: params.firstName, lastName: params.lastName, username: params.username, id: currentUser.id])
 
         redirect(controller: "userProfile", action: "index")
     }

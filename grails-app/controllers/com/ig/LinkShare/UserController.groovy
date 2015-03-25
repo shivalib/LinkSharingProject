@@ -73,7 +73,7 @@ class UserController {
     }
 
     def resetPassword() {
-        render(view: "/login/resetPassword")
+        render(view: "/login/resetPassword",model: [emailID:params.emailID])
     }
 
 }

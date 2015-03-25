@@ -12,11 +12,6 @@ class HomeController {
 
     def index() {
 
-        params.max = params.max ?: 5
-        params.offset = params.offset ?: 0
-        params.sort = params.sort ?: 'id'
-        params.order = params.order ?: 'desc'
-
         List<Resource> resources = showResourceService.calculateResourceList()
 
         List<Resource> resources1 = showResourceService.showTopPost()
@@ -39,12 +34,11 @@ class HomeController {
 
             List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(session["username"])
 
-
             int offset = params.offset ? params.int('offset') : 0
-            int max = params.max ? params.int('max') : 2
+            int max = params.max ? params.int('max') : 5
 
             //show trending topics
-            List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
+            List<Topic> trendingTopics = trendingTopicService.showTrendingTopics(max,offset)
             int totalTopic = trendingTopics.size()
 
             //show Inbox
@@ -52,24 +46,34 @@ class HomeController {
             int total = readingItemListWithIsReadFalse.totalCount
 
             //show top5Subscriptions
-            List<Topic> top5SubscribedTopics = top5SubscriptionService.showTop5Subscription(session["username"])
+            List<Topic> top5SubscribedTopics = top5SubscriptionService.showTop5Subscription(session["username"], max, offset)
+            int subscriptionCount = top5SubscribedTopics.totalCount
 
-            render(view: "/home/dashboard", model: [inboxCount: total, max: max, offset: offset, trendingCount: totalTopic, readingItemListWithIsReadFalse: readingItemListWithIsReadFalse, loginUser: currentUser, trendingTopicList: trendingTopics, topicList: topics.topicName, top5SubscribedTopics: top5SubscribedTopics])
+            render(view: "/home/dashboard", model: [subscriptionCount: subscriptionCount, inboxCount: total, max: max, offset: offset, trendingCount: totalTopic, readingItemListWithIsReadFalse: readingItemListWithIsReadFalse, loginUser: currentUser, trendingTopicList: trendingTopics, topicList: topics.topicName, top5SubscribedTopics: top5SubscribedTopics])
         }
     }
 
-    def showRecentShare() {
-        //show top5Subscriptions
-        List<Topic> top5SubscribedTopics = top5SubscriptionService.showTop5Subscription(session["username"])
+    def paginateUserSubscription() {
+        int offset = params.offset ? params.int('offset') : 0
+        int max = params.max ? params.int('max') : 5
 
+        //show top5Subscriptions
+        List<Topic> top5SubscribedTopics = top5SubscriptionService.showTop5Subscription(session["username"], max, offset)
+        int subscriptionCount = top5SubscribedTopics.totalCount
+
+        render(template: "/home/subscriptionOfCurrentUser", model: [top5SubscribedTopics: top5SubscribedTopics, subscriptionCount: subscriptionCount, max: max, offset: offset])
+    }
+
+    def showRecentShare() {
+
+        List<Topic> top5SubscribedTopics = top5SubscriptionService.showTop5Subscription(session["username"])
         render(template: "/home/subscriptionOfCurrentUser", model: [top5SubscribedTopics: top5SubscribedTopics])
     }
 
     def paginateInbox() {
         int offset = params.offset ? params.int('offset') : 0
-        int max = params.max ? params.int('max') : 2
+        int max = params.max ? params.int('max') : 5
 
-        //show Inbox
         List<ReadingItem> readingItemListWithIsReadFalse = showInboxService.showInbox(session["username"], max, offset)
         int total = readingItemListWithIsReadFalse.totalCount
 
@@ -79,10 +83,9 @@ class HomeController {
     def paginateTrendingTopics() {
 
         int offset = params.offset ? params.int('offset') : 0
-        int max = params.max ? params.int('max') : 2
+        int max = params.max ? params.int('max') : 5
 
-        //show trending topics
-        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
+        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics(max,offset)
         int totalTopic = trendingTopics
 
         render(template: "/dashboard/trendingTopics", model: [trendingTopicList: trendingTopics, trendingCount: totalTopic, max: max, offset: offset])

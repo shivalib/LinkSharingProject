@@ -2,7 +2,7 @@
     <div class="panel-body" id="startDiv">
         <div class="media ">
             <div class="media-left">
-                <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile", params: [id:subscribedTopics.createdBy.id])}"  >
+                <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile", params: [id: subscribedTopics.createdBy.id])}">
                     <img src="${createLink(controller: "image", action: "renderImage", params: [path: subscribedTopics.createdBy.photoPath])}"
                          class="media-object mediaFace">
                 </a>
@@ -35,4 +35,6 @@
         </div><!-- media ends-->
     </div><!-- panel body ends-->
 </g:each>
-%{--<util:remotePaginate controller="home" action="showRecentShare" total="${top5SubscribedTopics.count()}" update="updateRecentShare"/>--}%
+<util:remotePaginate controller="home" action="paginateUserSubscription" total="${subscriptionCount}" max="${max}"
+                     offset="${offset}"
+                     update="updateSubscriptions"/>

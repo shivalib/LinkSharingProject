@@ -20,7 +20,6 @@ class SubscriptionController {
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5
 
-
         List<Subscription> subscriptions = searchService.userSubscriptions(currentUser, max, offset)
         int total = subscriptions.totalCount
 
@@ -31,12 +30,10 @@ class SubscriptionController {
         User currentUser = userService.showCurrentUserObject(session["username"])
 
         int offset = params.offset ? params.int('offset') : 0
-        int max = params.max ? params.int('max') : 2
+        int max = params.max ? params.int('max') : 5
 
         List<Subscription> subscriptions = Subscription.createCriteria().list([max: max, offset: offset]) {
-
             eq('user', currentUser)
-
         }
 
         render(view: "_allSubscription", model: [loginUser: currentUser, subscriptions: subscriptions, subscriptionCount: subscriptions.totalCount, max: max, offset: offset])

@@ -59,7 +59,7 @@
             </div>
 
             <div id="updateSubscriptions">
-                <g:render template="subscriptionOfCurrentUser"/>
+                <g:render template="subscriptionOfCurrentUser" model="[subscriptionCount:subscriptionCount,max:max,offset: offset]"/>
             </div>
         </div><!--panel ends -->
 

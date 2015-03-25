@@ -7,21 +7,17 @@ import grails.transaction.Transactional
 class Top5SubscriptionService {
 
 
-    List<Topic> showTop5Subscription(String currentUser){
+    List<Topic> showTop5Subscription(String currentUser, int max, int offset) {
 
-        User user=User.findByUsername(currentUser)
+        User user = User.findByUsername(currentUser)
 
-        List<Topic> topics=Topic.createCriteria().list(offset:0,max:5) {
-//          projections {
-//              count("subscriptions")
-//          }
-            'subscriptions'{
-              eq('user',user)
-          }
-            eq('visibility',Visibility.PUBLIC)
-
+        List<Topic> topics = Topic.createCriteria().list(offset: offset, max: max) {
+            'subscriptions' {
+                eq('user', user)
+            }
+            eq('visibility', Visibility.PUBLIC)
         }
-        return  topics
+        return topics
     }
 
 

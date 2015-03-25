@@ -27,7 +27,27 @@ class LoginController {
     }
 
     def forgotPassword() {
+        println params.email
         render(view: "forgotPassword")
+    }
+
+    def resetThePassword(UserCO userCO){
+
+        if (!userCO.validate()) {
+            userCO.errors.allErrors.each {
+                println it
+            }
+
+            flash.message = "Password updation failed!"
+
+        } else {
+            User user=User.findByEmail(params.emailID)
+            user.password=params.password
+            user.save(failOnError: true,flush: true)
+            flash.message = "Password updation Successfull!"
+        }
+        redirect(controller: "home", action: "index")
+
     }
 
     Boolean validateEmail() {

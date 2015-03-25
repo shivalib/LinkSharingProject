@@ -15,7 +15,10 @@ class showPostController {
 
 //        Topic topic=Topic.findWhere(resources: resource)
 
-        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
+        int offset = params.offset ? params.int('offset') : 0
+        int max = params.max ? params.int('max') : 5
+
+        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics(max,offset)
 
         User currentUser = userService.showCurrentUserObject(session["username"])
 
@@ -27,11 +30,16 @@ class showPostController {
     }
 
     def postsForAdmin() {
+
+        int offset = params.offset ? params.int('offset') : 0
+        int max = params.max ? params.int('max') : 5
+
+
         List<Resource> resourceList = showResourceService.calculateResourceListForAdmin()
 
         User currentUser = userService.showCurrentUserObject(session["username"])
 
-        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
+        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics(max,offset)
 
         render(view: "/showPost/viewPost", model: [loginUser: currentUser, trendingTopicList: trendingTopics, resourceList: resourceList])
     }

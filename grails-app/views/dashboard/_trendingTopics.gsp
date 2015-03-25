@@ -38,4 +38,4 @@
 </g:each>
 
 <util:remotePaginate controller="home" action="paginateTrendingTopics" total="${trendingCount}" max="${max}"
-                     offset="${offset}" update="updateTrendingDiv"/>Nv
+                     offset="${offset}" update="updateTrendingDiv"/>

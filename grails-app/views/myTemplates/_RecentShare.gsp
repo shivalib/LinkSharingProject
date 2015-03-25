@@ -15,7 +15,7 @@
         %{--</span>--}%
             <span class="right">
             <ls:timeDiffInDetail oldDate="${res.dateCreated}"/>
-                <g:link controller="topic" action="index">${res.topic.topicName}</g:link>
+                <g:link>${res.topic.topicName}</g:link>
             </span> </h4>
         ${res.description}
     </div>

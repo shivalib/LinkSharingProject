@@ -15,7 +15,7 @@
             </div>
             <br>
             <div>
-                <g:submitButton name="submit" value="Submit"/>
+                <g:submitButton name="submit" value="Submit" />
             </div>
         </center>
     </g:form>

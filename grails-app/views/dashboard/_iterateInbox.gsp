@@ -4,5 +4,5 @@
     </div><!--panel body ends-->
 </g:each>
 
-%{--<util:remotePaginate controller="home" action="paginateInbox" total="${inboxCount}" max="${max}"--}%
-                     %{--offset="${offset}" update="inboxDiv"/>--}%
+<util:remotePaginate controller="home" action="paginateInbox" total="${inboxCount}" max="${max}"
+                     offset="${offset}" update="inboxDiv"/>

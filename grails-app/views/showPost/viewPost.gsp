@@ -19,7 +19,9 @@
 <div class="row">
     <div class="col-md-7">
         <g:if test="${loginUser}">
+
             <ls:checkUserForPost currentUser="${loginUser}"/>
+
             <div class="panel panel-default leftdiv">
                 <div class="panel-heading">
                     <h3 class="panel-title">Search for :</h3>
