@@ -6,7 +6,6 @@ import grails.converters.JSON
 class UserController {
     UploadService uploadService
     def scaffold = true
-//    def index() { }
     UserService userService
     ShowTopicService showTopicService
 
@@ -18,11 +17,7 @@ class UserController {
             String currentUser = session["username"]
             User user = User.findByUsername(currentUser)
 
-            if (user.admin) {
-//                println "in interceptor"
-                println user.admin
-
-            } else {
+            if (!user.admin) {
                 flash.message = "Sorry, this is reserved for Administrative access!!!"
                 redirect(controller: 'home', action: 'index')
             }
@@ -62,18 +57,18 @@ class UserController {
                 println it
             }
 
-            flash.message = "Registration Failed : Password Mismatch"
+            flash.message = "Registration Failed : Password Mismatch!"
 
         } else {
             user.save(failOnError: true)
-            flash.message = "Registeration Successfull"
+            flash.message = "Registeration Successfull!"
         }
         redirect(controller: "home", action: "index")
 
     }
 
     def resetPassword() {
-        render(view: "/login/resetPassword",model: [emailID:params.emailID])
+        render(view: "/login/resetPassword", model: [emailID: params.emailID])
     }
 
 }

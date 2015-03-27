@@ -34,7 +34,7 @@
             </div>
 
             <div class="panel-body">
-                <g:each in="${resources}" var="res">
+                <g:each in="${topPost}" var="res">
                     <ls:showListingPages resource="${res}"/>
                 </g:each>
             </div>
@@ -82,34 +82,34 @@
                         enctype="multipart/form-data">
                     <div>
                         <span>First name*</span>
-                        <g:textField name="firstName" placeholder="First Name"></g:textField>
+                        <g:textField name="firstName" placeholder="First Name"/>
                     </div>
 
                     <div>
                         <span>Last name*</span>
-                        <g:textField name="lastName" placeholder="Last Name"></g:textField>
+                        <g:textField name="lastName" placeholder="Last Name"/>
                     </div>
 
                     <div>
                         <span>Email*</span>
-                        <g:textField name="email" placeholder="Email"></g:textField>
+                        <g:textField name="email" placeholder="Email"/>
                     </div>
 
                     <div>
                         <span>Username*</span>
                         <g:textField name="username" id="checkUsername"
                                      data-checkUsername="${createLink(controller: "login", action: "validateUsername")}"
-                                     placeholder="Username"></g:textField>
+                                     placeholder="Username"/>
                     </div>
 
                     <div>
                         <span>Password*</span>
-                        <g:passwordField name="password" placeholder="password"></g:passwordField>
+                        <g:passwordField name="password" placeholder="password"/>
                     </div>
 
                     <div>
                         <span>Confirm Password*</span>
-                        <g:passwordField name="confirmPassword" placeholder="confirmPassword"></g:passwordField>
+                        <g:passwordField name="confirmPassword" placeholder="confirmPassword"/>
                     </div>
 
                     <div>

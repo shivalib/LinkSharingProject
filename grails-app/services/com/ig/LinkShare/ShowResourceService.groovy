@@ -30,9 +30,10 @@ class ShowResourceService {
     }
 
     List<Resource> showTopPost(){
-        List<Resource> resourceList=Resource.list().sort{
-            it.resouceRatings
-        }.reverse()
+        List<ResourceRating> resourceRatingList=ResourceRating.createCriteria().list() {
+                        order("score","desc")
+        }
+        return resourceRatingList
 
     }
 

@@ -13,9 +13,8 @@ class lsMailController {
             subject "Invite : Subscription"
             body "${params.topicList}"
         }
-        flash.message"Your email is sent!"
-        redirect(controller: "dashboard",action: "index")
-//        render("Sent!")
+
+        redirect(controller: "home",action: "dashboard")
     }
 
     def resetPasswordLink() {

@@ -14,17 +14,10 @@ class HomeController {
 
         List<Resource> resources = showResourceService.calculateResourceList()
 
-        List<Resource> resources1 = showResourceService.showTopPost()
+        List<ResourceRating> resources1 = showResourceService.showTopPost()
+        resources1.each{println it.resource}
 
-//        if(session["username"])
-//        {
-        render(view: "/login/homePage", model: [resources: resources, resourceCount: resources.count])
-//        }
-//        else
-//        {
-//            redirect(action: "dashboard")
-//        }
-
+        render(view: "/login/homePage", model: [resources: resources, resourceCount: resources.count,topPost:resources1.resource])
     }
 
     def dashboard() {

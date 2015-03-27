@@ -8,11 +8,9 @@ class LoginController {
 
     def loginHandler(String email, String password, Boolean active) {
 
-
         if (User.findByEmailAndPasswordAndActive(email, password, active = true)) {
             User user = User.findWhere(email: email)
             session["username"] = user.username
-
             redirect(controller: "home", action: "dashboard", params: [username: session["username"]])
         } else {
             flash.message = "Invalid username or password!"
