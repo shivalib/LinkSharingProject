@@ -80,8 +80,11 @@ grails.project.dependency.resolution = {
         //remote pagination
         compile ":remote-pagination:0.4.8"
 
-        //jquery ui validation
-//        compile ":jquery-validation-ui:1.4.9"
+        compile ":simian:0.1-SNAPSHOT"
+
+        compile ":codenarc:0.22"
+
+        compile ":gmetrics:0.3.1"
 
         //asynchronous mail
         //compile ":asynchronous-mail:1.2"
@@ -100,5 +103,15 @@ grails.project.dependency.resolution = {
         //compile ":less-asset-pipeline:1.10.0"
         //compile ":coffee-asset-pipeline:1.8.0"
         //compile ":handlebars-asset-pipeline:1.3.0.3"
+    }
+}
+
+codenarc {
+    ruleSetFiles = "file:grails-app/conf/CodeNarcRules.groovy"
+    reports = {
+        HtmlReport('html') {                  // Report type is 'html'
+            outputFile = 'target/CodeNarcReport.html'
+            title = 'My Test Code Narc Report'
+        }
     }
 }

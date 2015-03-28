@@ -217,6 +217,16 @@ jqueryValidationUi {
 	]	
 }
 
+simian {
+    reportsDir = "target/simian-reports"
+    fileDir = "."
+    cludesFiles = [includes  : "**/*.groovy **/*.java"
+                   , excludes: "**/*Spec.groovy **/Config.groovy **/ApplicationResources.groovy **/target/"]
+    methodParams = [threshold: 4]
+}
+
+
+
 //In Config.groovy
 //grails.plugins.remotepagination.max=20
 

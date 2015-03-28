@@ -18,9 +18,7 @@
             </div>
 
             <div class="panel-body">
-                %{--Using self created tag--}%
                 <g:each in="${resources}" var="res">
-
                     <ls:showListingPages resource="${res}"/>
                 </g:each>
 
@@ -30,7 +28,9 @@
 
         <div class="panel panel-default leftdiv">
             <div class="panel-heading">
-                <h3 class="panel-title">Top Posts</h3>
+                <h3 class="panel-title">Top Posts
+                <g:select name="timeBasedData" from="${timeBasedContent}"/>
+                </h3>
             </div>
 
             <div class="panel-body">
