@@ -13,24 +13,21 @@ class TopicController {
         User loginUser = User.get(params.loginUser)
 
         List<Subscription> subscriptionList = topicSubscriptionService.subscriptionList(loginUser)
-        subscriptionList.each { println "public  : " + it }
 
         List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(session["username"])
-
 
         List<Resource> resourceList = showResourceService.showResourcesByTopic(topic)
 
         if (session["username"]) {
 
-            render(view: "/topic/topicShow", model: [topic: topic,topicList: topics.topicName, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
+            render(view: "/topic/topicShow", model: [topic: topic, topicList: topics.topicName, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
         } else {
-            render(view: "/topic/topicShow", model: [topic: topic, topicList: topics.topicName,subscribers: subscriptionList, resources: resourceList])
+            render(view: "/topic/topicShow", model: [topic: topic, topicList: topics.topicName, subscribers: subscriptionList, resources: resourceList])
         }
 
     }
 
-    def createTopic(User user) {
-
+    def createTopic() {
         User userID = User.findWhere(username: session["username"])
 
         Topic topic1 = new Topic(topicName: params.topicName, visibility: params.topicType)
@@ -74,7 +71,7 @@ class TopicController {
         forward(controller: "showPost", action: "index")
     }
 
-    def deleteResource(Long id){
+    def deleteResource(Long id) {
         Resource resource = Resource.get(id)
 
         if (resource.delete(failOnError: true, flush: true)) {

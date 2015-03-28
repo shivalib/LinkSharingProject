@@ -15,9 +15,8 @@ class HomeController {
         List<Resource> resources = showResourceService.calculateResourceList()
 
         List<ResourceRating> resources1 = showResourceService.showTopPost()
-        resources1.each{println it.resource}
 
-        render(view: "/login/homePage", model: [resources: resources, resourceCount: resources.count,topPost:resources1.resource])
+        render(view: "/login/homePage", model: [resources: resources, resourceCount: resources.count, topPost: resources1.resource])
     }
 
     def dashboard() {
@@ -31,7 +30,7 @@ class HomeController {
             int max = params.max ? params.int('max') : 5
 
             //show trending topics
-            List<Topic> trendingTopics = trendingTopicService.showTrendingTopics(max,offset)
+            List<Topic> trendingTopics = trendingTopicService.showTrendingTopics(max, offset)
             int totalTopic = trendingTopics.size()
 
             //show Inbox
@@ -78,7 +77,7 @@ class HomeController {
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5
 
-        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics(max,offset)
+        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics(max, offset)
         int totalTopic = trendingTopics
 
         render(template: "/dashboard/trendingTopics", model: [trendingTopicList: trendingTopics, trendingCount: totalTopic, max: max, offset: offset])

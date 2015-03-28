@@ -1,11 +1,8 @@
 package com.ig.LinkShare
 
-import javax.print.Doc
-
 class DocumentResourceController {
 
     def scaffold = true
-    //def index() {}
     def uploadService
     def readingItemService
 
@@ -21,28 +18,22 @@ class DocumentResourceController {
         documentResource = uploadService.uploadDocument(documentResource, params.docFile, grailsApplication.config.upload.uploadDocument)
 
         if (documentResource.save(failOnError: true)) {
-
             readingItemService.markReading(createdBy, documentResource, true)
-
             flash.message = "Your Document has been shared !"
         } else {
             flash.message = "Sorry , link sharing failed !"
         }
-
-        //todo: replace this redirect - render using ajax
         redirect(controller: "home", action: "dashboard")
 
     }
 
-    def downloadResource(){
-        DocumentResource documentResource=DocumentResource.get(params.resource)
-        if(documentResource==null){
-            flash.message="File not found!"
-            redirect(controller: "home",action: "dashboard")
-        }
-        else
-        {
-            File file=new File(documentResource.filePath)
+    def downloadResource() {
+        DocumentResource documentResource = DocumentResource.get(params.resource)
+        if (documentResource == null) {
+            flash.message = "File not found!"
+            redirect(controller: "home", action: "dashboard")
+        } else {
+            File file = new File(documentResource.filePath)
             response.setContentType("APPLICATION/OCTET-STREAM")
             response.setHeader("Content-Disposition", "Attachment;Filename=\"${documentResource.fileName}\"")
             def outputStream = response.getOutputStream()
@@ -50,6 +41,5 @@ class DocumentResourceController {
             outputStream.flush()
             outputStream.close()
         }
-
     }
 }

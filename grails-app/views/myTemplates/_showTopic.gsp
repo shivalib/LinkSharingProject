@@ -28,7 +28,6 @@
         <span>
             <g:select name="seriousness" from="${com.ig.LinkShare.applicationEnums.Seriousness}"/>
             <g:select name="visibility" from="${com.ig.LinkShare.applicationEnums.Visibility}"/>
-
             <button type="button" class="btn btn-default" title="Send invitation" data-toggle="modal"
                     data-target="#mySendInviteModal">
                 <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
@@ -80,10 +79,6 @@
                     </div>
                 </g:form>
             </div>
-            %{--<div class="modal-footer">--}%
-            %{--<g:submitButton type="button" class="btn btn-primary" name="submit" >Save </g:submitButton>--}%
-            %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
-            %{--</div>--}%
         </div>
     </div>
 </div>

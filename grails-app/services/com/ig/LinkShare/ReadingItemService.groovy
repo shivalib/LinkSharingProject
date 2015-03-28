@@ -5,17 +5,8 @@ import grails.transaction.Transactional
 @Transactional
 class ReadingItemService {
 
-    //todo try not using def in service.
-    def serviceMethod() {
-
-    }
-
     void markReading(User user, Resource resource, Boolean isRead) {
-        println "===========user :" + user
-        println "*********resource : " + resource
         ReadingItem readingItem = new ReadingItem(isRead: isRead)
-
-        //Resource resource=Resource.findWhere(createdBy: user)
 
         user.addToReadingItems(readingItem)
         resource.addToReadingItems(readingItem)

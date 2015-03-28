@@ -47,7 +47,6 @@ class SearchController {
         User currentUser = userService.showCurrentUserObject(session["username"])
 
         Topic topic = Topic.findById(params.topicID)
-        println topic.topicName
 
         List<Resource> resourceList = showResourceService.showResourcesByTopic(topic)
 
@@ -55,15 +54,15 @@ class SearchController {
     }
 
     def searchInbox() {
-         User user=userService.showCurrentUserObject(session["username"])
+        User user = userService.showCurrentUserObject(session["username"])
 
-        List<ReadingItem> readingItems1=ReadingItem.createCriteria().list() {
-            and{
-                eq('isRead',false)
-                eq('user',user)
+        List<ReadingItem> readingItems1 = ReadingItem.createCriteria().list() {
+            and {
+                eq('isRead', false)
+                eq('user', user)
                 'resource'
                         {
-                            ilike('description',params.searchInbox+'%')
+                            ilike('description', params.searchInbox + '%')
                         }
             }
         }
@@ -81,7 +80,7 @@ class SearchController {
             ilike('description', params.textToSearch + '%')
 
         }
-        List topic = Topic.createCriteria().list() {
+        List topic = Topic.createCriteria().list{
             ilike('topicName', params.textToSearch + '%')
         }
         List newList = []

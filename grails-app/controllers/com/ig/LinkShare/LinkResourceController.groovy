@@ -2,10 +2,9 @@ package com.ig.LinkShare
 
 class LinkResourceController {
     def scaffold = true
-    //def index() {}
     def readingItemService
 
-    def shareLink(User user) {
+    def shareLink() {
         User userID = User.findWhere(username: session["username"])
 
         def topicID = Topic.findWhere(createdBy: userID, topicName: params.topicList)
@@ -17,7 +16,6 @@ class LinkResourceController {
             userID.addToResources(linkResource)
 
             readingItemService.markReading(userID, linkResource, true)
-
 
             flash.message = "Your link has been created !"
         } else {

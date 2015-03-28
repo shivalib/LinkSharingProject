@@ -50,7 +50,6 @@ class SubscriptionController {
         Topic topic = Topic.findByTopicName(topicName)
 
         def seriousness = params.seriousness
-        println params.seriousness
 
         Subscription subscription = new Subscription(seriousness: params.seriousness, user: currentUser, topic: topic)
         if (subscription.save(failOnError: true)) {
@@ -59,7 +58,6 @@ class SubscriptionController {
             resourceListOfCurrentUser.each { Resource resource ->
                 readingItemService.markReading(currentUser, resource, false)
             }
-
             currentUser.addToSubscriptions(subscription)
             topic.addToSubscriptions(subscription)
 
@@ -73,12 +71,10 @@ class SubscriptionController {
     }
 
     def unsubscribeUser() {
-
         String loginUser = session["username"]
         User currentUser = User.findByUsername(loginUser)
 
         def topicName = params.topicName
-
         Topic topic = Topic.findByTopicName(topicName)
 
         Subscription subscription = Subscription.findByUserAndTopic(currentUser, topic)
@@ -86,12 +82,9 @@ class SubscriptionController {
     }
 
     def changeVisibility() {
-        println "---ready to change visibility!!!!!!!!!!!!!!!!"
-
         Topic topic = Topic.get(params.topicID)
         topic.visibility = params.visibility
         topic.save(failOnError: true, flush: true)
-
 
         if (topic.visibility == Visibility.PUBLIC) {
             render false
@@ -100,13 +93,12 @@ class SubscriptionController {
         }
     }
 
-    def changeSeriousness(){
-        Subscription subscription=Subscription.get(params.subscribeID)
-        subscription.seriousness=params.seriousness
-        subscription.save(failOnError: true,flush: true)
+    def changeSeriousness() {
+        Subscription subscription = Subscription.get(params.subscribeID)
+        subscription.seriousness = params.seriousness
+        subscription.save(failOnError: true, flush: true)
         render true
     }
-
 
 
 }

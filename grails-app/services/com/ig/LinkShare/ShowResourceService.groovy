@@ -14,7 +14,7 @@ class ShowResourceService {
 
 
     List<Resource> calculateResourceList(){
-        List<Resource> resources = Resource.createCriteria().list() {
+        List<Resource> resources = Resource.createCriteria().list{
             'topic' {
                 eq('visibility', Visibility.PUBLIC)
             }
@@ -23,18 +23,17 @@ class ShowResourceService {
     }
 
     List<Resource> calculateResourceListForAdmin(){
-        List<Resource> resources = Resource.createCriteria().list() {
+        List<Resource> resources = Resource.createCriteria().list{
 
         }
         return resources
     }
 
     List<Resource> showTopPost(){
-        List<ResourceRating> resourceRatingList=ResourceRating.createCriteria().list() {
+        List<ResourceRating> resourceRatingList=ResourceRating.createCriteria().list{
                         order("score","desc")
         }
         return resourceRatingList
-
     }
 
 

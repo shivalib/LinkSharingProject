@@ -5,7 +5,7 @@ import grails.transaction.Transactional
 @Transactional
 class DateDifferenceService {
 
-     public  static Map getDifferenceInDates(Date resourceCreated, Date newDate = new Date()) {
+     static Map getDifferenceInDates(Date resourceCreated, Date newDate = new Date()) {
         Long difference = newDate.time - resourceCreated.time
         Map diffMap =[:]
         difference = difference / 1000

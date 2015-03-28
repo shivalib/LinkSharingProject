@@ -25,11 +25,10 @@ class LoginController {
     }
 
     def forgotPassword() {
-        println params.email
         render(view: "forgotPassword")
     }
 
-    def resetThePassword(UserCO userCO){
+    def resetThePassword(UserCO userCO) {
 
         if (!userCO.validate()) {
             userCO.errors.allErrors.each {
@@ -39,10 +38,10 @@ class LoginController {
             flash.message = "Password updation failed!"
 
         } else {
-            User user=User.findByEmail(params.emailID)
-            user.password=params.password
-            user.save(failOnError: true,flush: true)
-            flash.message = "Password updation Successfull!"
+            User user = User.findByEmail(params.emailID)
+            user.password = params.password
+            user.save(failOnError: true, flush: true)
+            flash.message = "Password update Successfull!"
         }
         redirect(controller: "home", action: "index")
 
@@ -69,10 +68,11 @@ class LoginController {
                 property("username")
             }
         }
-        if (userList.contains(params.username))
+        if (userList.contains(params.username)) {
             render false
-        else
+        } else {
             render true
+        }
     }
 
 
