@@ -8,13 +8,18 @@ class UserProfileController {
     def userService
     def showTopicService
     def showResourceService
+    TopicSubscriptionService topicSubscriptionService
+    Top5SubscriptionService top5SubscriptionService
 
     def index() {
         if (session["username"]) {
-            User currentUser = User.findByUsername(session["username"])
 
-            List<Topic> topicList = Topic.findAllWhere(createdBy: currentUser)
-            render(view: "/userProfile/editProfile", model: [loginUser: currentUser, topicList: topicList])
+            User currentUser = User.findByUsername(session["username"])
+            List<Topic> topicList = showTopicService.findTopicsCreatedByCurrentUser(session["username"])
+
+           List<Subscription> subscriptionTopicList=topicSubscriptionService.currentUserSubscriptions(currentUser)
+
+            render(view: "/userProfile/editProfile", model: [loginUser: currentUser,subscriptionTopicList:subscriptionTopicList,topicList: topicList])
         }
     }
 

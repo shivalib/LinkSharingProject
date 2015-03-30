@@ -18,7 +18,6 @@ $(document).ready(function () {
                 else {
                     $('#startDiv').empty()
                 }
-
             }
         })
     });

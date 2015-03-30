@@ -35,7 +35,7 @@ class ApplicationTagLib {
         Topic topic = Topic.get(attr.topicID)
 
         Subscription subscription = Subscription.findWhere(topic: topic, user: user)
-//        out<<subscription.seriousness
+
         if (currentUser.admin | currentUser == topicCreater) {
             out << g.render(template: "/home/isAdmin", model: [topic: topic, loginUser: attr.currentUser])
             out << g.render(template: "/myTemplates/isNotAdmin", model: [topic: topic, loginUser: attr.currentUser, subscription: subscription])
@@ -86,6 +86,7 @@ class ApplicationTagLib {
         Subscription subscription = Subscription.findWhere(user: user, topic: topic)
 
         if (subscription) {
+
 
             out << g.render(template: '/home/isSubscribed', model: [topic: topic, subscription: subscription])
 

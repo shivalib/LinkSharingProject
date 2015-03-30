@@ -29,6 +29,7 @@ class ShowTopicService {
         return topicList
     }
 
+
     List<Topic> listAllPublicTopics(){
         List<Topic> topicList=Topic.createCriteria().list {
             eq('visibility',Visibility.PUBLIC)

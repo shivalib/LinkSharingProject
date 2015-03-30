@@ -2,9 +2,6 @@ package com.ig.LinkShare.applicationEnums
 
 import grails.validation.Validateable
 
-/**
- * Created by intelligrape on 3/3/15.
- */
 @Validateable
 class UserCO {
     String password

@@ -14,7 +14,7 @@
             <div class="panel-body">
                 <div class="media ">
                     <div class="media-left">
-                        <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile",params: [id:loginUser.id])}">
+                        <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile", params: [id: loginUser.id])}">
                             <img src="${createLink(controller: "image", action: "renderImage", params: [path: loginUser.photoPath])}"
                                  class="media-object mediaFace">
                         </a>
@@ -59,7 +59,8 @@
             </div>
 
             <div id="updateSubscriptions">
-                <g:render template="subscriptionOfCurrentUser" model="[subscriptionCount:subscriptionCount,max:max,offset: offset]"/>
+                <g:render template="subscriptionOfCurrentUser"
+                          model="[subscriptionCount: subscriptionCount, max: max, offset: offset]"/>
             </div>
         </div><!--panel ends -->
 
@@ -68,8 +69,10 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Trending Topic</h3>
             </div>
+
             <div id="updateTrendingDiv">
-                <g:render template="/dashboard/trendingTopics" model="[max:max,offset: offset,trendingTopicList:trendingTopicList]"/>
+                <g:render template="/dashboard/trendingTopics"
+                          model="[max: max, offset: offset, trendingTopicList: trendingTopicList]"/>
             </div>
 
         </div><!-- panel ends-->
@@ -90,18 +93,18 @@
 
             <div id="inboxDiv">
                 <g:render template="/dashboard/iterateInbox"
-                          model="[readingItemListWithIsReadFalse: readingItemListWithIsReadFalse,max:max,offset:offset,inboxCount:inboxCount]"/>
+                          model="[readingItemListWithIsReadFalse: readingItemListWithIsReadFalse, max: max, offset: offset, inboxCount: inboxCount]"/>
             </div>
         </div><!--panel ends-->
         <div class="panel panel-default rightdiv">
             <div class="panel-heading">
                 <h3 class="panel-title">Search for :</h3>
             </div>
+
             <div class="panel-body">
                 <div class="addSearchData">
 
                 </div>
-                %{--<g:render template="/search/searchResult"/>--}%
             </div>
         </div>
     </div><!--col-md-7-->

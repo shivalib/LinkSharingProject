@@ -1,56 +1,67 @@
 <%@ page import="com.ig.LinkShare.applicationEnums.Visibility; com.ig.LinkShare.applicationEnums.Seriousness" %>
 <div class="media ">
     <div class="media-left">
-        <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile", params: [id: topics.createdBy.id])}">
-            <img src="${createLink(controller: "image", action: "renderImage", params: [path: topics.createdBy.photoPath])}"
+        <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile", params: [id: topics.topic.createdBy.id])}">
+            <img src="${createLink(controller: "image", action: "renderImage", params: [path: topics.topic.createdBy.photoPath])}"
                  class="media-object mediaFace">
         </a>
     </div>
 
     <div class="media-body">
         <h4 class="media-heading">
-            <h5>${topics.topicName}</h5>
+
+            <h5>${topics.topic.topicName}</h5>
 
         </h4>
 
         <div>
-            <h5>@${loginUser.username}</h5>
+            <h5>@${topics.topic.createdBy.username}</h5>
         </div>
         <span class="right">Posts
-            <div>${topics.resources.size()}</div>
+            <div>${topics.topic.resources.size()}</div>
         </span>
 
         <span class="right rightdiv">Subscriptions
-            <div>${topics.subscriptions.size()}</div>
+            <div>${topics.topic.subscriptions.size()}</div>
         </span>
-        %{--<div>--}%
+        <div>
         <br><br>
         <span>
-            <g:select name="seriousness" from="${com.ig.LinkShare.applicationEnums.Seriousness}"/>
-            <g:select name="visibility" from="${com.ig.LinkShare.applicationEnums.Visibility}"/>
+
+            <g:select name="seriousness" class="subscribeSeriousness"
+                      from="${com.ig.LinkShare.applicationEnums.Seriousness}"
+                      value="${topics.seriousness}" id="${topics.id}"
+                      data-changeSerious="${createLink(controller: "subscription", action: "changeSeriousness")}"/>
+
+            <g:select name="visibility" class="topicVisibility" from="${com.ig.LinkShare.applicationEnums.Visibility}"
+                      value="${topics.topic.visibility}"
+                      data-changeVisibility="${createLink(controller: "subscription", action: "changeVisibility")}"
+                      data-topic-id="${topics.topic.id}"/>
+
             <button type="button" class="btn btn-default" title="Send invitation" data-toggle="modal"
-                    data-target="#mySendInviteModal">
+                    data-target="#mySendInviteModal-${topics.topic.topicName}">
                 <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
             </button>
 
             <button type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal"
-                    data-target="#myEditModal-${topics.id}">
+                    data-target="#myEditModal-${topics.topic.id}">
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
             </button>
 
             <button type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal"
-                    data-target="#myEditModal-${topics.topicName}">
+                    data-target="#myEditModal-${topics.topic.topicName}">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
             </button>
 
         </span>
 
-        %{--</div>--}%
+        </div>
     </div><!--media body ends-->
 </div><!--media ends -->
 
 <!-- Modal : SEND iNVIATION -->
-<div class="modal fade" id="mySendInviteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="mySendInviteModal-${topics.topic.topicName}" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -69,7 +80,7 @@
 
                     <div>
                         <span>Topic* :</span>
-                        <g:select name="topicList" from="${topicList.topicName}"/>
+                        <g:textField name="topicList" value="${topics.topic.topicName}" readonly="trues"/>
                     </div>
 
                     <div class="right">
@@ -84,7 +95,7 @@
 </div>
 
 <!-- Modal:edit -->
-<div class="modal fade" id="myEditModal-${topics.topicName}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="myEditModal-${topics.topic.topicName}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -95,10 +106,10 @@
             </div>
 
             <div class="modal-body">
-                <g:form controller="topic" action="updateTopic" id="${topics.id}">
+                <g:form controller="topic" action="updateTopic" id="${topics.topic.id}">
                     <div>
                         <span>Topic*</span>
-                        <g:textField name="topicName" value="${topics.topicName}"/>
+                        <g:textField name="topicName" value="${topics.topic.topicName}"/>
                     </div>
 
                     <div class="right">
@@ -107,16 +118,12 @@
                     </div>
                 </g:form>
             </div>
-            %{--<div class="modal-footer">--}%
-            %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
-            %{--<button type="button" class="btn btn-primary">Save changes</button>--}%
-            %{--</div>--}%
         </div>
     </div>
 </div>
 
 <!-- Modal:trash -->
-<div class="modal fade" id="myEditModal-${topics.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="myEditModal-${topics.topic.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -127,10 +134,10 @@
             </div>
 
             <div class="modal-body">
-                <g:form controller="topic" action="deleteTopic" id="${topics.id}">
+                <g:form controller="topic" action="deleteTopic" id="${topics.topic.id}">
                     <div>
                         <span>Topic*</span>
-                        <g:textField name="topicName" value="${topics.topicName}"/>
+                        <g:textField name="topicName" value="${topics.topic.topicName}"/>
                     </div>
                     <br>
 
@@ -144,11 +151,6 @@
                     </div>
                 </g:form>
             </div>
-
-            %{--<div class="modal-footer">--}%
-            %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
-            %{--<button type="button" class="btn btn-primary">Save changes</button>--}%
-            %{--</div>--}%
         </div>
     </div>
 </div>

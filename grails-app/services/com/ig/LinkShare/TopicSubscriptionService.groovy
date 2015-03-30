@@ -25,12 +25,8 @@ class TopicSubscriptionService {
 
 
 
-    List<Subscription> subscriptionList(User user){
 
-//        List<Subscription> subscriptions=Subscription.findAllByTopic(topic)
-//
-//        return subscriptions
-//
+    List<Subscription> subscriptionList(User user){
         List<Subscription> subscriptions=Subscription.createCriteria().list {
             eq('user',user)
             'topic'{
@@ -40,7 +36,13 @@ class TopicSubscriptionService {
         return  subscriptions
     }
 
-
-
-
+    List<Subscription> currentUserSubscriptions(User user){
+        List<Subscription> subscriptions=Subscription.createCriteria().list {
+            eq('user',user)
+            'topic'{
+                eq('createdBy',user)
+            }
+        }
+        return subscriptions
+    }
 }

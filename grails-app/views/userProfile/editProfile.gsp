@@ -55,9 +55,10 @@
                 <h3 class="panel-title ">Topics</h3>
             </div>
 
-            <g:each in="${topicList}" var="topics">
+            <g:each in="${subscriptionTopicList}" var="topics">
             <div class="panel-body">
-                <ls:topicListing topics="${topics}" loginUser="${loginUser}"></ls:topicListing>
+
+                <ls:topicListing topics="${topics}" loginUser="${loginUser}" subscriptionList="${subscriptionTopicList}"/>
             </div><!--panel body ends-->
             </g:each>
         </div><!--panel ends-->
