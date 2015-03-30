@@ -72,7 +72,6 @@ class UserController {
     }
 
     def changeUserList() {
-        println "[[[[   value selected  :  " + params.selectVal
         List<User> userList = []
         switch (params.selectVal) {
             case "Active":
@@ -86,7 +85,7 @@ class UserController {
                 break
         }
 
-        render(template: "/userListing/userEntry",model: [userList: userList])
+        render(template: "/userListing/userEntry", model: [userList: userList])
 
     }
 

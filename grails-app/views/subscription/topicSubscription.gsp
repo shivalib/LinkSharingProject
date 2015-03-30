@@ -39,7 +39,7 @@
 
             <div class="panel-body">
                 <div id="updatePost">
-                    %{--<g:render template="/search/postOnTopicName" model="[]"--}%
+                    <h4>Click on a topic name to see the posts!</h4>
                 </div>
             </div>
         </div>
@@ -51,7 +51,6 @@
                 <div class="addSearchData">
 
                 </div>
-                %{--<g:render template="/search/searchResult"/>--}%
             </div>
         </div>
     </div>

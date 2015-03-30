@@ -4,7 +4,7 @@ class ApplicationFilters {
 
     def filters = {
 
-        loginCheck(controller: 'home|user|image', actionExclude: 'index|registerUser|showRecentShare|renderImage|showTopPosts', action: '*') {
+        loginCheck(controller: 'home|user|image', actionExclude: 'index|forgotPassword|resetPassword|resetThePassword|resetPasswordLink|registerUser|showRecentShare|renderImage|showTopPosts', action: '*') {
             before = {
                 if (!session.username) {
                     println "-- in filter --"
