@@ -17,11 +17,12 @@ class ShowResourceService {
     }
 
 
-    List<Resource> calculateResourceList() {
-        List<Resource> resources = Resource.createCriteria().list {
+    List<Resource> calculateResourceList(int max,int offset) {
+        List<Resource> resources = Resource.createCriteria().list(max:max,offset:offset) {
             'topic' {
                 eq('visibility', Visibility.PUBLIC)
             }
+            order('dateCreated','desc')
         }
         return resources
     }

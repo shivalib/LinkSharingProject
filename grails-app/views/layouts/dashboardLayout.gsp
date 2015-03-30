@@ -47,25 +47,26 @@
 
                 <g:if test="${loginUser}">
                     <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
-                            data-target="#myCreateTopicModal">
+                            data-target="#myCreateTopicModal" title="Create Topic">
                         <span class="glyphicon glyphicon-comment" aria-hidden="true"/>
                     </button>
 
                     <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
-                            data-target="#mySendInviteModal">
+                            data-target="#mySendInviteModal" title="Send Invite">
                         <span class="glyphicon glyphicon-envelope" aria-hidden="true"/>
                     </button>
 
-                    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
+                    <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal"
+                            title="Create Link">
                         <span class="glyphicon glyphicon-link" aria-hidden="true"/>
                     </button>
 
                     <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
-                            data-target="#myDocumentModal">
+                            data-target="#myDocumentModal" title="Upload Document">
                         <span class="glyphicon glyphicon-file" aria-hidden="true"/>
                     </button>
 
-                    <g:link controller="userProfile" action="showUserPublicProfile">
+                    <g:link controller="userProfile" action="showUserPublicProfile" id="${loginUser.id}">
                         <img src="${resource(dir: "images", file: "person-icon.png")}" title="User Profile"
                              height="35px" width="35px"/>
                     </g:link>

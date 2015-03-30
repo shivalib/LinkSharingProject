@@ -12,7 +12,10 @@ class HomeController {
 
     def index() {
 
-        List<Resource> resources = showResourceService.calculateResourceList()
+        int offset = params.offset ? params.int('offset') : 0
+        int max = params.max ? params.int('max') : 5
+
+        List<Resource> resources = showResourceService.calculateResourceList(max, offset)
 
         render(view: "/login/homePage", model: [resources: resources, resourceCount: resources.count])
     }
@@ -43,32 +46,31 @@ class HomeController {
         }
     }
 
-    def showTopPosts(){
-        println "********** selected value : "+params.timeValue
+    def showTopPosts() {
+        println "********** selected value : " + params.timeValue
         List<Resource> resources1 = showResourceService.showTopPost(params.timeValue)
-        resources1.each{
+        resources1.each {
             println it
         }
         render true
-
     }
-
 
     def paginateUserSubscription() {
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5
 
-        //show top5Subscriptions
         List<Topic> top5SubscribedTopics = top5SubscriptionService.showTop5Subscription(session["username"], max, offset)
         int subscriptionCount = top5SubscribedTopics.totalCount
 
         render(template: "/home/subscriptionOfCurrentUser", model: [top5SubscribedTopics: top5SubscribedTopics, subscriptionCount: subscriptionCount, max: max, offset: offset])
     }
 
-    def showRecentShare() {
+    def paginateRecentShare() {
 
-        List<Topic> top5SubscribedTopics = top5SubscriptionService.showTop5Subscription(session["username"])
-        render(template: "/home/subscriptionOfCurrentUser", model: [top5SubscribedTopics: top5SubscribedTopics])
+        int offset = params.offset ? params.int('offset') : 0
+        int max = params.max ? params.int('max') : 5
+        List<Resource> resources = showResourceService.calculateResourceList(max, offset)
+        render(template: "/home/subscriptionOfCurrentUser", model: [resources: resources])
     }
 
     def paginateInbox() {

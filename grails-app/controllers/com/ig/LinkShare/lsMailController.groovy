@@ -24,7 +24,8 @@ class lsMailController {
             subject "Reset : Password"
             html "${g.link(controller: "user", action: "resetPassword", params: [emailID: params.emailID], absolute: "true", { "click on the link to change your password" })}"
         }
-        render "sent"
+        flash.message="Link to reset password have been sent to ${params.emailID}"
+        redirect(controller: "login",action: "forgotPassword")
     }
 
 

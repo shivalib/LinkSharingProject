@@ -41,8 +41,8 @@ class UserProfileController {
         redirect(controller: "userProfile", action: "index")
     }
 
-    def showUserPublicProfile(){
-        User currentUser = User.findById(params.id)
+    def showUserPublicProfile(Long id){
+        User currentUser = User.findById(id)
 
         List<Topic> topics = showTopicService.findTopicsCreatedByCurrentUser(session["username"])
 
