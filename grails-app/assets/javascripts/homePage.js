@@ -97,4 +97,25 @@ $(document).ready(function () {
         }
     })
 
+    $('#timeBasedData').on('change', function () {
+        console.log('heya i m here!')
+
+        var url=$(this).attr('data-changeDataOnTimeBasis')
+        console.log(url)
+
+        var timeValue=$(this).val()
+        console.log(timeValue)
+
+        $.ajax({
+            url:url,
+            data:{
+                timeValue:timeValue
+            },
+            success: function (data) {
+              console.log(data)
+            }
+        })
+    })
 });
+
+

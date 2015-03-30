@@ -7,11 +7,8 @@
     </div>
     <div class="media-body">
         <h4 class="media-heading">${res.createdBy.fullName}@${res.createdBy.username}
-        %{--<span class="right">--}%
-            %{----}%
-        %{--</span>--}%
             <span class="right">
-            <ls:timeDiffInDetail oldDate="${res.dateCreated}"/>
+                <ls:timeDiffInDetail oldDate="${res.dateCreated}"/>
                 <g:link>${res.topic.topicName}</g:link>
             </span> </h4>
         ${res.description}

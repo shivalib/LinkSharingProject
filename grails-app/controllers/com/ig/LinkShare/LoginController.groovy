@@ -3,8 +3,6 @@ package com.ig.LinkShare
 import com.ig.LinkShare.applicationEnums.UserCO
 
 class LoginController {
-    def index() {
-    }
 
     def loginHandler(String email, String password, Boolean active) {
 

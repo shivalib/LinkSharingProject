@@ -25,17 +25,21 @@
             </div><!--panel body end -->
         </div><!--panel end-->
 
-
+    <!-- Top Posts-->
         <div class="panel panel-default leftdiv">
             <div class="panel-heading">
                 <h3 class="panel-title">Top Posts
-                <g:select name="timeBasedData" from="${timeBasedContent}"/>
+                    <span class="right">
+                        <g:select name="timeBasedData" from="${com.ig.LinkShare.applicationEnums.TimeBasedContent}"
+                                  data-changeDataOnTimeBasis="${createLink(controller: "home", action: "showTopPosts")}"/>
+                    </span>
+
                 </h3>
             </div>
 
             <div class="panel-body">
                 <g:each in="${topPost}" var="res">
-                    <ls:showListingPages resource="${res}"/>
+                    <ls:showTopPost resource="${res}"/>
                 </g:each>
             </div>
 

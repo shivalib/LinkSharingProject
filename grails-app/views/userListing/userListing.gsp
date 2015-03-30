@@ -20,7 +20,7 @@
 
                 <g:select name="userType" id="selectType"
                           data-changeUser="${createLink(controller: "user", action: "changeUserList")}"
-                          from="['Active', 'Inactive', 'All Users']" value="All Users"/>
+                          from="${com.ig.LinkShare.applicationEnums.UserType}" value="All Users"/>
 
             </div>
 

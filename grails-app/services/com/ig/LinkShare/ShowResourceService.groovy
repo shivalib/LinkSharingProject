@@ -2,6 +2,10 @@ package com.ig.LinkShare
 
 import com.ig.LinkShare.applicationEnums.Visibility
 import grails.transaction.Transactional
+import groovy.time.TimeCategory
+
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 
 @Transactional
 class ShowResourceService {
@@ -13,8 +17,8 @@ class ShowResourceService {
     }
 
 
-    List<Resource> calculateResourceList(){
-        List<Resource> resources = Resource.createCriteria().list{
+    List<Resource> calculateResourceList() {
+        List<Resource> resources = Resource.createCriteria().list {
             'topic' {
                 eq('visibility', Visibility.PUBLIC)
             }
@@ -22,19 +26,20 @@ class ShowResourceService {
         return resources
     }
 
-    List<Resource> calculateResourceListForAdmin(){
-        List<Resource> resources = Resource.createCriteria().list{
+    List<Resource> calculateResourceListForAdmin() {
+        List<Resource> resources = Resource.createCriteria().list {
 
         }
         return resources
     }
 
-    List<Resource> showTopPost(){
-        List<ResourceRating> resourceRatingList=ResourceRating.createCriteria().list{
-                        order("score","desc")
+    List<Resource> showTopPost(String selectedValue) {
+
+        List<Resource> resourceRatingList = Resource.createCriteria().list {
+            'resouceRatings' {
+                order('score', 'desc')
+            }
         }
         return resourceRatingList
     }
-
-
 }

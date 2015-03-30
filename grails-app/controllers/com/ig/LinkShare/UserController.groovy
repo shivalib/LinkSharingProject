@@ -71,4 +71,23 @@ class UserController {
         render(view: "/login/resetPassword", model: [emailID: params.emailID])
     }
 
+    def changeUserList() {
+        println "[[[[   value selected  :  " + params.selectVal
+        List<User> userList = []
+        switch (params.selectVal) {
+            case "Active":
+                userList = User.findAllWhere(active: true)
+                break
+            case "Inactive":
+                userList = User.findAllWhere(active: false)
+                break
+            case "AllUsers":
+                userList = User.findAll()
+                break
+        }
+
+        render(template: "/userListing/userEntry",model: [userList: userList])
+
+    }
+
 }

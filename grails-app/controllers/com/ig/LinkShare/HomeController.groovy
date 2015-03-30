@@ -14,9 +14,7 @@ class HomeController {
 
         List<Resource> resources = showResourceService.calculateResourceList()
 
-        List<ResourceRating> resources1 = showResourceService.showTopPost()
-
-        render(view: "/login/homePage", model: [resources: resources, resourceCount: resources.count, topPost: resources1.resource])
+        render(view: "/login/homePage", model: [resources: resources, resourceCount: resources.count])
     }
 
     def dashboard() {
@@ -44,6 +42,17 @@ class HomeController {
             render(view: "/home/dashboard", model: [subscriptionCount: subscriptionCount, inboxCount: total, max: max, offset: offset, trendingCount: totalTopic, readingItemListWithIsReadFalse: readingItemListWithIsReadFalse, loginUser: currentUser, trendingTopicList: trendingTopics, topicList: topics.topicName, top5SubscribedTopics: top5SubscribedTopics])
         }
     }
+
+    def showTopPosts(){
+        println "********** selected value : "+params.timeValue
+        List<Resource> resources1 = showResourceService.showTopPost(params.timeValue)
+        resources1.each{
+            println it
+        }
+        render true
+
+    }
+
 
     def paginateUserSubscription() {
         int offset = params.offset ? params.int('offset') : 0

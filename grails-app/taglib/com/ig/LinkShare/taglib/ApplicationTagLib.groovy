@@ -48,6 +48,12 @@ class ApplicationTagLib {
         out << g.render(template: "/myTemplates/RecentShare", model: [res: attr.resource, diffList: attr.diffList])
     }
 
+    def showTopPost={attr->
+        out<<g.render(template: "/home/topPosts",model: [res: attr.resource, diffList: attr.diffList])
+
+    }
+
+
     def topicListing = { attr ->
         def loginUser = attr.loginUser
         out << g.render(template: "/myTemplates/showTopic", model: [topics: attr.topics, loginUser: loginUser])
