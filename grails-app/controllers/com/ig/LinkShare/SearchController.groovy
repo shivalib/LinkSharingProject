@@ -77,7 +77,8 @@ class SearchController {
     def searchAll() {
 
         User currentUser = userService.showCurrentUserObject(session["username"])
-        List<Resource> resourceList = showResourceService.calculateResourceList()
+
+        List<Resource> resourceList = showResourceService.calculateResourceList(20,0)
 
         List<Resource> resources = Resource.createCriteria().list {
 
@@ -94,7 +95,6 @@ class SearchController {
         resources += newList
 
         render(template: "searchResult", model: [resourceList: resources, loginUser: currentUser])
-
     }
 
 
