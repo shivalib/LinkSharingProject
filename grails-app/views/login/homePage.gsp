@@ -37,10 +37,8 @@
                 </h3>
             </div>
 
-            <div class="panel-body">
-                <g:each in="${topPost}" var="res">
-                    <ls:showTopPost resource="${res}"/>
-                </g:each>
+            <div class="panel-body topPostDiv">
+                    %{--<ls:showTopPost resource="${res}"/>--}%
             </div>
 
         </div>

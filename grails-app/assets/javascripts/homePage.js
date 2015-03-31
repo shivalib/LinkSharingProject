@@ -113,6 +113,7 @@ $(document).ready(function () {
             },
             success: function (data) {
               console.log(data)
+                $('.topPostDiv').html(data)
             }
         })
     })

@@ -47,12 +47,8 @@ class HomeController {
     }
 
     def showTopPosts() {
-        println "********** selected value : " + params.timeValue
         List<Resource> resources1 = showResourceService.showTopPost(params.timeValue)
-        resources1.each {
-            println it
-        }
-        render true
+        render(template: "/home/topPosts",model: [resource:resources1])
     }
 
     def paginateUserSubscription() {

@@ -1,3 +1,4 @@
+<g:each in="${resource}" var="res">
 <div class="media ">
     <div class="media-left">
         <g:link  controller="userProfile" action="showUserPublicProfile">
@@ -17,3 +18,4 @@
     <g:render template="/myTemplates/socialIcons"/>
     <span><g:link class="right" controller="showPost" action="index" id="${res.id}">View post</g:link></span>
 </div>
+</g:each>
