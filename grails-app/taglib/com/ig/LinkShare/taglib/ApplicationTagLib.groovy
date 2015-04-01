@@ -120,11 +120,17 @@ class ApplicationTagLib {
         def resource = attr.resource
         def currentUser = attr.currentUser
         ReadingItem readingItem = ReadingItem.findByUserAndResource(currentUser, resource)
+        if(!readingItem)
+        {
+            out<<""
+            return
+        }
         if (readingItem.isRead) {
             out << g.render(template: '/myTemplates/markAsUnread', model: [ajaxClass: attr.ajaxClass, currentUser: currentUser.id, currentResource: attr.resource.id])
         } else {
             out << g.render(template: '/myTemplates/markAsRead', model: [ajaxClass: attr.ajaxClass, currentUser: currentUser.id, currentResource: attr.resource.id])
         }
+
     }
 
 

@@ -22,6 +22,6 @@
             <g:link class="right" controller="showPost" action="index" id="${resource.topic.id}">View post</g:link>
         </div>
         <ls:checkResourceType resource="${resource}"/>
-        <ls:markResource resource="${resource}" currentUser="${loginUser}"/>
+        <ls:markResource resource="${resource}" ajaxClass="readUnread-post" currentUser="${loginUser}"/>
     </div>
 </g:each>

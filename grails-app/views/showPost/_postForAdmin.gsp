@@ -43,12 +43,10 @@
                         <ls:checkResourceType resource="${resource}"/>
                         <ls:isAdminOrCreatorOfResource currentUser="${loginUser}" resource="${resource}"/>
                     </div>
-
                 </div><!--media body ends-->
-
-
             </div><!--media ends -->
 
         </div><!--panel body ends-->
     </g:each>
+
 </div><!--panel ends-->
