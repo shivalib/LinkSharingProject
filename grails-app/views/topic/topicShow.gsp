@@ -13,11 +13,11 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Topic : ${topic.topicName}</h3>
             </div>
-                %{--................ ${topic.createdBy.id}--}%
+            %{--................ ${topic.createdBy.id}--}%
             <div class="panel-body">
                 <div class="media ">
                     <div class="media-left">
-                        <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile",params: [id:topic.createdBy.id])}">
+                        <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile", params: [id: topic.createdBy.id])}">
                             <img src="${createLink(controller: "image", action: "renderImage", params: [path: topic.createdBy.photoPath])}"
                                  class="media-object mediaFace">
                         </a>
@@ -102,26 +102,7 @@
                 </span>
             </div>
             <g:each in="${resources}" var="resourceList">
-                <div class="panel-body updateReading">
-                    <div class="media ">
-                        <div class="media-left">
-                            <a href="#">
-                                <img src="${createLink(controller: "image", action: "renderImage", params: [path: resourceList.createdBy.photoPath])}"
-                                     class="media-object mediaFace">
-                            </a>
-                        </div>
-
-                        <div class="media-body">
-                            <h4 class="media-heading"><a href=""></a></h4>
-                            ${resourceList.description}
-                        </div><!--media body ends-->
-                    </div><!--media ends-->
-                    <div class="right leftdiv">
-                        <g:link>View Post</g:link>
-                    </div>
-                    <ls:checkResourceType resource="${resourceList}"/>
-                    <ls:markResource resource="${resourceList}" currentUser="${loginUser}"/>
-                </div><!--panel body ends-->
+                <g:render template="/showPost/topicPost" model="[resourceList:resourceList]"/>
             </g:each>
         </div>
 

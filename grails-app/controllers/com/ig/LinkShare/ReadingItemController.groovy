@@ -14,17 +14,9 @@ class ReadingItemController {
 
         readingItem.isRead = !readingItem.isRead
 
-        def appResult
-        if (readingItem.save(failOnError: true, flush: true)) {
+        readingItem.save(failOnError: true, flush: true)
+        render(template: "/showPost/topicPost",model: [resourceList:readingItem.resource,loginUser:currentUser])
 
-            appResult = [result: true,isRead:readingItem.isRead]
-//            render(template: "/myTemplates/inboxPanelBody",model:['unreadItem':readingItem,loginUser:currentUser] )
-        } else {
-
-            appResult = [result: false,isRead:readingItem.isRead]
-        }
-
-        render appResult as JSON
     }
 
 

@@ -22,38 +22,58 @@ $(document).ready(function () {
         })
     });
 
-    $('.markReadOrUnread').on('click', function () {;
+
+    $('.readUnread-inbox').on('click', function () {
         //_markAsRead->ajax->controller
-        var currentUser = $(this).attr('data-currentUser'),
-            currentResource = $(this).attr('data-currentResource'), currentPanelBody = $(this).closest('.updateReading'),url=$(this).attr('data_readLink')
+        var currentPanelBody = $(this).closest('.updateReadingItem')
+        var element=$(this);
 
-        console.log(currentResource, currentUser);
-
-        $.ajax({
-            url: url,
-
-            data: {
-                currentUser: currentUser,
-                currentResource: currentResource
-            },
-            success: function (data) {
-                console.log(data)
-
-                if (data.result && data.isRead)
-                    currentPanelBody.empty()
-                else if(data.result && !data.isRead)
-                    $('#markReadID').html('Mark as Read')
-
-            },
-            error: function (request, status, error) {
-                console.log("We are in error section ");
-                console.log("request :" + request);
-                console.log("status : " + status);
-                console.log("error :" + error);
+           var successHandler= function(data) {
+                console.log(data);
+                currentPanelBody.empty()
             }
-        });
+
+        markAsReadUnread(successHandler,element)
+
     });
 
+    $('.readUnread-post').on('click', function () {
+        //alert('hello')
+        //_markAsRead->ajax->controller
+        var currentPanelBody = $(this).closest('.updateReadingItem')
+        var element=$(this)
+
+        var successHandler= function(data) {
+            console.log(data)
+            currentPanelBody.html(data)
+        }
+
+        markAsReadUnread(successHandler,element)
+
+    });
+
+    function markAsReadUnread(successHandler,element){
+        var currentUser = element.attr('data-currentUser'),
+            currentResource = element.attr('data-currentResource'),url=element.attr('data_readLink')
+
+        $.ajax(
+            {
+                url:url,
+                data: {
+                    currentUser: currentUser,
+                    currentResource: currentResource
+                },
+                success:successHandler,
+                error: function (request, status, error) {
+                    console.log("We are in error section ");
+                    console.log("request :" + request);
+                    console.log("status : " + status);
+                    console.log("error :" + error);
+                }
+            }
+        )
+
+    }
 
     $('.subscribeSeriousness').on('change', function () {
 

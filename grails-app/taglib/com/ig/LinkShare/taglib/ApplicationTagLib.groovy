@@ -48,8 +48,8 @@ class ApplicationTagLib {
         out << g.render(template: "/myTemplates/RecentShare", model: [res: attr.resource, diffList: attr.diffList])
     }
 
-    def showTopPost={attr->
-        out<<g.render(template: "/home/topPosts",model: [res: attr.resource, diffList: attr.diffList])
+    def showTopPost = { attr ->
+        out << g.render(template: "/home/topPosts", model: [res: attr.resource, diffList: attr.diffList])
 
     }
 
@@ -119,17 +119,14 @@ class ApplicationTagLib {
 
         def resource = attr.resource
         def currentUser = attr.currentUser
-
-        List<ReadingItem> readingItemList = ReadingItem.findAllByUserAndResource(currentUser, resource)
-
-        readingItemList.each { ReadingItem readingItem ->
-            if (readingItem.isRead) {
-                out << g.render(template: '/myTemplates/markAsUnread', model: [currentUser: currentUser.id, currentResource: attr.resource.id])
-            } else {
-                out << g.render(template: '/myTemplates/markAsRead', model: [currentUser: currentUser.id, currentResource: attr.resource.id])
-            }
+        ReadingItem readingItem = ReadingItem.findByUserAndResource(currentUser, resource)
+        if (readingItem.isRead) {
+            out << g.render(template: '/myTemplates/markAsUnread', model: [ajaxClass: attr.ajaxClass, currentUser: currentUser.id, currentResource: attr.resource.id])
+        } else {
+            out << g.render(template: '/myTemplates/markAsRead', model: [ajaxClass: attr.ajaxClass, currentUser: currentUser.id, currentResource: attr.resource.id])
         }
     }
+
 
     def isAdminOrCreatorOfResource = { attr ->
         def currentUser = attr.currentUser
@@ -140,12 +137,12 @@ class ApplicationTagLib {
         }
     }
 
-    def checkUserForPost={attr->
-        def user=attr.currentUser
-        if(user.admin)
-            out<<g.render(template: "/showPost/postForAdmin")
+    def checkUserForPost = { attr ->
+        def user = attr.currentUser
+        if (user.admin)
+            out << g.render(template: "/showPost/postForAdmin")
         else
-            out<<g.render(template: "/showPost/postForNonAdmin")
+            out << g.render(template: "/showPost/postForNonAdmin")
 
     }
 

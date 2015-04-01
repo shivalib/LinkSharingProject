@@ -23,5 +23,5 @@
         <g:link class="right" controller="showPost" action="index" id="${unreadItem.resource.id}">View post</g:link>
     </div>
     <ls:checkResourceType resource="${unreadItem.resource}"/>
-    <ls:markResource resource="${unreadItem.resource}" currentUser="${loginUser}"/>
+    <ls:markResource resource="${unreadItem.resource}" ajaxClass="readUnread-inbox" currentUser="${loginUser}"/>
 </div>
