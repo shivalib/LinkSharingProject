@@ -13,7 +13,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Topic : ${topic.topicName}</h3>
             </div>
-            %{--................ ${topic.createdBy.id}--}%
+
             <div class="panel-body">
                 <div class="media ">
                     <div class="media-left">
@@ -92,17 +92,17 @@
     <div class="col-md-7">
         <div class="panel panel-default rightdiv">
             <div class="panel-heading">
-                <span><h3 class="panel-title ">Posts : ${topic.topicName}</h3></span>
-                <span>
-                    <form class="navbar-form navbar-right" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                    </form>
-                </span>
+                <span><h3 class="panel-title ">Posts :
+                    <span class="input-group right" id="searchPost">
+                        <input type="text" id="searchInbox"
+                               placeholder="Search for..."
+                               onkeyup="searchInboxUsingAjax('${createLink(controller: "search", action: "searchInbox")}')"/>
+                    </span>
+                </h3></span>
+
             </div>
             <g:each in="${resources}" var="resourceList">
-                <g:render template="/showPost/topicPost" model="[resourceList:resourceList]"/>
+                <g:render template="/showPost/topicPost" model="[resourceList: resourceList]"/>
             </g:each>
         </div>
 

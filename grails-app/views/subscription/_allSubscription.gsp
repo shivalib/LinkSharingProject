@@ -2,7 +2,7 @@
     <div class="panel-body">
         <div class="media ">
             <div class="media-left">
-                <a href="${createLink(controller: "userProfile",action: "showUserPublicProfile",params: [id:subscriptionList.topic.createdBy.id])}">
+                <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile", params: [id: subscriptionList.topic.createdBy.id])}">
                     <img src="${createLink(controller: "image", action: "renderImage", params: [path: subscriptionList.topic.createdBy.photoPath])}"
                          class="media-object mediaFace">
                 </a>
@@ -10,10 +10,8 @@
 
             <div class="media-body">
                 <h4 class="media-heading">
-
-                    <a href="javascript:void(0)" class="topicLink" ajax-id="${subscriptionList.topic.id}" data-ajax-searchPost='${createLink(controller: 'search',action: 'searchPost')}'>${subscriptionList.topic.topicName}</a>
-                    %{--<g:link controller="topic" action="index" id="${subscriptionList.id}"--}%
-                            %{--params="[loginUser: loginUser.id]">${subscriptionList.topic.topicName}</g:link>--}%
+                    <a href="javascript:void(0)" class="topicLink" ajax-id="${subscriptionList.topic.id}"
+                       data-ajax-searchPost='${createLink(controller: 'search', action: 'displayPostOnTopicNameClick')}'>${subscriptionList.topic.topicName}</a>
                 </h4>
 
                 <div>

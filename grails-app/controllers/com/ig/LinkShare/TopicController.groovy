@@ -13,7 +13,6 @@ class TopicController {
         User loginUser = User.get(params.loginUser)
 
         List<Subscription> subscriptionList = topicSubscriptionService.subscriptionListOfCurrentTopic(topic)
-        subscriptionList.each {println "............. " + it}
 
         List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(session["username"])
 

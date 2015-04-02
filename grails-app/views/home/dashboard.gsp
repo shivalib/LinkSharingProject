@@ -86,7 +86,7 @@
                     <span class="input-group right" id="searchTextBox">
                         <input type="text" id="searchInbox"
                                placeholder="Search for..."
-                               onkeyup="searchInboxUsingAjax('${createLink(controller: "search", action: "searchInbox")}')"/>
+                               onkeyup="searchPostUsingAjax('${createLink(controller: "search", action: "searchInbox")}')"/>
                     </span>
                 </h3></span>
             </div>

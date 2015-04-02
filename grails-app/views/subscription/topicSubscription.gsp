@@ -13,7 +13,6 @@
         <div class="panel panel-default leftdiv">
             <div class="panel-heading">
                 <span><h3 class="panel-title">Topic
-
                     <span class="input-group right" id="searchTextBox">
                         <input type="text" id="searchText"
                                class="form-control"

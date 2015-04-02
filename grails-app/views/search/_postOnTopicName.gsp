@@ -12,12 +12,10 @@
 
             <div>
                 ${resources.topic.createdBy.fullName}@${resources.topic.createdBy.username}
-                %{--${unreadItem.resource.topic.createdBy.fullName}@ ${unreadItem.resource.topic.createdBy.username}--}%
             </div>
 
             <div>
                 ${resources.description}
-                %{--${unreadItem.resource.description}--}%
             </div>
         </div><!--media body ends-->
 

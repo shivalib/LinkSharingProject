@@ -1,11 +1,9 @@
-
-
-function searchTopicUsingAjax(searchUrl){
-    var searchTextBox=$('#searchText').val()
+function searchTopicUsingAjax(searchUrl) {
+    var searchTextBox = $('#searchText').val()
     $.ajax({
-        url:searchUrl,
-        data:{
-            searchText:searchTextBox
+        url: searchUrl,
+        data: {
+            searchText: searchTextBox
         },
         success: function (data) {
             console.log(data)
@@ -23,15 +21,14 @@ function searchTopicUsingAjax(searchUrl){
 
 $(document).ready(function () {
     $('.topicLink').on('click', function () {
-        console.log('heya i m clicked')
         console.log($(this).attr('data-ajax-searchPost'))
-        var ajaxId=$(this).attr('ajax-id')
+        var ajaxId = $(this).attr('ajax-id')
         console.log(ajaxId)
 
         $.ajax({
-            url:$(this).attr('data-ajax-searchPost'),
-            data:{
-                topicID:ajaxId
+            url: $(this).attr('data-ajax-searchPost'),
+            data: {
+                topicID: ajaxId
             },
             success: function (data) {
                 console.log(data)
@@ -48,11 +45,3 @@ $(document).ready(function () {
     })
 })
 
-
-//$('#topicLink').on('click', function () {
-//    console.log('heya i m clicked')
-//})
-
-//function displayPostOfSelectedTopic(){
-//
-//}

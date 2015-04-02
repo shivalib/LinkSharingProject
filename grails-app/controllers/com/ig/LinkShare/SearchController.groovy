@@ -43,7 +43,7 @@ class SearchController {
         render(template: "/userListing/userEntry", model: [userList: userList])
     }
 
-    def searchPost() {
+    def displayPostOnTopicNameClick() {
         User currentUser = userService.showCurrentUserObject(session["username"])
 
         Topic topic = Topic.findById(params.topicID)

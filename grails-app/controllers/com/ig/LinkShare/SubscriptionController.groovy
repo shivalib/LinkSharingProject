@@ -3,10 +3,9 @@ package com.ig.LinkShare
 import com.ig.LinkShare.applicationEnums.Visibility
 
 class SubscriptionController {
-    def userService
-//    todo move the all the possible code to a service and optimize your redirects
-
     def scaffold = Subscription
+
+    def userService
     def readingItemService
     def searchService
     def showTopicService
@@ -48,8 +47,6 @@ class SubscriptionController {
         def topicName = params.topicName
 
         Topic topic = Topic.findByTopicName(topicName)
-
-        def seriousness = params.seriousness
 
         Subscription subscription = new Subscription(seriousness: params.seriousness, user: currentUser, topic: topic)
         if (subscription.save(failOnError: true)) {
