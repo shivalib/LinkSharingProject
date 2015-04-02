@@ -100,7 +100,7 @@
 
                     <div>
                         <span>Topic* :</span>
-                        <g:select name="topicList" from="${topicList.topicName}"/>
+                        <g:select name="topicList" from="${topicList}"/>
                     </div>
 
                     <div class="right">
@@ -142,7 +142,7 @@
 
                     <div>
                         <span>Topic* :</span>
-                        <g:select name="topicList" from="${topicList.topicName}"/>
+                        <g:select name="topicList" from="${topicList}"/>
                     </div>
 
                     <div class="right">
@@ -187,7 +187,7 @@
 
                     <div>
                         <span>Topic* :</span>
-                        <g:select name="topic" from="${topicList.topicName}"/>
+                        <g:select name="topic" from="${topicList}"/>
                     </div>
 
                     <div class="right">

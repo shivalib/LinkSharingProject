@@ -41,7 +41,7 @@ class showPostController {
         //for menu
         List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(session["username"])
 
-        render(view: "/showPost/viewPost", model: [loginUser: currentUser, topicList: topics, trendingTopicList: trendingTopics, resourceList: resourceList])
+        render(view: "/showPost/viewPost", model: [loginUser: currentUser, topicList: topics.topicName, trendingTopicList: trendingTopics, resourceList: resourceList])
     }
 
     def rateResource() {
