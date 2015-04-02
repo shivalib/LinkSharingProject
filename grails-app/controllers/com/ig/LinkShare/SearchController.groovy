@@ -43,6 +43,10 @@ class SearchController {
         render(template: "/userListing/userEntry", model: [userList: userList])
     }
 
+    def searchPost(){
+        println "---------- in search Post"
+    }
+
     def displayPostOnTopicNameClick() {
         User currentUser = userService.showCurrentUserObject(session["username"])
 
@@ -69,7 +73,7 @@ class SearchController {
     def searchAll() {
 
         User currentUser = userService.showCurrentUserObject(session["username"])
-        
+
         List<Resource> resources = searchService.searchAll(params.textToSearch)
 
         render(template: "searchResult", model: [resourceList: resources, loginUser: currentUser])

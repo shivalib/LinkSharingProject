@@ -3,6 +3,7 @@
 <head>
     <title></title>
     <meta name="layout" content="dashboardLayout">
+    <asset:javascript src="topicShow.js"/>
 </head>
 
 <body>
@@ -93,10 +94,10 @@
         <div class="panel panel-default rightdiv">
             <div class="panel-heading">
                 <span><h3 class="panel-title ">Posts :
-                    <span class="input-group right" id="searchPost">
-                        <input type="text" id="searchInbox"
+                    <span class="input-group right">
+                        <input type="text" id="searchPost"
                                placeholder="Search for..."
-                               onkeyup="searchInboxUsingAjax('${createLink(controller: "search", action: "searchInbox")}')"/>
+                               onkeyup="searchPostUsingAjax('${createLink(controller: "search", action: "searchPost")}')"/>
                     </span>
                 </h3></span>
 

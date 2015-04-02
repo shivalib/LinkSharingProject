@@ -3,12 +3,14 @@ package com.ig.LinkShare.taglib
 import com.ig.LinkShare.DateDifferenceService
 import com.ig.LinkShare.LinkResource
 import com.ig.LinkShare.ReadingItem
+import com.ig.LinkShare.Resource
+import com.ig.LinkShare.ResourceRatingService
 import com.ig.LinkShare.Subscription
 import com.ig.LinkShare.Topic
 import com.ig.LinkShare.User
 
 class ApplicationTagLib {
-
+    ResourceRatingService resourceRatingService
     static namespace = "ls"
 
     static defaultEncodeAs = [taglib: 'raw']
@@ -150,6 +152,14 @@ class ApplicationTagLib {
         else
             out << g.render(template: "/showPost/postForNonAdmin")
 
+    }
+
+    def averageRating={attr->
+        User currentUser=attr.currentUser
+        Resource resource=attr.resource
+        def averageRating=resourceRatingService.findAverageRating(resource)
+
+            out<<g.render(template: "/showPost/ratingDiv",model: [resource: resource,averageRating:averageRating])
     }
 
 

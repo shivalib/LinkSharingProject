@@ -112,9 +112,6 @@ function searchInboxUsingAjax(searchUrl) {
     })
 }
 
-function searchPostUsingAjax(searchPostUrl){
-
-}
 
 function searchAllPagesUsingAjax(searchAllUrl, searchPageUrl) {
     console.log(searchAllUrl)

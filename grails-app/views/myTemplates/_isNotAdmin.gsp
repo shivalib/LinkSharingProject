@@ -32,8 +32,7 @@
 
                     <div>
                         <span>Topic* :</span>
-                        <g:textField name="topicList" value="${subscription.topic.topicName}"/>
-                        %{--<g:select name="topicList" from="${subscription.topic.topicName}"/>--}%
+                        <g:textField name="topicList" value="${subscription.topic.topicName}" readonly="true"/>
                     </div>
 
                     <div class="right">

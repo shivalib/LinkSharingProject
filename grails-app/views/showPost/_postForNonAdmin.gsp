@@ -29,13 +29,8 @@
                     ${resource.description}
                 </div>
 
-                <div class="ratyDiv" data-resourceID="${resource.id}"
-                     data-rateLink="${createLink(controller: "showPost", action: "rateResource")}" data-avg="${averageRating}">
+                <g:render template="/showPost/ratingDiv" model="[resource:resource,averageRating:averageRating]"/>
 
-                </div>
-                <div>
-                    <h5>Average :${averageRating}</h5>
-                </div>
                 <br/>
 
                 <div>

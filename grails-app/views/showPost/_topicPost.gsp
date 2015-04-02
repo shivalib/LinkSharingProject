@@ -16,7 +16,7 @@
         </div><!--media body ends-->
     </div><!--media ends-->
     <div class="right leftdiv">
-        <g:link>View Post</g:link>
+        <g:link class="right" controller="showPost" action="index" id="${resourceList.id}">View post</g:link>
     </div>
     <ls:checkResourceType resource="${resourceList}"/>
     <ls:markResource resource="${resourceList}" ajaxClass="readUnread-post" currentUser="${loginUser}"/>

@@ -3,7 +3,7 @@
                   data-target="#myEditModal-${resource.id}">Edit</g:link></span>
 
     <span><g:link controller="topic" action="deleteResource" data-toggle="modal"
-                  data-target="#myDeleteModal">Delete</g:link></span>
+                  data-target="#myDeleteModal-${resource.id}">Delete</g:link></span>
 </div>
 
 <!-- Modal:edit -->
@@ -31,17 +31,12 @@
                     </div>
                 </g:form>
             </div>
-
-            %{--<div class="modal-footer">--}%
-            %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
-            %{--<button type="button" class="btn btn-primary">Save changes</button>--}%
-            %{--</div>--}%
         </div>
     </div>
 </div>
 
 <!-- Modal:trash -->
-<div class="modal fade" id="myDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="myDeleteModal-${resource.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

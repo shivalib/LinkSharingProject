@@ -68,6 +68,7 @@ class TopicController {
         } else {
             flash.message = "Resource editing failed!"
         }
+
         forward(controller: "showPost", action: "index")
     }
 
