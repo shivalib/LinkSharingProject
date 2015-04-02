@@ -8,7 +8,10 @@
         </div>
 
         <div class="media-body">
-            <h4 class="media-heading"><a href=""></a></h4>
+            <h4 class="media-heading">
+                <g:link controller="topic" action="index" id="${resourceList.topic.id}"
+                        params="[loginUser: loginUser.id]">${resourceList.topic.topicName}</g:link>
+            </h4>
             ${resourceList.description}
         </div><!--media body ends-->
     </div><!--media ends-->

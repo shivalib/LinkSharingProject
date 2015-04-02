@@ -5,7 +5,6 @@ $(document).ready(function () {
         //score: function () {
         //    $(this).data('avg')
         //},
-
         score: avgRate,
         click: function (score) {
             var url = $(this).attr('data-rateLink')

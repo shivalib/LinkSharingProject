@@ -24,7 +24,6 @@ class UserController {
         }
     }
 
-
     def list() {
 
         List<User> userList = User.list()
