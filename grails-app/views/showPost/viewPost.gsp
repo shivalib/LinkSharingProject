@@ -20,7 +20,7 @@
     <div class="col-md-7">
         <g:if test="${loginUser}">
 
-            <ls:checkUserForPost currentUser="${loginUser}"/>
+            <ls:checkUserForPost currentUser="${loginUser}" topicList="${topicList}"/>
 
             <div class="panel panel-default leftdiv">
                 <div class="panel-heading">
@@ -31,7 +31,6 @@
                     <div class="addSearchData">
 
                     </div>
-                    <g:render template="/search/searchResult"/>
                 </div>
             </div>
         </g:if>
@@ -52,7 +51,7 @@
                     <div class="panel-body">
                         <div class="media ">
                             <div class="media-left">
-                                <a href="${createLink(controller: "userProfile",action: "showUserPublicProfile",params: [id:trending.createdBy.id])}">
+                                <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile", params: [id: trending.createdBy.id])}">
                                     <img src="${createLink(controller: "image", action: "renderImage", params: [path: trending.createdBy.photoPath])}"
                                          class="media-object mediaFace">
                                 </a>

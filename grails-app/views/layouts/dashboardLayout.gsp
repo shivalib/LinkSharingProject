@@ -100,7 +100,7 @@
 
                     <div>
                         <span>Topic* :</span>
-                        <g:select name="topicList" from="${topicList}"/>
+                        <g:select name="topicList" from="${topicList.topicName}"/>
                     </div>
 
                     <div class="right">
@@ -142,7 +142,7 @@
 
                     <div>
                         <span>Topic* :</span>
-                        <g:select name="topicList" from="${topicList}"/>
+                        <g:select name="topicList" from="${topicList.topicName}"/>
                     </div>
 
                     <div class="right">
@@ -177,7 +177,6 @@
                         enctype="multipart/form-data">
                     <div>
                         <span>Document* :</span>
-                        %{--<g:textField name="docName" placeholder="Document"/>--}%
                         <span><input type="file" name="docFile"></span>
                     </div>
 
@@ -188,7 +187,7 @@
 
                     <div>
                         <span>Topic* :</span>
-                        <g:select name="topic" from="${topicList}"/>
+                        <g:select name="topic" from="${topicList.topicName}"/>
                     </div>
 
                     <div class="right">

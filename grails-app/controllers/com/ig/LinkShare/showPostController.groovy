@@ -5,6 +5,7 @@ class showPostController {
     def trendingTopicService
     def showResourceService
     def resourceRatingService
+    ShowTopicService showTopicService
 
     def index(Long id) {
 
@@ -21,9 +22,10 @@ class showPostController {
 
         Subscription subscription = Subscription.findWhere(user: currentUser)
 
-        float averageRating = resourceRatingService.findAverageRating(resource)
+        //for menu
+        List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(session["username"])
 
-        render(view: "/showPost/viewPost", model: [averageRating: averageRating, loginUser: currentUser, subscription: subscription, trendingTopicList: trendingTopics, resource: resource])
+        render(view: "/showPost/viewPost", model: [topicList: topics, loginUser: currentUser, subscription: subscription, trendingTopicList: trendingTopics, resource: resource])
     }
 
     def postsForAdmin() {
@@ -36,7 +38,10 @@ class showPostController {
 
         List<Topic> trendingTopics = trendingTopicService.showTrendingTopics(max, offset)
 
-        render(view: "/showPost/viewPost", model: [loginUser: currentUser, trendingTopicList: trendingTopics, resourceList: resourceList])
+        //for menu
+        List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(session["username"])
+
+        render(view: "/showPost/viewPost", model: [loginUser: currentUser, topicList: topics, trendingTopicList: trendingTopics, resourceList: resourceList])
     }
 
     def rateResource() {
