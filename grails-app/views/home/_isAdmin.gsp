@@ -12,7 +12,6 @@
         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
     </button>
 
-
     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myEditModal-${topic.id}">
         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
     </button>
@@ -61,7 +60,7 @@
                 <g:form controller="topic" action="deleteTopic" id="${topic.id}">
                     <div>
                         <span>Topic*</span>
-                        <g:textField name="topicName" value="${topic.topicName}"/>
+                        <g:textField name="topicName" value="${topic.topicName}" readonly="true"/>
                     </div>
                     <br>
 
@@ -70,7 +69,7 @@
                     </div>
 
                     <div class="right">
-                        <g:submitButton name="save" class="btn btn-default" value="Save"/>
+                        <g:submitButton name="delete" class="btn btn-default" value="Delete"/>
                         <g:submitButton name="close" class="btn btn-default" data-dismiss="modal" value="Close"/>
                     </div>
                 </g:form>

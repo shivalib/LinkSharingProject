@@ -36,6 +36,16 @@ class TopicSubscriptionService {
         return  subscriptions
     }
 
+
+    List<Subscription> subscriptionListOfCurrentTopic(Topic topic){
+        List<Subscription> subscriptions=Subscription.createCriteria().list {
+            eq('topic',topic)
+        }
+        return  subscriptions
+    }
+
+
+
     List<Subscription> currentUserSubscriptions(User user){
         List<Subscription> subscriptions=Subscription.createCriteria().list {
             eq('user',user)

@@ -2,15 +2,13 @@
 <div>
 
     <span class="right">
-
-        %{--<g:select name="seriousness" from="${com.ig.LinkShare.applicationEnums.Seriousness}" value="${subscription.seriousness}" />--}%
-
         <g:select name="seriousness" class="subscribeSeriousness"
                   from="${com.ig.LinkShare.applicationEnums.Seriousness}"
                   value="${subscription.seriousness}" id="${subscription.id}"
                   data-changeSerious="${createLink(controller: "subscription", action: "changeSeriousness")}"/>
 
-        <button type="button" class="btn btn-default btn-md" data-toggle="modal" data-target="#mySendInviteModal-${subscription.id}">
+        <button type="button" class="btn btn-default btn-md" data-toggle="modal"
+                data-target="#mySendInviteModal-${subscription.id}">
             <span class="glyphicon glyphicon-envelope" aria-hidden="true"/>
         </button>
 
@@ -18,7 +16,8 @@
 </div>
 
 <!-- Modal : SEND iNVIATION -->
-<div class="modal fade" id="mySendInviteModal-${subscription.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="mySendInviteModal-${subscription.id}" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -37,7 +36,7 @@
 
                     <div>
                         <span>Topic* :</span>
-                        <g:select name="topicList" from="${subscription.topic}"/>
+                        <g:textField name="topicList" value="${subscription.topic.topicName}" readonly="true"/>
                     </div>
 
                     <div class="right">
@@ -47,10 +46,6 @@
                     </div>
                 </g:form>
             </div>
-            %{--<div class="modal-footer">--}%
-            %{--<g:submitButton type="button" class="btn btn-primary" name="submit" >Save </g:submitButton>--}%
-            %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
-            %{--</div>--}%
         </div>
     </div>
 </div>
