@@ -122,9 +122,8 @@ class ApplicationTagLib {
         def resource = attr.resource
         def currentUser = attr.currentUser
         ReadingItem readingItem = ReadingItem.findByUserAndResource(currentUser, resource)
-        if(!readingItem)
-        {
-            out<<""
+        if (!readingItem) {
+            out << ""
             return
         }
         if (readingItem.isRead) {
@@ -154,15 +153,13 @@ class ApplicationTagLib {
 
     }
 
-    def averageRating={attr->
-        User currentUser=attr.currentUser
-        Resource resource=attr.resource
-        def averageRating=resourceRatingService.findAverageRating(resource)
+    def averageRating = { attr ->
+        User currentUser = attr.currentUser
+        Resource resource = attr.resource
 
-            out<<g.render(template: "/showPost/ratingDiv",model: [resource: resource,averageRating:averageRating])
+        def averageRating = resourceRatingService.findAverageRating(resource)
+        out << g.render(template: "/showPost/ratingDiv", model: [resource: resource, averageRating: averageRating])
     }
-
-
 
 
 }

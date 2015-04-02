@@ -1,7 +1,6 @@
 $(document).ready(function () {
-
-
     $('.ratyDiv').each(function () {
+
         var avgRate = $(this).attr('data-avg')
         $(this).raty({
             score: avgRate,

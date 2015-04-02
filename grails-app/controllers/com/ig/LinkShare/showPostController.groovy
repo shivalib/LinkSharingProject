@@ -48,17 +48,19 @@ class showPostController {
         String scr = params.rating
         Float score = scr.toDouble()
         User currentUser = userService.showCurrentUserObject(session["username"])
+        Resource resource=Resource.get(params.resourceID)
 
-        ResourceRating resourceRating1 = ResourceRating.findByUser(currentUser)
+        ResourceRating resourceRating1 = ResourceRating.findByUserAndResource(currentUser,resource)
 
         if (resourceRating1) {
+            println "------ already rated!"
             resourceRating1.score = score
             resourceRating1.save(failOnError: true, flush: true)
         } else {
+            println "------- not rated yet!"
             ResourceRating resourceRating = new ResourceRating(user: currentUser, resource: params.resourceID, score: score)
             resourceRating.save(failOnError: true, flush: true)
         }
-
         render true
     }
 }

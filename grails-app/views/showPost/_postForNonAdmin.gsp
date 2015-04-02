@@ -3,7 +3,7 @@
         <div class="media ">
 
             <div class="media-left">
-                <a href="${createLink(controller: "userProfile",action: "showUserPublicProfile",params: [id:resource.createdBy.id])}">
+                <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile", params: [id: resource.createdBy.id])}">
                     <img src="${createLink(controller: "image", action: "renderImage", params: [path: resource.createdBy.photoPath])}"
                          class="media-object mediaFace">
                 </a>
@@ -28,8 +28,8 @@
                 <div>
                     ${resource.description}
                 </div>
-
-                <g:render template="/showPost/ratingDiv" model="[resource:resource,averageRating:averageRating]"/>
+                
+                <ls:averageRating currentUser="${loginUser}" resource="${resource}"/>
 
                 <br/>
 
