@@ -59,40 +59,18 @@ class SearchController {
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5
 
-        List<ReadingItem> readingItems1 = ReadingItem.createCriteria().list{
-//            and {
-                eq('isRead', false)
-                eq('user', user)
-                'resource'
-                        {
-                            ilike('description', params.searchInbox + '%')
-                        }
-//            }
-        }
-        int total =readingItems1.size()
+        List<ReadingItem> readingItems = searchService.searchInbox(user, params.searchInbox)
 
-        render(template: "/dashboard/iterateInbox", model: [readingItemListWithIsReadFalse: readingItems1,inboxCount:total,max:max,offset: offset])
+        int total = readingItems.size()
+
+        render(template: "/dashboard/iterateInbox", model: [readingItemListWithIsReadFalse: readingItems, inboxCount: total, max: max, offset: offset])
     }
 
     def searchAll() {
 
         User currentUser = userService.showCurrentUserObject(session["username"])
-
-        List<Resource> resourceList = showResourceService.calculateResourceList(20,0)
-
-        List<Resource> resources = Resource.createCriteria().list {
-
-            ilike('description', params.textToSearch + '%')
-
-        }
-        List topic = Topic.createCriteria().list{
-            ilike('topicName', params.textToSearch + '%')
-        }
-        List newList = []
-        topic.each {
-            newList += it.resources
-        }
-        resources += newList
+        
+        List<Resource> resources = searchService.searchAll(params.textToSearch)
 
         render(template: "searchResult", model: [resourceList: resources, loginUser: currentUser])
     }
