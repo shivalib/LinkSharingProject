@@ -12,38 +12,7 @@
         <!--Panel1-->
         <div class="panel panel-default leftdiv">
             <div class="panel-body">
-                <div class="media ">
-                    <div class="media-left">
-                        <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile", params: [id: loginUser.id])}">
-                            <img src="${createLink(controller: "image", action: "renderImage", params: [path: loginUser.photoPath])}"
-                                 class="media-object mediaFace">
-                        </a>
-                    </div>
-
-                    <div class="media-body">
-                        <h4 class="media-heading">
-                            ${loginUser.fullName}
-                        </h4>
-
-                        <div>
-                            <h5>@${loginUser.username}</h5>
-                        </div>
-
-                        <div>
-                            <span class="left leftdiv">Subscriptions
-                                <div>${loginUser.subscriptions.size()}</div>
-                            </span>
-                            <span class="left leftdiv">Topics
-                                <div>${loginUser.topics.size()}</div>
-                            </span>
-                        </div>
-
-                        <div>
-                            <span class="left leftdiv"></span>
-                            <span class="left leftdiv"></span>
-                        </div>
-                    </div><!--media body ends-->
-                </div><!--media ends -->
+                <g:render template="/dashboard/userPanel"/>
             </div><!-- panel body ends-->
         </div><!--panel ends-->
 

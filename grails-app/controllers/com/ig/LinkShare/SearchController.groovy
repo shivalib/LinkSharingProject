@@ -8,6 +8,7 @@ class SearchController {
     def showResourceService
     def showInboxService
     def showTopicService
+    TopicSubscriptionService topicSubscriptionService
 
     def index() {
         User loginUser = userService.showCurrentUserObject(session["username"])
@@ -22,7 +23,7 @@ class SearchController {
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5
 
-        List<Subscription> subscriptions = searchService.userSubscriptions(currentUser, max, offset)
+        List<Subscription> subscriptions = topicSubscriptionService.userSubscriptions(currentUser, max, offset)
 
         int total = subscriptions.totalCount
 

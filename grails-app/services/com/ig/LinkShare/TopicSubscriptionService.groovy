@@ -23,20 +23,6 @@ class TopicSubscriptionService {
         return subscription
     }
 
-
-
-
-    List<Subscription> subscriptionList(User user){
-        List<Subscription> subscriptions=Subscription.createCriteria().list {
-            eq('user',user)
-            'topic'{
-                eq('visibility',Visibility.PUBLIC)
-            }
-        }
-        return  subscriptions
-    }
-
-
     List<Subscription> subscriptionListOfCurrentTopic(Topic topic){
         List<Subscription> subscriptions=Subscription.createCriteria().list {
             eq('topic',topic)
@@ -44,13 +30,38 @@ class TopicSubscriptionService {
         return  subscriptions
     }
 
-
-
     List<Subscription> currentUserSubscriptions(User user){
         List<Subscription> subscriptions=Subscription.createCriteria().list {
             eq('user',user)
             'topic'{
                 eq('createdBy',user)
+            }
+        }
+        return subscriptions
+    }
+
+    def userSubscriptions(User currentUser, def max, def offset) {
+
+        List<Subscription> subscriptions = Subscription.createCriteria().list(max: max, offset: offset) {
+
+            eq('user', currentUser)
+            'topic' {
+                eq('visibility', Visibility.PUBLIC)
+            }
+
+        }
+        return subscriptions
+    }
+
+    def userSubscriptionsOnTopicsCreated(User currentUser, def max, def offset) {
+
+        List<Subscription> subscriptions = Subscription.createCriteria().list(max: max, offset: offset) {
+            'topic'{
+                eq('createdBy',currentUser)
+            }
+            eq('user', currentUser)
+            'topic' {
+                eq('visibility', Visibility.PUBLIC)
             }
         }
         return subscriptions

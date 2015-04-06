@@ -20,6 +20,6 @@
         ${res.description}
     </div>
 
-    <g:render template="/myTemplates/socialIcons"/>
+    <g:render template="/myTemplates/socialIcons" model="[resource:res]"/>
     <span><g:link class="right" controller="showPost" action="index" id="${res.id}">View post</g:link></span>
 </div>

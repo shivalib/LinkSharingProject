@@ -51,6 +51,10 @@ class HomeController {
         render(template: "/home/topPosts",model: [resource:resources1])
     }
 
+    def shareResource(){
+        println "--------------- ${params.resourceID}"
+    }
+
     def paginateUserSubscription() {
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5

@@ -45,12 +45,14 @@ class UserProfileController {
     def showUserPublicProfile(Long id) {
 
         User currentUser = User.findById(id)
+
         List<Topic> topics = showTopicService.findTopicsCreatedByUser(currentUser)
 
         List<Resource> resourcesOfTopic = []
         topics.each {
             resourcesOfTopic += showResourceService.showResourcesByTopic(it)
         }
+
 
         render(view: "/user/userProfile", model: [loginUser: currentUser, topicList: topics, resourcesOfTopic: resourcesOfTopic])
 

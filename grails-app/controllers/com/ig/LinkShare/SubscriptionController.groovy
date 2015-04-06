@@ -9,7 +9,7 @@ class SubscriptionController {
     def readingItemService
     def searchService
     def showTopicService
-
+    TopicSubscriptionService topicSubscriptionService
 
     def showAllSubscriptions() {
 
@@ -19,7 +19,20 @@ class SubscriptionController {
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5
 
-        List<Subscription> subscriptions = searchService.userSubscriptions(currentUser, max, offset)
+        List<Subscription> subscriptions = topicSubscriptionService.userSubscriptions(currentUser, max, offset)
+        int total = subscriptions.totalCount
+
+        render(view: "topicSubscription", model: [loginUser: currentUser, subscriptions: subscriptions, topicList: topics.topicName, max: max, offset: offset, subscriptionCount: total])
+    }
+
+    def showAllTopicsCreated() {
+        User currentUser = userService.showCurrentUserObject(session["username"])
+        List<Topic> topics = showTopicService.findTopicsCreatedByUser(currentUser)
+
+        int offset = params.offset ? params.int('offset') : 0
+        int max = params.max ? params.int('max') : 5
+
+        List<Subscription> subscriptions = topicSubscriptionService.userSubscriptionsOnTopicsCreated(currentUser, max, offset)
         int total = subscriptions.totalCount
 
         render(view: "topicSubscription", model: [loginUser: currentUser, subscriptions: subscriptions, topicList: topics.topicName, max: max, offset: offset, subscriptionCount: total])

@@ -19,10 +19,7 @@ class TopicController {
 
         List<Resource> resourceList = showResourceService.showResourcesByTopic(topic)
 
-
         render(view: "/topic/topicShow", model: [topic: topic, topicList: topics.topicName, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
-
-
     }
 
     def createTopic() {
