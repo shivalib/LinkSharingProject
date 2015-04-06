@@ -1,19 +1,18 @@
 <div class="media ">
     <div class="media-left">
-        <g:link  controller="userProfile" action="showUserPublicProfile">
-            <img src="${createLink(controller: "image", action: "renderImage", params: [path: res.topic.createdBy.photoPath])}"
+        <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile", params: [id: res.createdBy.id])}">
+
+            <img src="${createLink(controller: "image", action: "renderImage", params: [path: res.createdBy.photoPath])}"
                  class="media-object mediaFace">
-        </g:link>
+        </a>
     </div>
+
     <div class="media-body">
         <h4 class="media-heading">${res.createdBy.fullName}@${res.createdBy.username}
-        %{--<span class="right">--}%
-            %{----}%
-        %{--</span>--}%
             <span class="right">
-            <ls:timeDiffInDetail oldDate="${res.dateCreated}"/>
+                <ls:timeDiffInDetail oldDate="${res.dateCreated}"/>
                 <g:link>${res.topic.topicName}</g:link>
-            </span> </h4>
+            </span></h4>
         ${res.description}
     </div>
 

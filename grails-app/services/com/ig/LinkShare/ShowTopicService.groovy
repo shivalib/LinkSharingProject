@@ -29,6 +29,14 @@ class ShowTopicService {
         return topicList
     }
 
+    List<Topic> findTopicsCreatedByUser(User currentUser) {
+        
+        List<Topic> topicList = Topic.createCriteria().list {
+            eq('createdBy',currentUser)
+        }
+        return topicList
+    }
+
 
     List<Topic> listAllPublicTopics(){
         List<Topic> topicList=Topic.createCriteria().list {
