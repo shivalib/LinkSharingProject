@@ -6,9 +6,8 @@ import grails.transaction.Transactional
 @Transactional
 class ShowTopicService {
 
-    List<Topic> findTopicsSubscribedByCurrentUser(String loginUser) {
 
-        User currentUser = User.findByUsername(loginUser)
+    List<Topic> findTopicsSubscribedByCurrentUser(User currentUser) {
 
         List<Topic> topicList = Topic.createCriteria().list {
 
@@ -19,28 +18,18 @@ class ShowTopicService {
         return topicList
     }
 
-    List<Topic> findTopicsCreatedByCurrentUser(String loginUser) {
-
-        User currentUser = User.findByUsername(loginUser)
-
-        List<Topic> topicList = Topic.createCriteria().list {
-            eq('createdBy',currentUser)
-        }
-        return topicList
-    }
-
     List<Topic> findTopicsCreatedByUser(User currentUser) {
-        
+
         List<Topic> topicList = Topic.createCriteria().list {
-            eq('createdBy',currentUser)
+            eq('createdBy', currentUser)
         }
         return topicList
     }
 
 
-    List<Topic> listAllPublicTopics(){
-        List<Topic> topicList=Topic.createCriteria().list {
-            eq('visibility',Visibility.PUBLIC)
+    List<Topic> listAllPublicTopics() {
+        List<Topic> topicList = Topic.createCriteria().list {
+            eq('visibility', Visibility.PUBLIC)
         }
         return topicList
     }

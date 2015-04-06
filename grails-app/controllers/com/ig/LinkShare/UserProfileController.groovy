@@ -15,11 +15,12 @@ class UserProfileController {
         if (session["username"]) {
 
             User currentUser = User.findByUsername(session["username"])
-            List<Topic> topicList = showTopicService.findTopicsCreatedByCurrentUser(session["username"])
 
-           List<Subscription> subscriptionTopicList=topicSubscriptionService.currentUserSubscriptions(currentUser)
+            List<Topic> topicList = showTopicService.findTopicsCreatedByUser(currentUser)
 
-            render(view: "/userProfile/editProfile", model: [loginUser: currentUser,subscriptionTopicList:subscriptionTopicList,topicList: topicList])
+            List<Subscription> subscriptionTopicList = topicSubscriptionService.currentUserSubscriptions(currentUser)
+
+            render(view: "/userProfile/editProfile", model: [loginUser: currentUser, subscriptionTopicList: subscriptionTopicList, topicList: topicList])
         }
     }
 
@@ -33,48 +34,45 @@ class UserProfileController {
 
             flash.message = "Updation Failed : Password Mismatch"
         } else {
-            currentUser.password=params.password
-            currentUser.save(failOnError: true,flush: true)
+            currentUser.password = params.password
+            currentUser.save(failOnError: true, flush: true)
             flash.message = "Your password has been updated successfully !!"
         }
 
         redirect(controller: "userProfile", action: "index")
     }
 
-    def showUserPublicProfile(Long id){
+    def showUserPublicProfile(Long id) {
 
         User currentUser = User.findById(id)
         List<Topic> topics = showTopicService.findTopicsCreatedByUser(currentUser)
 
-        List<Resource> resourcesOfTopic=[]
+        List<Resource> resourcesOfTopic = []
         topics.each {
-            resourcesOfTopic+=showResourceService.showResourcesByTopic(it)
+            resourcesOfTopic += showResourceService.showResourcesByTopic(it)
         }
 
-        render(view: "/user/userProfile",model: [loginUser: currentUser,topicList:topics,resourcesOfTopic:resourcesOfTopic])
+        render(view: "/user/userProfile", model: [loginUser: currentUser, topicList: topics, resourcesOfTopic: resourcesOfTopic])
 
     }
 
     def updateData() {
         User currentUser = User.findByUsername(session["username"])
-        currentUser.firstName=params.firstName
-        currentUser.lastName=params.lastName
-        currentUser.username=params.username
+        currentUser.firstName = params.firstName
+        currentUser.lastName = params.lastName
+        currentUser.username = params.username
 
-        currentUser.photoPath=uploadService.uploadImage(currentUser,params.img,grailsApplication.config.upload.uploadImages.toString())
-           if(currentUser.save(failOnError: true,flush: true))
-           {
-               flash.message = "Your data has been updated successfully!!"
-           }
-        else
-           {
-               flash.message = "Data updation failed!!"
-           }
+        currentUser.photoPath = uploadService.uploadImage(currentUser, params.img, grailsApplication.config.upload.uploadImages.toString())
+        if (currentUser.save(failOnError: true, flush: true)) {
+            flash.message = "Your data has been updated successfully!!"
+        } else {
+            flash.message = "Data updation failed!!"
+        }
 
         redirect(controller: "userProfile", action: "index")
     }
 
-    def paginatePosts(){
+    def paginatePosts() {
 
     }
 

@@ -23,7 +23,7 @@ class showPostController {
         Subscription subscription = Subscription.findWhere(user: currentUser)
 
         //for menu
-        List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(session["username"])
+        List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
 
         render(view: "/showPost/viewPost", model: [topicList: topics, loginUser: currentUser, subscription: subscription, trendingTopicList: trendingTopics, resource: resource])
     }
@@ -39,7 +39,7 @@ class showPostController {
         List<Topic> trendingTopics = trendingTopicService.showTrendingTopics(max, offset)
 
         //for menu
-        List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(session["username"])
+        List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
 
         render(view: "/showPost/viewPost", model: [loginUser: currentUser, topicList: topics.topicName, trendingTopicList: trendingTopics, resourceList: resourceList])
     }
@@ -53,11 +53,9 @@ class showPostController {
         ResourceRating resourceRating1 = ResourceRating.findByUserAndResource(currentUser,resource)
 
         if (resourceRating1) {
-            println "------ already rated!"
             resourceRating1.score = score
             resourceRating1.save(failOnError: true, flush: true)
         } else {
-            println "------- not rated yet!"
             ResourceRating resourceRating = new ResourceRating(user: currentUser, resource: params.resourceID, score: score)
             resourceRating.save(failOnError: true, flush: true)
         }

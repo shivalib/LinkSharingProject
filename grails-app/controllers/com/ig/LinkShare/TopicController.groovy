@@ -8,22 +8,20 @@ class TopicController {
     def showTopicService
 
     def index(Long id) {
+
         Topic topic = Topic.findById(id)
 
         User loginUser = User.get(params.loginUser)
 
         List<Subscription> subscriptionList = topicSubscriptionService.subscriptionListOfCurrentTopic(topic)
 
-        List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(session["username"])
+        List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(loginUser)
 
         List<Resource> resourceList = showResourceService.showResourcesByTopic(topic)
 
-        if (session["username"]) {
 
-            render(view: "/topic/topicShow", model: [topic: topic, topicList: topics.topicName, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
-        } else {
-            render(view: "/topic/topicShow", model: [topic: topic, topicList: topics.topicName, subscribers: subscriptionList, resources: resourceList])
-        }
+        render(view: "/topic/topicShow", model: [topic: topic, topicList: topics.topicName, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
+
 
     }
 

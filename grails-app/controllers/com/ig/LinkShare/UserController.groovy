@@ -30,7 +30,7 @@ class UserController {
 
         User currentUser = userService.showCurrentUserObject(session["username"])
 
-        List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(session["username"])
+        List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
 
         render(view: "/userListing/userListing", model: [userList: userList, loginUser: currentUser, topicList: topics.topicName])
     }

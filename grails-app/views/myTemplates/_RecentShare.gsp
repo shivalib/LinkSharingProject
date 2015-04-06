@@ -11,7 +11,11 @@
         <h4 class="media-heading">${res.createdBy.fullName}@${res.createdBy.username}
             <span class="right">
                 <ls:timeDiffInDetail oldDate="${res.dateCreated}"/>
-                <g:link>${res.topic.topicName}</g:link>
+
+
+                <g:link controller="topic" action="index" id="${res.topic.id}"
+                        params="[loginUser: res.createdBy.id]">${res.topic.topicName}</g:link>
+
             </span></h4>
         ${res.description}
     </div>
