@@ -15,25 +15,17 @@ class lsMailController {
     }
 
     def resetPasswordLink() {
+        User user=User.findByEmail(params.emailID)
+        UserToken userToken=UserToken.findByUser(user)
+
         sendMail {
 //            async true
             to "${params.emailID}"
             subject "Reset : Password"
-            html "${g.link(controller: "user", action: "resetPassword", params: [emailID: params.emailID], absolute: "true", { "click on the link to change your password" })}"
+            html "${g.link(controller: "user", action: "resetPassword",id: "${userToken.id}", absolute: "true", { "click on the link to change your password" })}"
         }
         flash.message = "Link to reset password have been sent to ${params.emailID}"
         redirect(controller: "login", action: "forgotPassword")
     }
-
-//    def confirmRegistrationMail(User user){
-//        UserToken userToken=UserToken.findWhere(user:user)
-//
-//        sendMail{
-//            to "${user.email}"
-//            subject "Required Confirmation : LinkShare"
-//            html "${g.link(controller: "home",action: "activateRegisteredUser",params: [userToken:userToken], absolute: true,{ "click on this link to confirm" } )}"
-//        }
-//    }
-
 
 }

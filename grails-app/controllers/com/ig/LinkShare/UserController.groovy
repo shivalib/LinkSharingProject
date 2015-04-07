@@ -75,8 +75,12 @@ class UserController {
         redirect(controller: "home", action: "index")
     }
 
-    def resetPassword() {
-        render(view: "/login/resetPassword", model: [emailID: params.emailID])
+    def resetPassword(Long id) {
+
+        UserToken userToken=UserToken.get(id)
+        def emailID=userToken.user.email
+
+        render(view: "/login/resetPassword", model: [emailID:emailID])
     }
 
     def changeUserList() {
