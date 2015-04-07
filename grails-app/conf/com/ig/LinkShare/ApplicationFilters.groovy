@@ -4,7 +4,7 @@ class ApplicationFilters {
 
     def filters = {
 
-        loginCheck(controller: 'home|user|image',actionExclude: 'index|forgotPassword|resetPassword|resetThePassword|resetPasswordLink|registerUser|paginateRecentShare|renderImage|showTopPosts', action: '*') {
+        loginCheck(controller: 'home|user|image',actionExclude: 'index|forgotPassword|activateRegisteredUser|resetPassword|resetThePassword|resetPasswordLink|registerUser|paginateRecentShare|renderImage|showTopPosts', action: '*') {
             before = {
                 if (!session.username) {
                     flash.message = "Login to the system!"

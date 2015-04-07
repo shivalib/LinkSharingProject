@@ -17,6 +17,8 @@ class User {
 
     static hasMany = [topics: Topic, subscriptions: Subscription, resources: Resource, readingItems: ReadingItem, resurceRatings: ResourceRating]
 
+    static hasOne = [userToken:UserToken]
+
     static constraints = {
         firstName blank: false, nullable: false
         lastName blank: false, nullable: false

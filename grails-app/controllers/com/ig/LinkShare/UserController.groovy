@@ -2,7 +2,6 @@ package com.ig.LinkShare
 
 import com.ig.LinkShare.applicationEnums.GenerateToken
 import com.ig.LinkShare.applicationEnums.UserCO
-import grails.converters.JSON
 
 class UserController {
     UploadService uploadService
@@ -55,19 +54,25 @@ class UserController {
             userCO.errors.allErrors.each {
                 println it
             }
-
             flash.message = "Registration Failed : Password Mismatch!"
 
         } else {
             user.save(failOnError: true)
 
-            GenerateToken generateToken=new GenerateToken()
-            generateToken.generateTokens(user)
+            GenerateToken generateToken = new GenerateToken()
+            generateToken.generateTokenForRegisteredUser(user)
 
-            flash.message = "Registration Successful!"
+            UserToken userToken = UserToken.findWhere(user: user)
+
+            sendMail {
+                to "${user.email}"
+                subject "Required Confirmation : LinkShare"
+                html "${g.link(controller: "home", action: "activateRegisteredUser", id: "${userToken.id}", absolute: true, { "click on this link to confirm your Email" })}"
+            }
+
+            flash.message = "Registration Successful. An email have been sent to your registered ID, confirm your email by clicking on the link sent!"
         }
         redirect(controller: "home", action: "index")
-
     }
 
     def resetPassword() {

@@ -3,7 +3,6 @@ package com.ig.LinkShare
 class HomeController {
 
     def top5SubscriptionService
-
     def trendingTopicService
     def showInboxService
     def showTopicService
@@ -18,6 +17,19 @@ class HomeController {
         List<Resource> resources = showResourceService.calculateResourceList(max, offset)
 
         render(view: "/login/homePage", model: [resources: resources, resourceCount: resources.count])
+    }
+
+    def activateRegisteredUser(Long id) {
+
+        UserToken userToken = UserToken.get(id)
+        if(!userToken.used)
+        {
+            userToken.user.active = true
+        }
+
+        userToken.save(failOnError: true, flush: true)
+
+        redirect(controller: "home", action: "index")
     }
 
     def dashboard() {
@@ -48,10 +60,10 @@ class HomeController {
 
     def showTopPosts() {
         List<Resource> resources1 = showResourceService.showTopPost(params.timeValue)
-        render(template: "/home/topPosts",model: [resource:resources1])
+        render(template: "/home/topPosts", model: [resource: resources1])
     }
 
-    def shareResource(){
+    def shareResource() {
         println "--------------- ${params.resourceID}"
     }
 
