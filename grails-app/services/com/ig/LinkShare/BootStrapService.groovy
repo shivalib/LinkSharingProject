@@ -5,8 +5,6 @@ import grails.transaction.Transactional
 @Transactional
 class BootStrapService {
 
-    def serviceMethod() {
-    }
 
 
 }

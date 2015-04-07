@@ -2,10 +2,10 @@ package com.ig.LinkShare
 
 class TopicController {
 
-    def topicSubscriptionService
-    def showResourceService
-    def userService
-    def showTopicService
+    TopicSubscriptionService topicSubscriptionService
+    ShowResourceService showResourceService
+    UserService userService
+    ShowTopicService showTopicService
 
     def index(Long id) {
 

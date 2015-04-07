@@ -2,12 +2,12 @@ package com.ig.LinkShare
 
 
 class SearchController {
-    def trendingTopicService
-    def searchService
-    def userService
-    def showResourceService
-    def showInboxService
-    def showTopicService
+    TrendingTopicService trendingTopicService
+    SearchService searchService
+    UserService userService
+    ShowResourceService showResourceService
+    ShowInboxService showInboxService
+    ShowTopicService showTopicService
     TopicSubscriptionService topicSubscriptionService
 
     def index() {

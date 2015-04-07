@@ -1,5 +1,6 @@
 package com.ig.LinkShare
 
+import com.ig.LinkShare.applicationEnums.GenerateToken
 import com.ig.LinkShare.applicationEnums.UserCO
 import grails.converters.JSON
 
@@ -41,12 +42,11 @@ class UserController {
         user.save(failOnError: true, flush: true)
 
         render(template: "/userListing/isActiveOrDeactive", model: [user: user])
-
     }
 
 
     def registerUser(User user, UserCO userCO) {
-        user.active = true
+        user.active = false
         user.admin = false
 
         user.photoPath = uploadService.uploadImage(user, params.img, grailsApplication.config.upload.uploadImages.toString())
@@ -60,7 +60,11 @@ class UserController {
 
         } else {
             user.save(failOnError: true)
-            flash.message = "Registeration Successfull!"
+
+            GenerateToken generateToken=new GenerateToken()
+            generateToken.generateTokens(user)
+
+            flash.message = "Registration Successful!"
         }
         redirect(controller: "home", action: "index")
 

@@ -35,7 +35,7 @@
 
     <!--Search-->
         <div>
-            <form class="navbar-form navbar-right " role="search">${params.username}
+            <form class="navbar-form navbar-right " role="search">
 
                 <div class="form-group">
                     <input type="text" id="searchGlobal"
