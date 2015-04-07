@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    //$('.searchGlobal').val($('.searchGlobal').val())
+
     $('.topicVisibility').on('change', function () {
         var changedVal = $(this).val()
         var url = $(this).attr('data-changeVisibility')
@@ -113,9 +115,9 @@ function searchInboxUsingAjax(searchUrl) {
 }
 
 
-function searchAllPagesUsingAjax(searchAllUrl, searchPageUrl) {
+function searchAllPagesUsingAjax(searchAllUrl) {
     console.log(searchAllUrl)
-    var textToSearch = $('#searchGlobal').val()
+    var textToSearch = $('.searchGlobal').val()
     console.log(textToSearch)
 
     $.ajax({

@@ -35,14 +35,20 @@
 
     <!--Search-->
         <div>
-            <form class="navbar-form navbar-right " role="search">
+        %{--<form class="navbar-form navbar-right " role="search">--}%
 
+        %{--<div class="form-group">--}%
+        %{--<input type="text" id="searchGlobal"--}%
+        %{--class="form-control"--}%
+        %{--onkeyup="searchAllPagesUsingAjax('${createLink(controller: "search",action: "searchAll")}')"--}%
+        %{--placeholder="Search"/>--}%
+
+        %{--</div>--}%
+
+            <g:form controller="search" action="searchPage" class="navbar-form navbar-right " role="search">
                 <div class="form-group">
-                    <input type="text" id="searchGlobal"
-                           class="form-control"
-                           onkeyup="searchAllPagesUsingAjax('${createLink(controller: "search",action: "searchAll")}')"
+                    <input type="text" name="searchGlobal" class="searchGlobal" class="form-control"
                            placeholder="Search"/>
-
                 </div>
 
                 <g:if test="${loginUser}">
@@ -73,7 +79,7 @@
 
                     <ls:showHeader currentUser="${loginUser}"/>
                 </g:if>
-            </form>
+            </g:form>
         </div><!-- search ends-->
     </div><!-- /.container-fluid -->
 </nav><!-- navbar ends -->

@@ -2,18 +2,26 @@ package com.ig.LinkShare
 
 
 class SearchController {
-    TrendingTopicService trendingTopicService
-    SearchService searchService
-    UserService userService
-    ShowResourceService showResourceService
-    ShowInboxService showInboxService
-    ShowTopicService showTopicService
-    TopicSubscriptionService topicSubscriptionService
+    def trendingTopicService
+    def searchService
+    def userService
+    def showResourceService
+    def showInboxService
+    def showTopicService
+    def topicSubscriptionService
 
-    def index() {
-        User loginUser = userService.showCurrentUserObject(session["username"])
-        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
-        render(view: "searchTopic", model: [loginUser: loginUser, trendingTopicList: trendingTopics])
+    def searchPage() {
+
+        int offset = params.offset ? params.int('offset') : 0
+        int max = params.max ? params.int('max') : 5
+
+        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics(max, offset)
+
+        User currentUser = userService.showCurrentUserObject(session["username"])
+
+        List<Resource> resources = searchService.searchAll(params.searchGlobal)
+
+        render(view: "searchResult", model: [loginUser: currentUser, resourceList: resources, searchValue: params.searchGlobal, trendingTopicList: trendingTopics])
     }
 
     def searchTopic() {
@@ -44,7 +52,7 @@ class SearchController {
         render(template: "/userListing/userEntry", model: [userList: userList])
     }
 
-    def searchPost(){
+    def searchPost() {
         println "---------- in search Post"
     }
 
@@ -70,15 +78,5 @@ class SearchController {
 
         render(template: "/dashboard/iterateInbox", model: [readingItemListWithIsReadFalse: readingItems, inboxCount: total, max: max, offset: offset])
     }
-
-    def searchAll() {
-
-        User currentUser = userService.showCurrentUserObject(session["username"])
-
-        List<Resource> resources = searchService.searchAll(params.textToSearch)
-
-        render(template: "searchResult", model: [resourceList: resources, loginUser: currentUser])
-    }
-
 
 }
