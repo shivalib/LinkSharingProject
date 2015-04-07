@@ -1,5 +1,5 @@
 
-<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count"></div>
+<div class="fb-share-button" data-href="${g.createLink(controller: "showPost",action: "index",id:resourceID)}" data-layout="button_count"></div>
 
 
 %{--<div class="fb-share-button"--}%

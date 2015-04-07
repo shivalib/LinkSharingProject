@@ -5,7 +5,7 @@ class showPostController {
     def trendingTopicService
     def showResourceService
     def resourceRatingService
-    ShowTopicService showTopicService
+    def showTopicService
 
     def index(Long id) {
 
