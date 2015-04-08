@@ -7,7 +7,7 @@ class DocumentResourceController {
     def readingItemService
 
     def shareDocument() {
-        User createdBy = User.findWhere(username: session["username"])
+        User createdBy = User.get(session["userID"])
 
         Topic topic = Topic.findWhere(topicName: params.topic)
 

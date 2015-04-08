@@ -57,7 +57,8 @@ class SearchController {
     }
 
     def displayPostOnTopicNameClick() {
-        User currentUser = userService.showCurrentUserObject(session["username"])
+        User currentUser=User.get(session["userID"])
+//        User currentUser = userService.showCurrentUserObject(session["username"])
 
         Topic topic = Topic.findById(params.topicID)
 
@@ -67,7 +68,7 @@ class SearchController {
     }
 
     def searchInbox() {
-        User user = userService.showCurrentUserObject(session["username"])
+        User user = User.get(session["userID"])
 
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5

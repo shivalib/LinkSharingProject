@@ -121,9 +121,9 @@ class ApplicationTagLib {
 
         def resource = attr.resource
         def currentUser = attr.currentUser
+
         ReadingItem readingItem = ReadingItem.findByUserAndResource(currentUser, resource)
         if (!readingItem) {
-            out << ""
             return
         }
         if (readingItem.isRead) {

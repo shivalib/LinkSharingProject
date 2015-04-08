@@ -23,7 +23,7 @@ class TopicController {
     }
 
     def createTopic() {
-        User userID = User.findWhere(username: session["username"])
+        User userID = User.get(session["userID"])
 
         Topic topic1 = new Topic(topicName: params.topicName, visibility: params.topicType)
         userID.addToTopics(topic1)

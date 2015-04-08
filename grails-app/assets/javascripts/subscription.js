@@ -20,6 +20,7 @@ function searchTopicUsingAjax(searchUrl) {
 
 
 $(document).ready(function () {
+
     $('.topicLink').on('click', function () {
         console.log($(this).attr('data-ajax-searchPost'))
         var ajaxId = $(this).attr('ajax-id')
@@ -32,7 +33,7 @@ $(document).ready(function () {
             },
             success: function (data) {
                 console.log(data)
-                $('#updatePost').html(data)
+                $('.updateReadingItem').html(data)
             },
             error: function (request, status, error) {
                 console.log("We are in error section ");

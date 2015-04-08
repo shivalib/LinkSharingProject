@@ -26,7 +26,7 @@ class SubscriptionController {
     }
 
     def showAllTopicsCreated() {
-        User currentUser = userService.showCurrentUserObject(session["username"])
+        User currentUser =User.get(session["userID"])
         List<Topic> topics = showTopicService.findTopicsCreatedByUser(currentUser)
 
         int offset = params.offset ? params.int('offset') : 0
@@ -39,7 +39,7 @@ class SubscriptionController {
     }
 
     def paginate() {
-        User currentUser = userService.showCurrentUserObject(session["username"])
+        User currentUser = User.get(session["userID"])
 
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5
@@ -53,9 +53,7 @@ class SubscriptionController {
 
     def subscribeUser() {
 
-        String loginUser = session["username"]
-
-        User currentUser = User.findByUsername(loginUser)
+        User currentUser = User.get(session["userID"])
 
         def topicName = params.topicName
 
@@ -81,8 +79,8 @@ class SubscriptionController {
     }
 
     def unsubscribeUser() {
-        String loginUser = session["username"]
-        User currentUser = User.findByUsername(loginUser)
+
+        User currentUser =User.get(session["userID"])
 
         def topicName = params.topicName
         Topic topic = Topic.findByTopicName(topicName)

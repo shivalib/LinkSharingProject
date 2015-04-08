@@ -1,4 +1,5 @@
 <g:each in="${resourceList}" var="resources">
+    <g:render template="/resource/socialIconJS"/>
     <div class="media ">
         <div class="media-left">
             <a href="#">
@@ -22,9 +23,8 @@
         <div class="right leftdiv">
             <g:link class="right" controller="showPost" action="index" id="${resources.id}">View post</g:link>
         </div>
-
         <g:render template="/myTemplates/socialIcons" model="[resourceID:resources.id]"/>
         <ls:checkResourceType resource="${resources}"/>
-        <ls:markResource resource="${resources}" currentUser="${loginUser}"/>
+        <ls:markResource resource="${resources}" ajaxClass="readUnread-post" currentUser="${loginUser}"/>
     </div>
 </g:each>

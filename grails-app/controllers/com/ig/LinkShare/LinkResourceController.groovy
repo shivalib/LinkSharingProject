@@ -5,7 +5,7 @@ class LinkResourceController {
     def readingItemService
 
     def shareLink() {
-        User userID = User.findWhere(username: session["username"])
+        User userID =User.get(session["userID"])
 
         def topicID = Topic.findWhere(createdBy: userID, topicName: params.topicList)
 

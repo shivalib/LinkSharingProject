@@ -6,7 +6,7 @@ class ApplicationFilters {
 
         loginCheck(controller: 'home|user|image',actionExclude: 'index|forgotPassword|searchPage|activateRegisteredUser|resetPassword|resetThePassword|resetPasswordLink|registerUser|paginateRecentShare|renderImage|showTopPosts', action: '*') {
             before = {
-                if (!session.username) {
+                if (!session.userID) {
                     flash.message = "Login to the system!"
                     redirect(controller: "home", action: "index")
                 }

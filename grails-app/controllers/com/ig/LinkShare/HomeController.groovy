@@ -33,9 +33,8 @@ class HomeController {
     }
 
     def dashboard() {
-        if (session["username"]) {
 
-            User currentUser = userService.showCurrentUserObject(session["username"])
+            User currentUser = User.findById(session["userID"])
 
             List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
 
@@ -47,15 +46,14 @@ class HomeController {
             int totalTopic = trendingTopics.size()
 
             //show Inbox
-            List<ReadingItem> readingItemListWithIsReadFalse = showInboxService.showInbox(session["username"], max, offset)
+            List<ReadingItem> readingItemListWithIsReadFalse = showInboxService.showInbox(session["userID"], max, offset)
             int total = readingItemListWithIsReadFalse.totalCount
 
             //show top5Subscriptions
-            List<Topic> top5SubscribedTopics = top5SubscriptionService.showTop5Subscription(session["username"], max, offset)
+            List<Topic> top5SubscribedTopics = top5SubscriptionService.showTop5Subscription(session["userID"], max, offset)
             int subscriptionCount = top5SubscribedTopics.totalCount
 
             render(view: "/home/dashboard", model: [subscriptionCount: subscriptionCount, inboxCount: total, max: max, offset: offset, trendingCount: totalTopic, readingItemListWithIsReadFalse: readingItemListWithIsReadFalse, loginUser: currentUser, trendingTopicList: trendingTopics, topicList: topics.topicName, top5SubscribedTopics: top5SubscribedTopics])
-        }
     }
 
     def showTopPosts() {
@@ -71,7 +69,7 @@ class HomeController {
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5
 
-        List<Topic> top5SubscribedTopics = top5SubscriptionService.showTop5Subscription(session["username"], max, offset)
+        List<Topic> top5SubscribedTopics = top5SubscriptionService.showTop5Subscription(session["userID"], max, offset)
         int subscriptionCount = top5SubscribedTopics.totalCount
 
         render(template: "/home/subscriptionOfCurrentUser", model: [top5SubscribedTopics: top5SubscribedTopics, subscriptionCount: subscriptionCount, max: max, offset: offset])
@@ -89,7 +87,7 @@ class HomeController {
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5
 
-        List<ReadingItem> readingItemListWithIsReadFalse = showInboxService.showInbox(session["username"], max, offset)
+        List<ReadingItem> readingItemListWithIsReadFalse = showInboxService.showInbox(session["userID"], max, offset)
         int total = readingItemListWithIsReadFalse.totalCount
 
         render(template: "/dashboard/iterateInbox", model: [readingItemListWithIsReadFalse: readingItemListWithIsReadFalse, inboxCount: total, max: max, offset: offset])

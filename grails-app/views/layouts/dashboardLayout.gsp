@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title><g:layoutTitle default="Login Layout"/></title>
+    <title><g:layoutTitle/></title>
 
     <asset:stylesheet src="bootstrap.min.css"/>
     <asset:stylesheet src="bootstrap-theme.min.css"/>
@@ -35,16 +35,6 @@
 
     <!--Search-->
         <div>
-        %{--<form class="navbar-form navbar-right " role="search">--}%
-
-        %{--<div class="form-group">--}%
-        %{--<input type="text" id="searchGlobal"--}%
-        %{--class="form-control"--}%
-        %{--onkeyup="searchAllPagesUsingAjax('${createLink(controller: "search",action: "searchAll")}')"--}%
-        %{--placeholder="Search"/>--}%
-
-        %{--</div>--}%
-
             <g:form controller="search" action="searchPage" class="navbar-form navbar-right " role="search">
                 <div class="form-group">
                     <input type="text" name="searchGlobal" class="searchGlobal" class="form-control"

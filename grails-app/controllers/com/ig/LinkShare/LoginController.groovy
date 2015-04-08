@@ -8,7 +8,7 @@ class LoginController {
 
         if (User.findByEmailAndPasswordAndActive(email, password, active = true)) {
             User user = User.findWhere(email: email)
-            session["username"] = user.username
+            session["userID"] = user.id
             redirect(controller: "home", action: "dashboard", params: [username: session["username"]])
         } else {
             flash.message = "Invalid username or password!"
@@ -17,8 +17,8 @@ class LoginController {
     }
 
     def logout() {
-        flash.message = "Goodbye ${session["username"]}"
-        session["username"] = null
+        flash.message = "You have been successfully logged out!"
+        session["userID"] = null
         redirect(controller: "home", action: "index")
     }
 

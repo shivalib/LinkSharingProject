@@ -12,10 +12,10 @@ class UserController {
     def beforeInterceptor = [action: this.&checkAdmin, only: 'list']
 
     private checkAdmin() {
-        if (session["username"]) {
+        if (session["userID"]) {
 
-            String currentUser = session["username"]
-            User user = User.findByUsername(currentUser)
+//            String currentUser = session["username"]
+            User user =User.get(session["userID"])
 
             if (!user.admin) {
                 flash.message = "Sorry, this is reserved for Administrative access!!!"
@@ -28,7 +28,7 @@ class UserController {
 
         List<User> userList = User.list()
 
-        User currentUser = userService.showCurrentUserObject(session["username"])
+        User currentUser = User.get(session["userID"])
 
         List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
 

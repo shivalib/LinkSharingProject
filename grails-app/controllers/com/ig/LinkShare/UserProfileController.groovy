@@ -8,24 +8,22 @@ class UserProfileController {
     def userService
     def showTopicService
     def showResourceService
-    TopicSubscriptionService topicSubscriptionService
-    Top5SubscriptionService top5SubscriptionService
+    def topicSubscriptionService
+    def top5SubscriptionService
 
     def index() {
-        if (session["username"]) {
 
-            User currentUser = User.findByUsername(session["username"])
+        User currentUser = User.get(session["userID"])
 
-            List<Topic> topicList = showTopicService.findTopicsCreatedByUser(currentUser)
+        List<Topic> topicList = showTopicService.findTopicsCreatedByUser(currentUser)
 
-            List<Subscription> subscriptionTopicList = topicSubscriptionService.currentUserSubscriptions(currentUser)
+        List<Subscription> subscriptionTopicList = topicSubscriptionService.currentUserSubscriptions(currentUser)
 
-            render(view: "/userProfile/editProfile", model: [loginUser: currentUser, subscriptionTopicList: subscriptionTopicList, topicList: topicList])
-        }
+        render(view: "/userProfile/editProfile", model: [loginUser: currentUser, subscriptionTopicList: subscriptionTopicList, topicList: topicList])
     }
 
     def changePassword(User user, UserCO userCO) {
-        User currentUser = User.findByUsername(session["username"])
+        User currentUser = User.get(session["userID"])
 
         if (!userCO.validate()) {
             userCO.errors.allErrors.each {
@@ -52,23 +50,24 @@ class UserProfileController {
         topics.each {
             resourcesOfTopic += showResourceService.showResourcesByTopic(it)
         }
-
-
+        
         render(view: "/user/userProfile", model: [loginUser: currentUser, topicList: topics, resourcesOfTopic: resourcesOfTopic])
-
     }
 
     def updateData() {
-        User currentUser = User.findByUsername(session["username"])
+        User currentUser = User.get(session["userID"])
         currentUser.firstName = params.firstName
         currentUser.lastName = params.lastName
         currentUser.username = params.username
 
-        currentUser.photoPath = uploadService.uploadImage(currentUser, params.img, grailsApplication.config.upload.uploadImages.toString())
+        if (params.img) {
+            currentUser.photoPath = uploadService.uploadImage(currentUser, params.img, grailsApplication.config.upload.uploadImages.toString())
+        }
+
         if (currentUser.save(failOnError: true, flush: true)) {
             flash.message = "Your data has been updated successfully!!"
         } else {
-            flash.message = "Data updation failed!!"
+            flash.message = "Data update failed!!"
         }
 
         redirect(controller: "userProfile", action: "index")

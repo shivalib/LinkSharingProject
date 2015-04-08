@@ -7,9 +7,9 @@ import grails.transaction.Transactional
 class Top5SubscriptionService {
 
 
-    List<Topic> showTop5Subscription(String currentUser, int max, int offset) {
+    List<Topic> showTop5Subscription(def userID, int max, int offset) {
 
-        User user = User.findByUsername(currentUser)
+        User user = User.get(userID)
 
         List<Topic> topics = Topic.createCriteria().list(offset: offset, max: max) {
             'subscriptions' {

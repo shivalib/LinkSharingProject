@@ -3,14 +3,11 @@
 <head>
     <title></title>
     <meta name="layout" content="dashboardLayout">
-
     <asset:javascript src="subscription.js"/>
 </head>
 
 <body>
-
-<g:render template="/resource/socialIconJS"/>
-
+%{--<g:render template="/resource/socialIconJS"/>--}%
 <div class="row">
     <div class="col-md-5">
         <div class="panel panel-default leftdiv">
@@ -38,10 +35,8 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Posts</h3>
             </div>
-            <div class="panel-body">
-                <div id="updatePost">
+            <div class="panel-body updateReadingItem">
                     <h4>Click on a topic name to see the posts!</h4>
-                </div>
             </div>
         </div>
     </div>

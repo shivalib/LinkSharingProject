@@ -8,9 +8,9 @@ class ShowInboxService {
     def userService
 
 
-    List<ReadingItem> showInbox(String currentUser,int max,int offset){
+    List<ReadingItem> showInbox(def userID,int max,int offset){
 
-        User user=User.findByUsername(currentUser)
+        User user=User.get(userID)
 
         List<ReadingItem> readingItems=ReadingItem.createCriteria().list(max:max,offset:offset) {
             eq('isRead',false)

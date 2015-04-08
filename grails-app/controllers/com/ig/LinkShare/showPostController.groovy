@@ -18,7 +18,7 @@ class showPostController {
 
         List<Topic> trendingTopics = trendingTopicService.showTrendingTopics(max, offset)
 
-        User currentUser = userService.showCurrentUserObject(session["username"])
+        User currentUser = User.get(session["userID"])
 
         Subscription subscription = Subscription.findWhere(user: currentUser)
 
@@ -34,7 +34,7 @@ class showPostController {
 
         List<Resource> resourceList = showResourceService.calculateResourceListForAdmin()
 
-        User currentUser = userService.showCurrentUserObject(session["username"])
+        User currentUser =User.get(session["userID"])
 
         List<Topic> trendingTopics = trendingTopicService.showTrendingTopics(max, offset)
 
@@ -47,7 +47,7 @@ class showPostController {
     def rateResource() {
         String scr = params.rating
         Float score = scr.toDouble()
-        User currentUser = userService.showCurrentUserObject(session["username"])
+        User currentUser = User.get(session["userID"])
         Resource resource=Resource.get(params.resourceID)
 
         ResourceRating resourceRating1 = ResourceRating.findByUserAndResource(currentUser,resource)

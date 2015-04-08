@@ -38,8 +38,7 @@ $(document).ready(function () {
     });
 
     $('.readUnread-post').on('click', function () {
-        //alert('hello')
-        //_markAsRead->ajax->controller
+        alert('clicked me!')
         var currentPanelBody = $(this).closest('.updateReadingItem')
         var element=$(this)
 

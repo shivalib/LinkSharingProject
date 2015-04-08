@@ -68,17 +68,6 @@
                           model="[readingItemListWithIsReadFalse: readingItemListWithIsReadFalse, max: max, offset: offset, inboxCount: inboxCount]"/>
             </div>
         </div><!--panel ends-->
-        <div class="panel panel-default rightdiv">
-            <div class="panel-heading">
-                <h3 class="panel-title">Search for :</h3>
-            </div>
-
-            <div class="panel-body">
-                <div class="addSearchData">
-
-                </div>
-            </div>
-        </div>
     </div><!--col-md-7-->
 </div>
 </body>
