@@ -16,23 +16,21 @@
 </head>
 
 <body>
+
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
 <div class="row">
     <div class="col-md-7">
         <g:if test="${loginUser}">
-
             <ls:checkUserForPost currentUser="${loginUser}" topicList="${topicList}"/>
-
-            <div class="panel panel-default leftdiv">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Search for :</h3>
-                </div>
-
-                <div class="panel-body">
-                    <div class="addSearchData">
-
-                    </div>
-                </div>
-            </div>
         </g:if>
         <g:else>
             <g:render template="postForNonRegisteredUser"/>

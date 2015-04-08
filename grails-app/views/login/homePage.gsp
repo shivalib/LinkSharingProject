@@ -18,6 +18,8 @@
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
 <div class="row">
     <div class="col-md-8">
 

@@ -22,6 +22,8 @@
     <div class="right leftdiv">
         <g:link class="right" controller="showPost" action="index" id="${unreadItem.resource.id}">View post</g:link>
     </div>
+    <g:render template="/myTemplates/socialIcons" model="[resourceID:unreadItem.resource.id]"/>
+
     <ls:checkResourceType resource="${unreadItem.resource}"/>
     <ls:markResource resource="${unreadItem.resource}" ajaxClass="readUnread-inbox" currentUser="${loginUser}"/>
 </div>

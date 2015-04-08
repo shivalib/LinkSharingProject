@@ -2,7 +2,7 @@
 <html>
 <head>
 
-    <title><g:layoutTitle default="Login Layout"/></title>
+    <title><g:layoutTitle/></title>
 
     <asset:stylesheet src="bootstrap.min.css"/>
     <asset:stylesheet src="bootstrap-theme.min.css"/>
