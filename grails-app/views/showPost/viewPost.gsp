@@ -22,7 +22,7 @@
 <div class="row">
     <div class="col-md-7">
         <g:if test="${loginUser}">
-            <ls:checkUserForPost currentUser="${loginUser}" topicList="${topicList}"/>
+            <g:render template="postForNonAdmin"/>
         </g:if>
         <g:else>
             <g:render template="postForNonRegisteredUser"/>
