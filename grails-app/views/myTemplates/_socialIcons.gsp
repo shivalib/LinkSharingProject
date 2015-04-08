@@ -2,22 +2,25 @@
      data-layout="button_count"></div>
 
 
-
 <div class="g-plus" data-href="${g.createLink(controller: "showPost", action: "index", id: resourceID)}"
      data-action="share"></div>
 
 
 
-<a class="twitter-share-button" data-url="${g.createLink(controller: "showPost", action: "index", id: resourceID)}">
-    Tweet
-</a>
+%{--<a class="twitter-share-button" data-url="${g.createLink(controller: "showPost", action: "index", id: resourceID)}">--}%
+%{--Tweet--}%
+%{--</a>--}%
+
+<a href="https://twitter.com/share" class="twitter-share-button"
+   data-url="${g.createLink(controller: "showPost", action: "index", id: resourceID)}"
+   data-via="LinkShareApplication">Tweet</a>
 
 %{--<button type="button" class="btn btn-default btn-sm">--}%
 %{--<span><img src="${resource(dir: "images", file: "facebook.png")}" class="icon img-rounded" /></span>--}
 %{--</button>--}%
 
 %{--<button type="button" class="btn btn-default btn-sm">--}%
-    %{--<span><img src="${resource(dir: "images", file: "twitter-icon.png")}" class="icon img-rounded"/></span>--}%
+%{--<span><img src="${resource(dir: "images", file: "twitter-icon.png")}" class="icon img-rounded"/></span>--}%
 %{--</button>--}%
 
 %{--<button type="button" class="btn btn-default btn-sm">--}%
