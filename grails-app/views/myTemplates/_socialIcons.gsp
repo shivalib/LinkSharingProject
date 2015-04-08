@@ -8,7 +8,7 @@
 
 
 
-<a class="twitter-share-button" href="${g.createLink(controller: "showPost", action: "index", id: resourceID)}">
+<a class="twitter-share-button" data-url="${g.createLink(controller: "showPost", action: "index", id: resourceID)}">
     Tweet
 </a>
 
