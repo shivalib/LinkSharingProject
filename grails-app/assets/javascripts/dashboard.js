@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-    //$('.searchGlobal').val($('.searchGlobal').val())
-
     $('.topicVisibility').on('change', function () {
         var changedVal = $(this).val()
         var url = $(this).attr('data-changeVisibility')

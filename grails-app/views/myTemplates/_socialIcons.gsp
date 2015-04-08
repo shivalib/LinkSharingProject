@@ -3,13 +3,7 @@
 
 
 <div class="g-plus" data-href="${g.createLink(controller: "showPost", action: "index", id: resourceID)}"
-     data-action="share"></div>
-
-
-
-%{--<a class="twitter-share-button" data-url="${g.createLink(controller: "showPost", action: "index", id: resourceID)}">--}%
-%{--Tweet--}%
-%{--</a>--}%
+     data-action="share" data-annotation="bubble"></div>
 
 <a href="https://twitter.com/share" class="twitter-share-button"
    data-url="${g.createLink(controller: "showPost", action: "index", id: resourceID,absolute: true)}"

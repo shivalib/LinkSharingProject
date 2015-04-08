@@ -9,15 +9,7 @@
 
 <body>
 
-<script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.3";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-<script src="https://apis.google.com/js/platform.js" async defer></script>
+<g:render template="/resource/socialIconJS"/>
 
 <div class="row">
     <div class="col-md-5">
@@ -46,20 +38,9 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Posts</h3>
             </div>
-
             <div class="panel-body">
                 <div id="updatePost">
                     <h4>Click on a topic name to see the posts!</h4>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default rightdiv">
-            <div class="panel-heading">
-                <h3 class="panel-title">Search for :</h3>
-            </div>
-            <div class="panel-body">
-                <div class="addSearchData">
-
                 </div>
             </div>
         </div>

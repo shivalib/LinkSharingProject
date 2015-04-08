@@ -1,5 +1,4 @@
 function searchPostUsingAjax(searchPostUrl) {
-    console.log('hey i m in!')
     console.log(searchPostUrl)
     var searchPost = $('#searchPost').val()
     console.log(searchPost)
