@@ -2,10 +2,7 @@
     <div class="panel-body">
         <div class="media ">
             <div class="media-left">
-                <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile", params: [id: subscriptionList.topic.createdBy.id])}">
-                    <img src="${createLink(controller: "image", action: "renderImage", params: [path: subscriptionList.topic.createdBy.photoPath])}"
-                         class="media-object mediaFace">
-                </a>
+                <ls:userPhoto currentUser="${subscriptionList.topic.createdBy}"/>
             </div>
 
             <div class="media-body">

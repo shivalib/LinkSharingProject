@@ -13,7 +13,7 @@ class SubscriptionController {
 
     def showAllSubscriptions() {
 
-        User currentUser = userService.showCurrentUserObject(session["username"])
+        User currentUser =User.get(session["userID"])
         List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
 
         int offset = params.offset ? params.int('offset') : 0

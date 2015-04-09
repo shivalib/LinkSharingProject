@@ -1,10 +1,7 @@
 <div class="panel-body updateReadingItem ">
     <div class="media ">
         <div class="media-left">
-            <a href="#">
-                <img src="${createLink(controller: "image", action: "renderImage", params: [path: resourceList.createdBy.photoPath])}"
-                     class="media-object mediaFace">
-            </a>
+            <ls:userPhoto currentUser="${resourceList.createdBy}"/>
         </div>
 
         <div class="media-body">

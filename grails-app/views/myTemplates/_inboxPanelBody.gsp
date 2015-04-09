@@ -1,10 +1,6 @@
 <div class="media ">
     <div class="media-left">
-        <a href="${createLink(controller: "userProfile",action: "showUserPublicProfile",params: [id:unreadItem.resource.topic.createdBy.id])}">
-            <img src="${createLink(controller: "image", action: "renderImage", params: [path: unreadItem.resource.topic.createdBy.photoPath])}"
-                 class="media-object mediaFace">
-        </a>
-
+        <ls:userPhoto currentUser="${unreadItem.resource.topic.createdBy}"/>
     </div>
 
     <div class="media-body">

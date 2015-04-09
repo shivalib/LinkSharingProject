@@ -21,10 +21,12 @@
             <div class="panel-body">
                 <div class="media ">
                     <div class="media-left">
-                        <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile", params: [id: topic.createdBy.id])}">
-                            <img src="${createLink(controller: "image", action: "renderImage", params: [path: topic.createdBy.photoPath])}"
-                                 class="media-object mediaFace">
-                        </a>
+                        <ls:userPhoto currentUser="${topic.createdBy}"/>
+
+                        %{--<a href="${createLink(controller: "userProfile", action: "showUserPublicProfile", params: [id: topic.createdBy.id])}">--}%
+                            %{--<img src="${createLink(controller: "image", action: "renderImage", params: [path: topic.createdBy.photoPath])}"--}%
+                                 %{--class="media-object mediaFace">--}%
+                        %{--</a>--}%
                     </div>
 
                     <div class="media-body">

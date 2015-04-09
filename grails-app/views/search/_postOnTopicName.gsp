@@ -2,10 +2,8 @@
     <g:render template="/resource/socialIconJS"/>
     <div class="media ">
         <div class="media-left">
-            <a href="#">
-                <img src="${createLink(controller: "image", action: "renderImage", params: [path: resources.topic.createdBy.photoPath])}"
-                     class="media-object mediaFace">
-            </a>
+            <ls:userPhoto currentUser="${resources.topic.createdBy}"/>
+
         </div>
 
         <div class="media-body">

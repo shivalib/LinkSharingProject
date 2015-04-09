@@ -150,6 +150,15 @@ class ApplicationTagLib {
         }
     }
 
+    def checkUserForPost = { attr ->
+        def user = attr.currentUser
+        if (user.admin)
+            out << g.render(template: "/showPost/postForAdmin")
+        else
+            out << g.render(template: "/showPost/postForNonAdmin")
+
+    }
+
     def averageRating = { attr ->
         User currentUser = attr.currentUser
         Resource resource = attr.resource

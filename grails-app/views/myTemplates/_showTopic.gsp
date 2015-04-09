@@ -1,10 +1,7 @@
 <%@ page import="com.ig.LinkShare.applicationEnums.Visibility; com.ig.LinkShare.applicationEnums.Seriousness" %>
 <div class="media ">
     <div class="media-left">
-        <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile", params: [id: topics.topic.createdBy.id])}">
-            <img src="${createLink(controller: "image", action: "renderImage", params: [path: topics.topic.createdBy.photoPath])}"
-                 class="media-object mediaFace">
-        </a>
+        <ls:userPhoto currentUser="${topics.topic.createdBy}"/>
     </div>
 
     <div class="media-body">

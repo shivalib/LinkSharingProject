@@ -22,7 +22,7 @@
 <div class="row">
     <div class="col-md-7">
         <g:if test="${loginUser}">
-            <g:render template="postForNonAdmin"/>
+            <ls:checkUserForPost currentUser="${loginUser}" topicList="${topicList}"/>
         </g:if>
         <g:else>
             <g:render template="postForNonRegisteredUser"/>
@@ -41,10 +41,7 @@
                     <div class="panel-body">
                         <div class="media ">
                             <div class="media-left">
-                                <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile", params: [id: trending.createdBy.id])}">
-                                    <img src="${createLink(controller: "image", action: "renderImage", params: [path: trending.createdBy.photoPath])}"
-                                         class="media-object mediaFace">
-                                </a>
+                                <ls:userPhoto currentUser="${trending.createdBy}"/>
                             </div>
 
                             <div class="media-body">
