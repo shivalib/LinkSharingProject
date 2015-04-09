@@ -57,18 +57,18 @@ class UserProfileController {
     def updateData() {
         User currentUser = User.get(session["userID"])
         currentUser.properties=params
-//        currentUser.firstName = params.firstName
-//        currentUser.lastName = params.lastName
-//        currentUser.username = params.username
-//
-//        currentUser.photoPath = uploadService.uploadImage(currentUser, params.img, grailsApplication.config.upload.uploadImages.toString())
 
+        def imagePath = params.img
+        if(!imagePath.isEmpty())
+        {
+            currentUser.photoPath = uploadService.uploadImage(currentUser, params.img, grailsApplication.config.upload.uploadImages.toString())
+
+        }
         if (currentUser.save(failOnError: true, flush: true)) {
             flash.message = "Your data has been updated successfully!!"
         } else {
             flash.message = "Data update failed!!"
         }
-
         redirect(controller: "userProfile", action: "index")
     }
 
