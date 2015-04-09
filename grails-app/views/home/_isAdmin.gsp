@@ -60,7 +60,7 @@
                 <g:form controller="topic" action="deleteTopic" id="${topic.id}">
                     <div>
                         <span>Topic*</span>
-                        <g:textField name="topicName" value="${topic.topicName}" readonly="true"/>
+                        <label for="${topic.id}">${topic.topicName}</label>
                     </div>
                     <br>
 

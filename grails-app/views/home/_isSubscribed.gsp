@@ -37,8 +37,6 @@
                     <div>
                         <span>Topic* :</span>
                         <label for="${subscription.id}">${subscription.topic.topicName}</label>
-
-                        %{--<g:textField name="topicList" value="${subscription.topic.topicName}" readonly="true"/>--}%
                     </div>
 
                     <div class="right">

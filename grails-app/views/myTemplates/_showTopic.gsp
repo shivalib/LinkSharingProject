@@ -6,9 +6,7 @@
 
     <div class="media-body">
         <h4 class="media-heading">
-
-            <h5>${topics.topic.topicName}</h5>
-
+            ${topics.topic.topicName}
         </h4>
 
         <div>
@@ -136,7 +134,8 @@
                 <g:form controller="topic" action="deleteTopic" id="${topics.topic.id}">
                     <div>
                         <span>Topic*</span>
-                        <g:textField name="topicName" value="${topics.topic.topicName}"/>
+                        <label for="${topics.id}">${topics.topic.topicName}</label>
+                        %{--<g:textField name="topicName" value="${topics.topic.topicName}"/>--}%
                     </div>
                     <br>
 

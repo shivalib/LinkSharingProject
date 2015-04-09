@@ -50,7 +50,7 @@
                 <g:form controller="topic" action="deleteResource" id="${resource.id}">
                     <div>
                         <span>Resource*</span>
-                        <g:textField name="description" value="${resource.description}"/>
+                        <label for="${resource.id}">${resource.description}</label>
                     </div>
                     <br>
 

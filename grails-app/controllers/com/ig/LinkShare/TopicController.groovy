@@ -80,8 +80,9 @@ class TopicController {
 
     def deleteTopic(Long id) {
 
-        Topic topic = Topic.load(id)
+        Topic topic = Topic.get(id)
         topic.delete(flush: true)
-        forward(controller: "home", action: "dashboard")
+            flash.message = "Topic is successfully deleted!"
+        redirect(controller: "home", action: "dashboard")
     }
 }
