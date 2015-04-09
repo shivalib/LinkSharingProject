@@ -56,6 +56,7 @@ class UserProfileController {
 
     def updateData() {
         User currentUser = User.get(session["userID"])
+
         currentUser.firstName=params.firstName
         currentUser.lastName=params.lastName
         currentUser.username=params.username

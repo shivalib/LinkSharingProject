@@ -33,7 +33,6 @@ class HomeController {
     }
 
     def dashboard() {
-
             User currentUser = User.findById(session["userID"])
 
             List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)

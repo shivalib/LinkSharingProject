@@ -9,7 +9,7 @@ class LoginController {
         if (User.findByEmailAndPasswordAndActive(email, password, active = true)) {
             User user = User.findWhere(email: email)
             session["userID"] = user.id
-            redirect(controller: "home", action: "dashboard", params: [username: session["username"]])
+            redirect(controller: "home", action: "dashboard")
         } else {
             flash.message = "Invalid username or password!"
             redirect(controller: "home", action: "index")
