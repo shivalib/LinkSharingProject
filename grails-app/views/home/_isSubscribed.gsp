@@ -28,7 +28,7 @@
             </div>
 
             <div class="modal-body">
-                <g:form class="loginform" controller="lsMail" action="sendInvite">
+                <g:form class="loginform" controller="lsMail" action="sendInvite" id="${subscription.topic.id}">
                     <div>
                         <span>Email* :</span>
                         <g:textField name="emailID"/>
@@ -36,7 +36,9 @@
 
                     <div>
                         <span>Topic* :</span>
-                        <g:textField name="topicList" value="${subscription.topic.topicName}" readonly="true"/>
+                        <label for="${subscription.id}">${subscription.topic.topicName}</label>
+
+                        %{--<g:textField name="topicList" value="${subscription.topic.topicName}" readonly="true"/>--}%
                     </div>
 
                     <div class="right">

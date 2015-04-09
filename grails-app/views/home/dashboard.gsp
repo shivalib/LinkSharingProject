@@ -1,9 +1,8 @@
 <%@ page import="com.ig.LinkShare.applicationEnums.Visibility" contentType="text/html;charset=UTF-8" %>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title></title>
+    <title>Dashboard</title>
     <meta name="layout" content="dashboardLayout">
-    %{--<asset:javascript src="dashboard.js"/>--}%
 </head>
 
 <body>

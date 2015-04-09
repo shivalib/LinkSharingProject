@@ -2,7 +2,20 @@ package com.ig.LinkShare
 
 class lsMailController {
 
-    def sendInvite() {
+    def sendInvite(Long id) {
+        Topic topic=Topic.get(id)
+
+        sendMail {
+//            async true
+            to "${params.emailID}"
+            subject "Invite : Subscription"
+            body "${topic.topicName}"
+        }
+
+        redirect(controller: "home", action: "dashboard")
+    }
+
+    def sendInviteFromList() {
 
         sendMail {
 //            async true

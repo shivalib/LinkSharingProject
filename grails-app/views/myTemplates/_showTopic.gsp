@@ -69,7 +69,7 @@
             </div>
 
             <div class="modal-body">
-                <g:form class="loginform" controller="lsMail" action="sendInvite">
+                <g:form class="loginform" controller="lsMail" action="sendInvite" id="${topics.topic.id}">
                     <div>
                         <span>Email* :</span>
                         <g:textField name="emailID"/>
@@ -77,7 +77,9 @@
 
                     <div>
                         <span>Topic* :</span>
-                        <g:textField name="topicList" value="${topics.topic.topicName}" readonly="trues"/>
+                        <label for="${topics.topic.id}">${topics.topic.topicName}</label>
+
+                        %{--<g:textField name="topicList" value="${topics.topic.topicName}" readonly="trues"/>--}%
                     </div>
 
                     <div class="right">

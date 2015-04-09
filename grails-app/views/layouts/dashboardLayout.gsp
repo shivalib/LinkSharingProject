@@ -88,7 +88,7 @@
             </div>
 
             <div class="modal-body">
-                <g:form class="loginform" controller="lsMail" action="sendInvite">
+                <g:form class="loginform" controller="lsMail" action="sendInviteFromList">
                     <div>
                         <span>Email* :</span>
                         <g:textField name="emailID"/>
