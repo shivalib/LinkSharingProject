@@ -52,14 +52,8 @@ class SearchController {
         render(template: "/userListing/userEntry", model: [userList: userList])
     }
 
-    def searchPost() {
-        println "---------- in search Post"
-    }
-
     def displayPostOnTopicNameClick() {
         User currentUser=User.get(session["userID"])
-//        User currentUser = userService.showCurrentUserObject(session["username"])
-
         Topic topic = Topic.findById(params.topicID)
 
         List<Resource> resourceList = showResourceService.showResourcesByTopic(topic)

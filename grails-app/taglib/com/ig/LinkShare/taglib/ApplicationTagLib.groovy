@@ -133,9 +133,9 @@ class ApplicationTagLib {
             return
         }
         if (readingItem.isRead) {
-            out << g.render(template: '/myTemplates/markAsUnread', model: [ajaxClass: attr.ajaxClass, currentUser: currentUser.id, currentResource: attr.resource.id])
+            out << g.render(template: '/myTemplates/markAsUnread', model: [ajaxClass: attr.ajaxClass,ajaxMethod:attr.ajaxMethod, currentUser: currentUser.id, currentResource: attr.resource.id])
         } else {
-            out << g.render(template: '/myTemplates/markAsRead', model: [ajaxClass: attr.ajaxClass, currentUser: currentUser.id, currentResource: attr.resource.id])
+            out << g.render(template: '/myTemplates/markAsRead', model: [ajaxClass: attr.ajaxClass,ajaxMethod:attr.ajaxMethod,currentUser: currentUser.id, currentResource: attr.resource.id])
         }
 
     }

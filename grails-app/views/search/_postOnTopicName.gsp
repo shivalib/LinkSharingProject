@@ -1,28 +1,32 @@
+<script>
+    $('.readUnread-postOnClickOfTopicName').on('click', function () {
+        var currentPanelBody = $(this).closest('.updateReadUnread')
+        var currentUser = $(this).attr('data-currentUser'),
+                currentResource = $(this).attr('data-currentResource'), url = $(this).attr('data_readLink')
+        $.ajax(
+                {
+                    url: url,
+                    data: {
+                        currentUser: currentUser,
+                        currentResource: currentResource
+                    },
+                    success: function (data) {
+                        console.log(data)
+                        currentPanelBody.html(data)
+                    },
+                    error: function (request, status, error) {
+                        console.log("We are in error section ");
+                        console.log("request :" + request);
+                        console.log("status : " + status);
+                        console.log("error :" + error);
+                    }
+                }
+        )
+
+    })
+</script>
 <g:each in="${resourceList}" var="resources">
-    <g:render template="/resource/socialIconJS"/>
-    <div class="media ">
-        <div class="media-left">
-            <ls:userPhoto currentUser="${resources.topic.createdBy}"/>
 
-        </div>
+    <g:render template="/subscription/markReadOrUnreadOnTopicClick" model="[resources: resources]"/>
 
-        <div class="media-body">
-            <h4 class="media-heading"></h4>
-
-            <div>
-                ${resources.topic.createdBy.fullName}@${resources.topic.createdBy.username}
-            </div>
-
-            <div>
-                ${resources.description}
-            </div>
-        </div><!--media body ends-->
-
-        <div class="right leftdiv">
-            <g:link class="right" controller="showPost" action="index" id="${resources.id}">View post</g:link>
-        </div>
-        <g:render template="/myTemplates/socialIcons" model="[resourceID:resources.id]"/>
-        <ls:checkResourceType resource="${resources}"/>
-        <ls:markResource resource="${resources}" ajaxClass="readUnread-post" currentUser="${loginUser}"/>
-    </div>
 </g:each>

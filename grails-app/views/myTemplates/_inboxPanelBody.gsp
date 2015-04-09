@@ -21,5 +21,5 @@
     <g:render template="/myTemplates/socialIcons" model="[resourceID:unreadItem.resource.id]"/>
 
     <ls:checkResourceType resource="${unreadItem.resource}"/>
-    <ls:markResource resource="${unreadItem.resource}" ajaxClass="readUnread-inbox" currentUser="${loginUser}"/>
+    <ls:markResource resource="${unreadItem.resource}" ajaxClass="readUnread-inbox" ajaxMethod="${createLink(controller: "readingItem", action: "markAsReadOrUnread")}" currentUser="${loginUser}"/>
 </div>

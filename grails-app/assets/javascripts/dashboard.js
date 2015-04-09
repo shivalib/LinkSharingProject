@@ -38,7 +38,6 @@ $(document).ready(function () {
     });
 
     $('.readUnread-post').on('click', function () {
-        alert('clicked me!')
         var currentPanelBody = $(this).closest('.updateReadingItem')
         var element=$(this)
 
