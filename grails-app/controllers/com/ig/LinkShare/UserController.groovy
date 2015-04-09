@@ -14,7 +14,6 @@ class UserController {
     private checkAdmin() {
         if (session["userID"]) {
 
-//            String currentUser = session["username"]
             User user =User.get(session["userID"])
 
             if (!user.admin) {

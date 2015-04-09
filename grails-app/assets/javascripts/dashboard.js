@@ -1,5 +1,33 @@
 $(document).ready(function () {
 
+    //$('#createTopicForm').validate({
+    //    rules:{
+    //        topicName:{
+    //            required:true,
+    //            remote: {
+    //                url: $('#topicName').attr('data-checkTopic'),
+    //                type: 'post',
+    //                data: {
+    //                    topicName: function () {
+    //                        return $('#topicName').val()
+    //                    }
+    //                }
+    //            }
+    //        }
+    //    },
+    //    messages:{
+    //        topicName:{
+    //            required:"Topic Name cannot be empty",
+    //            remote:"Topic with this name already exists!"
+    //        }
+    //    }
+    //
+    //});
+
+
+
+
+
     $('.topicVisibility').on('change', function () {
         var changedVal = $(this).val()
         var url = $(this).attr('data-changeVisibility')

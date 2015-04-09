@@ -18,7 +18,8 @@
                     <span class="right">Posts
                         <div>${subscribedTopics.resources.size()}</div>
                     </span>
-                    <span class="right rightdiv">Subscriptions
+                    <span class="right rightdiv">
+                        Subscriptions
                         <div>${subscribedTopics.subscriptions.size()}</div>
                     </span>
                 </div>

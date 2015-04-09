@@ -9,7 +9,7 @@ class SubscriptionController {
     def readingItemService
     def searchService
     def showTopicService
-    TopicSubscriptionService topicSubscriptionService
+    def topicSubscriptionService
 
     def showAllSubscriptions() {
 
@@ -24,6 +24,8 @@ class SubscriptionController {
 
         render(view: "topicSubscription", model: [loginUser: currentUser, subscriptions: subscriptions, topicList: topics.topicName, max: max, offset: offset, subscriptionCount: total])
     }
+
+
 
     def showAllTopicsCreated() {
         User currentUser =User.get(session["userID"])

@@ -25,18 +25,44 @@ class TopicController {
     def createTopic() {
         User userID = User.get(session["userID"])
 
-        Topic topic1 = new Topic(topicName: params.topicName, visibility: params.topicType)
-        userID.addToTopics(topic1)
+        List<Topic> topicList = Topic.createCriteria().list {
+            projections {
+                property('topicName')
+            }
+            eq('createdBy', userID)
+        }
 
-        if (topic1.save(failOnError: true)) {
-
-            Subscription subscribe = topicSubscriptionService.subscribeTopic(userID, topic1)
-
-            flash.message = "Your topic has been created!"
+        if (topicList.contains(params.topicName)) {
+            flash.message = "Topic creation failed,topic with this name already exists!"
         } else {
-            flash.message = "Sorry, topic creation failed!"
+
+            Topic topic1 = new Topic(topicName: params.topicName, visibility: params.topicType)
+            userID.addToTopics(topic1)
+
+            if (topic1.save(failOnError: true)) {
+
+                Subscription subscribe = topicSubscriptionService.subscribeTopic(userID, topic1)
+
+                flash.message = "Your topic has been created!"
+            } else {
+                flash.message = "Sorry, topic creation failed!"
+            }
         }
         redirect(controller: "home", action: "dashboard")
+    }
+
+    Boolean validateTopicName() {
+
+        List<Topic> topicList = Topic.createCriteria().list {
+            projections {
+                property("topicName")
+            }
+        }
+
+        if (topicList.contains(params.topicName))
+            render true
+        else
+            render false
     }
 
     def updateTopic(Long id) {
@@ -82,7 +108,7 @@ class TopicController {
 
         Topic topic = Topic.get(id)
         topic.delete(flush: true)
-            flash.message = "Topic is successfully deleted!"
+        flash.message = "Topic is successfully deleted!"
         redirect(controller: "home", action: "dashboard")
     }
 }

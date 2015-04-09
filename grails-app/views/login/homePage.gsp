@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title></title>
+    <title>LinkSharing Home</title>
     <meta name="layout" content="dashboardLayout">
     <asset:javascript src="jquery.validate.min(1).js"/>
     <asset:javascript src="homePage.js"/>

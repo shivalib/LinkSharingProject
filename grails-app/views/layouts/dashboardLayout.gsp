@@ -9,6 +9,7 @@
     %{--<asset:javascript src="jquery.min.js"/>--}%
     <asset:javascript src="jquery-2.1.3.js"/>
     <asset:javascript src="bootstrap.min.js"/>
+    <asset:javascript src="jquery.validate.min(1).js"/>
     <asset:javascript src="dashboard.js"/>
 </head>
 <g:layoutHead/>
@@ -212,10 +213,10 @@
             </div>
 
             <div class="modal-body">
-                <g:form class="loginform" controller="topic" action="createTopic">
+                <g:form class="loginform" name="createTopicForm" controller="topic" action="createTopic">
                     <div>
                         <span>Name* :</span>
-                        <g:textField name="topicName"/>
+                        <g:textField name="topicName" data-checkTopic="${createLink(controller: "topic",action: "validateTopicName")}"/>
                     </div>
 
                     <div>
