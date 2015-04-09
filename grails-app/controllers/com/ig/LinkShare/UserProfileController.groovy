@@ -50,19 +50,18 @@ class UserProfileController {
         topics.each {
             resourcesOfTopic += showResourceService.showResourcesByTopic(it)
         }
-        
+
         render(view: "/user/userProfile", model: [loginUser: currentUser, topicList: topics, resourcesOfTopic: resourcesOfTopic])
     }
 
     def updateData() {
         User currentUser = User.get(session["userID"])
-        currentUser.firstName = params.firstName
-        currentUser.lastName = params.lastName
-        currentUser.username = params.username
-
-        if (params.img) {
-            currentUser.photoPath = uploadService.uploadImage(currentUser, params.img, grailsApplication.config.upload.uploadImages.toString())
-        }
+        currentUser.properties=params
+//        currentUser.firstName = params.firstName
+//        currentUser.lastName = params.lastName
+//        currentUser.username = params.username
+//
+//        currentUser.photoPath = uploadService.uploadImage(currentUser, params.img, grailsApplication.config.upload.uploadImages.toString())
 
         if (currentUser.save(failOnError: true, flush: true)) {
             flash.message = "Your data has been updated successfully!!"

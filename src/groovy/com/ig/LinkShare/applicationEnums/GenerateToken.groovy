@@ -14,7 +14,7 @@ class GenerateToken {
     void generateTokenForRegisteredUser(User user){
             def tokenGen = generator( (('A'..'Z')+('0'..'9')).join(), 10 )
 
-            UserToken userToken=new UserToken(user:user,token:tokenGen)
+            UserToken userToken=new UserToken(user:user,token:tokenGen,used: false)
 
             userToken.save(failOnError: true,flush: true)
     }

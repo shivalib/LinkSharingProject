@@ -11,22 +11,21 @@ class WeeklyJob {
     }
 
     def execute() {
-//        hellooooooooooooo
-        // execute job
-        List<Subscription> subscriptionList = Subscription.findAllBySeriousness(Seriousness.VERYSERIOUS)
 
-        subscriptionList.each { subscription ->
-
-            List<ReadingItem> readingItems = ReadingItem.createCriteria().list(offset:0,max:10) {
-                eq('isRead', false)
-                eq('user', subscription.user)
-            }
-
-            mailService.sendMail {
-                to subscription.user.email
-                subject 'Subscription Update'
-                body 'readingItem list : '
-            }
-        }
+//        List<Subscription> subscriptionList = Subscription.findAllBySeriousness(Seriousness.VERYSERIOUS)
+//
+//        subscriptionList.each { subscription ->
+//
+//            List<ReadingItem> readingItems = ReadingItem.createCriteria().list(offset:0,max:10) {
+//                eq('isRead', false)
+//                eq('user', subscription.user)
+//            }
+//
+//            mailService.sendMail {
+//                to subscription.user.email
+//                subject 'Subscription Update'
+//                body 'readingItem list : '
+//            }
+//        }
     }
 }

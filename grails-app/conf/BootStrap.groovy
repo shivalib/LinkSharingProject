@@ -1,4 +1,3 @@
-import com.ig.LinkShare.applicationEnums.GenerateToken
 
 class BootStrap {
 

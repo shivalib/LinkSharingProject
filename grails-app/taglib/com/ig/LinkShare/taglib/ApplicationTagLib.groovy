@@ -26,11 +26,22 @@ class ApplicationTagLib {
         }
     }
 
+    def userPhoto={attr->
+        def currentUser=attr.currentUser
+        if(currentUser.photoPath){
+           out<<g.render(template: "/userProfile/userPhoto",model: [loginUser: currentUser])
+        }
+        else
+        {
+            out<<g.render(template: "/userProfile/defaultUserImage",model:[loginUser: currentUser])
+        }
+
+    }
 
     def isEditable = { attr, body ->
 
         def currentUser = attr.currentUser
-        def topicCreater = attr.topicCreater
+        def topicCreator = attr.topicCreater
 
         User user = User.get(currentUser.id)
 
@@ -38,7 +49,7 @@ class ApplicationTagLib {
 
         Subscription subscription = Subscription.findWhere(topic: topic, user: user)
 
-        if (currentUser.admin | currentUser == topicCreater) {
+        if (currentUser.admin | currentUser == topicCreator) {
             out << g.render(template: "/home/isAdmin", model: [topic: topic, loginUser: attr.currentUser])
             out << g.render(template: "/myTemplates/isNotAdmin", model: [topic: topic, loginUser: attr.currentUser, subscription: subscription])
         } else {
@@ -52,9 +63,7 @@ class ApplicationTagLib {
 
     def showTopPost = { attr ->
         out << g.render(template: "/home/topPosts", model: [res: attr.resource, diffList: attr.diffList])
-
     }
-
 
     def topicListing = { attr ->
         def loginUser = attr.loginUser
@@ -94,10 +103,7 @@ class ApplicationTagLib {
         Subscription subscription = Subscription.findWhere(user: user, topic: topic)
 
         if (subscription) {
-
-
             out << g.render(template: '/home/isSubscribed', model: [topic: topic, subscription: subscription])
-
         }
         if (user.admin || user == topic.createdBy) {
             out << g.render(template: "/home/isAdmin", model: [topic: topic])

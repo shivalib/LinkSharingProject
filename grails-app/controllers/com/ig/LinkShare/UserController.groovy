@@ -57,12 +57,12 @@ class UserController {
             flash.message = "Registration Failed : Password Mismatch!"
 
         } else {
-            user.save(failOnError: true)
+            user.save(failOnError: true,flush: true)
 
             GenerateToken generateToken = new GenerateToken()
             generateToken.generateTokenForRegisteredUser(user)
 
-            UserToken userToken = UserToken.findWhere(user: user)
+            UserToken userToken=UserToken.findByUser(user)
 
             sendMail {
                 to "${user.email}"
