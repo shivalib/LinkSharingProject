@@ -1,13 +1,10 @@
 import com.ig.LinkShare.SecRole
 import com.ig.LinkShare.SecUserSecRole
 import com.ig.LinkShare.User
-import com.ig.LinkShare.applicationEnums.GenerateToken
 
 class BootStrap {
 
     def init = { servletContext ->
-
-        GenerateToken generateToken = new GenerateToken()
 
         def adminUser=User.findByUsername('admin')?:new User(firstName: 'shivali',lastName: 'batra',username: 'admin',password: 'admin',email: 'shivalib+admin@intelligrape.com').save(failOnError: true,flush: true)
 

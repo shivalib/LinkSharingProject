@@ -63,7 +63,7 @@ class UserController {
             generateToken.generateTokenForRegisteredUser(user)
 
             UserToken userToken=UserToken.findByUser(user)
-
+            defineRole(user)
             sendMail {
                 to "${user.email}"
                 subject "Required Confirmation : LinkShare"
@@ -81,6 +81,18 @@ class UserController {
         def emailID=userToken.user.email
 
         render(view: "/login/resetPassword", model: [emailID:emailID])
+    }
+
+    def defineRole(User user){
+        def userRole=SecRole.findByAuthority('ROLE_USER')?:new SecRole(authority: 'ROLE_USER').save(failOnError: true,flush: true)
+        def adminRole=SecRole.findByAuthority('ROLE_ADMIN')?:new SecRole(authority: 'ROLE_ADMIN').save(failOnError: true,flush: true)
+        setRole(user,userRole)
+    }
+
+    def setRole(User user,SecRole secRole){
+        if(!user.authorities.contains(secRole)){
+            SecUserSecRole.create(user,secRole)
+        }
     }
 
     def changeUserList() {
