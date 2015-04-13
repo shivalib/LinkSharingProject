@@ -6,6 +6,10 @@ class UrlMappings {
                 // apply constraints here
             }
         }
+
+        "/login/$action?"(controller: 'login')
+        "/logout/$action?"(controller: 'logout')
+
           "/"(controller: "/home")
 //        "/"(view:"/index")
         "500"(view:'/error')

@@ -1,5 +1,7 @@
 package com.ig.LinkShare
 
+import grails.plugin.springsecurity.annotation.Secured
+
 class HomeController {
 
     def top5SubscriptionService
@@ -9,6 +11,7 @@ class HomeController {
     def userService
     def showResourceService
 
+    @Secured(['ROLE_ADMIN'])
     def index() {
 
         int offset = params.offset ? params.int('offset') : 0

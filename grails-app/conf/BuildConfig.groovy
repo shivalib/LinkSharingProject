@@ -74,8 +74,7 @@ grails.project.dependency.resolution = {
         //jquery UI plugin
         compile ":jquery-ui:1.10.4"
 
-        //rich UI plugin
-//        compile ":richui:0.8"
+        compile ":spring-security-core:2.0-RC4"
 
         //remote pagination
         compile ":remote-pagination:0.4.8"

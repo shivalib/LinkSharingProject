@@ -233,3 +233,20 @@ simian {
 //EnableBootstrap here when using twitter bootstrap, default is set to false.
 
 //grails.plugins.remotepagination.enableBootstrap=true
+
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.ig.LinkShare.SecUser'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.ig.LinkShare.SecUserSecRole'
+grails.plugin.springsecurity.authority.className = 'com.ig.LinkShare.SecRole'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+	'/':                              ['permitAll'],
+	'/index':                         ['permitAll'],
+	'/index.gsp':                     ['permitAll'],
+	'/assets/**':                     ['permitAll'],
+	'/**/js/**':                      ['permitAll'],
+	'/**/css/**':                     ['permitAll'],
+	'/**/images/**':                  ['permitAll'],
+	'/**/favicon.ico':                ['permitAll']
+]
+
