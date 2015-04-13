@@ -58,6 +58,7 @@ class HomeController {
             render(view: "/home/dashboard", model: [subscriptionCount: subscriptionCount, inboxCount: total, max: max, offset: offset, trendingCount: totalTopic, readingItemListWithIsReadFalse: readingItemListWithIsReadFalse, loginUser: currentUser, trendingTopicList: trendingTopics, topicList: topics.topicName, top5SubscribedTopics: top5SubscribedTopics])
     }
 
+    @Secured(['ROLE_ADMIN'])
     def showTopPosts() {
         List<Resource> resources1 = showResourceService.showTopPost(params.timeValue)
         render(template: "/home/topPosts", model: [resource: resources1])
