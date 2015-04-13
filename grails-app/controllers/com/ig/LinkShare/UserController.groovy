@@ -2,6 +2,7 @@ package com.ig.LinkShare
 
 import com.ig.LinkShare.applicationEnums.GenerateToken
 import com.ig.LinkShare.applicationEnums.UserCO
+import grails.plugin.springsecurity.annotation.Secured
 
 class UserController {
     UploadService uploadService
@@ -42,7 +43,7 @@ class UserController {
         render(template: "/userListing/isActiveOrDeactive", model: [user: user])
     }
 
-
+    @Secured(['ROLE_ADMIN'])
     def registerUser(User user, UserCO userCO) {
         user.active = false
         user.admin = false

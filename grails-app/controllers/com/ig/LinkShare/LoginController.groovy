@@ -39,7 +39,7 @@ class LoginController {
             User user = User.findByEmail(params.emailID)
             user.password = params.password
             user.save(failOnError: true, flush: true)
-            flash.message = "Password update Successfull!"
+            flash.message = "Password update Successful!"
         }
         redirect(controller: "home", action: "index")
 

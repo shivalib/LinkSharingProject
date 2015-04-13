@@ -236,7 +236,7 @@ simian {
 
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.ig.LinkShare.SecUser'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.ig.LinkShare.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.ig.LinkShare.SecUserSecRole'
 grails.plugin.springsecurity.authority.className = 'com.ig.LinkShare.SecRole'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [

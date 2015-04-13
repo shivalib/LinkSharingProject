@@ -19,8 +19,10 @@ class SecUser {
 	}
 
 	static mapping = {
-		password column: '`password`'
+        tablePerHierarchy(false)
+        password column: '`password`'
 	}
+
 
 	Set<SecRole> getAuthorities() {
 		SecUserSecRole.findAllBySecUser(this).collect { it.secRole }

@@ -22,16 +22,15 @@ class HomeController {
         render(view: "/login/homePage", model: [resources: resources, resourceCount: resources.count])
     }
 
+    @Secured(['ROLE_ADMIN'])
     def activateRegisteredUser(Long id) {
-
         UserToken userToken = UserToken.get(id)
         if(!userToken.used)
         {
             userToken.user.active = true
+            userToken.used=true
         }
-
         userToken.save(failOnError: true, flush: true)
-
         redirect(controller: "home", action: "index")
     }
 
