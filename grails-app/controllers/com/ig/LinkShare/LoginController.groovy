@@ -5,7 +5,6 @@ import com.ig.LinkShare.applicationEnums.UserCO
 class LoginController {
 
     def loginHandler(String email, String password, Boolean active) {
-
         if (User.findByEmailAndPasswordAndActive(email, password, active = true)) {
             User user = User.findWhere(email: email)
             session["userID"] = user.id

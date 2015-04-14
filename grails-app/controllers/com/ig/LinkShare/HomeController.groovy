@@ -11,7 +11,7 @@ class HomeController {
     def userService
     def showResourceService
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN','ROLE_USER'])
     def index() {
 
         int offset = params.offset ? params.int('offset') : 0
@@ -22,7 +22,7 @@ class HomeController {
         render(view: "/login/homePage", model: [resources: resources, resourceCount: resources.count])
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN','ROLE_USER'])
     def activateRegisteredUser(Long id) {
         UserToken userToken = UserToken.get(id)
         if(!userToken.used)
@@ -57,7 +57,7 @@ class HomeController {
             render(view: "/home/dashboard", model: [subscriptionCount: subscriptionCount, inboxCount: total, max: max, offset: offset, trendingCount: totalTopic, readingItemListWithIsReadFalse: readingItemListWithIsReadFalse, loginUser: currentUser, trendingTopicList: trendingTopics, topicList: topics.topicName, top5SubscribedTopics: top5SubscribedTopics])
     }
 
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_ADMIN','ROLE_USER'])
     def showTopPosts() {
         List<Resource> resources1 = showResourceService.showTopPost(params.timeValue)
         render(template: "/home/topPosts", model: [resource: resources1])

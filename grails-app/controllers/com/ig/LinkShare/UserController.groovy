@@ -63,7 +63,9 @@ class UserController {
             generateToken.generateTokenForRegisteredUser(user)
 
             UserToken userToken=UserToken.findByUser(user)
+
             defineRole(user)
+
             sendMail {
                 to "${user.email}"
                 subject "Required Confirmation : LinkShare"
@@ -75,24 +77,31 @@ class UserController {
         redirect(controller: "home", action: "index")
     }
 
-    def resetPassword(Long id) {
-
-        UserToken userToken=UserToken.get(id)
-        def emailID=userToken.user.email
-
-        render(view: "/login/resetPassword", model: [emailID:emailID])
-    }
 
     def defineRole(User user){
+        println "------------> in define role"
         def userRole=SecRole.findByAuthority('ROLE_USER')?:new SecRole(authority: 'ROLE_USER').save(failOnError: true,flush: true)
         def adminRole=SecRole.findByAuthority('ROLE_ADMIN')?:new SecRole(authority: 'ROLE_ADMIN').save(failOnError: true,flush: true)
         setRole(user,userRole)
     }
 
     def setRole(User user,SecRole secRole){
+        println "-----------> in set role"
+        println "...... ${params}"
+
+
         if(!user.authorities.contains(secRole)){
-            SecUserSecRole.create(user,secRole)
+            println "--- creating a role ---"
+            SecUserSecRole.create(user,secRole,true)
         }
+    }
+
+    def resetPassword(Long id) {
+
+        UserToken userToken=UserToken.get(id)
+        def emailID=userToken.user.email
+
+        render(view: "/login/resetPassword", model: [emailID:emailID])
     }
 
     def changeUserList() {
