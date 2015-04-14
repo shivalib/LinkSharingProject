@@ -225,18 +225,12 @@ simian {
     methodParams = [threshold: 4]
 }
 
-
-
-//In Config.groovy
-//grails.plugins.remotepagination.max=20
-
-//EnableBootstrap here when using twitter bootstrap, default is set to false.
-
-//grails.plugins.remotepagination.enableBootstrap=true
-
-
-grails.plugin.springsecurity.auth.loginFormUrl = '/home/index'
-grails.plugin.springsecurity.failureHandler.defaultFailureUrl = '/home/index'
+grails.plugin.springsecurity.auth.loginFormUrl = '/login/auth'
+grails.plugin.springsecurity.failureHandler.defaultFailureUrl = '/login/authfail?login_error=1'
+grails.plugin.springsecurity.successHandler. defaultTargetUrl='/home/dashboard'
+grails.plugin.springsecurity.successHandler. alwaysUseDefault=true
+grails.plugin.springsecurity.logout.afterLogoutUrl='/home/index'
+grails.plugin.springsecurity.apf.postOnly = false
 grails.plugin.springsecurity.rejectIfNoRule = false
 grails.plugin.springsecurity.fii.rejectPublicInvocations = false
 
@@ -254,4 +248,6 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/images/**':                  ['permitAll'],
 	'/**/favicon.ico':                ['permitAll']
 ]
+
+
 

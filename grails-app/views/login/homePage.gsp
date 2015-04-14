@@ -76,15 +76,15 @@
         %{--</div>--}%
         %{--</div><!--login form ends -->--}%
 
-        <div id='login'>
-            <div class='inner'>
-                <div class="panel panel-default rightdiv">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Login</h3>
-                    </div>
 
-                    <div class="panel-body">
+        <div class="panel panel-default rightdiv">
+            <div class="panel-heading">
+                <h3 class="panel-title">Login</h3>
+            </div>
 
+            <div class="panel-body">
+                <div id='login'>
+                    <div class='inner'>
                         <form action='${postUrl}' method='POST' id='loginForm' class='cssform' autocomplete='off'>
                             <p>
                                 <label for='username'><g:message code="springSecurity.login.username.label"/>:</label>
@@ -102,7 +102,6 @@
                                 <label for='remember_me'><g:message
                                         code="springSecurity.login.remember.me.label"/></label>
                             </p>
-
                             <p>
                                 <input type='submit' id="submit"
                                        value='${message(code: "springSecurity.login.button")}'/>
@@ -112,6 +111,7 @@
                 </div>
             </div>
         </div>
+
 
         <!--REGISTERATION FORM-->
         <div class="panel panel-default rightdiv">

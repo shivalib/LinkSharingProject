@@ -16,9 +16,11 @@ class HomeController {
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5
 
+        String postUrl = "${request.contextPath}${grailsApplication.config.apf.filterProcessesUrl}"
+
         List<Resource> resources = showResourceService.calculateResourceList(max, offset)
 
-        render(view: "/login/homePage", model: [resources: resources, resourceCount: resources.count])
+        render(view: "/login/homePage", model: [postUrl:postUrl,resources: resources, resourceCount: resources.count])
     }
 
     @Secured(['ROLE_ADMIN','ROLE_USER'])

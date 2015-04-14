@@ -1,6 +1,13 @@
 package com.ig.LinkShare
 
 import com.ig.LinkShare.applicationEnums.UserCO
+import grails.converters.JSON
+import grails.plugin.springsecurity.SpringSecurityUtils
+import org.springframework.security.authentication.AccountExpiredException
+import org.springframework.security.authentication.CredentialsExpiredException
+import org.springframework.security.authentication.DisabledException
+import org.springframework.security.authentication.LockedException
+import org.springframework.security.web.WebAttributes
 
 class LoginController {
     def springSecurityService
@@ -19,6 +26,55 @@ class LoginController {
             redirect(controller: "home", action: "index")
         }
     }
+
+    def auth() {
+        println "---- auth"
+
+        def config = SpringSecurityUtils.securityConfig
+
+        if (springSecurityService.isLoggedIn()) {
+            redirect uri: config.successHandler.defaultTargetUrl
+            return
+        }
+
+        String view = 'homePage'
+        String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
+        render view: view, model: [postUrl: postUrl,
+                                   rememberMeParameter: config.rememberMe.parameter]
+    }
+
+    def authfail() {
+        println "---- authfail"
+
+        String msg = ''
+        def exception = session[WebAttributes.AUTHENTICATION_EXCEPTION]
+        if (exception) {
+            if (exception instanceof AccountExpiredException) {
+                msg = g.message(code: "springSecurity.errors.login.expired")
+            }
+            else if (exception instanceof CredentialsExpiredException) {
+                msg = g.message(code: "springSecurity.errors.login.passwordExpired")
+            }
+            else if (exception instanceof DisabledException) {
+                msg = g.message(code: "springSecurity.errors.login.disabled")
+            }
+            else if (exception instanceof LockedException) {
+                msg = g.message(code: "springSecurity.errors.login.locked")
+            }
+            else {
+                msg = g.message(code: "springSecurity.errors.login.fail")
+            }
+        }
+
+        if (springSecurityService.isAjax(request)) {
+            render([error: msg] as JSON)
+        }
+        else {
+            flash.message = msg
+            redirect action: 'auth', params: params
+        }
+    }
+
 
     def logout() {
         flash.message = "You have been successfully logged out!"
