@@ -34,6 +34,7 @@ class HomeController {
         redirect(controller: "home", action: "index")
     }
 
+    @Secured(['ROLE_ADMIN','ROLE_USER'])
     def dashboard() {
             User currentUser = User.findById(session["userID"])
 

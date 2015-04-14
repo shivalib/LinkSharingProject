@@ -3,13 +3,20 @@ package com.ig.LinkShare
 import com.ig.LinkShare.applicationEnums.UserCO
 
 class LoginController {
+    def springSecurityService
+    def passwordEncoder
 
     def loginHandler(String email, String password, Boolean active) {
-        if (User.findByEmailAndPasswordAndActive(email, password, active = true)) {
-            User user = User.findWhere(email: email)
-            session["userID"] = user.id
+
+        User user1=User.findByEmail(email)
+
+
+        if(user1 && passwordEncoder.isPasswordValid(user1.password,password,null))
+        {
+            session["userID"] = user1.id
             redirect(controller: "home", action: "dashboard")
-        } else {
+        }
+         else {
             flash.message = "Invalid username or password!"
             redirect(controller: "home", action: "index")
         }
