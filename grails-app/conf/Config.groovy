@@ -235,6 +235,11 @@ simian {
 //grails.plugins.remotepagination.enableBootstrap=true
 
 
+grails.plugin.springsecurity.auth.loginFormUrl = '/home/index'
+grails.plugin.springsecurity.failureHandler.defaultFailureUrl = '/home/index'
+grails.plugin.springsecurity.rejectIfNoRule = false
+grails.plugin.springsecurity.fii.rejectPublicInvocations = false
+
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.ig.LinkShare.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.ig.LinkShare.SecUserSecRole'

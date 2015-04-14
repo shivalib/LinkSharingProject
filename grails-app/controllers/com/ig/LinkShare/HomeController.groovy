@@ -11,7 +11,6 @@ class HomeController {
     def userService
     def showResourceService
 
-    @Secured(['ROLE_ADMIN','ROLE_USER'])
     def index() {
 
         int offset = params.offset ? params.int('offset') : 0

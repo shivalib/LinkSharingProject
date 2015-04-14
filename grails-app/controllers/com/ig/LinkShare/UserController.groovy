@@ -79,19 +79,13 @@ class UserController {
 
 
     def defineRole(User user){
-        println "------------> in define role"
         def userRole=SecRole.findByAuthority('ROLE_USER')?:new SecRole(authority: 'ROLE_USER').save(failOnError: true,flush: true)
         def adminRole=SecRole.findByAuthority('ROLE_ADMIN')?:new SecRole(authority: 'ROLE_ADMIN').save(failOnError: true,flush: true)
         setRole(user,userRole)
     }
 
     def setRole(User user,SecRole secRole){
-        println "-----------> in set role"
-        println "...... ${params}"
-
-
         if(!user.authorities.contains(secRole)){
-            println "--- creating a role ---"
             SecUserSecRole.create(user,secRole,true)
         }
     }

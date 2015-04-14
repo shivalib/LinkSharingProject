@@ -9,8 +9,6 @@ class LoginController {
     def loginHandler(String email, String password, Boolean active) {
 
         User user1=User.findByEmail(email)
-
-
         if(user1 && passwordEncoder.isPasswordValid(user1.password,password,null))
         {
             session["userID"] = user1.id
