@@ -13,27 +13,22 @@ class LoginController {
     def springSecurityService
     def passwordEncoder
 
-    def loginHandler(String email, String password, Boolean active) {
-
-        User user1=User.findByEmail(email)
-        if(user1 && passwordEncoder.isPasswordValid(user1.password,password,null))
-        {
-            session["userID"] = user1.id
-            redirect(controller: "home", action: "dashboard")
+    def index() {
+        if (springSecurityService.isLoggedIn()) {
+//            redirect uri: SpringSecurityUtils.securityConfig.successHandler.defaultTargetUrl
+        redirect uri: grailsApplication.config.successHandler.defaultTargetUrl
         }
-         else {
-            flash.message = "Invalid username or password!"
-            redirect(controller: "home", action: "index")
+        else {
+            redirect action: 'auth', params: params
         }
     }
 
     def auth() {
-        println "---- auth"
 
         def config = SpringSecurityUtils.securityConfig
 
         if (springSecurityService.isLoggedIn()) {
-            redirect uri: config.successHandler.defaultTargetUrl
+            redirect uri: '/home/dashboard'
             return
         }
 
@@ -44,7 +39,6 @@ class LoginController {
     }
 
     def authfail() {
-        println "---- authfail"
 
         String msg = ''
         def exception = session[WebAttributes.AUTHENTICATION_EXCEPTION]
@@ -75,13 +69,6 @@ class LoginController {
         }
     }
 
-
-    def logout() {
-        flash.message = "You have been successfully logged out!"
-        session["userID"] = null
-        redirect(controller: "home", action: "index")
-    }
-
     def forgotPassword() {
         render(view: "forgotPassword")
     }
@@ -104,34 +91,5 @@ class LoginController {
         redirect(controller: "home", action: "index")
 
     }
-
-    Boolean validateEmail() {
-
-        List<User> userList = User.createCriteria().list {
-            projections {
-                property("email")
-            }
-        }
-
-        if (userList.contains(params.email))
-            render true
-        else
-            render false
-    }
-
-    Boolean validateUsername() {
-
-        List<User> userList = User.createCriteria().list {
-            projections {
-                property("username")
-            }
-        }
-        if (userList.contains(params.username)) {
-            render false
-        } else {
-            render true
-        }
-    }
-
 
 }

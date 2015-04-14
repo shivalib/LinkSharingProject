@@ -227,12 +227,10 @@ simian {
 
 grails.plugin.springsecurity.auth.loginFormUrl = '/login/auth'
 grails.plugin.springsecurity.failureHandler.defaultFailureUrl = '/login/authfail?login_error=1'
-grails.plugin.springsecurity.successHandler. defaultTargetUrl='/home/dashboard'
-grails.plugin.springsecurity.successHandler. alwaysUseDefault=true
-grails.plugin.springsecurity.logout.afterLogoutUrl='/home/index'
 grails.plugin.springsecurity.apf.postOnly = false
 grails.plugin.springsecurity.rejectIfNoRule = false
 grails.plugin.springsecurity.fii.rejectPublicInvocations = false
+grails.plugin.springsecurity.logout.postOnly = false
 
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.ig.LinkShare.User'

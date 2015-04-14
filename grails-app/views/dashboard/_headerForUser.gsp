@@ -1,7 +1,7 @@
 <span class="dropdown">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
             aria-expanded="true">
-        ${loginUser.fullName}
+        %{--${loginUser.fullName}--}%<sec:username/>
         <span class="caret"/>
     </button>
     <ul class="dropdown-menu mydropdown" role="menu" aria-labelledby="dropdownMenu1">
@@ -10,6 +10,6 @@
 
         <li class="divider"/>
         <li role="presentation">
-            <g:link role="menuitem" tabindex="-1" controller="login" action="logout">Logout</g:link></li>
+            <g:link role="menuitem" tabindex="-1" controller="logout" action="index">Logout</g:link></li>
     </ul>
 </span>
