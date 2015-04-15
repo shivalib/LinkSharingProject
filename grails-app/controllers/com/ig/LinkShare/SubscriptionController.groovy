@@ -3,7 +3,7 @@ package com.ig.LinkShare
 import com.ig.LinkShare.applicationEnums.Visibility
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured(['ROLE_ADMIN','ROLE_USER'])
+@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class SubscriptionController {
     def scaffold = Subscription
 
@@ -16,7 +16,7 @@ class SubscriptionController {
 
     def showAllSubscriptions() {
 
-        User currentUser =springSecurityService.currentUser
+        User currentUser = springSecurityService.currentUser
         List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
 
         int offset = params.offset ? params.int('offset') : 0
@@ -29,7 +29,7 @@ class SubscriptionController {
     }
 
     def paginate() {
-        User currentUser =springSecurityService.currentUser
+        User currentUser = springSecurityService.currentUser
 
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5
@@ -47,7 +47,10 @@ class SubscriptionController {
 
         Topic topic = Topic.findByTopicName(params.topicName)
 
-        Subscription subscription = new Subscription(seriousness: params.seriousness, user: currentUser, topic: topic)
+        Subscription subscription = new Subscription(seriousness: params.seriousness)
+        currentUser.addToSubscriptions(subscription)
+        topic.addToSubscriptions(subscription)
+
         if (subscription.save(failOnError: true)) {
 
             List<Resource> resourceListOfCurrentUser = Resource.findAllWhere(topic: topic)
@@ -55,10 +58,8 @@ class SubscriptionController {
             resourceListOfCurrentUser.each { Resource resource ->
                 readingItemService.markReading(currentUser, resource, false)
             }
-            currentUser.addToSubscriptions(subscription)
-            topic.addToSubscriptions(subscription)
 
-            flash.message = "You have been successfully subscribed to ${topicName} !"
+            flash.message = "You have been successfully subscribed to ${params.topicName} !"
         } else {
             flash.message = "Sorry, subscription failed !"
             subscription.errors.allErrors.each { println it }
@@ -69,7 +70,7 @@ class SubscriptionController {
 
     def unsubscribeUser() {
 
-        User currentUser =springSecurityService.currentUser
+        User currentUser = springSecurityService.currentUser
 
         Topic topic = Topic.findByTopicName(params.topicName)
 

@@ -28,6 +28,16 @@ class ShowTopicService {
         return topicList
     }
 
+    List<Topic> findTopicsNameCreatedByUser(User user)
+    {
+        List<Topic> topicList=Topic.createCriteria().list {
+            projections {
+                property('topicName')
+            }
+            eq('createdBy', user)
+        }
+    }
+
 
     List<Topic> listAllPublicTopics() {
         List<Topic> topicList = Topic.createCriteria().list {

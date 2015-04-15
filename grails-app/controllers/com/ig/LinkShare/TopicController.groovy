@@ -33,15 +33,10 @@ class TopicController {
     def createTopic() {
         User userID =springSecurityService.currentUser
 
-        List<Topic> topicList = Topic.createCriteria().list {
-            projections {
-                property('topicName')
-            }
-            eq('createdBy', userID)
-        }
+        List<Topic> topicList =showTopicService.findTopicsNameCreatedByUser(userID)
 
         if (topicList.contains(params.topicName)) {
-            flash.message = "Topic creation failed,topic with this name already exists!"
+            flash.message = "Topic creation failed,topic with name : ${params.topicName} already exists!"
         } else {
             Topic topic1 = new Topic(topicName: params.topicName, visibility: params.topicType)
             userID.addToTopics(topic1)
