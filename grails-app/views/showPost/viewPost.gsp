@@ -8,7 +8,6 @@
     <g:else>
         <meta name="layout" content="loginLayout">
     </g:else>
-
 <!-- raty : rating -->
     <asset:javascript src="jquery.raty.js"/>
     <asset:stylesheet src="jquery.raty.css"/>
@@ -18,13 +17,6 @@
 <body>
 <div class="row">
     <div class="col-md-7">
-        %{--<g:if test="${loginUser}">--}%
-        %{--<ls:checkUserForPost currentUser="${loginUser}" topicList="${topicList}"/>--}%
-        %{--</g:if>--}%
-        %{--<g:else>--}%
-        %{--<g:render template="postForNonRegisteredUser"/>--}%
-        %{--</g:else>--}%
-
         <sec:ifAllGranted roles="ROLE_ADMIN">
             <g:render template="postForAdmin"/>
         </sec:ifAllGranted>
@@ -79,7 +71,6 @@
                     </div><!--panel body ends-->
                 </g:each>
             </div><!-- panel ends-->
-        %{--<ls:checkUser/>--}%
         </sec:ifLoggedIn>
         <sec:ifNotLoggedIn>
             <g:render template="/home/notLogin"/>

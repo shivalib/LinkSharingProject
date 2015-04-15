@@ -148,15 +148,18 @@ class ApplicationTagLib {
         } else {
             out << g.render(template: '/myTemplates/markAsRead', model: [ajaxClass: attr.ajaxClass,ajaxMethod:attr.ajaxMethod,currentUser: currentUser.id, currentResource: attr.resource.id])
         }
-
     }
-
 
     def isAdminOrCreatorOfResource = { attr ->
         def currentUser = attr.currentUser
         def resource = attr.resource
 
-        if (currentUser.admin | resource.createdBy == currentUser) {
+        def adminFlag=false
+        sec.ifAllGranted(roles: 'ROLE_ADMIN'){
+            adminFlag=true
+        }
+
+        if (adminFlag || resource.createdBy == currentUser) {
             out << g.render(template: "/showPost/isAdminOrCreator", model: [resource: resource])
         }
     }
