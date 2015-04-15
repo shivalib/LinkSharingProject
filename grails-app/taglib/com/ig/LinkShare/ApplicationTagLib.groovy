@@ -1,4 +1,4 @@
-package com.ig.LinkShare.taglib
+package com.ig.LinkShare
 
 import com.ig.LinkShare.DateDifferenceService
 import com.ig.LinkShare.LinkResource

@@ -34,6 +34,6 @@
         </div><!-- media ends-->
     </div><!-- panel body ends-->
 </g:each>
-<util:remotePaginate controller="home" action="paginateUserSubscription" total="${subscriptionCount}" max="${max}"
-                     offset="${offset}"
-                     update="updateSubscriptions"/>
+%{--<util:remotePaginate controller="home" action="paginateUserSubscription" total="${subscriptionCount}" max="${max}"--}%
+                     %{--offset="${offset}"--}%
+                     %{--update="updateSubscriptions"/>--}%

@@ -13,7 +13,6 @@ class GenerateToken {
         }
     }
 
-    @Secured(['ROLE_ADMIN'])
     void generateTokenForRegisteredUser(User user){
             def tokenGen = generator( (('A'..'Z')+('0'..'9')).join(), 10 )
             UserToken userToken=new UserToken(user:user,token:tokenGen,used: false)

@@ -41,8 +41,7 @@
                     <input type="text" name="searchGlobal" class="searchGlobal" class="form-control"
                            placeholder="Search"/>
                 </div>
-            <sec:ifLoggedIn>
-                %{--<g:if test="${loginUser}">--}%
+                <sec:ifLoggedIn>
                     <button type="button" class="btn btn-default btn-lg" data-toggle="modal"
                             data-target="#myCreateTopicModal" title="Create Topic">
                         <span class="glyphicon glyphicon-comment" aria-hidden="true"/>
@@ -70,9 +69,10 @@
                     <sec:ifAllGranted roles="ROLE_USER">
                         <g:render template="/dashboard/headerForUser"/>
                     </sec:ifAllGranted>
-                    %{--<ls:showHeader currentUser="${loginUser}"/>--}%
-                %{--</g:if>--}%
-            </sec:ifLoggedIn>
+                    <sec:ifAllGranted roles="ROLE_ADMIN">
+                        <g:render template="/dashboard/headerForAdmin"/>
+                    </sec:ifAllGranted>
+                </sec:ifLoggedIn>
             </g:form>
         </div><!-- search ends-->
     </div><!-- /.container-fluid -->
@@ -80,167 +80,171 @@
 
 <g:layoutBody/>
 
-%{--<!-- Modal : SEND iNVIATION -->--}%
-%{--<div class="modal fade" id="mySendInviteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"--}%
-     %{--aria-hidden="true">--}%
-    %{--<div class="modal-dialog">--}%
-        %{--<div class="modal-content">--}%
-            %{--<div class="modal-header">--}%
-                %{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span--}%
-                        %{--aria-hidden="true">&times;</span></button>--}%
-                %{--<h4 class="modal-title" id="mySendInviteModelLabel">Send Invitation</h4>--}%
-            %{--</div>--}%
+<!-- Modal : SEND iNVIATION -->
+<div class="modal fade" id="mySendInviteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="mySendInviteModelLabel">Send Invitation</h4>
+            </div>
 
-            %{--<div class="modal-body">--}%
-                %{--<g:form class="loginform" controller="lsMail" action="sendInviteFromList">--}%
-                    %{--<div>--}%
-                        %{--<span>Email* :</span>--}%
-                        %{--<g:textField name="emailID"/>--}%
-                    %{--</div>--}%
+            <div class="modal-body">
+                <g:form class="loginform" controller="lsMail" action="sendInviteFromList">
+                    <div>
+                        <span>Email* :</span>
+                        <g:textField name="emailID"/>
+                    </div>
 
-                    %{--<div>--}%
-                        %{--<span>Topic* :</span>--}%
-                        %{--<g:select name="topicList" from="${topicList}"/>--}%
-                    %{--</div>--}%
+                    <div>
+                        <span>Topic* :</span>
+                        <g:select name="topicList" from="${topicList}"/>
+                    </div>
 
-                    %{--<div class="right">--}%
-                        %{--<g:submitButton name="invite" class="btn btn-default" value="Invite"/>--}%
-                        %{--<g:submitButton name="reset" class="btn btn-default" data-dismiss="modal"--}%
-                                        %{--value="Cancel"/>--}%
-                    %{--</div>--}%
-                %{--</g:form>--}%
-            %{--</div>--}%
+                    <div class="right">
+                        <g:submitButton name="invite" class="btn btn-default" value="Invite"/>
+                        <g:submitButton name="reset" class="btn btn-default" data-dismiss="modal"
+                                        value="Cancel"/>
+                    </div>
+                </g:form>
+            </div>
             %{--<div class="modal-footer">--}%
             %{--<g:submitButton type="button" class="btn btn-primary" name="submit" >Save </g:submitButton>--}%
             %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
             %{--</div>--}%
-        %{--</div>--}%
-    %{--</div>--}%
-%{--</div>--}%
-%{--<!-- Modal : Share Link -->--}%
-%{--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"--}%
-     %{--aria-hidden="true">--}%
-    %{--<div class="modal-dialog">--}%
-        %{--<div class="modal-content">--}%
-            %{--<div class="modal-header">--}%
-                %{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span--}%
-                        %{--aria-hidden="true">&times;</span></button>--}%
-                %{--<h4 class="modal-title" id="myModalLabel">Share Link</h4>--}%
-            %{--</div>--}%
+        </div>
+    </div>
+</div>
 
-            %{--<div class="modal-body">--}%
-                %{--<g:form class="loginform" method="post" controller="linkResource" action="shareLink">--}%
-                    %{--<div>--}%
-                        %{--<span>Link* :</span>--}%
-                        %{--<g:textField name="link"/>--}%
-                    %{--</div>--}%
+<!-- Modal : Share Link -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Share Link</h4>
+            </div>
 
-                    %{--<div>--}%
-                        %{--<span>Description* :</span>--}%
-                        %{--<g:textArea name="desc" rows="5" cols="40"/>--}%
-                    %{--</div>--}%
+            <div class="modal-body">
+                <g:form class="loginform" method="post" controller="linkResource" action="shareLink">
+                    <div>
+                        <span>Link* :</span>
+                        <g:textField name="link"/>
+                    </div>
 
-                    %{--<div>--}%
-                        %{--<span>Topic* :</span>--}%
-                        %{--<g:select name="topicList" from="${topicList}"/>--}%
-                    %{--</div>--}%
+                    <div>
+                        <span>Description* :</span>
+                        <g:textArea name="desc" rows="5" cols="40"/>
+                    </div>
 
-                    %{--<div class="right">--}%
-                        %{--<g:submitButton name="submit" class="btn btn-default" value="Share"/>--}%
-                        %{--<g:submitButton name="cancel" class="btn btn-default" data-dismiss="modal"--}%
-                                        %{--value="Cancel"/>--}%
+                    <div>
+                        <span>Topic* :</span>
+                        <g:select name="topicList" from="${topicList}"/>
+                    </div>
 
-                    %{--</div>--}%
-                %{--</g:form>--}%
-            %{--</div>--}%
+                    <div class="right">
+                        <g:submitButton name="submit" class="btn btn-default" value="Share"/>
+                        <g:submitButton name="cancel" class="btn btn-default" data-dismiss="modal"
+                                        value="Cancel"/>
+
+                    </div>
+                </g:form>
+            </div>
             %{--<div class="modal-footer">--}%
-            %{--<g:submitButton type="button" class="btn btn-primary" name="submit" >Save </g:submitButton>--}%
+            %{--<g:submitButton type="button" class="btn btn-primary" name="submit">Save</g:submitButton>--}%
             %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
             %{--</div>--}%
-        %{--</div>--}%
-    %{--</div>--}%
-%{--</div>--}%
+        </div>
+    </div>
+</div>
 
-%{--<!-- Modal : Share Document -->--}%
-%{--<div class="modal fade" id="myDocumentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"--}%
-     %{--aria-hidden="true">--}%
-    %{--<div class="modal-dialog">--}%
-        %{--<div class="modal-content">--}%
-            %{--<div class="modal-header">--}%
-                %{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span--}%
-                        %{--aria-hidden="true">&times;</span></button>--}%
-                %{--<h4 class="modal-title" id="shareDocModel">Share Document</h4>--}%
-            %{--</div>--}%
+<!-- Modal : Share Document -->
+<div class="modal fade" id="myDocumentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="shareDocModel">Share Document</h4>
+            </div>
 
-            %{--<div class="modal-body">--}%
-                %{--<g:form class="loginform" method="post" controller="documentResource" action="shareDocument"--}%
-                        %{--enctype="multipart/form-data">--}%
-                    %{--<div>--}%
-                        %{--<span>Document* :</span>--}%
-                        %{--<span><input type="file" name="docFile"></span>--}%
-                    %{--</div>--}%
+            <div class="modal-body">
+                <g:form class="loginform" method="post" controller="documentResource" action="shareDocument"
+                        enctype="multipart/form-data">
+                    <div>
+                        <span>Document* :</span>
+                        <span><input type="file" name="docFile"></span>
+                    </div>
 
-                    %{--<div>--}%
-                        %{--<span>Description* :</span>--}%
-                        %{--<g:textArea name="description" rows="5" cols="40" placeholder="Description"/>--}%
-                    %{--</div>--}%
+                    <div>
+                        <span>Description* :</span>
+                        <g:textArea name="description" rows="5" cols="40" placeholder="Description"/>
+                    </div>
 
-                    %{--<div>--}%
-                        %{--<span>Topic* :</span>--}%
-                        %{--<g:select name="topic" from="${topicList}"/>--}%
-                    %{--</div>--}%
+                    <div>
+                        <span>Topic* :</span>
+                        <g:select name="topic" from="${topicList}"/>
+                    </div>
 
-                    %{--<div class="right">--}%
-                        %{--<g:submitButton name="share" value="Share" class="btn btn-default"/>--}%
-                        %{--<g:submitButton name="reset" value="Cancel" class="btn btn-default"--}%
-                                        %{--data-dismiss="modal"/>--}%
-                    %{--</div>--}%
-                %{--</g:form>--}%
-            %{--</div>--}%
+                    <div class="right">
+                        <g:submitButton name="share" value="Share" class="btn btn-default"/>
+                        <g:submitButton name="reset" value="Cancel" class="btn btn-default"
+                                        data-dismiss="modal"/>
+                    </div>
+                </g:form>
+            </div>
+
             %{--<div class="modal-footer">--}%
-            %{--<g:submitButton type="button" class="btn btn-primary" name="submit" >Save </g:submitButton>--}%
-            %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
+                %{--<g:submitButton type="button" class="btn btn-primary" name="submit">Save</g:submitButton>--}%
+                %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
             %{--</div>--}%
-        %{--</div>--}%
-    %{--</div>--}%
-%{--</div>--}%
+        </div>
+    </div>
+</div>
+
 %{--<!-- Modal : Create Topic -->--}%
-%{--<div class="modal fade" id="myCreateTopicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"--}%
-     %{--aria-hidden="true">--}%
-    %{--<div class="modal-dialog">--}%
-        %{--<div class="modal-content">--}%
-            %{--<div class="modal-header">--}%
-                %{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span--}%
-                        %{--aria-hidden="true">&times;</span></button>--}%
-                %{--<h4 class="modal-title" id="myTopicModalLabel">Create Topic</h4>--}%
-            %{--</div>--}%
+<div class="modal fade" id="myCreateTopicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myTopicModalLabel">Create Topic</h4>
+            </div>
 
-            %{--<div class="modal-body">--}%
-                %{--<g:form class="loginform" name="createTopicForm" controller="topic" action="createTopic">--}%
-                    %{--<div>--}%
-                        %{--<span>Name* :</span>--}%
-                        %{--<g:textField name="topicName" data-checkTopic="${createLink(controller: "topic",action: "validateTopicName")}"/>--}%
-                    %{--</div>--}%
+            <div class="modal-body">
+                <g:form class="loginform" name="createTopicForm" controller="topic" action="createTopic">
+                    <div>
+                        <span>Name* :</span>
+                        <g:textField name="topicName"
+                                     data-checkTopic="${createLink(controller: "topic", action: "validateTopicName")}"/>
+                    </div>
 
-                    %{--<div>--}%
-                        %{--<span>Visibility* :</span>--}%
-                        %{--<g:select name="topicType" from="${com.ig.LinkShare.applicationEnums.Visibility}"/>--}%
-                    %{--</div>--}%
+                    <div>
+                        <span>Visibility* :</span>
+                        <g:select name="topicType" from="${com.ig.LinkShare.applicationEnums.Visibility}"/>
+                    </div>
 
-                    %{--<div class="right">--}%
-                        %{--<g:submitButton class="btn btn-primary" name="save" value="Save"/>--}%
-                        %{--<g:submitButton name="cancel" value="Cancel" class="btn btn-default"--}%
-                                        %{--data-dismiss="modal"/>--}%
-                    %{--</div>--}%
-                %{--</g:form>--}%
-            %{--</div>--}%
+                    <div class="right">
+                        <g:submitButton class="btn btn-primary" name="save" value="Save"/>
+                        <g:submitButton name="cancel" value="Cancel" class="btn btn-default"
+                                        data-dismiss="modal"/>
+                    </div>
+                </g:form>
+            </div>
+
             %{--<div class="modal-footer">--}%
             %{--<g:submitButton type="button" class="btn btn-primary" name="save" value="Save"/>--}%
-            %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
             %{--<g:submitButton name="cancel" value="Cancel" class="btn btn-default" data-dismiss="modal"/>--}%
             %{--</div>--}%
-        %{--</div>--}%
-    %{--</div>--}%
-%{--</div>--}%
+        </div>
+    </div>
+</div>
 </body>
 </html>

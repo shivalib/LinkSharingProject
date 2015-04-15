@@ -33,6 +33,3 @@
         </div><!--media ends -->
     </div><!--panel body ends-->
 </g:each>
-
-<util:remotePaginate controller="home" action="paginateTrendingTopics" total="${trendingCount}" max="${max}"
-                     offset="${offset}" update="updateTrendingDiv"/>

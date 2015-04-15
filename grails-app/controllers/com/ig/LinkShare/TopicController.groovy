@@ -2,10 +2,10 @@ package com.ig.LinkShare
 
 class TopicController {
 
-    TopicSubscriptionService topicSubscriptionService
-    ShowResourceService showResourceService
-    UserService userService
-    ShowTopicService showTopicService
+    def topicSubscriptionService
+    def showResourceService
+    def showTopicService
+    def springSecurityService
 
     def index(Long id) {
 
@@ -23,7 +23,7 @@ class TopicController {
     }
 
     def createTopic() {
-        User userID = User.get(session["userID"])
+        User userID =springSecurityService.currentUser
 
         List<Topic> topicList = Topic.createCriteria().list {
             projections {
@@ -35,7 +35,6 @@ class TopicController {
         if (topicList.contains(params.topicName)) {
             flash.message = "Topic creation failed,topic with this name already exists!"
         } else {
-
             Topic topic1 = new Topic(topicName: params.topicName, visibility: params.topicType)
             userID.addToTopics(topic1)
 

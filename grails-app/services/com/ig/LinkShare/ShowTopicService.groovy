@@ -10,7 +10,9 @@ class ShowTopicService {
     List<Topic> findTopicsSubscribedByCurrentUser(User currentUser) {
 
         List<Topic> topicList = Topic.createCriteria().list {
-
+            projections {
+                property('topicName')
+            }
             'subscriptions' {
                 eq('user', currentUser)
             }

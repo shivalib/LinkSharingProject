@@ -40,8 +40,17 @@ class TopicSubscriptionService {
         return subscriptions
     }
 
-    def userSubscriptions(User currentUser, def max, def offset) {
+    List<Topic> showTop5Subscription(User user) {
+        List<Topic> topics = Topic.createCriteria().list() {
+            'subscriptions' {
+                eq('user', user)
+            }
+            eq('visibility', Visibility.PUBLIC)
+        }
+        return topics
+    }
 
+    def userSubscriptions(User currentUser, def max, def offset) {
         List<Subscription> subscriptions = Subscription.createCriteria().list(max: max, offset: offset) {
 
             eq('user', currentUser)

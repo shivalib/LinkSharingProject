@@ -1,10 +1,7 @@
 <div class="media ">
     <div class="media-left">
-
         <ls:userPhoto currentUser="${loginUser}"/>
-
     </div>
-
     <div class="media-body">
         <h4 class="media-heading">
             ${loginUser.fullName}

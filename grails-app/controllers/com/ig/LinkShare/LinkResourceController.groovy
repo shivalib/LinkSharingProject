@@ -3,18 +3,18 @@ package com.ig.LinkShare
 class LinkResourceController {
     def scaffold = true
     def readingItemService
+    def springSecurityService
 
     def shareLink() {
-        User userID =User.get(session["userID"])
+        User userID =springSecurityService.currentUser
 
-        def topicID = Topic.findWhere(createdBy: userID, topicName: params.topicList)
+        Topic topicID = Topic.findWhere(createdBy: userID, topicName: params.topicList)
 
-        LinkResource linkResource = new LinkResource(linkUrl: params.link, description: params.desc, createdBy: userID, topic: topicID)
+        LinkResource linkResource = new LinkResource(linkUrl: params.link, description: params.desc)
+        topicID.addToResources(linkResource)
+        userID.addToResources(linkResource)
 
         if (linkResource.save(failOnError: true)) {
-            topicID.addToResources(linkResource)
-            userID.addToResources(linkResource)
-
             readingItemService.markReading(userID, linkResource, true)
 
             flash.message = "Your link has been created !"

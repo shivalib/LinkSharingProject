@@ -1,7 +1,7 @@
 <span class="dropdown">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
             aria-expanded="true">
-        %{--${loginUser.fullName}--}%<sec:username/>
+        <sec:username/>
         <span class="caret"/>
     </button>
     <ul class="dropdown-menu mydropdown" role="menu" aria-labelledby="dropdownMenu1">

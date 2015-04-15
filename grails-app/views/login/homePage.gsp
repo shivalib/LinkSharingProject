@@ -48,35 +48,6 @@
 
     </div><!--col 8 end-->
     <div class="col-md-4">
-
-        <!--LOGIN FORM-->
-        %{--<div class="panel panel-default rightdiv">--}%
-        %{--<div class="panel-heading">--}%
-        %{--<h3 class="panel-title">Login</h3>--}%
-        %{--</div>--}%
-
-        %{--<div class="panel-body">--}%
-        %{--<g:form class="loginform" name="login" controller="login" action="loginHandler">--}%
-        %{--<div>--}%
-        %{--<span>Email*</span>--}%
-        %{--<g:textField name="email" id="emailID"/>--}%
-        %{--</div>--}%
-
-        %{--<div>--}%
-        %{--<span>Password*</span>--}%
-        %{--<g:passwordField name="password"/>--}%
-        %{--</div>--}%
-
-        %{--<div>--}%
-        %{--<g:link controller="login" action="forgotPassword" class="left">Forgot Password</g:link>--}%
-        %{--<g:submitButton name="submit" id="submitLogin" class="right" value="Submit"--}%
-        %{--data-emailValidate="${createLink(controller: "login", action: "validateEmail")}"/>--}%
-        %{--</div>--}%
-        %{--</g:form>--}%
-        %{--</div>--}%
-        %{--</div><!--login form ends -->--}%
-
-
         <div class="panel panel-default rightdiv">
             <div class="panel-heading">
                 <h3 class="panel-title">Login</h3>

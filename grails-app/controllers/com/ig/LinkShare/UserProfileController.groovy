@@ -10,10 +10,11 @@ class UserProfileController {
     def showResourceService
     def topicSubscriptionService
     def top5SubscriptionService
+    def springSecurityService
 
     def index() {
 
-        User currentUser = User.get(session["userID"])
+        def currentUser=springSecurityService.currentUser
 
         List<Topic> topicList = showTopicService.findTopicsCreatedByUser(currentUser)
 
@@ -22,15 +23,14 @@ class UserProfileController {
         render(view: "/userProfile/editProfile", model: [loginUser: currentUser, subscriptionTopicList: subscriptionTopicList, topicList: topicList])
     }
 
-    def changePassword(User user, UserCO userCO) {
-        User currentUser = User.get(session["userID"])
+    def changePassword(UserCO userCO) {
+        User currentUser = springSecurityService.currentUser
 
         if (!userCO.validate()) {
             userCO.errors.allErrors.each {
                 println it
             }
-
-            flash.message = "Updation Failed : Password Mismatch"
+            flash.message = "Update Failed : Password Mismatch"
         } else {
             currentUser.password = params.password
             currentUser.save(failOnError: true, flush: true)
@@ -41,9 +41,7 @@ class UserProfileController {
     }
 
     def showUserPublicProfile(Long id) {
-
         User currentUser = User.findById(id)
-
         List<Topic> topics = showTopicService.findTopicsCreatedByUser(currentUser)
 
         List<Resource> resourcesOfTopic = []
@@ -55,8 +53,7 @@ class UserProfileController {
     }
 
     def updateData() {
-        User currentUser = User.get(session["userID"])
-
+        User currentUser = springSecurityService.currentUser
         currentUser.firstName=params.firstName
         currentUser.lastName=params.lastName
         currentUser.username=params.username

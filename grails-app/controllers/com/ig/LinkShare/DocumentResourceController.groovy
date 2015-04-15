@@ -18,7 +18,9 @@ class DocumentResourceController {
         documentResource = uploadService.uploadDocument(documentResource, params.docFile, grailsApplication.config.upload.uploadDocument)
 
         if (documentResource.save(failOnError: true)) {
+
             readingItemService.markReading(createdBy, documentResource, true)
+
             flash.message = "Your Document has been shared !"
         } else {
             flash.message = "Sorry , link sharing failed !"

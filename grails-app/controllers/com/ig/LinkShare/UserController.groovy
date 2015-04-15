@@ -43,7 +43,6 @@ class UserController {
         render(template: "/userListing/isActiveOrDeactive", model: [user: user])
     }
 
-    @Secured(['ROLE_ADMIN'])
     def registerUser(User user, UserCO userCO) {
         user.active = false
         user.admin = false
