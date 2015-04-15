@@ -1,3 +1,3 @@
 <span class="left">
-    <g:link controller="subscription" id="Link--${topicName}" action="subscribeUser" data-toggle="modal" data-target="#myModal--${topicName}">Unsubscribe</g:link>
+    <g:link controller="subscription" id="${topic.id}" action="unSubscribeUser" >Unsubscribe</g:link>
 </span>

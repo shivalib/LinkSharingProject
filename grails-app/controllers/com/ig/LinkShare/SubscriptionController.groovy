@@ -7,7 +7,6 @@ import grails.plugin.springsecurity.annotation.Secured
 class SubscriptionController {
     def scaffold = Subscription
 
-    def userService
     def readingItemService
     def searchService
     def showTopicService
@@ -26,19 +25,6 @@ class SubscriptionController {
         int total = subscriptions.totalCount
 
         render(view: "topicSubscription", model: [loginUser: currentUser, subscriptions: subscriptions, topicList: topics, max: max, offset: offset, subscriptionCount: total])
-    }
-
-    def paginate() {
-        User currentUser = springSecurityService.currentUser
-
-        int offset = params.offset ? params.int('offset') : 0
-        int max = params.max ? params.int('max') : 5
-
-        List<Subscription> subscriptions = Subscription.createCriteria().list([max: max, offset: offset]) {
-            eq('user', currentUser)
-        }
-
-        render(view: "_allSubscription", model: [loginUser: currentUser, subscriptions: subscriptions, subscriptionCount: subscriptions.totalCount, max: max, offset: offset])
     }
 
     def subscribeUser() {
@@ -68,14 +54,17 @@ class SubscriptionController {
 
     }
 
-    def unsubscribeUser() {
+    def unSubscribeUser(Long id) {
 
         User currentUser = springSecurityService.currentUser
-
-        Topic topic = Topic.findByTopicName(params.topicName)
+        Topic topic = Topic.get(id)
 
         Subscription subscription = Subscription.findByUserAndTopic(currentUser, topic)
+        subscription.delete(flush: true)
 
+        flash.message = "You have been successfully unsubscribed from topic : ${topic.topicName} "
+
+        redirect(controller: 'topic', action: 'index', id: topic.id)
     }
 
     def changeVisibility() {

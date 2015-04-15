@@ -10,7 +10,8 @@ import com.ig.LinkShare.Topic
 import com.ig.LinkShare.User
 
 class ApplicationTagLib {
-    ResourceRatingService resourceRatingService
+    def resourceRatingService
+    def springSecurityService
     static namespace = "ls"
 
     static defaultEncodeAs = [taglib: 'raw']
@@ -68,6 +69,17 @@ class ApplicationTagLib {
     def topicListing = { attr ->
         def loginUser = attr.loginUser
         out << g.render(template: "/myTemplates/showTopic", model: [topics: attr.topics, loginUser: loginUser])
+    }
+
+    def ifAlreadySubscribed={attr->
+        User currentUser=springSecurityService.currentUser
+        def topic=attr.topic
+        Subscription subscription=Subscription.findByUserAndTopic(currentUser,topic)
+        if(subscription)
+        {
+            out<<g.render(template: '/subscription/unsubscribe',model: [topic:topic])
+        }
+
     }
 
     def checkResourceType = { attr ->

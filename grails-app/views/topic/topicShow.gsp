@@ -43,9 +43,11 @@
                         <br>
 
                         <div>
+                            <ls:ifAlreadySubscribed topic="${topic}"/>
                             <ls:isSubscribed currentUser="${loginUser}" topicID="${topic}"/>
                             <ls:isNotSubscribed currentUser="${loginUser}" topicID="${topic}"
                                                 topicName="${topic.topicName}"/>
+
                         </div>
                     </div><!--media body ends-->
                 </div><!--media ends -->
@@ -61,10 +63,7 @@
                 <div class="panel-body">
                     <div class="media ">
                         <div class="media-left">
-                            <a href="#">
-                                <img src="${createLink(controller: "image", action: "renderImage", params: [path: subscriberList.user.photoPath])}"
-                                     class="media-object mediaFace">
-                            </a>
+                            <ls:userPhoto currentUser="${subscriberList.user}"/>
                         </div>
 
                         <div class="media-body">
