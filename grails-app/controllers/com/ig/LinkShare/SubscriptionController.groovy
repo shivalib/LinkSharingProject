@@ -10,10 +10,11 @@ class SubscriptionController {
     def searchService
     def showTopicService
     def topicSubscriptionService
+    def springSecurityService
 
     def showAllSubscriptions() {
 
-        User currentUser =User.get(session["userID"])
+        User currentUser =springSecurityService.currentUser
         List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
 
         int offset = params.offset ? params.int('offset') : 0
@@ -22,7 +23,7 @@ class SubscriptionController {
         List<Subscription> subscriptions = topicSubscriptionService.userSubscriptions(currentUser, max, offset)
         int total = subscriptions.totalCount
 
-        render(view: "topicSubscription", model: [loginUser: currentUser, subscriptions: subscriptions, topicList: topics.topicName, max: max, offset: offset, subscriptionCount: total])
+        render(view: "topicSubscription", model: [loginUser: currentUser, subscriptions: subscriptions, topicList: topics, max: max, offset: offset, subscriptionCount: total])
     }
 
 

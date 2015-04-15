@@ -5,9 +5,10 @@ class DocumentResourceController {
     def scaffold = true
     def uploadService
     def readingItemService
+    def springSecurityService
 
     def shareDocument() {
-        User createdBy = User.get(session["userID"])
+        User createdBy = springSecurityService.currentUser
 
         Topic topic = Topic.findWhere(topicName: params.topic)
 

@@ -54,10 +54,6 @@ class TopicSubscriptionService {
         List<Subscription> subscriptions = Subscription.createCriteria().list(max: max, offset: offset) {
 
             eq('user', currentUser)
-            'topic' {
-                eq('visibility', Visibility.PUBLIC)
-            }
-
         }
         return subscriptions
     }

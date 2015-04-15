@@ -110,10 +110,6 @@
                     </div>
                 </g:form>
             </div>
-            %{--<div class="modal-footer">--}%
-            %{--<g:submitButton type="button" class="btn btn-primary" name="submit" >Save </g:submitButton>--}%
-            %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
-            %{--</div>--}%
         </div>
     </div>
 </div>
@@ -154,10 +150,6 @@
                     </div>
                 </g:form>
             </div>
-            %{--<div class="modal-footer">--}%
-            %{--<g:submitButton type="button" class="btn btn-primary" name="submit">Save</g:submitButton>--}%
-            %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
-            %{--</div>--}%
         </div>
     </div>
 </div>
@@ -198,11 +190,6 @@
                     </div>
                 </g:form>
             </div>
-
-            %{--<div class="modal-footer">--}%
-                %{--<g:submitButton type="button" class="btn btn-primary" name="submit">Save</g:submitButton>--}%
-                %{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}%
-            %{--</div>--}%
         </div>
     </div>
 </div>
@@ -238,11 +225,6 @@
                     </div>
                 </g:form>
             </div>
-
-            %{--<div class="modal-footer">--}%
-            %{--<g:submitButton type="button" class="btn btn-primary" name="save" value="Save"/>--}%
-            %{--<g:submitButton name="cancel" value="Cancel" class="btn btn-default" data-dismiss="modal"/>--}%
-            %{--</div>--}%
         </div>
     </div>
 </div>
