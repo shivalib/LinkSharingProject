@@ -1,20 +1,9 @@
 package com.ig.LinkShare
 
-import com.ig.LinkShare.DateDifferenceService
-import com.ig.LinkShare.LinkResource
-import com.ig.LinkShare.ReadingItem
-import com.ig.LinkShare.Resource
-import com.ig.LinkShare.ResourceRatingService
-import com.ig.LinkShare.Subscription
-import com.ig.LinkShare.Topic
-import com.ig.LinkShare.User
-
 class ApplicationTagLib {
     def resourceRatingService
     def springSecurityService
     static namespace = "ls"
-
-    static defaultEncodeAs = [taglib: 'raw']
 
     def showHeader = { attr ->
         def loginUser = attr.currentUser
@@ -113,13 +102,17 @@ class ApplicationTagLib {
     def isSubscribed = { attr ->
         User user = attr.currentUser
         Topic topic = attr.topicID
+        def adminFlag=false
 
         Subscription subscription = Subscription.findWhere(user: user, topic: topic)
+        sec.ifAllGranted(roles: 'ROLE_ADMIN'){
+            adminFlag=true
+        }
 
         if (subscription) {
             out << g.render(template: '/home/isSubscribed', model: [topic: topic, subscription: subscription])
         }
-        if (user.admin || user == topic.createdBy) {
+        if (adminFlag || user == topic.createdBy) {
             out << g.render(template: "/home/isAdmin", model: [topic: topic])
         }
     }
@@ -129,8 +122,12 @@ class ApplicationTagLib {
         def user = attr.currentUser
         User user1 = User.findByUsername(user.username)
         def topic = attr.topicID
+        def adminFlag=false
 
         Subscription subscription = Subscription.findByUserAndTopic(user1, topic)
+        sec.ifAllGranted(roles: 'ROLE_ADMIN'){
+            adminFlag=true
+        }
 
         if (!subscription) {
             out << g.render(template: '/myTemplates/isNotSubscribed', model: [topic: topic])
@@ -174,12 +171,8 @@ class ApplicationTagLib {
     }
 
     def averageRating = { attr ->
-        User currentUser = attr.currentUser
         Resource resource = attr.resource
-
         def averageRating = resourceRatingService.findAverageRating(resource)
         out << g.render(template: "/showPost/ratingDiv", model: [resource: resource, averageRating: averageRating])
     }
-
-
 }

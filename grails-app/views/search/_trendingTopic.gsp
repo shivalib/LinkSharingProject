@@ -27,12 +27,14 @@
                             </span>
                         </div><br>
                     </div>
-                    <div>
-                        <ls:isSubscribed currentUser="${loginUser}" topicID="${trending}"/>
+                    <sec:ifLoggedIn>
+                        <div>
+                            <ls:isSubscribed currentUser="${loginUser}" topicID="${trending}"/>
 
-                        <ls:isNotSubscribed currentUser="${loginUser}" topicID="${trending}"
-                                            topicName="${trending.topicName}"/>
-                    </div>
+                            <ls:isNotSubscribed currentUser="${loginUser}" topicID="${trending}"
+                                                topicName="${trending.topicName}"/>
+                        </div>
+                    </sec:ifLoggedIn>
                 </div><!--media body ends-->
             </div><!--media ends -->
         </div><!--panel body ends-->

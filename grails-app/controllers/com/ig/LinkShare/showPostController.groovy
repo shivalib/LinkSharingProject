@@ -1,7 +1,7 @@
 package com.ig.LinkShare
 
 class showPostController {
-    def userService
+    def springSecurityService
     def trendingTopicService
     def showResourceService
     def resourceRatingService
@@ -18,7 +18,7 @@ class showPostController {
 
         List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
 
-        User currentUser = User.get(session["userID"])
+        User currentUser = springSecurityService.currentUser
 
         Subscription subscription = Subscription.findWhere(user: currentUser)
 
@@ -34,14 +34,14 @@ class showPostController {
 
         List<Resource> resourceList = showResourceService.calculateResourceListForAdmin()
 
-        User currentUser =User.get(session["userID"])
+        User currentUser =springSecurityService.currentUser
 
-        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics(max, offset)
+        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
 
         //for menu
         List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
 
-        render(view: "/showPost/viewPost", model: [loginUser: currentUser, topicList: topics.topicName, trendingTopicList: trendingTopics, resourceList: resourceList])
+        render(view: "/showPost/viewPost", model: [loginUser: currentUser, topicList: topics, trendingTopicList: trendingTopics, resourceList: resourceList])
     }
 
     def rateResource() {

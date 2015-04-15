@@ -16,20 +16,28 @@
 </head>
 
 <body>
-<g:render template="/resource/socialIconJS"/>
 <div class="row">
     <div class="col-md-7">
-        <g:if test="${loginUser}">
-            <ls:checkUserForPost currentUser="${loginUser}" topicList="${topicList}"/>
-        </g:if>
-        <g:else>
-            <g:render template="postForNonRegisteredUser"/>
-        </g:else>
+        %{--<g:if test="${loginUser}">--}%
+        %{--<ls:checkUserForPost currentUser="${loginUser}" topicList="${topicList}"/>--}%
+        %{--</g:if>--}%
+        %{--<g:else>--}%
+        %{--<g:render template="postForNonRegisteredUser"/>--}%
+        %{--</g:else>--}%
 
+        <sec:ifAllGranted roles="ROLE_ADMIN">
+            <g:render template="postForAdmin"/>
+        </sec:ifAllGranted>
+        <sec:ifAllGranted roles="ROLE_USER">
+            <g:render template="postForNonAdmin"/>
+        </sec:ifAllGranted>
+        <sec:ifNotGranted roles="ROLE_USER,ROLE_ADMIN">
+            <g:render template="postForNonRegisteredUser"/>
+        </sec:ifNotGranted>
     </div><!--col-md-7 ends-->
 
     <div class="col-md-5">
-        <g:if test="${loginUser}">
+        <sec:ifLoggedIn>
             <!--Trending topic-->
             <div class="panel panel-default rightdiv">
                 <div class="panel-heading">
@@ -72,11 +80,10 @@
                 </g:each>
             </div><!-- panel ends-->
         %{--<ls:checkUser/>--}%
-
-        </g:if>
-        <g:else>
+        </sec:ifLoggedIn>
+        <sec:ifNotLoggedIn>
             <g:render template="/home/notLogin"/>
-        </g:else>
+        </sec:ifNotLoggedIn>
     </div>
 
 </div>

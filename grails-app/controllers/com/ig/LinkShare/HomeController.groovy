@@ -19,7 +19,7 @@ class HomeController {
 
         List<Resource> resources = showResourceService.calculateResourceList(max, offset)
 
-        render(view: "/login/homePage", model: [resources: resources, resourceCount: resources.count])
+        render(view: "/login/homePage", model: [resources: resources,postUrl:params.postUrl,rememberMeParameter:grailsApplication.config.rememberMe.parameter,resourceCount: resources.count])
     }
 
     def activateRegisteredUser(Long id) {
