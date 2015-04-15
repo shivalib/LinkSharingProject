@@ -12,11 +12,4 @@ class SecureTagLib {
             out<<springSecurityService.currentUser.fullName
         }
     }
-
-    def loggedInUserObject={
-        if(springSecurityService.isLoggedIn())
-        {
-            out<<springSecurityService.currentUser
-        }
-    }
 }

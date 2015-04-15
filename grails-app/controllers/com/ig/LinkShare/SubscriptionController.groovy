@@ -1,7 +1,9 @@
 package com.ig.LinkShare
 
 import com.ig.LinkShare.applicationEnums.Visibility
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(['ROLE_ADMIN','ROLE_USER'])
 class SubscriptionController {
     def scaffold = Subscription
 
@@ -26,19 +28,11 @@ class SubscriptionController {
         render(view: "topicSubscription", model: [loginUser: currentUser, subscriptions: subscriptions, topicList: topics, max: max, offset: offset, subscriptionCount: total])
     }
 
-
-
     def showAllTopicsCreated() {
-        User currentUser =User.get(session["userID"])
+        User currentUser =springSecurityService.currentUser
         List<Topic> topics = showTopicService.findTopicsCreatedByUser(currentUser)
 
-        int offset = params.offset ? params.int('offset') : 0
-        int max = params.max ? params.int('max') : 5
-
-        List<Subscription> subscriptions = topicSubscriptionService.userSubscriptionsOnTopicsCreated(currentUser, max, offset)
-        int total = subscriptions.totalCount
-
-        render(view: "topicSubscription", model: [loginUser: currentUser, subscriptions: subscriptions, topicList: topics.topicName, max: max, offset: offset, subscriptionCount: total])
+        render(view: "topicSubscription", model: [loginUser: currentUser,topicList:topics])
     }
 
     def paginate() {

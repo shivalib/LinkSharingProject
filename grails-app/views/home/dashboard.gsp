@@ -46,28 +46,26 @@
             </div>
         </div><!-- panel ends-->
     </div>
+
+    <div class="col-md-7">
+        <!--INBOX-->
+        <div class="panel panel-default rightdiv">
+            <div class="panel-heading">
+                <span><h3 class="panel-title ">Inbox
+                    <span class="input-group right" id="searchTextBox">
+                        <input type="text" id="searchInbox"
+                               placeholder="Search for..."
+                               onkeyup="searchInboxUsingAjax('${createLink(controller: "search", action: "searchInbox")}')"/>
+                    </span>
+                </h3></span>
+            </div>
+
+            <div id="inboxDiv">
+                <g:render template="/dashboard/iterateInbox"
+                model="[readingItemListWithIsReadFalse: readingItemListWithIsReadFalse]"/>
+            </div>
+        </div><!--panel ends-->
+    </div><!--col-md-7-->
 </div>
-
-
-%{--<div class="col-md-7">--}%
-%{--<!--INBOX-->--}%
-%{--<div class="panel panel-default rightdiv">--}%
-%{--<div class="panel-heading">--}%
-%{--<span><h3 class="panel-title ">Inbox--}%
-%{--<span class="input-group right" id="searchTextBox">--}%
-%{--<input type="text" id="searchInbox"--}%
-%{--placeholder="Search for..."--}%
-%{--onkeyup="searchInboxUsingAjax('${createLink(controller: "search", action: "searchInbox")}')"/>--}%
-%{--</span>--}%
-%{--</h3></span>--}%
-%{--</div>--}%
-
-%{--<div id="inboxDiv">--}%
-%{--<g:render template="/dashboard/iterateInbox"--}%
-%{--model="[readingItemListWithIsReadFalse: readingItemListWithIsReadFalse, max: max, offset: offset, inboxCount: inboxCount]"/>--}%
-%{--</div>--}%
-%{--</div><!--panel ends-->--}%
-%{--</div><!--col-md-7-->--}%
-%{--</div>--}%
 </body>
 </html>

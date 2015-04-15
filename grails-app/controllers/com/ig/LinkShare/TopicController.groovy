@@ -11,7 +11,7 @@ class TopicController {
 
         Topic topic = Topic.findById(id)
 
-        User loginUser = User.get(params.loginUser)
+        User loginUser = springSecurityService.currentUser
 
         List<Subscription> subscriptionList = topicSubscriptionService.subscriptionListOfCurrentTopic(topic)
 
@@ -19,7 +19,7 @@ class TopicController {
 
         List<Resource> resourceList = showResourceService.showResourcesByTopic(topic)
 
-        render(view: "/topic/topicShow", model: [topic: topic, topicList: topics.topicName, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
+        render(view: "/topic/topicShow", model: [topic: topic, topicList: topics, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
     }
 
     def createTopic() {

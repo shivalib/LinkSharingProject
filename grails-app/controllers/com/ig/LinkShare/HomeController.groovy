@@ -8,7 +8,6 @@ class HomeController {
     def trendingTopicService
     def showInboxService
     def showTopicService
-    def userService
     def showResourceService
     def springSecurityService
     def topicSubscriptionService
@@ -47,7 +46,9 @@ class HomeController {
 
         List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
 
-        render(view: '/home/dashboard',model: [loginUser:currentUser,topicList:topics,top5SubscribedTopics:subscriptionList,trendingTopicList:trendingTopicList])
+        List<ReadingItem> readingItemListWithIsReadFalse=showInboxService.showInbox(currentUser)
+
+        render(view: '/home/dashboard',model: [loginUser:currentUser,readingItemListWithIsReadFalse:readingItemListWithIsReadFalse,topicList:topics,top5SubscribedTopics:subscriptionList,trendingTopicList:trendingTopicList])
     }
 
     @Secured(['ROLE_ADMIN','ROLE_USER'])

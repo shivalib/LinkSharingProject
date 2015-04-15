@@ -4,11 +4,11 @@
     </div>
     <div class="media-body">
         <h4 class="media-heading">
-            ${loginUser.fullName}
+            <secUser:fullName/>
         </h4>
 
         <div>
-            <h5>@${loginUser.username}</h5>
+            <h5>@<sec:username/></h5>
         </div>
 
         <div>
