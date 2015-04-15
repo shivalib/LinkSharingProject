@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title></title>
+    <title>Edit Profile</title>
     <meta name="layout" content="dashboardLayout">
 </head>
 

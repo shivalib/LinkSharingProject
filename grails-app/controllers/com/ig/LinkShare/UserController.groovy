@@ -8,32 +8,19 @@ class UserController {
     def uploadService
     def scaffold = true
     def showTopicService
+    def springSecurityService
 
-    def beforeInterceptor = [action: this.&checkAdmin, only: 'list']
-
-    private checkAdmin() {
-        if (session["userID"]) {
-
-            User user =User.get(session["userID"])
-
-            if (!user.admin) {
-                flash.message = "Sorry, this is reserved for Administrative access!!!"
-                redirect(controller: 'home', action: 'index')
-            }
-        }
-    }
-
+    @Secured(['ROLE_ADMIN'])
     def list() {
 
         List<User> userList = User.list()
-
-        User currentUser = User.get(session["userID"])
-
+        User currentUser = springSecurityService.currentUser
         List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
 
         render(view: "/userListing/userListing", model: [userList: userList, loginUser: currentUser, topicList: topics.topicName])
     }
 
+    @Secured(['ROLE_ADMIN'])
     def activateOrDeactivateUser() {
         User user = User.get(params.userID)
         user.active = !user.active

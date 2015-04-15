@@ -10,15 +10,10 @@ class TopicController {
     def springSecurityService
 
     def index(Long id) {
-
         Topic topic = Topic.get(id)
-
         User loginUser = springSecurityService.currentUser
-
         List<Subscription> subscriptionList = topicSubscriptionService.subscriptionListOfCurrentTopic(topic)
-
         List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(loginUser)
-
         List<Resource> resourceList = showResourceService.showResourcesByTopic(topic)
 
         render(view: "/topic/topicShow", model: [topic: topic, topicList: topics, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
@@ -35,14 +30,12 @@ class TopicController {
     @Secured(['ROLE_ADMIN'])
     def topicListForAdmin() {
         User currentUser = springSecurityService.currentUser
-
         List<Topic> topicList = Topic.list()
         render(view: "topicList", model: [loginUser: currentUser, topicList: topicList])
     }
 
     def createTopic() {
         User userID = springSecurityService.currentUser
-
         List<Topic> topicList = showTopicService.findTopicsNameCreatedByUser(userID)
 
         if (topicList.contains(params.topicName)) {

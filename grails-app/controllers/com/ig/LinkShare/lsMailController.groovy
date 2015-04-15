@@ -6,7 +6,6 @@ class lsMailController {
         Topic topic=Topic.get(id)
 
         sendMail {
-//            async true
             to "${params.emailID}"
             subject "Invite : Subscription"
             body "${topic.topicName}"
@@ -18,7 +17,6 @@ class lsMailController {
     def sendInviteFromList() {
 
         sendMail {
-//            async true
             to "${params.emailID}"
             subject "Invite : Subscription"
             body "${params.topicList}"
@@ -32,7 +30,6 @@ class lsMailController {
         UserToken userToken=UserToken.findByUser(user)
 
         sendMail {
-//            async true
             to "${params.emailID}"
             subject "Reset : Password"
             html "${g.link(controller: "user", action: "resetPassword",id: "${userToken.id}", absolute: "true", { "click on the link to change your password" })}"

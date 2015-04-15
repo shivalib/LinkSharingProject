@@ -38,13 +38,10 @@ class SubscriptionController {
         topic.addToSubscriptions(subscription)
 
         if (subscription.save(failOnError: true)) {
-
             List<Resource> resourceListOfCurrentUser = Resource.findAllWhere(topic: topic)
-
             resourceListOfCurrentUser.each { Resource resource ->
                 readingItemService.markReading(currentUser, resource, false)
             }
-
             flash.message = "You have been successfully subscribed to ${params.topicName} !"
         } else {
             flash.message = "Sorry, subscription failed !"
@@ -55,7 +52,6 @@ class SubscriptionController {
     }
 
     def unSubscribeTopic(Long id) {
-
         User currentUser = springSecurityService.currentUser
         Topic topic = Topic.get(id)
         if(topic.createdBy==currentUser)
@@ -66,7 +62,6 @@ class SubscriptionController {
 
             Subscription subscription = Subscription.findByUserAndTopic(currentUser, topic)
             subscription.delete(flush: true)
-
             flash.message = "You have been successfully unsubscribed from topic : ${topic.topicName} "
         }
 

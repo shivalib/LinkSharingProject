@@ -30,11 +30,7 @@ class LoginController {
             redirect uri: '/home/dashboard'
             return
         }
-
-//        String view = 'homePage'
         String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
-//        render view: view, model: [postUrl: postUrl,
-//                                   rememberMeParameter: config.rememberMe.parameter]
         redirect(controller: 'home',action: 'index',params: [postUrl: postUrl,rememberMeParameter: config.rememberMe.parameter])
     }
 
@@ -79,9 +75,7 @@ class LoginController {
             userCO.errors.allErrors.each {
                 println it
             }
-
             flash.message = "Password updation failed!"
-
         } else {
             User user = User.findByEmail(params.emailID)
             user.password = params.password
@@ -93,13 +87,11 @@ class LoginController {
     }
 
     Boolean validateEmail() {
-
         List<User> userList = User.createCriteria().list {
             projections {
                 property("email")
             }
         }
-
         if (userList.contains(params.email))
             render true
         else
@@ -107,7 +99,6 @@ class LoginController {
     }
 
     Boolean validateUsername() {
-
         List<User> userList = User.createCriteria().list {
             projections {
                 property("username")
