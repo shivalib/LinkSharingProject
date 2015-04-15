@@ -65,13 +65,16 @@
                     <g:link controller="userProfile">
                         <img src="${resource(dir: "images", file: "person-icon.png")}" title="User Profile"
                              height="35px" width="35px"/>
+
                     </g:link>
+
                     <sec:ifAllGranted roles="ROLE_USER">
                         <g:render template="/dashboard/headerForUser"/>
                     </sec:ifAllGranted>
                     <sec:ifAllGranted roles="ROLE_ADMIN">
                         <g:render template="/dashboard/headerForAdmin"/>
                     </sec:ifAllGranted>
+
                 </sec:ifLoggedIn>
             </g:form>
         </div><!-- search ends-->

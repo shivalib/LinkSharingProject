@@ -54,15 +54,21 @@ class SubscriptionController {
 
     }
 
-    def unSubscribeUser(Long id) {
+    def unSubscribeTopic(Long id) {
 
         User currentUser = springSecurityService.currentUser
         Topic topic = Topic.get(id)
+        if(topic.createdBy==currentUser)
+        {
+            flash.message="You cannot unsubscribe the topic being the owner"
+        }
+        else {
 
-        Subscription subscription = Subscription.findByUserAndTopic(currentUser, topic)
-        subscription.delete(flush: true)
+            Subscription subscription = Subscription.findByUserAndTopic(currentUser, topic)
+            subscription.delete(flush: true)
 
-        flash.message = "You have been successfully unsubscribed from topic : ${topic.topicName} "
+            flash.message = "You have been successfully unsubscribed from topic : ${topic.topicName} "
+        }
 
         redirect(controller: 'topic', action: 'index', id: topic.id)
     }

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title></title>
+    <title>Topic</title>
     <meta name="layout" content="dashboardLayout">
     <asset:javascript src="topicShow.js"/>
 </head>

@@ -1,10 +1,7 @@
 <g:each in="${resourceList}" var="resource">
     <div class="media ">
         <div class="media-left">
-            <a href="#">
-                <img src="${createLink(controller: "image", action: "renderImage", params: [path: resource.topic.createdBy.photoPath])}"
-                     class="media-object mediaFace">
-            </a>
+            <ls:userPhoto currentUser="${resource.topic.createdBy}"/>
         </div>
 
         <div class="media-body">

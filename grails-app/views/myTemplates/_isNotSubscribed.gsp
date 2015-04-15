@@ -1,4 +1,3 @@
-%{--todo move this template to its respective folder--}%
 
 <g:link controller="subscription" id="Link-${topic.topicName}" action="subscribeUser" data-toggle="modal"
         data-target="#myModal-${topic.topicName}">Subscribe</g:link>

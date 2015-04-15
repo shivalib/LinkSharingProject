@@ -9,7 +9,7 @@ class TopicController {
 
     def index(Long id) {
 
-        Topic topic = Topic.findById(id)
+        Topic topic = Topic.get(id)
 
         User loginUser = springSecurityService.currentUser
 

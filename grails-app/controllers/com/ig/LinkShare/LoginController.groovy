@@ -15,7 +15,6 @@ class LoginController {
 
     def index() {
         if (springSecurityService.isLoggedIn()) {
-//            redirect uri: SpringSecurityUtils.securityConfig.successHandler.defaultTargetUrl
         redirect uri: grailsApplication.config.successHandler.defaultTargetUrl
         }
         else {

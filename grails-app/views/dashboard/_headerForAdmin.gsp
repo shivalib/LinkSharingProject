@@ -29,7 +29,6 @@
         <li class="divider"></li>
 
         <li role="presentation">
-            <g:link role="menuitem" tabindex="-1" controller="login" action="logout">Logout</g:link></li>
-        %{--<a role="menuitem" tabindex="-1" href="#">Logout</a></li>--}%
+            <g:link role="menuitem" tabindex="-1" controller="logout" action="index">Logout</g:link></li>
     </ul>
 </span>

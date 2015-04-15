@@ -3,10 +3,7 @@
         <div class="panel-body">
             <div class="media ">
                 <div class="media-left">
-                    <a href="#">
-                        <img src="${createLink(controller: "image", action: "renderImage", params: [path: resource.createdBy.photoPath])}"
-                             class="media-object mediaFace">
-                    </a>
+                    <ls:userPhoto currentUser="${resource.createdBy}"/>
                 </div>
 
                 <div class="media-body">

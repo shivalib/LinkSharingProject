@@ -1,11 +1,7 @@
 <g:each in="${resource}" var="res">
     <div class="media ">
         <div class="media-left">
-            <a href="${createLink(controller: "userProfile", action: "showUserPublicProfile", params: [id: res.createdBy.id])}">
-
-                <img src="${createLink(controller: "image", action: "renderImage", params: [path: res.createdBy.photoPath])}"
-                     class="media-object mediaFace">
-            </a>
+            <ls:userPhoto currentUser="${res.createdBy}"/>
         </div>
 
         <div class="media-body">

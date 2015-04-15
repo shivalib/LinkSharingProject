@@ -31,7 +31,7 @@
                     <div>
                         <g:render template="/myTemplates/socialIcons"/>
                         <ls:checkResourceType resource="${resource}"/>
-                        <ls:isAdminOrCreatorOfResource currentUser="${loginUser}" resource="${resource}"/>
+                        <ls:isAdminOrCreatorOfResource resource="${resource}"/>
                     </div>
                 </div><!--media body ends-->
             </div><!--media ends -->

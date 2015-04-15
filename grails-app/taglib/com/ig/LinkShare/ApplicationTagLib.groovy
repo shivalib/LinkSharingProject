@@ -43,14 +43,17 @@ class ApplicationTagLib {
 
         def currentUser = attr.currentUser
         def topicCreator = attr.topicCreater
-
+        def adminFlag=false
         User user = User.get(currentUser.id)
 
         Topic topic = Topic.get(attr.topicID)
 
         Subscription subscription = Subscription.findWhere(topic: topic, user: user)
+        sec.ifAllGranted(roles: 'ROLE_ADMIN'){
+            adminFlag=true
+        }
 
-        if (currentUser.admin | currentUser == topicCreator) {
+        if (adminFlag | currentUser == topicCreator) {
             out << g.render(template: "/home/isAdmin", model: [topic: topic, loginUser: attr.currentUser])
             out << g.render(template: "/myTemplates/isNotAdmin", model: [topic: topic, loginUser: attr.currentUser, subscription: subscription])
         } else {
@@ -77,7 +80,7 @@ class ApplicationTagLib {
         Subscription subscription=Subscription.findByUserAndTopic(currentUser,topic)
         if(subscription)
         {
-            out<<g.render(template: '/subscription/unsubscribe',model: [topic:topic])
+            out<<g.render(template: '/subscription/unsubscribe',model: [tpic])
         }
 
     }
@@ -109,7 +112,6 @@ class ApplicationTagLib {
 
     def isSubscribed = { attr ->
         User user = attr.currentUser
-
         Topic topic = attr.topicID
 
         Subscription subscription = Subscription.findWhere(user: user, topic: topic)

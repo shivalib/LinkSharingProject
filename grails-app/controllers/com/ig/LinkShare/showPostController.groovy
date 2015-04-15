@@ -16,7 +16,7 @@ class showPostController {
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5
 
-        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics(max, offset)
+        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
 
         User currentUser = User.get(session["userID"])
 

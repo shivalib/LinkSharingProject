@@ -4,20 +4,20 @@ package com.ig.LinkShare
 class SearchController {
     def trendingTopicService
     def searchService
-    def userService
     def showResourceService
     def showInboxService
     def showTopicService
     def topicSubscriptionService
+    def springSecurityService
 
     def searchPage() {
 
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5
 
-        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics(max, offset)
+        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
 
-        User currentUser = userService.showCurrentUserObject(session["username"])
+        User currentUser = springSecurityService.currentUser
 
         List<Resource> resources = searchService.searchAll(params.searchGlobal)
 
@@ -26,7 +26,7 @@ class SearchController {
 
     def searchTopic() {
 
-        User currentUser = userService.showCurrentUserObject(session["username"])
+        User currentUser = springSecurityService.currentUser
 
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5
@@ -53,7 +53,7 @@ class SearchController {
     }
 
     def displayPostOnTopicNameClick() {
-        User currentUser=User.get(session["userID"])
+        User currentUser=springSecurityService.currentUser
         Topic topic = Topic.findById(params.topicID)
 
         List<Resource> resourceList = showResourceService.showResourcesByTopic(topic)
@@ -62,7 +62,7 @@ class SearchController {
     }
 
     def searchInbox() {
-        User user = User.get(session["userID"])
+        User user = springSecurityService.currentUser
 
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5

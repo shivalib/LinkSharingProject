@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title></title>
+    <title>Post</title>
     <g:if test="${loginUser}">
         <meta name="layout" content="dashboardLayout">
     </g:if>
@@ -16,9 +16,7 @@
 </head>
 
 <body>
-
 <g:render template="/resource/socialIconJS"/>
-
 <div class="row">
     <div class="col-md-7">
         <g:if test="${loginUser}">
