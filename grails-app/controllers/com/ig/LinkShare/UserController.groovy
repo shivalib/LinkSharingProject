@@ -5,10 +5,9 @@ import com.ig.LinkShare.applicationEnums.UserCO
 import grails.plugin.springsecurity.annotation.Secured
 
 class UserController {
-    UploadService uploadService
+    def uploadService
     def scaffold = true
-    UserService userService
-    ShowTopicService showTopicService
+    def showTopicService
 
     def beforeInterceptor = [action: this.&checkAdmin, only: 'list']
 

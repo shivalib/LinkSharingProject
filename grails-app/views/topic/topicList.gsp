@@ -8,7 +8,14 @@
 <body>
 <div class="row">
     <div class="col-md-5">
-        <g:render template="/topic/allTopicsCreated" model="[topicList: topicList]"/>
+        <div class="panel panel-default leftdiv">
+            <div class="panel-heading">
+                <span><h2 class="panel-title">Topic List
+                </h2></span>
+
+            </div>
+            <g:render template="/topic/allTopicsCreated" model="[topicList: topicList]"/>
+        </div>
     </div>
 </div>
 </body>

@@ -51,15 +51,15 @@ $(document).ready(function () {
             username:{
                 required:true,
 
-                //remote: {
-                //    url: $('#checkUsername').attr('data-checkUsername'),
-                //    type: 'post',
-                //    data: {
-                //        username: function () {
-                //            return $('#checkUsername').val()
-                //        }
-                //    }
-                //},
+                remote: {
+                    url: $('#checkUsername').attr('data-checkUsername'),
+                    type: 'post',
+                    data: {
+                        username: function () {
+                            return $('#checkUsername').val()
+                        }
+                    }
+                },
                 minlength:5
             },
             password:{

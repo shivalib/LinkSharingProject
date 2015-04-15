@@ -92,4 +92,33 @@ class LoginController {
 
     }
 
+    Boolean validateEmail() {
+
+        List<User> userList = User.createCriteria().list {
+            projections {
+                property("email")
+            }
+        }
+
+        if (userList.contains(params.email))
+            render true
+        else
+            render false
+    }
+
+    Boolean validateUsername() {
+
+        List<User> userList = User.createCriteria().list {
+            projections {
+                property("username")
+            }
+        }
+        if (userList.contains(params.username)) {
+            render false
+        } else {
+            render true
+        }
+    }
+
+
 }
