@@ -4,7 +4,7 @@
     </div>
     <div class="media-body">
         <h4 class="media-heading">
-            <secUser:fullName/>
+            <secUser:loggedInUserInfo field="fullName"/>
         </h4>
 
         <div>
@@ -20,7 +20,7 @@
             </span>
             <span class="left leftdiv">
 
-                <g:link controller="subscription" action="showAllTopicsCreated">Topics</g:link>
+                <g:link controller="topic" action="showTopicList">Topics</g:link>
 
                 <div>${loginUser.topics.size()}</div>
             </span>

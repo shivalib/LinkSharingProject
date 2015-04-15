@@ -22,6 +22,14 @@ class TopicController {
         render(view: "/topic/topicShow", model: [topic: topic, topicList: topics, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
     }
 
+    def showTopicList(){
+        User currentUser =springSecurityService.currentUser
+
+        List<Topic> topics = showTopicService.findTopicsCreatedByUser(currentUser)
+
+        render(view: "topicList", model: [loginUser: currentUser,topicList:topics])
+    }
+
     def createTopic() {
         User userID =springSecurityService.currentUser
 

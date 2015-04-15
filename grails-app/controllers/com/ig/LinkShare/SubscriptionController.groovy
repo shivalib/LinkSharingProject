@@ -28,15 +28,8 @@ class SubscriptionController {
         render(view: "topicSubscription", model: [loginUser: currentUser, subscriptions: subscriptions, topicList: topics, max: max, offset: offset, subscriptionCount: total])
     }
 
-    def showAllTopicsCreated() {
-        User currentUser =springSecurityService.currentUser
-        List<Topic> topics = showTopicService.findTopicsCreatedByUser(currentUser)
-
-        render(view: "topicSubscription", model: [loginUser: currentUser,topicList:topics])
-    }
-
     def paginate() {
-        User currentUser = User.get(session["userID"])
+        User currentUser =springSecurityService.currentUser
 
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5
@@ -50,14 +43,13 @@ class SubscriptionController {
 
     def subscribeUser() {
 
-        User currentUser = User.get(session["userID"])
+        User currentUser = springSecurityService.currentUser
 
-        def topicName = params.topicName
-
-        Topic topic = Topic.findByTopicName(topicName)
+        Topic topic = Topic.findByTopicName(params.topicName)
 
         Subscription subscription = new Subscription(seriousness: params.seriousness, user: currentUser, topic: topic)
         if (subscription.save(failOnError: true)) {
+
             List<Resource> resourceListOfCurrentUser = Resource.findAllWhere(topic: topic)
 
             resourceListOfCurrentUser.each { Resource resource ->
@@ -77,10 +69,9 @@ class SubscriptionController {
 
     def unsubscribeUser() {
 
-        User currentUser =User.get(session["userID"])
+        User currentUser =springSecurityService.currentUser
 
-        def topicName = params.topicName
-        Topic topic = Topic.findByTopicName(topicName)
+        Topic topic = Topic.findByTopicName(params.topicName)
 
         Subscription subscription = Subscription.findByUserAndTopic(currentUser, topic)
 
