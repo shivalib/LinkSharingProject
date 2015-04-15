@@ -17,8 +17,8 @@
         </li>
         <li class="divider"></li>
         <li role="presentation">
-            <g:link role="menuitem" tabindex="-1" controller="subscription"
-                    action="showAllSubscriptions">Topics</g:link>
+            <g:link role="menuitem" tabindex="-1" controller="topic"
+                    action="topicListForAdmin">Topics</g:link>
         </li>
         <li class="divider"></li>
 

@@ -108,7 +108,6 @@ class ApplicationTagLib {
         sec.ifAllGranted(roles: 'ROLE_ADMIN'){
             adminFlag=true
         }
-
         if (subscription) {
             out << g.render(template: '/home/isSubscribed', model: [topic: topic, subscription: subscription])
         }
@@ -132,6 +131,7 @@ class ApplicationTagLib {
         if (!subscription) {
             out << g.render(template: '/myTemplates/isNotSubscribed', model: [topic: topic])
         }
+
     }
 
     def markResource = { attr ->

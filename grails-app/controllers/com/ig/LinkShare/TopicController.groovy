@@ -1,5 +1,7 @@
 package com.ig.LinkShare
 
+import grails.plugin.springsecurity.annotation.Secured
+
 class TopicController {
 
     def topicSubscriptionService
@@ -22,18 +24,26 @@ class TopicController {
         render(view: "/topic/topicShow", model: [topic: topic, topicList: topics, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
     }
 
-    def showTopicList(){
-        User currentUser =springSecurityService.currentUser
+    def showTopicList() {
+        User currentUser = springSecurityService.currentUser
 
         List<Topic> topics = showTopicService.findTopicsCreatedByUser(currentUser)
 
-        render(view: "topicList", model: [loginUser: currentUser,topicList:topics])
+        render(view: "topicList", model: [loginUser: currentUser, topicList: topics])
+    }
+
+    @Secured(['ROLE_ADMIN'])
+    def topicListForAdmin() {
+        User currentUser = springSecurityService.currentUser
+
+        List<Topic> topicList = Topic.list()
+        render(view: "topicList", model: [loginUser: currentUser, topicList: topicList])
     }
 
     def createTopic() {
-        User userID =springSecurityService.currentUser
+        User userID = springSecurityService.currentUser
 
-        List<Topic> topicList =showTopicService.findTopicsNameCreatedByUser(userID)
+        List<Topic> topicList = showTopicService.findTopicsNameCreatedByUser(userID)
 
         if (topicList.contains(params.topicName)) {
             flash.message = "Topic creation failed,topic with name : ${params.topicName} already exists!"

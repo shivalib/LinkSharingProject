@@ -13,7 +13,6 @@ class HomeController {
     def topicSubscriptionService
 
     def index() {
-
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5
 
