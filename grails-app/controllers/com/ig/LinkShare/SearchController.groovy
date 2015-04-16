@@ -18,7 +18,6 @@ class SearchController {
     }
 
     def searchTopic() {
-
         User currentUser = springSecurityService.currentUser
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5

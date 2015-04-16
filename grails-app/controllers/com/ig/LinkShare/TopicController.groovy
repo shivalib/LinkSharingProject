@@ -106,6 +106,7 @@ class TopicController {
         forward(controller: "showPost", action: "index")
     }
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def deleteResource(Long id) {
         Resource resource = Resource.get(id)
         if (resource.delete(failOnError: true, flush: true)) {
@@ -116,6 +117,7 @@ class TopicController {
         forward(controller: "home", action: "index")
     }
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def deleteTopic(Long id) {
         Topic topic = Topic.get(id)
         topic.delete(flush: true)

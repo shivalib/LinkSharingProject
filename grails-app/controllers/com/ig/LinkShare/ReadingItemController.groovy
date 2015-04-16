@@ -3,24 +3,25 @@ package com.ig.LinkShare
 class ReadingItemController {
 
     def markAsReadOrUnread() {
-
         User currentUser = User.findById(params.currentUser)
         Resource resource = Resource.findById(params.currentResource)
-        ReadingItem readingItem = ReadingItem.findByUserAndResource(currentUser, resource)
-        readingItem.isRead = !readingItem.isRead
-
+        ReadingItem readingItem = reverseReadingItem(currentUser, resource)
         readingItem.save(failOnError: true, flush: true)
-        render(template: "/showPost/topicPost",model: [resourceList:readingItem.resource,loginUser:currentUser])
+        render(template: "/showPost/topicPost", model: [resourceList: readingItem.resource, loginUser: currentUser])
     }
 
     def markAsReadOrUnreadForTopicClick() {
 
         User currentUser = User.findById(params.currentUser)
         Resource resource = Resource.findById(params.currentResource)
+        ReadingItem readingItem = reverseReadingItem(currentUser, resource)
+        readingItem.save(failOnError: true, flush: true)
+        render(template: "/subscription/markReadOrUnreadOnTopicClick", model: [resources: readingItem.resource, loginUser: currentUser])
+    }
+
+    def reverseReadingItem(User currentUser, Resource resource) {
         ReadingItem readingItem = ReadingItem.findByUserAndResource(currentUser, resource)
         readingItem.isRead = !readingItem.isRead
-
-        readingItem.save(failOnError: true, flush: true)
-        render(template: "/subscription/markReadOrUnreadOnTopicClick",model: [resources:readingItem.resource,loginUser:currentUser])
+        return readingItem
     }
 }

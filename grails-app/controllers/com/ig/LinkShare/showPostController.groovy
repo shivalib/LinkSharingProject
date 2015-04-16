@@ -1,5 +1,7 @@
 package com.ig.LinkShare
 
+import grails.plugin.springsecurity.annotation.Secured
+
 class showPostController {
     def springSecurityService
     def trendingTopicService
@@ -9,9 +11,6 @@ class showPostController {
 
     def index(Long id) {
         Resource resource = Resource.get(id)
-        int offset = params.offset ? params.int('offset') : 0
-        int max = params.max ? params.int('max') : 5
-
         List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
         User currentUser = springSecurityService.currentUser
 
@@ -21,22 +20,23 @@ class showPostController {
         render(view: "/showPost/viewPost", model: [topicList: topics, loginUser: currentUser, subscription: subscription, trendingTopicList: trendingTopics, resource: resource])
     }
 
+    @Secured(['ROLE_ADMIN'])
     def postsForAdmin() {
         List<Resource> resourceList = showResourceService.calculateResourceListForAdmin()
-        User currentUser =springSecurityService.currentUser
+        User currentUser = springSecurityService.currentUser
         List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
         List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
 
         render(view: "/showPost/viewPost", model: [loginUser: currentUser, topicList: topics, trendingTopicList: trendingTopics, resourceList: resourceList])
     }
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def rateResource() {
         String scr = params.rating
         Float score = scr.toDouble()
         User currentUser = springSecurityService.currentUser
-        Resource resource=Resource.get(params.resourceID)
-
-        ResourceRating resourceRating1 = ResourceRating.findByUserAndResource(currentUser,resource)
+        Resource resource = Resource.get(params.resourceID)
+        ResourceRating resourceRating1 = ResourceRating.findByUserAndResource(currentUser, resource)
 
         if (resourceRating1) {
             resourceRating1.score = score
