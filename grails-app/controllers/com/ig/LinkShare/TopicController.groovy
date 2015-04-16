@@ -11,13 +11,32 @@ class TopicController {
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def index(Long id) {
+        int offset = params.offset ? params.int('offset') : 0
+        int max = params.max ? params.int('max') : 10
+
         Topic topic = Topic.get(id)
         User loginUser = springSecurityService.currentUser
-        List<Subscription> subscriptionList = topicSubscriptionService.subscriptionListOfCurrentTopic(topic)
+
+        List<Subscription> subscriptionList = topicSubscriptionService.subscriptionListOfCurrentTopic(topic, max, offset)
+        def subscribersCount = subscriptionList.totalCount
+
         List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(loginUser)
         List<Resource> resourceList = showResourceService.showResourcesByTopic(topic)
 
-        render(view: "/topic/topicShow", model: [topic: topic, topicList: topics, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
+        render(view: "/topic/topicShow", model: [subscribersCount: subscribersCount, max: max, offset: offset, topic: topic, topicList: topics, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
+    }
+
+    def paginateSubscribersOfTopic(Long id) {
+        int offset = params.offset ? params.int('offset') : 0
+        int max = params.max ? params.int('max') : 10
+
+        Topic topic = Topic.get(id)
+        User loginUser = springSecurityService.currentUser
+
+        List<Subscription> subscriptionList = topicSubscriptionService.subscriptionListOfCurrentTopic(topic, max, offset)
+        def subscribersCount = subscriptionList.totalCount
+
+        render(template: 'subscribersOfTopic', model: [loginUser: loginUser, subscribers: subscriptionList, subscribersCount: subscribersCount, max: max, offset: offset])
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])

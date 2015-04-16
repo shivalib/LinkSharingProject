@@ -41,7 +41,6 @@
                             </h5>
                         </div>
                         <br>
-
                         <div>
                             <ls:ifAlreadySubscribed topic="${topic}"/>
                             <ls:isSubscribed currentUser="${loginUser}" topicID="${topic}"/>
@@ -59,32 +58,9 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Users : ${topic.topicName}</h3>
             </div>
-            <g:each in="${subscribers}" var="subscriberList">
-                <div class="panel-body">
-                    <div class="media ">
-                        <div class="media-left">
-                            <ls:userPhoto currentUser="${subscriberList.user}"/>
-                        </div>
-
-                        <div class="media-body">
-                            <h4 class="media-heading">${subscriberList.user.fullName}</h4>
-
-                            <div>
-                                <h5>@${subscriberList.user.username}</h5>
-                            </div>
-
-                            <div>
-                                <span class="left leftdiv">Subscriptions
-                                    <div>${subscriberList.user.subscriptions.size()}</div>
-                                </span>
-                                <span class="left leftdiv">Topics
-                                    <div>${subscriberList.user.topics.size()}</div>
-                                </span>
-                            </div>
-                        </div><!--media body ends-->
-                    </div><!--media ends -->
-                </div><!--panel body ends-->
-            </g:each>
+            <div id="updateSubscribers">
+                <g:render template="subscribersOfTopic" model="[subscribersCount:subscribersCount,max:max,offset:offset,topicID:topic.id]"/>
+            </div>
         </div><!-- panel ends-->
     </div><!--col md-5 ends-->
 
