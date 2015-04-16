@@ -62,7 +62,7 @@
 
             <div id="inboxDiv">
                 <g:render template="/dashboard/iterateInbox"
-                model="[readingItemListWithIsReadFalse: readingItemListWithIsReadFalse]"/>
+                model="[readingItemListWithIsReadFalse: readingItemListWithIsReadFalse,max:max,offset:offset,totalInboxItems:totalInboxItems]"/>
             </div>
         </div><!--panel ends-->
     </div><!--col-md-7-->

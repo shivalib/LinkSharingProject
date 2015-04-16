@@ -18,7 +18,7 @@ class HomeController {
 
         List<Resource> resources = showResourceService.calculateResourceList(max, offset)
 
-        render(view: "/login/homePage", model: [resources: resources,postUrl:params.postUrl,rememberMeParameter:grailsApplication.config.rememberMe.parameter,resourceCount: resources.count])
+        render(view: "/login/homePage", model: [resources: resources, postUrl: params.postUrl, rememberMeParameter: grailsApplication.config.rememberMe.parameter, resourceCount: resources.count])
     }
 
     def activateRegisteredUser(Long id) {
@@ -33,6 +33,9 @@ class HomeController {
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def dashboard() {
+        int offset = params.offset ? params.int('offset') : 0
+        int max = params.max ? params.int('max') : 5
+
         def currentUser = springSecurityService.currentUser
 
         List<Subscription> subscriptionList = topicSubscriptionService.showTop5Subscription(currentUser)
@@ -41,9 +44,22 @@ class HomeController {
 
         List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
 
-        List<ReadingItem> readingItemListWithIsReadFalse = showInboxService.showInbox(currentUser)
+        List<ReadingItem> readingItemListWithIsReadFalse = showInboxService.showInbox(currentUser, max, offset)
+        def totalInboxItems = readingItemListWithIsReadFalse.totalCount
 
-        render(view: '/home/dashboard', model: [loginUser: currentUser, readingItemListWithIsReadFalse: readingItemListWithIsReadFalse, topicList: topics, top5SubscribedTopics: subscriptionList, trendingTopicList: trendingTopicList])
+        render(view: '/home/dashboard', model: [loginUser: currentUser, readingItemListWithIsReadFalse: readingItemListWithIsReadFalse, topicList: topics, max: max, offset: offset, totalInboxItems: totalInboxItems, top5SubscribedTopics: subscriptionList, trendingTopicList: trendingTopicList])
+    }
+
+    def paginateInbox() {
+        int offset = params.offset ? params.int('offset') : 0
+        int max = params.max ? params.int('max') : 5
+
+        def currentUser = springSecurityService.currentUser
+        List<ReadingItem> readingItemListWithIsReadFalse = showInboxService.showInbox(currentUser, max, offset)
+        def totalInboxItems = readingItemListWithIsReadFalse.totalCount
+
+        render(template: '/dashboard/iterateInbox', model: [loginUser: currentUser, readingItemListWithIsReadFalse: readingItemListWithIsReadFalse, totalInboxItems: totalInboxItems, max: max, offset: offset])
+
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
