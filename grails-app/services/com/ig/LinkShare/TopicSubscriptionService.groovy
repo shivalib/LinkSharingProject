@@ -7,7 +7,7 @@ import grails.transaction.Transactional
 @Transactional
 class TopicSubscriptionService {
 
-    ReadingItemService readingItemService
+    def readingItemService
 
     Subscription subscribeTopic(User user, Topic topic) {
         Subscription subscription = new Subscription(seriousness: Seriousness.VERYSERIOUS)

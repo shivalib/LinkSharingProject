@@ -5,10 +5,6 @@ import grails.transaction.Transactional
 
 @Transactional
 class SearchService {
-    UserService userService
-
-
-
     List<ReadingItem> searchInbox(User user,String searchInbox) {
 
         List<ReadingItem> readingItems1 = ReadingItem.createCriteria().list {

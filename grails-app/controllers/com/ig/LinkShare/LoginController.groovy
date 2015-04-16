@@ -72,7 +72,7 @@ class LoginController {
             user.save(failOnError: true, flush: true)
             flash.message = "Password update Successful!"
         }
-        redirect(controller: "home", action: "index")
+        redirect(controller: "login", action: "auth")
     }
 
     Boolean validateEmail() {

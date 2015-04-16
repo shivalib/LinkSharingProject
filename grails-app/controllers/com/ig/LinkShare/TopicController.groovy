@@ -26,6 +26,7 @@ class TopicController {
         render(view: "/topic/topicShow", model: [subscribersCount: subscribersCount, max: max, offset: offset, topic: topic, topicList: topics, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
     }
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def paginateSubscribersOfTopic(Long id) {
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 10
@@ -37,6 +38,16 @@ class TopicController {
         def subscribersCount = subscriptionList.totalCount
 
         render(template: 'subscribersOfTopic', model: [loginUser: loginUser, subscribers: subscriptionList, subscribersCount: subscribersCount, max: max, offset: offset])
+    }
+
+    def paginatePostsOfTopic(Long id){
+        int offset = params.offset ? params.int('offset') : 0
+        int max = params.max ? params.int('max') : 10
+
+        Topic topic = Topic.get(id)
+        List<Resource> resourceList = showResourceService.showResourcesByTopic(topic)
+
+
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])

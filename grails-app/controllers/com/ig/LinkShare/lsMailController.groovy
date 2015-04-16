@@ -3,7 +3,7 @@ package com.ig.LinkShare
 class lsMailController {
 
     def sendInvite(Long id) {
-        Topic topic=Topic.get(id)
+        Topic topic = Topic.get(id)
 
         sendMail {
             to "${params.emailID}"
@@ -26,16 +26,21 @@ class lsMailController {
     }
 
     def resetPasswordLink() {
-        User user=User.findByEmail(params.emailID)
-        UserToken userToken=UserToken.findByUser(user)
+        User user = User.findByEmail(params.email)
+        if (!user) {
+            flash.message = "Sorry, no such emailID exists. Please enter a valid emailID"
+            redirect(controller: 'login', action: 'forgotPassword')
+        } else {
+            UserToken userToken = UserToken.findByUser(user)
 
-        sendMail {
-            to "${params.emailID}"
-            subject "Reset : Password"
-            html "${g.link(controller: "user", action: "resetPassword",id: "${userToken.id}", absolute: "true", { "click on the link to change your password" })}"
+            sendMail {
+                to "${params.email}"
+                subject "Reset : Password"
+                html "${g.link(controller: "user", action: "resetPassword", id: "${userToken.id}", absolute: "true", { "click on the link to change your password" })}"
+            }
+            flash.message = "Link to reset password have been sent to ${params.email}"
+            redirect(controller: "login", action: "forgotPassword")
         }
-        flash.message = "Link to reset password have been sent to ${params.emailID}"
-        redirect(controller: "login", action: "forgotPassword")
     }
 
 }

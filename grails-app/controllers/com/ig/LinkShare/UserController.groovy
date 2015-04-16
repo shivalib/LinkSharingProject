@@ -76,7 +76,6 @@ class UserController {
 
         UserToken userToken = UserToken.get(id)
         def emailID = userToken.user.email
-
         render(view: "/login/resetPassword", model: [emailID: emailID])
     }
 
