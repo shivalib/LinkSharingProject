@@ -34,6 +34,7 @@ class TopicController {
         render(view: "topicList", model: [loginUser: currentUser, topicList: topicList])
     }
 
+
     def createTopic() {
         User userID = springSecurityService.currentUser
         List<Topic> topicList = showTopicService.findTopicsNameCreatedByUser(userID)

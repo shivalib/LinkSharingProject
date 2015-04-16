@@ -107,8 +107,8 @@
                     </div>
 
                     <div class="right">
-                        <g:submitButton name="invite" class="btn btn-default" value="Invite"/>
-                        <g:submitButton name="reset" class="btn btn-default" data-dismiss="modal"
+                        <g:submitButton name="invite" class="btn btn-primary" value="Invite"/>
+                        <g:submitButton name="reset" class="btn btn-primary" data-dismiss="modal"
                                         value="Cancel"/>
                     </div>
                 </g:form>
@@ -146,8 +146,8 @@
                     </div>
 
                     <div class="right">
-                        <g:submitButton name="submit" class="btn btn-default" value="Share"/>
-                        <g:submitButton name="cancel" class="btn btn-default" data-dismiss="modal"
+                        <g:submitButton name="submit" class="btn btn-primary" value="Share"/>
+                        <g:submitButton name="cancel" class="btn btn-primary" data-dismiss="modal"
                                         value="Cancel"/>
 
                     </div>
@@ -187,8 +187,8 @@
                     </div>
 
                     <div class="right">
-                        <g:submitButton name="share" value="Share" class="btn btn-default"/>
-                        <g:submitButton name="reset" value="Cancel" class="btn btn-default"
+                        <g:submitButton name="share" value="Share" class="btn btn-primary"/>
+                        <g:submitButton name="reset" value="Cancel" class="btn btn-primary"
                                         data-dismiss="modal"/>
                     </div>
                 </g:form>
@@ -223,7 +223,7 @@
 
                     <div class="right">
                         <g:submitButton class="btn btn-primary" name="save" value="Save"/>
-                        <g:submitButton name="cancel" value="Cancel" class="btn btn-default"
+                        <g:submitButton name="cancel" value="Cancel" class="btn btn-primary"
                                         data-dismiss="modal"/>
                     </div>
                 </g:form>

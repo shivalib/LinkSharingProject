@@ -2,6 +2,7 @@
     <div class="media-left">
         <ls:userPhoto currentUser="${loginUser}"/>
     </div>
+
     <div class="media-body">
         <h4 class="media-heading">
             <secUser:loggedInUserInfo field="fullName"/>
@@ -13,15 +14,11 @@
 
         <div>
             <span class="left leftdiv">
-
                 <g:link controller="subscription" action="showAllSubscriptions">Subscriptions</g:link>
-
                 <div>${loginUser.subscriptions.size()}</div>
             </span>
             <span class="left leftdiv">
-
                 <g:link controller="topic" action="showTopicList">Topics</g:link>
-
                 <div>${loginUser.topics.size()}</div>
             </span>
         </div>
