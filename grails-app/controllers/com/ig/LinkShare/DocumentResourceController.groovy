@@ -1,5 +1,8 @@
 package com.ig.LinkShare
 
+import grails.plugin.springsecurity.annotation.Secured
+
+@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class DocumentResourceController {
 
     def scaffold = true
@@ -9,25 +12,26 @@ class DocumentResourceController {
 
     def shareDocument() {
         User createdBy = springSecurityService.currentUser
-
         Topic topic = Topic.findWhere(topicName: params.topic)
 
-        DocumentResource documentResource = new DocumentResource(description: params.description)
-        topic.addToResources(documentResource)
-        createdBy.addToResources(documentResource)
-
+        DocumentResource documentResource=createNewDocumentResource(createdBy,topic)
         documentResource = uploadService.uploadDocument(documentResource, params.docFile, grailsApplication.config.upload.uploadDocument)
 
         if (documentResource.save(failOnError: true)) {
-
             readingItemService.markReading(createdBy, documentResource, true)
-
             flash.message = "Your Document has been shared !"
         } else {
             flash.message = "Sorry , link sharing failed !"
         }
         redirect(controller: "home", action: "dashboard")
 
+    }
+
+    def createNewDocumentResource(User user,Topic topic){
+        DocumentResource documentResource = new DocumentResource(description: params.description)
+        topic.addToResources(documentResource)
+        user.addToResources(documentResource)
+        return documentResource
     }
 
     def downloadResource() {
