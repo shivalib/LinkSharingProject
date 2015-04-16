@@ -9,6 +9,7 @@ class TopicController {
     def showTopicService
     def springSecurityService
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def index(Long id) {
         Topic topic = Topic.get(id)
         User loginUser = springSecurityService.currentUser
@@ -19,6 +20,7 @@ class TopicController {
         render(view: "/topic/topicShow", model: [topic: topic, topicList: topics, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
     }
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def showTopicList() {
         User currentUser = springSecurityService.currentUser
         List<Topic> topicsCreatedByUser = showTopicService.findTopicsCreatedByUser(currentUser)
@@ -41,13 +43,10 @@ class TopicController {
         if (topicList.contains(params.topicName)) {
             flash.message = "Topic creation failed,topic with name : ${params.topicName} already exists!"
         } else {
-
-            def topic1=createNewTopicObject(userID)
+            def topic1 = createNewTopicObject(userID)
 
             if (topic1.save(failOnError: true)) {
-
-                Subscription subscribe = topicSubscriptionService.subscribeTopic(userID, topic1)
-
+                topicSubscriptionService.subscribeTopic(userID, topic1)
                 flash.message = "Your topic has been created!"
             } else {
                 flash.message = "Sorry, topic creation failed!"
@@ -56,7 +55,8 @@ class TopicController {
         redirect(controller: "home", action: "dashboard")
     }
 
-    def createNewTopicObject(User user){
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    def createNewTopicObject(User user) {
         Topic topic1 = new Topic(topicName: params.topicName, visibility: params.topicType)
         user.addToTopics(topic1)
         return topic1
@@ -64,16 +64,21 @@ class TopicController {
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     Boolean validateTopicName() {
+        List<Topic> topicList = listAllTopicNames()
+        if (topicList.contains(params.topicName))
+            render true
+        else
+            render false
+    }
+
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    def listAllTopicNames() {
         List<Topic> topicList = Topic.createCriteria().list {
             projections {
                 property("topicName")
             }
         }
-
-        if (topicList.contains(params.topicName))
-            render true
-        else
-            render false
+        return topicList
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
@@ -93,14 +98,11 @@ class TopicController {
     def updateResource(Long id) {
         Resource resource = Resource.get(id)
         resource.description = params.description
-        resource.save(failOnError: true, flush: true)
-
         if (resource.save(failOnError: true, flush: true)) {
             flash.message = "Resource have been successfully edited to : ${resource.description}!"
         } else {
             flash.message = "Resource editing failed!"
         }
-
         forward(controller: "showPost", action: "index")
     }
 

@@ -69,7 +69,7 @@ class ApplicationTagLib {
         Subscription subscription=Subscription.findByUserAndTopic(currentUser,topic)
         if(subscription)
         {
-            out<<g.render(template: '/subscription/unsubscribe',model: [tpic])
+            out<<g.render(template: '/subscription/unsubscribe',model: [topic:topic])
         }
 
     }
