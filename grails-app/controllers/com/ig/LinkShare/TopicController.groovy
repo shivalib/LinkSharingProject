@@ -21,10 +21,9 @@ class TopicController {
 
     def showTopicList() {
         User currentUser = springSecurityService.currentUser
+        List<Topic> topicsCreatedByUser = showTopicService.findTopicsCreatedByUser(currentUser)
 
-        List<Topic> topics = showTopicService.findTopicsCreatedByUser(currentUser)
-
-        render(view: "topicList", model: [loginUser: currentUser, topicList: topics])
+        render(view: "topicList", model: [loginUser: currentUser, topicList: topicsCreatedByUser])
     }
 
     @Secured(['ROLE_ADMIN'])
@@ -34,7 +33,7 @@ class TopicController {
         render(view: "topicList", model: [loginUser: currentUser, topicList: topicList])
     }
 
-
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def createTopic() {
         User userID = springSecurityService.currentUser
         List<Topic> topicList = showTopicService.findTopicsNameCreatedByUser(userID)
@@ -42,8 +41,8 @@ class TopicController {
         if (topicList.contains(params.topicName)) {
             flash.message = "Topic creation failed,topic with name : ${params.topicName} already exists!"
         } else {
-            Topic topic1 = new Topic(topicName: params.topicName, visibility: params.topicType)
-            userID.addToTopics(topic1)
+
+            def topic1=createNewTopicObject(userID)
 
             if (topic1.save(failOnError: true)) {
 
@@ -57,8 +56,14 @@ class TopicController {
         redirect(controller: "home", action: "dashboard")
     }
 
-    Boolean validateTopicName() {
+    def createNewTopicObject(User user){
+        Topic topic1 = new Topic(topicName: params.topicName, visibility: params.topicType)
+        user.addToTopics(topic1)
+        return topic1
+    }
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    Boolean validateTopicName() {
         List<Topic> topicList = Topic.createCriteria().list {
             projections {
                 property("topicName")
@@ -71,6 +76,7 @@ class TopicController {
             render false
     }
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def updateTopic(Long id) {
         Topic topic = Topic.load(id)
         topic.topicName = params.topicName
@@ -83,11 +89,10 @@ class TopicController {
         forward(controller: "home", action: "dashboard")
     }
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def updateResource(Long id) {
-
         Resource resource = Resource.get(id)
         resource.description = params.description
-
         resource.save(failOnError: true, flush: true)
 
         if (resource.save(failOnError: true, flush: true)) {
@@ -101,7 +106,6 @@ class TopicController {
 
     def deleteResource(Long id) {
         Resource resource = Resource.get(id)
-
         if (resource.delete(failOnError: true, flush: true)) {
             flash.message = "Resource have been removed!"
         } else {
@@ -111,7 +115,6 @@ class TopicController {
     }
 
     def deleteTopic(Long id) {
-
         Topic topic = Topic.get(id)
         topic.delete(flush: true)
         flash.message = "Topic is successfully deleted!"

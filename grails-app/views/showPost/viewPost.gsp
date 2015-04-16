@@ -39,8 +39,6 @@
             <g:render template="/home/notLogin"/>
         </sec:ifNotLoggedIn>
     </div>
-
 </div>
-
 </body>
 </html>
