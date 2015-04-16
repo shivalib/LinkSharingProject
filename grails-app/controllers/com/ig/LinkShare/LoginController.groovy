@@ -15,51 +15,42 @@ class LoginController {
 
     def index() {
         if (springSecurityService.isLoggedIn()) {
-        redirect uri: grailsApplication.config.successHandler.defaultTargetUrl
-        }
-        else {
+            redirect uri: grailsApplication.config.successHandler.defaultTargetUrl
+        } else {
             redirect action: 'auth', params: params
         }
     }
 
     def auth() {
-
         def config = SpringSecurityUtils.securityConfig
-
         if (springSecurityService.isLoggedIn()) {
             redirect uri: '/home/dashboard'
             return
         }
         String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
-        redirect(controller: 'home',action: 'index',params: [postUrl: postUrl,rememberMeParameter: config.rememberMe.parameter])
+        redirect(controller: 'home', action: 'index', params: [postUrl: postUrl, rememberMeParameter: config.rememberMe.parameter])
     }
 
     def authfail() {
-
         String msg = ''
         def exception = session[WebAttributes.AUTHENTICATION_EXCEPTION]
         if (exception) {
             if (exception instanceof AccountExpiredException) {
                 msg = g.message(code: "springSecurity.errors.login.expired")
-            }
-            else if (exception instanceof CredentialsExpiredException) {
+            } else if (exception instanceof CredentialsExpiredException) {
                 msg = g.message(code: "springSecurity.errors.login.passwordExpired")
-            }
-            else if (exception instanceof DisabledException) {
+            } else if (exception instanceof DisabledException) {
                 msg = g.message(code: "springSecurity.errors.login.disabled")
-            }
-            else if (exception instanceof LockedException) {
+            } else if (exception instanceof LockedException) {
                 msg = g.message(code: "springSecurity.errors.login.locked")
-            }
-            else {
+            } else {
                 msg = g.message(code: "springSecurity.errors.login.fail")
             }
         }
 
         if (springSecurityService.isAjax(request)) {
             render([error: msg] as JSON)
-        }
-        else {
+        } else {
             flash.message = msg
             redirect action: 'auth', params: params
         }
@@ -70,7 +61,6 @@ class LoginController {
     }
 
     def resetThePassword(UserCO userCO) {
-
         if (!userCO.validate()) {
             userCO.errors.allErrors.each {
                 println it
@@ -83,32 +73,41 @@ class LoginController {
             flash.message = "Password update Successful!"
         }
         redirect(controller: "home", action: "index")
-
     }
 
     Boolean validateEmail() {
-        List<User> userList = User.createCriteria().list {
-            projections {
-                property("email")
-            }
-        }
-        if (userList.contains(params.email))
+        def userEmails = checkIfEmailExists()
+        if (userEmails.contains(params.email))
             render true
         else
             render false
     }
 
+    def checkIfEmailExists() {
+        List<User> userList = User.createCriteria().list {
+            projections {
+                property("email")
+            }
+        }
+        return userList
+    }
+
     Boolean validateUsername() {
+        def usernameList = checkIfUsernameExists()
+        if (usernameList.contains(params.username)) {
+            render false
+        } else {
+            render true
+        }
+    }
+
+    def checkIfUsernameExists() {
         List<User> userList = User.createCriteria().list {
             projections {
                 property("username")
             }
         }
-        if (userList.contains(params.username)) {
-            render false
-        } else {
-            render true
-        }
+        return userList
     }
 
 

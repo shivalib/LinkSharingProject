@@ -11,9 +11,7 @@ class LinkResourceController {
     def shareLink() {
         User user = springSecurityService.currentUser
         Topic topic = Topic.findWhere(createdBy: user, topicName: params.topicList)
-
         LinkResource linkResource = createLinkResource(user, topic)
-
         if (linkResource.save(failOnError: true)) {
             readingItemService.markReading(user, linkResource, true)
             flash.message = "Your link has been created !"
