@@ -25,8 +25,7 @@
                         <g:select name="seriousness" from="${com.ig.LinkShare.applicationEnums.Seriousness}"/>
                     </div>
 
-                    <div class="right
-                    ">
+                    <div class="right">
                         <g:submitButton name="Save" class="btn btn-default" value="Save"/>
                         <g:submitButton name="close" value="Close" class="btn btn-default"
                                         data-dismiss="modal"></g:submitButton>

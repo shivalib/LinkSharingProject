@@ -6,7 +6,6 @@ import grails.plugin.springsecurity.annotation.Secured
 @Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class SubscriptionController {
     def scaffold = Subscription
-
     def readingItemService
     def searchService
     def showTopicService
@@ -14,7 +13,6 @@ class SubscriptionController {
     def springSecurityService
 
     def showAllSubscriptions() {
-
         User currentUser = springSecurityService.currentUser
         List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
 
@@ -28,20 +26,13 @@ class SubscriptionController {
     }
 
     def subscribeUser() {
-
         User currentUser = springSecurityService.currentUser
-
         Topic topic = Topic.findByTopicName(params.topicName)
 
-        Subscription subscription = new Subscription(seriousness: params.seriousness)
-        currentUser.addToSubscriptions(subscription)
-        topic.addToSubscriptions(subscription)
+        Subscription subscription=createNewSubscription(currentUser,topic)
 
         if (subscription.save(failOnError: true)) {
-            List<Resource> resourceListOfCurrentUser = Resource.findAllWhere(topic: topic)
-            resourceListOfCurrentUser.each { Resource resource ->
-                readingItemService.markReading(currentUser, resource, false)
-            }
+            setReadingItemForSubscribedUser(currentUser,topic)
             flash.message = "You have been successfully subscribed to ${params.topicName} !"
         } else {
             flash.message = "Sorry, subscription failed !"
@@ -49,6 +40,20 @@ class SubscriptionController {
         }
         redirect(controller: "home", action: "dashboard")
 
+    }
+
+    def createNewSubscription(User currentUser,Topic topic){
+        Subscription subscription = new Subscription(seriousness: params.seriousness)
+        currentUser.addToSubscriptions(subscription)
+        topic.addToSubscriptions(subscription)
+        return subscription
+    }
+
+    def setReadingItemForSubscribedUser(User currentUser,Topic topic){
+        List<Resource> resourceListOfCurrentUser = Resource.findAllWhere(topic: topic)
+        resourceListOfCurrentUser.each { Resource resource ->
+            readingItemService.markReading(currentUser, resource, false)
+        }
     }
 
     def unSubscribeTopic(Long id) {
@@ -59,7 +64,6 @@ class SubscriptionController {
             flash.message="You cannot unsubscribe the topic being the owner"
         }
         else {
-
             Subscription subscription = Subscription.findByUserAndTopic(currentUser, topic)
             subscription.delete(flush: true)
             flash.message = "You have been successfully unsubscribed from topic : ${topic.topicName} "
