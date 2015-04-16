@@ -22,9 +22,8 @@
 
             <div class="panel-body">
                 <g:each in="${resources}" var="res">
-                    <ls:showListingPages resource="${res}"/>
+                    <g:render template="/home/recentShare" model="[res:res]"/>
                 </g:each>
-
             </div><!--panel body end -->
         </div><!--panel end-->
 

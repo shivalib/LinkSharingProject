@@ -24,9 +24,7 @@
 
             <g:each in="${subscriptionTopicList}" var="topics">
                 <div class="panel-body">
-
-                    <ls:topicListing topics="${topics}" loginUser="${loginUser}"
-                                     subscriptionList="${subscriptionTopicList}"/>
+                    <g:render template="/topic/showTopic" model="[topics:topics]"/>
                 </div><!--panel body ends-->
             </g:each>
         </div><!--panel ends-->

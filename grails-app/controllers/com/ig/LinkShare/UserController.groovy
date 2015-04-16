@@ -93,9 +93,6 @@ class UserController {
                 userList = User.findAll()
                 break
         }
-
         render(template: "/userListing/userEntry", model: [userList: userList])
-
     }
-
 }
