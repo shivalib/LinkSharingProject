@@ -38,5 +38,4 @@
 
         </div><!--panel body ends-->
     </g:each>
-
 </div><!--panel ends-->

@@ -1,9 +1,11 @@
 package com.ig.LinkShare
 
+import grails.plugin.springsecurity.SpringSecurityUtils
+
 class SecureTagLib {
     def springSecurityService
-    static defaultEncodeAs = [taglib:'html']
-    //static encodeAsForTags = [tagName: [taglib:'html'], otherTagName: [taglib:'none']]
+//    static defaultEncodeAs = [taglib: 'html']
+    static defaultEncodeAs='raw'
     static namespace = "secUser"
 
     def loggedInUserInfo = { attrs, body ->
@@ -21,8 +23,7 @@ class SecureTagLib {
 
         if (source) {
             out << source.encodeAsHTML()
-        }
-        else {
+        } else {
             out << body()
         }
     }
@@ -35,9 +36,23 @@ class SecureTagLib {
     }
 
     protected determineSource() {
-        def currentUser=springSecurityService.currentUser
-
+        def currentUser = springSecurityService.currentUser
         currentUser
     }
+
+    def ifAllGrantedRoleAndAction = { attrs, body ->
+        String roles = assertAttribute('roles', attrs, 'ifAllGranted')
+        if (SpringSecurityUtils.ifAllGranted(roles) && attrs.actionName == 'postsForAdmin') {
+            out <<body()
+        }
+    }
+
+    def ifAnyGrantedRoleAndAction = { attrs, body ->
+        String roles = assertAttribute('roles', attrs, 'ifAnyGranted')
+        if (SpringSecurityUtils.ifAnyGranted(roles) && attrs.actionName == 'index') {
+            out << body()
+        }
+    }
+
 
 }

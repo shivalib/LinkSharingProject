@@ -58,7 +58,6 @@ class HomeController {
         render(template: '/dashboard/iterateInbox', model: [loginUser: currentUser, readingItemListWithIsReadFalse: readingItemListWithIsReadFalse, totalInboxItems: totalInboxItems, max: max, offset: offset])
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def showTopPosts() {
         List<Resource> resources1 = showResourceService.showTopPost(params.timeValue)
         render(template: "/home/topPosts", model: [resource: resources1])

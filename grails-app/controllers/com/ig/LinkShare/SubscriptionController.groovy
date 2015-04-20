@@ -22,17 +22,18 @@ class SubscriptionController {
         List<Subscription> subscriptions = topicSubscriptionService.userSubscriptions(currentUser, max, offset)
         int total = subscriptions.totalCount
 
-        render(view: "topicSubscription", model: [loginUser: currentUser, subscriptions: subscriptions, topicList: topics, max: max, offset: offset, subscriptionCount: total])
+        List<Subscription> sortedSubscriptionList=subscriptions.sort{it.topic.topicName}
+
+        render(view: "topicSubscription", model: [loginUser: currentUser, subscriptions: sortedSubscriptionList, topicList: topics, max: max, offset: offset, subscriptionCount: total])
     }
 
     def subscribeUser() {
         User currentUser = springSecurityService.currentUser
         Topic topic = Topic.findByTopicName(params.topicName)
-
-        Subscription subscription=createNewSubscription(currentUser,topic)
+        Subscription subscription = createNewSubscription(currentUser, topic)
 
         if (subscription.save(failOnError: true)) {
-            setReadingItemForSubscribedUser(currentUser,topic)
+            setReadingItemForSubscribedUser(currentUser, topic)
             flash.message = "You have been successfully subscribed to ${params.topicName} !"
         } else {
             flash.message = "Sorry, subscription failed !"
@@ -42,14 +43,14 @@ class SubscriptionController {
 
     }
 
-    def createNewSubscription(User currentUser,Topic topic){
+    def createNewSubscription(User currentUser, Topic topic) {
         Subscription subscription = new Subscription(seriousness: params.seriousness)
         currentUser.addToSubscriptions(subscription)
         topic.addToSubscriptions(subscription)
         return subscription
     }
 
-    def setReadingItemForSubscribedUser(User currentUser,Topic topic){
+    def setReadingItemForSubscribedUser(User currentUser, Topic topic) {
         List<Resource> resourceListOfCurrentUser = Resource.findAllWhere(topic: topic)
         resourceListOfCurrentUser.each { Resource resource ->
             readingItemService.markReading(currentUser, resource, false)
@@ -59,11 +60,9 @@ class SubscriptionController {
     def unSubscribeTopic(Long id) {
         User currentUser = springSecurityService.currentUser
         Topic topic = Topic.get(id)
-        if(topic.createdBy==currentUser)
-        {
-            flash.message="You cannot unsubscribe the topic being the owner"
-        }
-        else {
+        if (topic.createdBy == currentUser) {
+            flash.message = "You cannot unsubscribe the topic being the owner"
+        } else {
             Subscription subscription = Subscription.findByUserAndTopic(currentUser, topic)
             subscription.delete(flush: true)
             flash.message = "You have been successfully unsubscribed from topic : ${topic.topicName} "

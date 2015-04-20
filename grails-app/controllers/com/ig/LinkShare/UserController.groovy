@@ -15,7 +15,7 @@ class UserController {
         List<User> userList = User.list()
         User currentUser = springSecurityService.currentUser
         List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
-        render(view: "/userListing/userListing", model: [userList: userList, loginUser: currentUser, topicList: topics.topicName])
+        render(view: "/userListing/userListing", model: [userList: userList, loginUser: currentUser, topicList: topics])
     }
 
     @Secured(['ROLE_ADMIN'])

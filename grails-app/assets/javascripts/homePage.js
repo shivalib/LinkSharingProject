@@ -98,8 +98,6 @@ $(document).ready(function () {
     })
 
     $('#timeBasedData').on('change', function () {
-        console.log('heya i m here!')
-
         var url=$(this).attr('data-changeDataOnTimeBasis')
         console.log(url)
 

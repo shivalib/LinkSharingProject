@@ -17,17 +17,19 @@
 <body>
 <div class="row">
     <div class="col-md-7">
-        <sec:ifAllGranted roles="ROLE_ADMIN">
-            <g:render template="postForAdmin"/>
-        </sec:ifAllGranted>
+        <secUser:ifAllGrantedRoleAndAction roles="ROLE_ADMIN" actionName="${actionName}">
+            post for admin
+            <g:render template="postForAdmin" model="[resourceList: resourceList, loginUser: loginUser]"/>
+        </secUser:ifAllGrantedRoleAndAction>
 
-        <sec:ifAllGranted roles="ROLE_USER">
-            <g:render template="postForNonAdmin"/>
-        </sec:ifAllGranted>
+        <secUser:ifAnyGrantedRoleAndAction roles="ROLE_USER,ROLE_ADMIN" actionName="${actionName}">
+            <g:render template="postForNonAdmin" model="[resource: resource, loginUser: loginUser]"/>
+        </secUser:ifAnyGrantedRoleAndAction>
 
         <sec:ifNotGranted roles="ROLE_USER,ROLE_ADMIN">
             <g:render template="postForNonRegisteredUser"/>
         </sec:ifNotGranted>
+
     </div><!--col-md-7 ends-->
 
     <div class="col-md-5">

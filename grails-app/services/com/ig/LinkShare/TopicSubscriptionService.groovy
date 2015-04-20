@@ -19,8 +19,8 @@ class TopicSubscriptionService {
         }
     }
 
-    List<Subscription> subscriptionListOfCurrentTopic(Topic topic,def max,def offset) {
-        List<Subscription> subscriptions = Subscription.createCriteria().list(max:max,offset:offset){
+    List<Subscription> subscriptionListOfCurrentTopic(Topic topic, def max, def offset) {
+        List<Subscription> subscriptions = Subscription.createCriteria().list(max: max, offset: offset) {
             eq('topic', topic)
         }
         return subscriptions

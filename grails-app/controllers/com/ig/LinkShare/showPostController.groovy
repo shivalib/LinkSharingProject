@@ -20,7 +20,7 @@ class showPostController {
         render(view: "/showPost/viewPost", model: [topicList: topics, loginUser: currentUser, subscription: subscription, trendingTopicList: trendingTopics, resource: resource])
     }
 
-    @Secured(['ROLE_ADMIN'])
+//    @Secured(['ROLE_ADMIN'])
     def postsForAdmin() {
         List<Resource> resourceList = showResourceService.calculateResourceListForAdmin()
         User currentUser = springSecurityService.currentUser

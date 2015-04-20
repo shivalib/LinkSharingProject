@@ -1,7 +1,6 @@
 <div class="panel panel-default leftdiv">
     <div class="panel-body">
         <div class="media ">
-
             <div class="media-left">
                 <ls:userPhoto currentUser="${resource.createdBy}"/>
             </div>
