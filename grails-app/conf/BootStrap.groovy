@@ -7,7 +7,6 @@ class BootStrap {
     def init = { servletContext ->
 
         def adminUser=User.findByUsername('admin')?:new User(firstName: 'shivali',lastName: 'batra',username: 'admin',password: 'admin',email: 'shivalib+admin@intelligrape.com').save(failOnError: true,flush: true)
-
         def basicUser=User.findByUsername('guest')?:new User(firstName: 'rahul',lastName: 'sharma',username: 'guest',password: 'guest',email: 'abc@gmail.com').save(failOnError: true,flush: true)
 
         def userRole=SecRole.findByAuthority('ROLE_USER')?:new SecRole(authority: 'ROLE_USER').save(failOnError: true,flush: true)
