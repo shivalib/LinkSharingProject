@@ -29,8 +29,6 @@ class UserController {
 
     def registerUser(User user, UserCO userCO) {
         user.active = false
-        user.admin = false
-
         user.photoPath = uploadService.uploadImage(user, params.img, grailsApplication.config.upload.uploadImages.toString())
 
         if (!userCO.validate()) {
