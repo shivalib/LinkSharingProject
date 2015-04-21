@@ -3,12 +3,14 @@ package com.ig.LinkShare
 import com.ig.LinkShare.applicationEnums.UserCO
 import grails.converters.JSON
 import grails.plugin.springsecurity.SpringSecurityUtils
+import org.springframework.security.access.annotation.Secured
 import org.springframework.security.authentication.AccountExpiredException
 import org.springframework.security.authentication.CredentialsExpiredException
 import org.springframework.security.authentication.DisabledException
 import org.springframework.security.authentication.LockedException
 import org.springframework.security.web.WebAttributes
 
+@Secured('permitAll')
 class LoginController {
     def springSecurityService
     def passwordEncoder
