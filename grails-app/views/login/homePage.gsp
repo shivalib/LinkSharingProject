@@ -9,8 +9,6 @@
 </head>
 
 <body>
-<g:render template="/resource/socialIconJS"/>
-
 <div class="row">
     <div class="col-md-8">
 

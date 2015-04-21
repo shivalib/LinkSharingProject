@@ -1,6 +1,4 @@
 
-
-<g:render template="/resource/socialIconJS"/>
 <div class="media updateReadUnread ">
     <div class="media-left">
         <ls:userPhoto currentUser="${resources.topic.createdBy}"/>
