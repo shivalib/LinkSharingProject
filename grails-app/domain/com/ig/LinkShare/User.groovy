@@ -4,15 +4,11 @@ class User extends SecUser{
 
     String firstName
     String lastName
-//    String username
-//    String password
     String photoPath
     String email
-    Boolean admin
     Boolean active
     Date dateCreated
     Date lastUpdated
-//    UserToken userToken
 
     static transients = ['fullName']
 
@@ -25,11 +21,9 @@ class User extends SecUser{
         username blank: false, nullable: false, unique: true
         password blank: false, nullable: false
         email email: true, blank: false, unique: true
-        admin nullable: true
         active nullable: true
         fullName bindable: true
         photoPath nullable: true,blank: true
-//        userToken nullable: true
 
     }
 

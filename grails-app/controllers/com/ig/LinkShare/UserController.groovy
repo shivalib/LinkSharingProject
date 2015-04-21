@@ -41,7 +41,6 @@ class UserController {
 
         } else {
             user.save(failOnError: true, flush: true)
-
             generateToken(user)
             UserToken userToken = UserToken.findByUser(user)
             defineRole(user)
