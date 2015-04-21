@@ -32,7 +32,7 @@ environments {
             username="shivali-batra"
             password="igdefault"
             pooled="true"
-            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:mysql://localhost:3306/shivali-batra_QA"
         }
     }
