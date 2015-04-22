@@ -2,7 +2,7 @@
 
 %{--<!-- AddToAny BEGIN -->--}%
 <div class="a2a_kit">
-    <a class="a2a_button_facebook" linkurl="${g.createLink(controller: "showPost", action: "index", id: resourceID)}">
+    <a class="a2a_button_facebook" data-a2a-url="${g.createLink(controller: "showPost", action: "index", id: resourceID)}">
         <img src="/assets/facebook.png" border="0" alt="Facebook" width="34" height="35"/>
     </a>
     <a class="a2a_button_twitter" linkurl="${g.createLink(controller: "showPost", action: "index", id: resourceID)}">
@@ -12,6 +12,10 @@
         <img src="/assets/icon_google_plus.png" border="0" alt="Google+" width="34" height="35"/>
     </a>
 </div>
-
+<script type="text/javascript">
+    var a2a_config = a2a_config || {};
+    a2a_config.linkurl = "${g.createLink(controller: "showPost", action: "index", id: resourceID)}";
+</script>
 <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
 <!-- AddToAny END -->
+
