@@ -104,6 +104,8 @@
                     <div>
                         <span>Topic* :</span>
                         <g:select name="topicList" from="${topicList}"/>
+                        <g:link controller="topic" action="createTopic" data-toggle="modal"
+                                data-target="#myCreateTopicModal" title="Create Topic">Create New Topic</g:link>
                     </div>
 
                     <div class="right">

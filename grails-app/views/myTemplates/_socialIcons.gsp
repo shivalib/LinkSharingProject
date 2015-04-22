@@ -1,5 +1,3 @@
-
-
 %{--<!-- AddToAny BEGIN -->--}%
 <div class="a2a_kit">
     <a class="a2a_button_facebook" >
