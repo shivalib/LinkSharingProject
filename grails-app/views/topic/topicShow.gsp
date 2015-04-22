@@ -43,7 +43,6 @@
                             <ls:isSubscribed currentUser="${loginUser}" topicID="${topic}"/>
                             <ls:isNotSubscribed currentUser="${loginUser}" topicID="${topic}"
                                                 topicName="${topic.topicName}"/>
-
                         </div>
                     </div><!--media body ends-->
                 </div><!--media ends -->

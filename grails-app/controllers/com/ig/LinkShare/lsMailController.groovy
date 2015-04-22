@@ -8,7 +8,8 @@ class lsMailController {
         sendMail {
             to "${params.emailID}"
             subject "Invite : Subscription"
-            body "${topic.topicName}"
+            html "${g.link(controller: "topic", action: "index", id: id, absolute: "true", { "Have a look at this topic" })}"
+
         }
 
         redirect(controller: "home", action: "dashboard")
