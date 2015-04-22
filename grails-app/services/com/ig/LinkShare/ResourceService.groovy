@@ -8,7 +8,7 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 
 @Transactional
-class ShowResourceService {
+class ResourceService {
 
     List<Resource> showResourcesByTopic(Topic topic) {
 
@@ -29,20 +29,11 @@ class ShowResourceService {
 
     List<Resource> calculateResourceListForAdmin() {
         List<Resource> resources = Resource.createCriteria().list {
-
         }
         return resources
     }
 
     List<Resource> showTopPost(String selectedValue) {
-
-//        List<Resource> resourceRatingList = Resource.createCriteria().list {
-//            'resouceRatings' {
-//                order('score', 'desc')
-//            }
-//        }
-//        return resourceRatingList
-
             DateFormat srcDf = new SimpleDateFormat("dd/MM/yyyy")
             String date = srcDf.format(new Date())
             List<Resource> recentPosts = []

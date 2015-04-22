@@ -4,7 +4,7 @@ import grails.plugin.springsecurity.annotation.Secured
 
 class showPostController {
     def springSecurityService
-    def showResourceService
+    def resourceService
     def resourceRatingService
     def topicService
 
@@ -21,7 +21,7 @@ class showPostController {
 
     @Secured(['ROLE_ADMIN'])
     def postsForAdmin() {
-        List<Resource> resourceList = showResourceService.calculateResourceListForAdmin()
+        List<Resource> resourceList = resourceService.calculateResourceListForAdmin()
         User currentUser = springSecurityService.currentUser
         List<Topic> trendingTopics = topicService.showTrendingTopics()
         List<Topic> topics = topicService.findTopicsSubscribedByCurrentUser(currentUser)

@@ -3,7 +3,7 @@ package com.ig.LinkShare
 
 class SearchController {
     def searchService
-    def showResourceService
+    def resourceService
     def showInboxService
     def topicService
     def topicSubscriptionService
@@ -43,7 +43,7 @@ class SearchController {
         User currentUser=springSecurityService.currentUser
         Topic topic = Topic.findById(params.topicID)
 
-        List<Resource> resourceList = showResourceService.showResourcesByTopic(topic)
+        List<Resource> resourceList = resourceService.showResourcesByTopic(topic)
 
         render(template: 'postOnTopicName', model: [resourceList: resourceList, loginUser: currentUser])
     }

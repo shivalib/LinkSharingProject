@@ -5,7 +5,7 @@ import grails.plugin.springsecurity.annotation.Secured
 class TopicController {
 
     def topicSubscriptionService
-    def showResourceService
+    def resourceService
     def topicService
     def springSecurityService
 
@@ -21,7 +21,7 @@ class TopicController {
         def subscribersCount = subscriptionList.totalCount
 
         List<Topic> topics = topicService.findTopicsSubscribedByCurrentUser(loginUser)
-        List<Resource> resourceList = showResourceService.showResourcesByTopic(topic)
+        List<Resource> resourceList = resourceService.showResourcesByTopic(topic)
 
         render(view: "/topic/topicShow", model: [subscribersCount: subscribersCount, max: max, offset: offset, topic: topic, topicList: topics, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
     }
@@ -45,7 +45,7 @@ class TopicController {
         int max = params.max ? params.int('max') : 10
 
         Topic topic = Topic.get(id)
-        List<Resource> resourceList = showResourceService.showResourcesByTopic(topic)
+        List<Resource> resourceList = resourceService.showResourcesByTopic(topic)
 
 
     }

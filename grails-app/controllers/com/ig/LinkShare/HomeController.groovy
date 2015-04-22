@@ -6,7 +6,7 @@ class HomeController {
 
     def showInboxService
     def topicService
-    def showResourceService
+    def resourceService
     def springSecurityService
     def topicSubscriptionService
 
@@ -14,7 +14,7 @@ class HomeController {
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5
 
-        List<Resource> resources = showResourceService.calculateResourceList(max, offset)
+        List<Resource> resources = resourceService.calculateResourceList(max, offset)
 
         render(view: "/login/homePage", model: [resources: resources, postUrl: params.postUrl, rememberMeParameter: grailsApplication.config.rememberMe.parameter, resourceCount: resources.count])
     }
@@ -57,7 +57,7 @@ class HomeController {
     }
 
     def showTopPosts() {
-        List<Resource> resources1 = showResourceService.showTopPost(params.timeValue)
+        List<Resource> resources1 = resourceService.showTopPost(params.timeValue)
         render(template: "/home/topPosts", model: [resource: resources1])
     }
 }

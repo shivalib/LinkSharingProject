@@ -6,7 +6,7 @@ import com.ig.LinkShare.applicationEnums.UserCO
 class UserProfileController {
     def uploadService
     def topicService
-    def showResourceService
+    def resourceService
     def topicSubscriptionService
     def springSecurityService
 
@@ -39,7 +39,7 @@ class UserProfileController {
 
         List<Resource> resourcesOfTopic = []
         topics.each {
-            resourcesOfTopic += showResourceService.showResourcesByTopic(it)
+            resourcesOfTopic += resourceService.showResourcesByTopic(it)
         }
 
         render(view: "/user/userProfile", model: [loginUser: currentUser, topicList: topics, resourcesOfTopic: resourcesOfTopic])
