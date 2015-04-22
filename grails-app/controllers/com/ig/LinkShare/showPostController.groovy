@@ -4,14 +4,13 @@ import grails.plugin.springsecurity.annotation.Secured
 
 class showPostController {
     def springSecurityService
-    def trendingTopicService
     def showResourceService
     def resourceRatingService
     def showTopicService
 
     def index(Long id) {
         Resource resource = Resource.get(id)
-        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
+        List<Topic> trendingTopics = showTopicService.showTrendingTopics()
         User currentUser = springSecurityService.currentUser
 
         Subscription subscription = Subscription.findWhere(user: currentUser)
@@ -24,7 +23,7 @@ class showPostController {
     def postsForAdmin() {
         List<Resource> resourceList = showResourceService.calculateResourceListForAdmin()
         User currentUser = springSecurityService.currentUser
-        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
+        List<Topic> trendingTopics = showTopicService.showTrendingTopics()
         List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
 
         render(view: "/showPost/viewPost", model: [loginUser: currentUser, topicList: topics, trendingTopicList: trendingTopics, resourceList: resourceList])

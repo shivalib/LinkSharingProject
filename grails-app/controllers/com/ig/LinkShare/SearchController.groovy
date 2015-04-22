@@ -2,7 +2,6 @@ package com.ig.LinkShare
 
 
 class SearchController {
-    def trendingTopicService
     def searchService
     def showResourceService
     def showInboxService
@@ -11,7 +10,7 @@ class SearchController {
     def springSecurityService
 
     def searchPage() {
-        List<Topic> trendingTopics = trendingTopicService.showTrendingTopics()
+        List<Topic> trendingTopics = showTopicService.showTrendingTopics()
         User currentUser = springSecurityService.currentUser
         List<Resource> resources = searchService.searchAll(params.searchGlobal)
         render(view: "searchResult", model: [loginUser: currentUser, resourceList: resources, searchValue: params.searchGlobal, trendingTopicList: trendingTopics])

@@ -8,7 +8,6 @@ class UserProfileController {
     def showTopicService
     def showResourceService
     def topicSubscriptionService
-    def top5SubscriptionService
     def springSecurityService
 
     def index() {

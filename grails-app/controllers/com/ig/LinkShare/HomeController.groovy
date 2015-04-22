@@ -4,8 +4,6 @@ import grails.plugin.springsecurity.annotation.Secured
 
 class HomeController {
 
-    def top5SubscriptionService
-    def trendingTopicService
     def showInboxService
     def showTopicService
     def showResourceService
@@ -38,7 +36,7 @@ class HomeController {
 
         def currentUser = springSecurityService.currentUser
         List<Subscription> subscriptionList = topicSubscriptionService.showTop5Subscription(currentUser)
-        List<Topic> trendingTopicList = trendingTopicService.showTrendingTopics()
+        List<Topic> trendingTopicList = showTopicService.showTrendingTopics()
         List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
         List<ReadingItem> readingItemListWithIsReadFalse = showInboxService.showInbox(currentUser, max, offset)
         def totalInboxItems = readingItemListWithIsReadFalse.totalCount

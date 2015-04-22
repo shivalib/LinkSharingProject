@@ -5,8 +5,6 @@ import grails.transaction.Transactional
 
 @Transactional
 class ShowTopicService {
-
-
     List<Topic> findTopicsSubscribedByCurrentUser(User currentUser) {
 
         List<Topic> topicList = Topic.createCriteria().list {
@@ -18,6 +16,15 @@ class ShowTopicService {
             }
         }
         return topicList
+    }
+
+    List<Topic> showTrendingTopics() {
+        List<Topic> trendingTopics = Topic.list().sort {
+
+            it.resources.size()
+        }.reverse()
+
+        return trendingTopics
     }
 
     List<Topic> findTopicsCreatedByUser(User currentUser) {
