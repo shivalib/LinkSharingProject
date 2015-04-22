@@ -23,7 +23,7 @@
         <li class="divider"></li>
 
         <li role="presentation">
-            <g:link role="menuitem" tabindex="-1" controller="showPost" action="postsForAdmin" >Posts</g:link>
+            <g:link role="menuitem" tabindex="-1" controller="post" action="postsForAdmin" >Posts</g:link>
         </li>
 
         <li class="divider"></li>

@@ -74,7 +74,7 @@
 
             </div>
             <g:each in="${resources}" var="resourceList">
-                <g:render template="/showPost/topicPost" model="[resourceList: resourceList]"/>
+                <g:render template="/post/topicPost" model="[resourceList: resourceList]"/>
             </g:each>
         </div>
 

@@ -128,13 +128,13 @@ class ApplicationTagLib {
         }
 
         if (adminFlag || resource.createdBy == currentUser) {
-            out << g.render(template: "/showPost/isAdminOrCreator", model: [resource: resource])
+            out << g.render(template: "/post/isAdminOrCreator", model: [resource: resource])
         }
     }
 
     def averageRating = { attr ->
         Resource resource = attr.resource
         def averageRating = resourceRatingService.findAverageRating(resource)
-        out << g.render(template: "/showPost/ratingDiv", model: [resource: resource, averageRating: averageRating])
+        out << g.render(template: "/post/ratingDiv", model: [resource: resource, averageRating: averageRating])
     }
 }

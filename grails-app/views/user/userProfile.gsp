@@ -58,7 +58,7 @@
                 <h3 class="panel-title">Posts</h3>
             </div>
             <g:each in="${resourcesOfTopic}" var="resource">
-                <g:render template="/showPost/topicPost" model="[resourceList: resource, loginUser: loginUser]"/>
+                <g:render template="/post/topicPost" model="[resourceList: resource, loginUser: loginUser]"/>
             </g:each>
         </div><!-- panel ends-->
     </div><!--col-md-7 ends-->

@@ -133,7 +133,7 @@ class TopicController {
         } else {
             flash.message = "Resource editing failed!"
         }
-        forward(controller: "showPost", action: "index")
+        forward(controller: "post", action: "index")
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])

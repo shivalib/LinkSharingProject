@@ -2,7 +2,7 @@ package com.ig.LinkShare
 
 import grails.plugin.springsecurity.annotation.Secured
 
-class showPostController {
+class PostController {
     def springSecurityService
     def resourceService
     def resourceRatingService
@@ -16,7 +16,7 @@ class showPostController {
         Subscription subscription = Subscription.findWhere(user: currentUser)
         List<Topic> topics = topicService.findTopicsSubscribedByCurrentUser(currentUser)
 
-        render(view: "/showPost/viewPost", model: [topicList: topics, loginUser: currentUser, subscription: subscription, trendingTopicList: trendingTopics, resource: resource])
+        render(view: "/post/viewPost", model: [topicList: topics, loginUser: currentUser, subscription: subscription, trendingTopicList: trendingTopics, resource: resource])
     }
 
     @Secured(['ROLE_ADMIN'])
@@ -26,7 +26,7 @@ class showPostController {
         List<Topic> trendingTopics = topicService.showTrendingTopics()
         List<Topic> topics = topicService.findTopicsSubscribedByCurrentUser(currentUser)
 
-        render(view: "/showPost/viewPost", model: [loginUser: currentUser, topicList: topics, trendingTopicList: trendingTopics, resourceList: resourceList])
+        render(view: "/post/viewPost", model: [loginUser: currentUser, topicList: topics, trendingTopicList: trendingTopics, resourceList: resourceList])
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])

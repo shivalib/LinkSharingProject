@@ -7,7 +7,7 @@ class ReadingItemController {
         Resource resource = Resource.findById(params.currentResource)
         ReadingItem readingItem = reverseReadingItem(currentUser, resource)
         readingItem.save(failOnError: true, flush: true)
-        render(template: "/showPost/topicPost", model: [resourceList: readingItem.resource, loginUser: currentUser])
+        render(template: "/post/topicPost", model: [resourceList: readingItem.resource, loginUser: currentUser])
     }
 
     def markAsReadOrUnreadForTopicClick() {
