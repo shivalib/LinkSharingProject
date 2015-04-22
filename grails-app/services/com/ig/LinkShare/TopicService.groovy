@@ -4,7 +4,7 @@ import com.ig.LinkShare.applicationEnums.Visibility
 import grails.transaction.Transactional
 
 @Transactional
-class ShowTopicService {
+class TopicService {
     List<Topic> findTopicsSubscribedByCurrentUser(User currentUser) {
 
         List<Topic> topicList = Topic.createCriteria().list {

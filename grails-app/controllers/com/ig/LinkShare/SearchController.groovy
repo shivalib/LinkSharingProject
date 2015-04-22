@@ -5,12 +5,12 @@ class SearchController {
     def searchService
     def showResourceService
     def showInboxService
-    def showTopicService
+    def topicService
     def topicSubscriptionService
     def springSecurityService
 
     def searchPage() {
-        List<Topic> trendingTopics = showTopicService.showTrendingTopics()
+        List<Topic> trendingTopics = topicService.showTrendingTopics()
         User currentUser = springSecurityService.currentUser
         List<Resource> resources = searchService.searchAll(params.searchGlobal)
         render(view: "searchResult", model: [loginUser: currentUser, resourceList: resources, searchValue: params.searchGlobal, trendingTopicList: trendingTopics])

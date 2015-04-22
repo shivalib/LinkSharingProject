@@ -5,14 +5,14 @@ import com.ig.LinkShare.applicationEnums.UserCO
 
 class UserProfileController {
     def uploadService
-    def showTopicService
+    def topicService
     def showResourceService
     def topicSubscriptionService
     def springSecurityService
 
     def index() {
         def currentUser = springSecurityService.currentUser
-        List<Topic> topicList = showTopicService.findTopicsCreatedByUser(currentUser)
+        List<Topic> topicList = topicService.findTopicsCreatedByUser(currentUser)
         List<Subscription> subscriptionTopicList = topicSubscriptionService.currentUserSubscriptions(currentUser)
 
         render(view: "/userProfile/editProfile", model: [loginUser: currentUser, subscriptionTopicList: subscriptionTopicList, topicList: topicList])
@@ -35,7 +35,7 @@ class UserProfileController {
 
     def showUserPublicProfile(Long id) {
         User currentUser = User.findById(id)
-        List<Topic> topics = showTopicService.findTopicsCreatedByUser(currentUser)
+        List<Topic> topics = topicService.findTopicsCreatedByUser(currentUser)
 
         List<Resource> resourcesOfTopic = []
         topics.each {

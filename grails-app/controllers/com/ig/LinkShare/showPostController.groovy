@@ -6,15 +6,15 @@ class showPostController {
     def springSecurityService
     def showResourceService
     def resourceRatingService
-    def showTopicService
+    def topicService
 
     def index(Long id) {
         Resource resource = Resource.get(id)
-        List<Topic> trendingTopics = showTopicService.showTrendingTopics()
+        List<Topic> trendingTopics = topicService.showTrendingTopics()
         User currentUser = springSecurityService.currentUser
 
         Subscription subscription = Subscription.findWhere(user: currentUser)
-        List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
+        List<Topic> topics = topicService.findTopicsSubscribedByCurrentUser(currentUser)
 
         render(view: "/showPost/viewPost", model: [topicList: topics, loginUser: currentUser, subscription: subscription, trendingTopicList: trendingTopics, resource: resource])
     }
@@ -23,8 +23,8 @@ class showPostController {
     def postsForAdmin() {
         List<Resource> resourceList = showResourceService.calculateResourceListForAdmin()
         User currentUser = springSecurityService.currentUser
-        List<Topic> trendingTopics = showTopicService.showTrendingTopics()
-        List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
+        List<Topic> trendingTopics = topicService.showTrendingTopics()
+        List<Topic> topics = topicService.findTopicsSubscribedByCurrentUser(currentUser)
 
         render(view: "/showPost/viewPost", model: [loginUser: currentUser, topicList: topics, trendingTopicList: trendingTopics, resourceList: resourceList])
     }

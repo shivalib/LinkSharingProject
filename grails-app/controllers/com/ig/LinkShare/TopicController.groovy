@@ -6,7 +6,7 @@ class TopicController {
 
     def topicSubscriptionService
     def showResourceService
-    def showTopicService
+    def topicService
     def springSecurityService
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
@@ -20,7 +20,7 @@ class TopicController {
         List<Subscription> subscriptionList = topicSubscriptionService.subscriptionListOfCurrentTopic(topic, max, offset)
         def subscribersCount = subscriptionList.totalCount
 
-        List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(loginUser)
+        List<Topic> topics = topicService.findTopicsSubscribedByCurrentUser(loginUser)
         List<Resource> resourceList = showResourceService.showResourcesByTopic(topic)
 
         render(view: "/topic/topicShow", model: [subscribersCount: subscribersCount, max: max, offset: offset, topic: topic, topicList: topics, loginUser: loginUser, subscribers: subscriptionList, resources: resourceList])
@@ -53,7 +53,7 @@ class TopicController {
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def showTopicList() {
         User currentUser = springSecurityService.currentUser
-        List<Topic> topicsCreatedByUser = showTopicService.findTopicsCreatedByUser(currentUser)
+        List<Topic> topicsCreatedByUser = topicService.findTopicsCreatedByUser(currentUser)
 
         render(view: "topicList", model: [loginUser: currentUser, topicList: topicsCreatedByUser])
     }
@@ -68,7 +68,7 @@ class TopicController {
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def createTopic() {
         User userID = springSecurityService.currentUser
-        List<Topic> topicList = showTopicService.findTopicsNameCreatedByUser(userID)
+        List<Topic> topicList = topicService.findTopicsNameCreatedByUser(userID)
 
         if (topicList.contains(params.topicName)) {
             flash.message = "Topic creation failed,topic with name : ${params.topicName} already exists!"

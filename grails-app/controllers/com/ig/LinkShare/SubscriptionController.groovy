@@ -8,13 +8,13 @@ class SubscriptionController {
     def scaffold = Subscription
     def readingItemService
     def searchService
-    def showTopicService
+    def topicService
     def topicSubscriptionService
     def springSecurityService
 
     def showAllSubscriptions() {
         User currentUser = springSecurityService.currentUser
-        List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
+        List<Topic> topics = topicService.findTopicsSubscribedByCurrentUser(currentUser)
 
         int offset = params.offset ? params.int('offset') : 0
         int max = params.max ? params.int('max') : 5

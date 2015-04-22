@@ -7,14 +7,14 @@ import grails.plugin.springsecurity.annotation.Secured
 class UserController {
     def uploadService
     def scaffold = true
-    def showTopicService
+    def topicService
     def springSecurityService
 
     @Secured(['ROLE_ADMIN'])
     def list() {
         List<User> userList = User.list()
         User currentUser = springSecurityService.currentUser
-        List<Topic> topics = showTopicService.findTopicsSubscribedByCurrentUser(currentUser)
+        List<Topic> topics = topicService.findTopicsSubscribedByCurrentUser(currentUser)
         render(view: "/userListing/userListing", model: [userList: userList, loginUser: currentUser, topicList: topics])
     }
 
