@@ -142,79 +142,79 @@ upload() {
 }
 // Added by the JQuery Validation UI plugin:
 jqueryValidationUi {
-	errorClass = 'error'
-	validClass = 'valid'
-	onsubmit = true
-	renderErrorsOnTop = false
-	
-	qTip {
-		packed = true
-	  classes = 'ui-tooltip-red ui-tooltip-shadow ui-tooltip-rounded'  
-	}
-	
-	/*
-	  Grails constraints to JQuery Validation rules mapping for client side validation.
-	  Constraint not found in the ConstraintsMap will trigger remote AJAX validation.
-	*/
-	StringConstraintsMap = [
-		blank:'required', // inverse: blank=false, required=true
-		creditCard:'creditcard',
-		email:'email',
-		inList:'inList',
-		minSize:'minlength',
-		maxSize:'maxlength',
-		size:'rangelength',
-		matches:'matches',
-		notEqual:'notEqual',
-		url:'url',
-		nullable:'required',
-		unique:'unique',
-		validator:'validator'
-	]
-	
-	// Long, Integer, Short, Float, Double, BigInteger, BigDecimal
-	NumberConstraintsMap = [
-		min:'min',
-		max:'max',
-		range:'range',
-		notEqual:'notEqual',
-		nullable:'required',
-		inList:'inList',
-		unique:'unique',
-		validator:'validator'
-	]
-	
-	CollectionConstraintsMap = [
-		minSize:'minlength',
-		maxSize:'maxlength',
-		size:'rangelength',
-		nullable:'required',
-		validator:'validator'
-	]
-	
-	DateConstraintsMap = [
-		min:'minDate',
-		max:'maxDate',
-		range:'rangeDate',
-		notEqual:'notEqual',
-		nullable:'required',
-		inList:'inList',
-		unique:'unique',
-		validator:'validator'
-	]
-	
-	ObjectConstraintsMap = [
-		nullable:'required',
-		validator:'validator'
-	]
-	
-	CustomConstraintsMap = [
-		phone:'true', // International phone number validation
-		phoneUS:'true',
-		alphanumeric:'true',
-		letterswithbasicpunc:'true',
-    lettersonly:'true'
-	]	
+    errorClass = 'error'
+    validClass = 'valid'
+    onsubmit = true
+    renderErrorsOnTop = false
+
+    qTip {
+        packed = true
+        classes = 'ui-tooltip-red ui-tooltip-shadow ui-tooltip-rounded'
+    }
+
+    /*
+      Grails constraints to JQuery Validation rules mapping for client side validation.
+      Constraint not found in the ConstraintsMap will trigger remote AJAX validation.
+    */
+    StringConstraintsMap = [
+            blank     : 'required', // inverse: blank=false, required=true
+            creditCard: 'creditcard',
+            email     : 'email',
+            inList    : 'inList',
+            minSize   : 'minlength',
+            maxSize   : 'maxlength',
+            size      : 'rangelength',
+            matches   : 'matches',
+            notEqual  : 'notEqual',
+            url       : 'url',
+            nullable  : 'required',
+            unique    : 'unique',
+            validator : 'validator'
+    ]
+
+    // Long, Integer, Short, Float, Double, BigInteger, BigDecimal
+    NumberConstraintsMap = [
+            min      : 'min',
+            max      : 'max',
+            range    : 'range',
+            notEqual : 'notEqual',
+            nullable : 'required',
+            inList   : 'inList',
+            unique   : 'unique',
+            validator: 'validator'
+    ]
+
+    CollectionConstraintsMap = [
+            minSize  : 'minlength',
+            maxSize  : 'maxlength',
+            size     : 'rangelength',
+            nullable : 'required',
+            validator: 'validator'
+    ]
+
+    DateConstraintsMap = [
+            min      : 'minDate',
+            max      : 'maxDate',
+            range    : 'rangeDate',
+            notEqual : 'notEqual',
+            nullable : 'required',
+            inList   : 'inList',
+            unique   : 'unique',
+            validator: 'validator'
+    ]
+
+    ObjectConstraintsMap = [
+            nullable : 'required',
+            validator: 'validator'
+    ]
+
+    CustomConstraintsMap = [
+            phone               : 'true', // International phone number validation
+            phoneUS             : 'true',
+            alphanumeric        : 'true',
+            letterswithbasicpunc: 'true',
+            lettersonly         : 'true'
+    ]
 }
 
 simian {
@@ -237,19 +237,15 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.ig.LinkShare.
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.ig.LinkShare.SecUserSecRole'
 grails.plugin.springsecurity.authority.className = 'com.ig.LinkShare.SecRole'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/':                              ['permitAll'],
-	'/index':                         ['permitAll'],
-	'/index.gsp':                     ['permitAll'],
-	'/assets/**':                     ['permitAll'],
-	'/**/js/**':                      ['permitAll'],
-	'/**/css/**':                     ['permitAll'],
-	'/**/images/**':                  ['permitAll'],
-	'/**/favicon.ico':                ['permitAll']
+        '/'              : ['permitAll'],
+        '/index'         : ['permitAll'],
+        '/index.gsp'     : ['permitAll'],
+        '/assets/**'     : ['permitAll'],
+        '/**/js/**'      : ['permitAll'],
+        '/**/css/**'     : ['permitAll'],
+        '/**/images/**'  : ['permitAll'],
+        '/**/favicon.ico': ['permitAll']
 ]
-
-
-
-
 
 // Added by the Spring Security OAuth2 Provider plugin:
 grails.plugin.springsecurity.oauthProvider.clientLookup.className = 'com.ig.LinkShare.Client'
@@ -257,3 +253,23 @@ grails.plugin.springsecurity.oauthProvider.authorizationCodeLookup.className = '
 grails.plugin.springsecurity.oauthProvider.accessTokenLookup.className = 'com.ig.LinkShare.AccessToken'
 grails.plugin.springsecurity.oauthProvider.refreshTokenLookup.className = 'com.ig.LinkShare.RefreshToken'
 
+
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+        '/oauth/authorize.dispatch': ["isFullyAuthenticated() and (request.getMethod().equals('GET') or request.getMethod().equals('POST'))"],
+        '/oauth/token.dispatch'    : ["isFullyAuthenticated() and request.getMethod().equals('POST')"]
+]
+
+grails.plugin.springsecurity.providerNames = [
+        'clientCredentialsAuthenticationProvider',
+        'daoAuthenticationProvider',
+        'anonymousAuthenticationProvider',
+        'rememberMeAuthenticationProvider'
+]
+
+grails.exceptionresolver.params.exclude = ['password', 'client_secret']
+
+grails.plugin.springsecurity.filterChain.chainMap = [
+        '/oauth/token': 'JOINED_FILTERS,-oauth2ProviderFilter,-securityContextPersistenceFilter,-logoutFilter,-rememberMeAuthenticationFilter,-exceptionTranslationFilter',
+        '/securedOAuth2Resources/**': 'JOINED_FILTERS,-securityContextPersistenceFilter,-logoutFilter,-rememberMeAuthenticationFilter,-exceptionTranslationFilter',
+        '/**': 'JOINED_FILTERS,-statelessSecurityContextPersistenceFilter,-oauth2ProviderFilter,-clientCredentialsTokenEndpointFilter,-oauth2ExceptionTranslationFilter'
+]
