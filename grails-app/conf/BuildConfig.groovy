@@ -82,8 +82,7 @@ grails.project.dependency.resolution = {
 
         compile ":gmetrics:0.3.1"
 
-        //asynchronous mail
-        //compile ":asynchronous-mail:1.2"
+        compile ":spring-security-oauth2-provider:2.0-RC3"
 
         //twitter boostrap plugin
         compile ":twitter-bootstrap:3.3.2.1"
