@@ -249,3 +249,11 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 
 
 
+
+
+// Added by the Spring Security OAuth2 Provider plugin:
+grails.plugin.springsecurity.oauthProvider.clientLookup.className = 'com.ig.LinkShare.Client'
+grails.plugin.springsecurity.oauthProvider.authorizationCodeLookup.className = 'com.ig.LinkShare.AuthorizationCode'
+grails.plugin.springsecurity.oauthProvider.accessTokenLookup.className = 'com.ig.LinkShare.AccessToken'
+grails.plugin.springsecurity.oauthProvider.refreshTokenLookup.className = 'com.ig.LinkShare.RefreshToken'
+
