@@ -20,48 +20,45 @@ $(document).ready(function () {
             }
         })
     });
-    
-
 
     $('.readUnread-inbox').on('click', function () {
-        //_markAsRead->ajax->controller
         var currentPanelBody = $(this).closest('.updateReadingItem')
-        var element=$(this);
+        var element = $(this);
 
-           var successHandler= function(data) {
-                console.log(data);
-                currentPanelBody.empty()
-            }
+        var successHandler = function (data) {
+            console.log(data);
+            currentPanelBody.empty()
+        }
 
-        markAsReadUnread(successHandler,element)
+        markAsReadUnread(successHandler, element)
 
     });
 
     $('.readUnread-post').on('click', function () {
         var currentPanelBody = $(this).closest('.updateReadingItem')
-        var element=$(this)
+        var element = $(this)
 
-        var successHandler= function(data) {
+        var successHandler = function (data) {
             console.log(data)
             currentPanelBody.html(data)
         }
 
-        markAsReadUnread(successHandler,element)
+        markAsReadUnread(successHandler, element)
 
     });
 
-    function markAsReadUnread(successHandler,element){
+    function markAsReadUnread(successHandler, element) {
         var currentUser = element.attr('data-currentUser'),
-            currentResource = element.attr('data-currentResource'),url=element.attr('data_readLink')
+            currentResource = element.attr('data-currentResource'), url = element.attr('data_readLink')
 
         $.ajax(
             {
-                url:url,
+                url: url,
                 data: {
                     currentUser: currentUser,
                     currentResource: currentResource
                 },
-                success:successHandler,
+                success: successHandler,
                 error: function (request, status, error) {
                     console.log("We are in error section ");
                     console.log("request :" + request);
