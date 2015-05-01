@@ -111,6 +111,4 @@ class LoginController {
         }
         return userList
     }
-
-
 }
